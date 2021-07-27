@@ -110,7 +110,8 @@ TOP_GG_API="" # token do bot na top.gg
 topggpas="" # seu passe para a top.gg
 ```
 ⚠ALERTA!
-`o toke de bot adicional o *PROTECTION_BOT_TOKEN* e necessário para o repositório fazer requisições EXTERNAS/EXTRAS na API do discord sem fazer que o bot principal "*TOKEN*" não pege RATELIMIT`
+
+> `o token de bot adicional o *PROTECTION_BOT_TOKEN* e necessário para o repositório fazer requisições EXTERNAS/EXTRAS na API do discord sem fazer que o bot principal "*TOKEN*" não pege RATELIMIT`
 
 #### :electric_plug: **- Script de Inicialização**
 ```npm

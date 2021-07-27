@@ -202,10 +202,10 @@ new client_bot.events(`${clientConfig.footer.root}/events_1`,client)
 /*
 client.on('message', message => require('./events/help.js')(client, message));
 client.on('message', message => require('./events/afk.js')(client, message));*/
-client.on('message', message => require('./events/owo.js')(client, message));
+client.on('message', message => require('./events/owo.js')(client, message));/*
 client.on('message', message =>
 	require('./antiRaid/index.js')(client, message, kariModu)
-);
+)*/
 
 client.on('guildCreate', function(guild) {
 	KariWebhooks._exit(
