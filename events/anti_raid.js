@@ -18,11 +18,11 @@ const antiSpam = new AntiSpam({
     verbose: true,
     muteRoleName: "antiraid_role",
   	removeMessages: true,
-    ignoredUsers: [],
+    ignoredUsers: ["793188009498378270"],
     errorMessages:  true,
-		kickErrorMessage: 'não foi possível expulsar o **{user_tag}** por conta que eu não tenho a permissão **expulsar membros** em meu cargo principal.',
-		banErrorMessage: 'não foi possível banir o  **{user_tag}** por conta que eu não tenho a permissão **banir membros** em meu cargo principal.',
-		muteErrorMessage: 'Não foi possível silenciar **{user_tag}** devido a permissões impróprias ou a função mudo não pôde ser encontrada',
+    kickErrorMessage: 'não foi possível expulsar o **{user_tag}** por conta que eu não tenho a permissão **expulsar membros** em meu cargo principal.',
+    banErrorMessage: 'não foi possível banir o  **{user_tag}** por conta que eu não tenho a permissão **banir membros** em meu cargo principal.',
+    muteErrorMessage: 'Não foi possível silenciar **{user_tag}** devido a permissões impróprias ou a função mudo não pôde ser encontrada',
     debug: true,
 });
 const Discord = require("discord.js");

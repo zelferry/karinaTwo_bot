@@ -1,15 +1,19 @@
 const Discord = require("discord.js")
 
-module.exports = async (client, message) => {
-  if (!message.guild) return;
-  mention(client, message)
+exports.type = "message";
+exports.start = async(client,message) => {
+	if (!message.guild) return;
+	mention(client, message)
 }
 
 async function mention (client, message) {
 
   const servers = [
     `<@!${client.user.id}>`,
-    `<@${client.user.id}>`
+    `<@${client.user.id}>`,
+    `karinaTwo prefix`,
+    `karinaTwo prefix?`,
+    `KarinaTwo#5954`
   ];
   if (servers.includes(message.content)) {
 

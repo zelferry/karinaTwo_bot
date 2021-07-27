@@ -198,11 +198,11 @@ client.on('ready', async () => {
 
 	commands__.loadingSlashCommands();
 });
-new client_bot.events(`${clientConfig.footer.root}/events_1`,client)
+new client_bot.events(`${clientConfig.footer.root}/events`,client)
 /*
 client.on('message', message => require('./events/help.js')(client, message));
-client.on('message', message => require('./events/afk.js')(client, message));*/
-client.on('message', message => require('./events/owo.js')(client, message));/*
+client.on('message', message => require('./events/afk.js')(client, message));
+client.on('message', message => require('./events/owo.js')(client, message));
 client.on('message', message =>
 	require('./antiRaid/index.js')(client, message, kariModu)
 )*/
