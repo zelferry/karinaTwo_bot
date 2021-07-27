@@ -1,0 +1,38 @@
+{
+  "client":{},
+  "shard":{
+  	"totalShards":"auto",
+    "token": "{!token}"
+  },
+  "functions":{
+  	"ignoredUsers":[] 
+  },
+  "host":{
+  	"links":[] 
+  },
+  "adverts":{
+  	"auto":true,
+  	"guilds":[] 
+  },
+  "footer":{
+  	"root":""
+  },
+  "webhooks":{ 
+   "commands":{
+    "id":"", 
+ 	"token":""
+ 	},
+ 	"topgg":{
+ 	 "id":"", 
+  	 "token":""
+  	},
+  	"suport":{
+ 	 "id":"", 
+ 	 "token":"" 
+ 	},
+ 	"exit_":{
+ 	 "id":"",
+  	 "token":""
+  	}
+  }
+}
