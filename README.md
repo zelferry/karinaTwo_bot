@@ -25,9 +25,8 @@
 
 
 <p align="center">
-<a href="https://top.gg/bot/793530706319114261">
-  <img src="https://img.shields.io/badge/website-karinaTwo.zelferry.repl.co-9cf
-" alt="website" />
+<a href="https://karinaTwo.zelferry.repl.co">
+  <img src="https://img.shields.io/badge/website-karinaTwo.zelferry.repl.co-9cf" alt="website" />
   </a>
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/zelferry/karinaTwo_bot">
 <img alt="GitHub repo file count" src="https://img.shields.io/github/directory-file-count/zelferry/karinaTwo_bot">
