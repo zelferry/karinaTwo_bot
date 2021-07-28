@@ -1,5 +1,5 @@
 <p align="center">
-<img width="65%" src="https://cdn.discordapp.com/attachments/853133669581193216/869368588543348766/84_Sem_Titulo_20210618214446.png">
+<img width="69%" src="https://cdn.discordapp.com/attachments/853133669581193216/869368588543348766/84_Sem_Titulo_20210618214446.png">
 <br>
 
 
@@ -71,7 +71,7 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
   	"guilds":[] //servidores que vão ser a função de auto post de anúncios
   },
   "footer":{
-  	"root":"" //sua root global(exemplos: ../../ , home/runner/bot , C:/myname/bots/bot
+  	"root":"" //sua root global(exemplos: /project/mybot , home/runner/bot , C:/myname/bots/bot
   },
   "webhooks":{ 
  "commands":{

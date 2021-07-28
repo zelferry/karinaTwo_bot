@@ -2,7 +2,7 @@ var express = require('express');
 var low = require('lowdb');
 var fsync = require('lowdb/adapters/FileSync');
 var Topgg = require('@top-gg/sdk');
-var { DiscordFetcher } = require('discord-fetcher');
+//var { DiscordFetcher } = require('discord-fetcher');
 var Discord = require("discord.js");
 
 var adap = new fsync('database/topgg/votedusers.json');

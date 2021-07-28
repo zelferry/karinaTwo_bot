@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 let util = require("../utils/main.js")
 
 exports.type = "message";
-exports.start = async(client,message) => {
+exports.start = async(client,clusterID,ipc,message) => {
 if (message.author.bot) return;
 if (message.channel.type === "dm") return;
 

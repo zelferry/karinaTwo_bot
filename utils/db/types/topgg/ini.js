@@ -9,23 +9,21 @@ class data_topgg {
 		
 	}
 	new(member) {
-		if(db.get('all').find({id: member.id}).value() !== undefined) return new Error(`DATABASE ERROR: O Membro já tem registro na DataBase.`)
+		if(db.get('all').find({id: member}).value() !== undefined) return new Error(`DATABASE ERROR: O Membro já tem registro na DataBase.`)
 		db.get('all').push({
-			id: member.id,
+			id: member,
 			votes: 0
 		}).write()
 	}
 	add(c,nw) {
-		db.get('all').find({id: c.id}).assign({
+		db.get('all').find({id: c}).assign({
 			votes: nw
 		}).write()
 	}
 	find(c) {
-		return db.get('all').find({id: c.id}).value()
+		return db.get('all').find({id: c}).value()
 	}
-	get_(c) {
-		
-	}
+	get_(c) {}
 	set_() {}
 }
 module.exports = data_topgg;

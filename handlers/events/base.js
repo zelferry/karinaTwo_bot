@@ -33,7 +33,7 @@ function searchByExtension(directory, extension = 'js') {
 
 
 class events {
-	constructor(dir, client) {
+	constructor(dir, client,clusterID, ipc) {
 		for (const dirInfo of searchByExtension(dir, 'js')) {
 			for (const file of dirInfo.files) {
 				let events = require(file);
@@ -45,8 +45,10 @@ class events {
 					if (!event.type || !event.start) {
 						continue;
 					}
-
-					client.on(event.type, (...args) => event.start(client, ...args));
+					if(event.type == "INTERACTION_CREATE"){
+						client.ws.on(event.type, (...args) => event.start(client,clusterID,ipc,...args))
+					}
+					client.on(event.type, (...args) => event.start(client,clusterID,ipc, ...args));
 				}
 			}
 		}

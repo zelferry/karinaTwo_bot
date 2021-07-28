@@ -5,7 +5,7 @@ const talkedRecently = new Set();
 
 const ms = require("parse-ms")
 const timeout = 86400000
-let dbfunc = require("../KariModules/db-low.js")
+//let dbfunc = require("../KariModules/db-low.js")
 
 let MoneyDB = new db.crearDB("Economy");
 let util = require("../utils/main.js")

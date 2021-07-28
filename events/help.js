@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 
 exports.type = "message";
-exports.start = async(client,message) => {
+exports.start = async(client,clusterID,ipc,message) => {
 	if (!message.guild) return;
 	mention(client, message)
 }
