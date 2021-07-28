@@ -14,7 +14,6 @@ database/client/webhooks.json
 database/client/config.json
 database/micaela/idiotas.json
 package-lock.json
-database/IDs/bansUsers/bans.json
 database/giveaway/data.json
 webClient/controllers/files.js
 

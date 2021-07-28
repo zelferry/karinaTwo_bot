@@ -2,6 +2,7 @@
 
 */
 const fs = require('fs');
+const EventEmitter = require('events');
 
 function searchByExtension(directory, extension = 'js') {
 	let files = fs.readdirSync(directory);
@@ -32,8 +33,17 @@ function searchByExtension(directory, extension = 'js') {
 }
 
 
-class events {
+class events extends EventEmitter{
 	constructor(dir, client,clusterID, ipc) {
+			super()
+			this.client = client
+			this.dir = dir 
+			this.clusterID = clusterID
+			this.ipc = ipc
+		}
+		loadEVENTS(){
+			let {client,dir,clusterID,ipc} = this
+
 		for (const dirInfo of searchByExtension(dir, 'js')) {
 			for (const file of dirInfo.files) {
 				let events = require(file);
@@ -52,6 +62,7 @@ class events {
 				}
 			}
 		}
-	}
+	
+		}
 }
 module.exports = events

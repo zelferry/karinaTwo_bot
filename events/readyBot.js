@@ -8,7 +8,8 @@ exports.start = async(client,clusterID,ipc,a) => {
 	
 const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
 	async refreshStorage() {
-		return this.giveawaysManager.getAllGiveaways()
+		return client.shard.broadcastEval(() =>
+			this.giveawaysManager.getAllGiveaways());
 	}
 };
 const _giveaway = new GiveawayManagerWithShardSupport(client, {
@@ -39,8 +40,8 @@ setInterval(status, 5000);
 
 client.user.setStatus('online').catch(console.error);
 
-	commands__.loadingSlashCommands();
+commands__.loadingSlashCommands();
 commands__.loadingCommands();
 
-	console.log(`${client.user.tag} online!`);
+console.log(`${client.user.tag} online!`);
 }

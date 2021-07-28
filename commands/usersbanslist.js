@@ -1,8 +1,8 @@
 const Discord = require("discord.js")
-const config = require("../config.js")
+const config = require("../config.js")/*
 const dbfunc = require("../KariModules/ban.js")
 const dblow = dbfunc.dblow
-
+*/
 exports.run = async (client, message, args) => {
 	message.reply(":x:| comando na manutenção...")
 

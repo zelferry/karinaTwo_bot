@@ -1,5 +1,4 @@
 {
-  "client":{},
   "shard":{
   	"totalShards":"auto",
     "token": "{!token}"

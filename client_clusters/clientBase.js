@@ -18,16 +18,7 @@ class _client extends Discord.Client {
 		
 		
 //new events(`${Config_.footer.root}/events`,this, "", "")
-	}/*
-	 login() {
-		this.login(process.env.TOKEN);
-		return this.constructor.name;
 	}
-	destroy(){
-		if (this.quitting) return;
-        this.quitting = true;
-        this.destroy();
-	}*/
 }
 
 module.exports = _client; 
