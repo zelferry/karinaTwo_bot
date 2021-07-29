@@ -121,7 +121,7 @@ if (message.author.bot) return;
 						args[0]
 							? `com **${message.content.split(`${comando}`)[1]}**`
 							: `sem argumentos`
-					}, no canal **${message.channel.name}**`
+					}, no canal **${message.channel.name}**\`cluster[ ${client.cluster.id} ]\``
 				)
 				.setColor('#EE82EE')
 		);
@@ -150,7 +150,7 @@ if (message.author.bot) return;
 					}, no canal **${message.channel.name}**`
 				)
 				.setColor('#FF0000')
-				.addField('mas deu erro devido a:', '```js ' + err + '```')
+				.addField('mas deu erro devido a:', '```js ' + err + '```\n `cluster[ '+client.cluster.id+' ]`')
 		);
 	}
 }

@@ -8,7 +8,7 @@ exports.start = async(client,clusterID,ipc,a) => {
 	
 const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
 	async refreshStorage() {
-		return client.shard.broadcastEval(() =>
+		return client.cluster.broadcastEval(() =>
 			this.giveawaysManager.getAllGiveaways());
 	}
 };
@@ -26,12 +26,12 @@ const _giveaway = new GiveawayManagerWithShardSupport(client, {
 let commands__ = new util.commands(client, clientConfig, _giveaway);
 
 function status() {
-	let shardID = client.shard.ids[0];
-
+	let clusterID = client.cluster.id
+	
 	client.user.setActivity(
 		`f/help | guilds: ${client.guilds.cache.size} | V${
 			require('../package.json').version
-		} | shard[${shardID}]`,
+		} | cluster[${clusterID}]`,
 		{ type: 'WATCHING' }
 	);
 }

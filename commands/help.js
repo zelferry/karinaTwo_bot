@@ -15,25 +15,25 @@ module.exports.run = async (client, message, args) => {
 
 let prefixoAtual = await PrefixDB.obtener(`${message.guild.id}.prefix`);
     
-let diversao = ["coin","emoji","inverter","morse","owo","say","fleur"].map((x) => `\`${x}\``).join(", ")//9
+let diversao = ["coin","emoji","inverter","morse","owo","say","fleur"].map((x) => `\`${x}\``)//.join(", ")//9
 
-let sosial = ["afk","atack","dancar","hug","idiot","kiss","kill","perfil","qi","slap","usertext"].map((x) => `\`${x}\``).join(", ")//0
+let sosial = ["afk","atack","dancar","hug","idiot","kiss","kill","perfil","qi","slap","usertext"].map((x) => `\`${x}\``)//.join(", ")//0
 
-let imgs = ["furry","gerarmeme","pitaya","spoiler-image"].map((x) => `\`${x}\``).join(", ")//11993343
+let imgs = ["furry","gerarmeme","pitaya","spoiler-image"].map((x) => `\`${x}\``)//.join(", ")//11993343
 
-let admits = ["antiraid","anunciar","ban","banlist","clear","create-rules","gstart","setprefix"].map((x) => `\`${x}\``).join(", ")//!
+let admits = ["antiraid","anunciar","ban","banlist","clear","create-rules","gstart","setprefix"].map((x) => `\`${x}\``)//.join(", ")//!
 
-let memes = ["creeper?","dino","meme","mcc"].map((x) => `\`${x}\``).join(", ")//&
+let memes = ["creeper?","dino","meme","mcc"].map((x) => `\`${x}\``)//.join(", ")//&
 
-let photo = ["affect","beautiful","changemymind","fuse","invert","triggered"].map((x) => `\`${x}\``).join(", ")//new
+let photo = ["affect","beautiful","changemymind","fuse","invert","triggered"].map((x) => `\`${x}\``)//.join(", ")//new
 
-let discor = ["avatar","cdinf","convidar","lembrete","ping","relatorio","shardinfor"].map((x) => `\`${x}\``).join(", ")//7
+let discor = ["avatar","cdinf","convidar","lembrete","ping","relatorio"].map((x) => `\`${x}\``)//.join(", ")//7
 
-let economy = ["buy","daily","furcoins","open","pay","roll","vip","work"].map((x) => `\`${x}\``).join(", ")//7
+let economy = ["buy","daily","furcoins","open","pay","roll","vip","work"].map((x) => `\`${x}\``)//.join(", ")//7
 
-let misela = ["help","karina-oc","karinainfor","wiki","hex"].map((x) => `\`${x}\``).join(", ")//^
+let misela = ["help","karina-oc","karinainfor","wiki","hex"].map((x) => `\`${x}\``)//.join(", ")//^
 
-let nsfw = ["e621","furry-nsfw","furry-gay","gay","nsfw","nekos","yiffy"].map((x) => `\`${x}\``).join(", ")//Int8Array
+let nsfw = ["e621","furry-nsfw","furry-gay","gay","nsfw","nekos","yiffy"].map((x) => `\`${x}\``)//.join(", ")//Int8Array
 
 let ower = ["eval","userban","usersbanslist","userurban"].map((x) => `\`${x}\``).join(", ")
 
@@ -50,44 +50,44 @@ const embed = {
   "color": 11993343,
   "fields": [
     {
-      "name": "😹ㆍdiversão",
-      "value": ""+diversao+""
+      "name": "😹ㆍdiversão ("+diversao.length+")",
+      "value": ""+diversao.join(", ")+""
     },
     {
-      "name": "🙋ㆍsocial",
-      "value": ""+sosial+""
+      "name": "🙋ㆍsocial ("+sosial.length+")",
+      "value": ""+sosial.join(", ")+""
     },
     {
-      "name": "👮ㆍadministração",
-      "value": ""+admits+""
+      "name": "👮ㆍadministração ("+admits.length+")",
+      "value": ""+admits.join(", ")+""
     },
     {
-      "name": "📷ㆍimagens",
-      "value": ""+imgs+""
+      "name": "📷ㆍimagens ("+imgs.length+")",
+      "value": ""+imgs.join(", ")+""
     },
     {
-      "name": "💩ㆍmemes",
-      "value": ""+memes+""
+      "name": "💩ㆍmemes ("+memes.length+")",
+      "value": ""+memes.join(", ")+""
     },
     {
-      "name": "💸ㆍeconômica",
-      "value": ""+economy+""
+      "name": "💸ㆍeconômica ("+economy.length+")",
+      "value": ""+economy.join(", ")+""
     },
     {
-      "name": "↪ㆍmicelânea",
-      "value": ""+misela+""
+      "name": "↪ㆍmicelânea ("+misela.length+")",
+      "value": ""+misela.join(", ")+""
     },
     {
-      "name": "😈ㆍnsfw",
-      "value": ""+nsfw+""
+      "name": "😈ㆍnsfw ("+nsfw.length+")",
+      "value": ""+nsfw.join(", ")+""
     },
     {
-      "name":"📱ㆍdiscord",
-      "value":""+discor+""
+      "name":"📱ㆍdiscord ("+discor.length+")",
+      "value":""+discor.join(", ")+""
     },
     {
-      "name":"🃏ㆍphotoshop",
-      "value":""+photo+""
+      "name":"🃏ㆍphotoshop ("+photo.length+")",
+      "value":""+photo.join(", ")+""
     },
     {
       "name":""+owerFOOTER+"",

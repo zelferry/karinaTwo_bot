@@ -2,12 +2,14 @@ let Discord = require('discord.js');
 let handlers = require('./handlers/index.js');
 let token = process.env.TOKEN;
 let manager = new handlers.shard('./index.js', {
-	totalShards: 'auto',
+	mode:"process" ,
 	token: token
 });
-
+let teste = require("./plugins/index.js")
+let ara = teste.autoTopGgPost(manager)
+ara.on("posted", console.log)
 let AutoPoster = require('topgg-autoposter');
-let ap = AutoPoster(process.env['TOP_GG_API'], manager);
+//let ap = AutoPoster(process.env['TOP_GG_API'], manager);
 let express = require('express');
 let app = express();
 let fs = require('fs');
@@ -42,12 +44,12 @@ manager.on('message', (shard, message) => {
 	console.log(`Shard[${shard.id}]: ${message._eval} - ${message._result}`);
 });
 
-manager.on('shardCreate', shard => {
+manager.on('clusterCreate', shard => {
 	console.log(
 		`[${new Date()
 			.toString()
 			.split(' ', 5)
-			.join(' ')}] shard[${shard.id}] iniciado!`
+			.join(' ')}] cluster[${shard.id}] iniciado!`
 	);
 });
 
@@ -62,10 +64,10 @@ app.get('/ping', (req, res) => {
 /*manager.on("json_shard", (data) =>{
 	console.log(data)
 });*/
-
+/*
 ap.on('posted', async () => {
 	console.log('Status postados na TOP.GG!');
-});
+});*/
 
 //erros routeds
 process.on('unhandledRejection', error => {
@@ -83,6 +85,6 @@ app.get('/*', (req, res) => {
 
 //start system
 app.listen(kariModu.normalizaPort(process.env.PORT || '3000'));
-manager.startBOT(manager.totalShards, 10000);
+manager.start();
 send_PING();
 setInterval(send_PING, 120000);
