@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
 
 let prefixoAtual = await PrefixDB.obtener(`${message.guild.id}.prefix`);
     
-let diversao = ["coin","emoji","inverter","morse","owo","say","fleur"].map((x) => `\`${x}\``)//.join(", ")//9
+let diversao = ["coin","emoji","inverter","morse","owo","say","fleur","jokempo"].map((x) => `\`${x}\``)//.join(", ")//9
 
 let sosial = ["afk","atack","dancar","hug","idiot","kiss","kill","perfil","qi","slap","usertext"].map((x) => `\`${x}\``)//.join(", ")//0
 

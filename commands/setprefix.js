@@ -23,7 +23,8 @@ exports.run = async (client, message, args) => {
     .setColor("#e0000f")
 
   if(newPrefix.length >= 5) return message.channel.send(embedError);
-  message.guild.members.cache.get(process.env.BOT_ID).setNickname(`[${newPrefix}] KarinaTwo`)
+  message.guild.me.setNickname(`[${newPrefix}] ${client.user.username}`,"prefixo alterado via comando")
+
   PrefixDB.set(`${message.guild.id}.prefix`, newPrefix)
 
   const embed = await new Discord.MessageEmbed()

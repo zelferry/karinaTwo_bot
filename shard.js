@@ -7,7 +7,9 @@ let manager = new handlers.shard('./index.js', {
 });
 let teste = require("./plugins/index.js")
 let ara = teste.autoTopGgPost(manager)
-ara.on("posted", console.log)
+ara.on("posted", (data ) => {
+	console.log(`[${new Date().toString().split(' ', 5).join(' ')}] Status Postado na top.gg!`);
+})
 let AutoPoster = require('topgg-autoposter');
 //let ap = AutoPoster(process.env['TOP_GG_API'], manager);
 let express = require('express');

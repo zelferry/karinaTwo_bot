@@ -2,17 +2,24 @@ const Discord = require('discord.js');
 
 module.exports.run = async (client, message, args) =>{
  // const sayMessage = args.join(' ');
-  
-const mchannel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]); 
+ const mchannel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]); 
 
         if (mchannel) {
+        	if(!args.slice(1).length){
+        		message.channel.send("❌ |inválido, insira algo apos a mersão do canal de texto!")
+        	} else {
             argsresult = args.slice(1).join(' '); 
             message.delete().catch(O_o => { });
-            mchannel.send(`${argsresult}\n\n - Mensagem Enviada por ${message.author}.`); 
+            mchannel.send(`${argsresult}\n\n - Mensagem Enviada por ${message.author}.`);
+        	}
         } else {
+        	if(!args.length){
+        		message.channel.send("❌ |inválido, insira algo apos o comando!")
+        	} else {
             argsresult = args.join(' '); 
             message.delete().catch(O_o => { });
             message.channel.send(`${argsresult}\n\n - Mensagem Enviada por ${message.author}.`);
+        	}
         };
   
   /*
