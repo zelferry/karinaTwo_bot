@@ -74,73 +74,12 @@ module.exports.run = async (client, message, args) => {
     "https://cdn.discordapp.com/attachments/297732013006389252/704467536405856366/IMG_20190903_131522.jpg"
 
 ];
-var rand = list[Math.floor(Math.random() * list.length)];
-/*
-message.channel.send({embed: {
-  color: 3447003,
-  image: {
-      url: `` + (rand) + ``
-    }
-}});*/
-
-const embedError2 = new Discord.MessageEmbed().setDescription("👍| cancelado!").setColor("#e0000f")
-
-let yeste = "c"
- let author = message.author;
-  let msg;
-  if(await message.channel.permissionsFor(message.member).has("ADD_REACTIONS")){
-  msg = message.channel.send({embed: {
-  color: 3447003,
-  image: {
-      url: `` + (rand) + ``
-    }
-}});//message.channel.send(yeste);
-  }else{
-    message.channel.send(":(")
-    msg = message.author.send({embed: {
-  color: 3447003,
-  image: {
-      url: `` + (rand) + ``
-    }
-}});
-  }
-  
-  msg.then(async (msg) => {
-      msg.react('❌');
-      msg.react("🔁")
-  })
-
-  msg = await msg
-  const filter = (reaction, user) => ['❌','🔁'].includes(reaction.emoji.name) && user.id === author.id;
-  const collector = await msg.createReactionCollector(filter, { time: 1000*60*60 });
-  collector.on('collect',async r => {
-    let user = r.users.cache.last()
-    user.id!=client.user.id&&r.users.remove(user)
-    
-    if(r.emoji.name === "🔁"){
-var rand = list[Math.floor(Math.random() * list.length)];
-
-msg.edit({embed: {
-  color: 3447003,
-  image: {
-      url: `` + (rand) + ``
-    }
-}});
-    }
-      if(r.emoji.name === '❌'){
-      msg.reactions.removeAll()
-        msg.edit(embedError2)
-        
-       // msg.delete()
-      }
-  });
-
-  collector.on('end', ()=>{if(msg){
-    msg.reactions.removeAll()
-  }else{console.log("inexistência da mensagem")}});
 
 
-console.log(`comando f/gerarmeme usado`);
+let pages = require("../pagesSyten/init.js")
+
+let button_2 = new pages.normal(message,client)
+await button_2.buttonPages(list)
 }
 exports.help = {
   name:"gerarmeme",

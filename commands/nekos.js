@@ -10,11 +10,18 @@ const ne = require('nekos.life');
 const neko = new ne();
 
 
+const disbut = require('discord-buttons');
+
+
 const Discord = require('discord.js')
 exports.run = async (client, message, args) => {
 	let args_1_1 = args[0]
 	let args_1_2 = args[1]
 	
+	let button_ = new disbut.MessageButton().setStyle('url').setURL('https://nekos.life/') .setLabel('ver website original !') 
+	
+	let row1 = new disbut.MessageActionRow().addComponent(button_)
+
 	const map_nsfw = message.guild.channels.cache.filter((channel) => channel.nsfw).map(x => "<#"+x.id+">" ).join(",")
 	
 	let content_error_nsfw = map_nsfw ? `tente usar novamente em ${map_nsfw}` : `este servidor não tem nenhum canal de texto com a função NSFW ativada`
@@ -51,10 +58,13 @@ exports.run = async (client, message, args) => {
 		if(args_1_1 == "sfw"){
 			if(sfw.includes(args_1_2)){
 				let arr_1 = await neko.sfw[args_1_2]()
+				let button_1 = new disbut.MessageButton().setStyle('url').setURL(arr_1.url) .setLabel('baixar imagem...') 
+
+				row1.addComponent(button_1)
 			
 				const embed_1 = new Discord.MessageEmbed().setImage(arr_1.url).setColor("#FA8072")
 				
-				message.channel.send(embed_1)
+				message.channel.send(embed_1,row1)
 				
 			} else errMessage("sfw_input")
 		}
@@ -62,10 +72,13 @@ exports.run = async (client, message, args) => {
 			if(nsfw.includes(args_1_2)){
 				let arr_2 = await neko.nsfw[args_1_2]()
 				if (!message.channel.nsfw) return message.channel.send(":x:|o canal não tem a função NSFW ativada, "+content_error_nsfw+"");
+				let button_2 = new disbut.MessageButton().setStyle('url').setURL(arr_2.url) .setLabel('baixar imagem...') 
+
+				row1.addComponent(button_2)
 				
 				const embed_2 = new Discord.MessageEmbed().setImage(arr_2.url).setColor("#7B68EE")
 				
-				message.channel.send(embed_2)
+				message.channel.send(embed_2,row1)
 
 			} else errMessage("nsfw_input")
 		}

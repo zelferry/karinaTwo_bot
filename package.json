@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@top-gg/sdk": "^3.1.0",
+    "@top-gg/sdk": "^3.1.2",
     "canvacord": "^5.0.7",
-    "discord-anti-spam": "^2.4.1",
+    "discord-anti-spam": "^2.5.1",
     "discord-giveaways": "^4.5.1",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
@@ -17,8 +17,9 @@
     "nekos.life": "^2.0.7",
     "node-fetch": "^2.6.1",
     "parse-ms": "^2.1.0",
-    "discord-hybrid-sharding": "1.1.1",
-    "topgg-autoposter": "^1.1.10",
+    "discord-hybrid-sharding": "^1.1.1",
+    "discord-buttons": "4.0.0",
+    "topgg-autoposter": "^2.0.0",
     "yiff_api": "^2.0.4-hotflix"
   },
   "devDependencies": {},

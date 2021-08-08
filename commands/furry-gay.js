@@ -23,80 +23,11 @@ if(aff){teste = `tente usar novamente em ${aff}`}else{teste = "este servidor nã
   
 if (!message.channel.nsfw) return message.channel.send(":x:|o canal não tem a função NSFW ativada, "+teste+"");
 
-var randGay = Math.floor(Math.random() * furryGay.length)
-  
-let arr = furryGay
-const embed = new Discord.MessageEmbed().setImage(furryGay[randGay])
-.setColor("#7B68EE").setFooter(`${randGay} / ${arr.length-1}`)
+let {pages} = require("../buttonSystem/init.js")
 
-const embedError2 = new Discord.MessageEmbed().setDescription("👍| cancelado!").setColor("#e0000f")
+let button_2 = new pages.normal(message,client)
 
-   
- let yeste = randGay
- let author = message.author;
-  let msg;
-  
-  if(await message.channel.permissionsFor(message.member).has("ADD_REACTIONS")){
-  msg = message.channel.send(embed);
-  }else{
-    message.channel.send(":(")
-    msg = message.author.send(embed);
-  }
-  
-  msg.then(async (msg) => {
-      msg.react('⬅');
-      msg.react("➡")
-      msg.react("🔁")
-      msg.react("❌")
-  })
-
-  msg = await msg
-  const filter = (reaction, user) => ['⬅','➡','🔁','❌'].includes(reaction.emoji.name) && user.id === author.id;
-  const collector = await msg.createReactionCollector(filter, { time: 1000*60*60 });
-  collector.on('collect',async r => {
-    let user = r.users.cache.last()
-    user.id!=client.user.id&&r.users.remove(user);
-      if(r.emoji.name === '➡'){
-        yeste = yeste +1
-        if(yeste > arr.length- 1){yeste = arr.length-1}
-        
-        let result = arr[yeste]
-        const embed = new Discord.MessageEmbed().setImage(result).setColor("#7B68EE").setFooter(`${yeste} / ${arr.length-1}`)
-      
-        
-        msg.edit(embed)
-        
-      }
-      if(r.emoji.name === '⬅'){
-        yeste = yeste - 1
-        if(yeste < 0){yeste = 0}
-       
-        let result = arr[yeste]
-        const embed = new Discord.MessageEmbed().setImage(result).setColor("#7B68EE").setFooter(`${yeste} / ${arr.length-1}`)
-      
-        msg.edit(embed)
-    
-      }
-      if(r.emoji.name=== "🔁"){
-randGay = Math.floor(Math.random() * furryGay.length)
-  
-arr = furryGay
-yeste = randGay
-const embed = new Discord.MessageEmbed().setImage(furryGay[randGay]).setColor("#7B68EE").setFooter(`${randGay} / ${arr.length-1}`)
-msg.edit(embed)
-      }
-      if(r.emoji.name === "❌"){
-        msg.edit(embedError2)
-      
-        msg.reactions.removeAll()
-      }
-  });
-
-  collector.on('end', ()=>{if(msg){
-    msg.reactions.removeAll()
-  }});
-
-
+await button_2.buttonPages(furryGay)
 };
 exports.help = {
   name:"furry-gay",

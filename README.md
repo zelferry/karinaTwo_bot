@@ -53,13 +53,6 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
 
 ```json
 {
-  "client":{}, //opções do CLIENT(opcional)
-  
-  //opcional
-  "shard":{
-  	"totalShards":"auto",
-    "token": "{!token}"
-  },
   "functions":{
   	"ignoredUsers":[] //usuários ignorados
   },

@@ -10,6 +10,7 @@ let KariWebhooks = new util.webhooks();
 let bans = new util.bans()
 
 let blacklist = require('../database/client/blacklisted.json');
+require("../extenders/replymessage.js")
 
 exports.type = "message";
 exports.start = async(client,clusterID,ipc,message) => {
@@ -77,7 +78,7 @@ if (message.author.bot) return;
 	}
 	if (now < expTime) {
 		var timeLeft = (expTime - now) / 1000;
-		return message.reply(
+		return message.inlineReply(
 			`Espere mais **${timeLeft.toFixed(
 				1
 			)}** segundos para executar este comando novamente.`
@@ -104,14 +105,11 @@ if (message.author.bot) return;
 		);
 
 		if (test) {
-			message.channel.send('🙍| EI!,\nmodere sua linguagem!');
+			message.inlineReply('🙍‍♂️| EI!,\nmodere sua linguagem!');
 		} else {
 			//console.log(cmd.run)
-			/*
-			if(cmf == undefined){
-				message.c
-			}*/
 			cmd.run(client, message, args);
+		//	console.log(await message.moreUserJson(message.author))
 		}
 
 		KariWebhooks.commands(
