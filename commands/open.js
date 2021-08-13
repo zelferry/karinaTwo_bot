@@ -1,12 +1,7 @@
 const Discord = require("discord.js");
-const db = require("megadb");
-
-let MoneyDB = new db.crearDB("Economy");
-let ChestDB = new db.crearDB("Chests");
-let PrefixDB = new db.crearDB("Prefix");
 
 exports.run = async (client, message, args) => {
-  
+  /*
   const f = ":x:";
 
     if (!PrefixDB.tiene(`${message.guild.id}`))
@@ -156,9 +151,9 @@ exports.run = async (client, message, args) => {
         }
       },
       {}
-    ]*/
+    ]
   }
-
+*/
 }
 exports.help = {
   name:"open",

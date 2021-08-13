@@ -1,22 +1,21 @@
 const Discord = require("discord.js");
-let util = require("../utils/main.js")
-let db_afk = new util.db.afk()
+
+let {afk} = require("../mongoDB/ini.js").user 
+
 
 exports.run = async (client, message, args) => {
 	
 	let content = args.length > 0 ? args.join(" ") : "fora no momento"
 	
-	
-var value = db_afk.find(message.author)
+var value = await afk.find(message.author,true)
 
-if(value == undefined) {
-		db_afk.new(message.author, content, Date.now())
+if(value.afk.ready == false) {
 		
      message.channel.send("💤| afk ativado! \nos usuários irão saber que você esta "+content+"\n\npara sua conivência, eu irei desativar o seu afk quando você falar algo no chat! 😉")
+return await afk.setAFK(message.author, content)
 
-		return
 	}
-if(db_afk.find(message.author) !== undefined) return message.channel.send(`:x:| você ja esta com o afk ativo!`)
+if(value.afk.ready == true) return message.channel.send(`:x:| você ja esta com o afk ativo!`)
  
 	/*
   let afk = new (require("megadb")).crearDB("afk")

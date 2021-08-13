@@ -1,53 +1,38 @@
 const Discord = require("discord.js");
-const db = require("megadb");
 
+let {profile} = require("../mongoDB/ini.js").user 
+
+var config = require('../config.js');
+var ownerID = config.ownerID;
 exports.run = async (client, message, args) => {
   
-let MoneyDB = new db.crearDB("Economy");
+let user = message.author
+let value = await profile.find(user);
 
-let VipDB = new db.crearDB("Vip");
+const testdosei = value.usertext
+const ruby = value.coins
+const vip = value.vipUser 
 
-let ChestDB = new db.crearDB("Chests");
-let textDB = new db.crearDB("userText");
+const daily = value.daily
 
- if (!MoneyDB.tiene(`${message.author.id}`))
-    MoneyDB.establecer(`${message.author.id}`, { coins: 0 });
+const topggvotes = value.topggVotes
+const bans = value.banned
 
- if(!VipDB.tiene(`${message.author.id}`))
-      VipDB.establecer(`${message.author.id}`, {
-      vip: 'No'}); 
-
-if(!ChestDB.tiene(`${message.author.id}`))
-      ChestDB.establecer(`${message.author.id}`, {
-common: 0,
-rare: 0,
-legendary: 0,
-diverr:0
-}); 
-
-
-if (!textDB.tiene(`${message.author.id}`))
-    textDB.establecer(`${message.author.id}`, {
-      texto: "\"kari e minha amiga :3, sabia que você pode mudar esse texto usando o **f/usertext**?(requer vip user\""
-    });
-
-const testdosei = await textDB.obtener(`${message.author.id}.texto`);
-const ruby = await MoneyDB.obtener(`${message.author.id}.coins`);
-const vip = await VipDB.obtener(`${message.author.id}.vip`); 
-const com = await ChestDB.obtener(`${message.author.id}.common`);
-const rar = await ChestDB.obtener(`${message.author.id}.rare`);
-const leg = await ChestDB.obtener(`${message.author.id}.legendary`);
-const div = await ChestDB.obtener(`${message.author.id}.diverr`);
-
-const on = "não"; 
-const off = "sim";
 
 let color = "be41f4";
-let emojivip = "";
-if (vip == "Yes") color = "ffe23d"
-if (vip == "Yes") emojivip = "<:vip_karina_emoji:827053585665097768>"
+let flags = []
+
+if (vip == true) color = "ffe23d"
+if (vip == true) flags.push("💠usuario vip!")
+
+if(topggvotes > 10) flags.push("🔝apoiador!")
+
+if(ruby > 7000) flags.push("💵MUCHO MONEY")
+if(ownerID.includes(message.author.id)) flags.push("👨‍💻 karina dev!")
+//if(bans) color = "FF4500"
+
 const embed = {
-  "title": ""+emojivip+""+message.author.username+" profile:",
+  "title": ""+message.author.username+" profile:",
   "color": "#"+color+"",
   "fields": [
     {
@@ -55,16 +40,12 @@ const embed = {
       "value": "**"+ruby+"**"
     },
     {
-      "name": "usuário Vip?",
-      "value": ""+vip === 'No' ? on : off+""
-    }, 
-    {
-      "name":"baus",
-      "value":"comuns: **"+com+"** \nraros: **"+rar+"** \nlegendarios: **"+leg+"**"
+      "name":" bagdes",
+      "value":""+flags.map(x => "[**"+x+"**]").length <= 0 ? "não  tem :(":flags.map((x,y)=> "`"+(y+1)+"` "+x+"").join("\n")+""
     },
     {
       "name":"texto do usuário:",
-      "value":""+testdosei+""
+      "value":"`"+testdosei+"`"
     }
   ]
 };

@@ -1,19 +1,11 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
+	let {prefix} = require("../mongoDB/ini.js").guild 
 
-    let db = require('megadb')
+    let prefixoAtual = await prefix.findPrefix(message.guild,message,false)
+	
 
-    let PrefixDB = new db.crearDB("Prefix");
-
-    if (!PrefixDB.tiene(`${message.guild.id}`))
-    PrefixDB.establecer(`${message.guild.id}`, {
-      name: message.guild.name,
-      owner: message.guild.owner.user.id,
-      prefix: "f/"
-    });
-
-    let prefixoAtual = await PrefixDB.obtener(`${message.guild.id}.prefix`);
 
   message.delete();
   if (!args[0])

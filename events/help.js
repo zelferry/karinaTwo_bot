@@ -17,17 +17,9 @@ async function mention (client, message) {
   ];
   if (servers.includes(message.content)) {
 
-    let db = require('megadb')
+    let {prefix} = require("../mongoDB/ini.js").guild 
 
-    let PrefixDB = new db.crearDB("Prefix");
-
-    if (!PrefixDB.tiene(`${message.guild.id}`))
-    PrefixDB.establecer(`${message.guild.id}`, {
-      name: message.guild.name,
-      prefix: "f/"
-    });
-
-    let prefixoAtual = await PrefixDB.obtener(`${message.guild.id}.prefix`);
+	const prefixoAtual = await prefix.findPrefix(message.guild,message,false)
 
     const embed = await new Discord.MessageEmbed()
         .addField(`Meu Prefixo Neste Servidor:`, "`" + prefixoAtual + "`")

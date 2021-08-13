@@ -1,16 +1,15 @@
 const Discord = require('discord.js');
-const db = require("megadb");
+
+let {economydb} = require("../mongoDB/ini.js").user 
 
 
 module.exports.run = async (client, message, args) => {
-  let MoneyDB = new db.crearDB("Economy");
+  
+  let user = message.author;
 
-  if (!MoneyDB.tiene(`${message.author.id}`))
-    MoneyDB.establecer(`${message.author.id}`, { coins: 0 });
+	let value = await economydb.fech(user)
 
-  let ruby = await MoneyDB.obtener(`${message.author.id}.coins`);
-
-  message.channel.send(`voce tem **${ruby}** Panther-coins!`);
+  message.channel.send(`voce tem **${value.coins}** Panther-coins!`);
 };
 exports.help = {
   name:"furcoins",

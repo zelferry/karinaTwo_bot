@@ -28,10 +28,15 @@ exports.run = async (client, message, args) => {
   
 	let {sfw,nsfw} = endpoints.mekos
 	
+let {prefix} = require("../mongoDB/ini.js").guild 
+
+    let prefixoAtual = await prefix.findPrefix(message.guild,message,false)
+	
+	
 	function errMessage(input) {
 		if(input == "global"){
 			
-			message.channel.send(new Discord.MessageEmbed().setTitle("usso inválido").setDescription("como usar?:\n\nmodo de usso: `{prefix}nekos <sfw,nsfw> <tag>`\n\nexenplos:\n`{prefix}nekos sfw meow`\n`{prefix}nekos nsfw kuni`").addFields({
+			message.channel.send(new Discord.MessageEmbed().setTitle("usso inválido").setDescription("como usar?:\n\nmodo de usso: `"+prefixoAtual+"nekos <sfw,nsfw> <tag>`\n\nexenplos:\n`"+prefixoAtual+"nekos sfw meow`\n`"+prefixoAtual+"nekos nsfw kuni`").addFields({
    name: "tags sfw",
    value: `${sfw.map((x) => `\`${x}\``).join(", ")}`
 }).addFields({
@@ -40,14 +45,14 @@ exports.run = async (client, message, args) => {
 }))
 		}
 		if(input == "sfw_input"){
-			message.channel.send(new Discord.MessageEmbed().setTitle("usso inválido").setDescription("como usar?:\n\nmodo de usso: `{prefix}nekos <sfw,nsfw> <tag>`\n\nexenplos:\n`{prefix}nekos sfw meow`").addFields({
+			message.channel.send(new Discord.MessageEmbed().setTitle("usso inválido").setDescription("como usar?:\n\nmodo de usso: `"+prefixoAtual+"nekos <sfw,nsfw> <tag>`\n\nexenplos:\n`"+prefixoAtual+"nekos sfw meow`").addFields({
    name: "tags sfw",
    value: `${sfw.map((x) => `\`${x}\``).join(", ")}`
 }))
 
 		}
 		if(input == "nsfw_input"){
-			message.channel.send(new Discord.MessageEmbed().setTitle("usso inválido").setDescription("como usar?:\n\nmodo de usso: `{prefix}nekos <sfw,nsfw> <tag>`\n\nexenplos:\n`{prefix}nekos nsfw kuni`").addFields({
+			message.channel.send(new Discord.MessageEmbed().setTitle("usso inválido").setDescription("como usar?:\n\nmodo de usso: `"+prefixoAtual+"nekos <sfw,nsfw> <tag>`\n\nexenplos:\n`"+prefixoAtual+"nekos nsfw kuni`").addFields({
    name: "tags nsfw",
    value: `${nsfw.map((x) => `\`${x}\``).join(", ")}`
 }))

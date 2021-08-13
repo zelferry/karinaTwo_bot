@@ -27,18 +27,7 @@ const antiSpam = new AntiSpam({
 });
 const Discord = require("discord.js");
 
-let db = require('megadb')
-let InviteDB = new db.crearDB("anti_raid");
+
 
 exports.type = "message";
-exports.start = async(client,clusterID,ipc,message) => {
-	if (message.channel.type === "dm") return;
-	if (!InviteDB.tiene(`${message.guild.id}`)) InviteDB.establecer(`${message.guild.id}`, {
-		name: message.guild.name,
-		status: 'Off'
-	});
-	let stats = await InviteDB.obtener(`${message.guild.id}.status`);
-	if (stats === 'Off') return;
-	
-	antiSpam.message(message);
-}
+exports.start = async(client,clusterID,ipc,message) => {}

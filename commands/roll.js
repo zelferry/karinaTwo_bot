@@ -1,22 +1,22 @@
+
 const Discord = require("discord.js");
-const db = require("megadb");
+//const db = require("megadb");
 const talkedRecently = new Set();
 
-let MoneyDB = new db.crearDB("Economy");
+let {economydb} = require("../mongoDB/ini.js").user 
 
-exports.run = async (client, message, args) => {
+exports.run = async(client, message, args) => {
+	let user = message.author;
 
-  if (!MoneyDB.tiene(`${message.author.id}`))
-    MoneyDB.establecer(`${message.author.id}`, { coins: 0 });
+	let value = await economydb.fech(user);
+	
 
-  let ruby = await MoneyDB.obtener(`${message.author.id}.coins`);
-
-  if (ruby <= "49")
+  if (value.coins <= "49")
     return message.channel.send(
       `:x:| Você não tem Panther-coins o suficiente para girar o roll! Necessários: **50 Panther-coins**`
     );
 
-  let user = message.author;
+//  let user = message.author;
 
   if (talkedRecently.has(message.author.id)) {
     message.channel.send(
@@ -42,7 +42,8 @@ exports.run = async (client, message, args) => {
     let result = "Desculpa, você perdeu.";
     if (reels === reels1 && reels1 === reels2) {
       result = "Parabéns! Você ganhou.";
-      MoneyDB.sumar(`${user.id}.coins`, "250");
+      await economydb.addmoney(user,250,false)
+      
       message.channel.send(
         "Foi adicionada a quantia de `250 Panther-coins` a sua carteira por você ter ganhado!"
       );
@@ -59,7 +60,7 @@ exports.run = async (client, message, args) => {
     await message.channel.send(embed);
 
     if (result === "Desculpa, você perdeu.")
-      return MoneyDB.restar(`${user.id}.coins`, "50").then(
+      return economydb.removemoney(user,50).then(
         message.channel.send(
           "Você perdeu... Retirei 50 Panther-coins da sua carteira pela derrota."
         )

@@ -34,7 +34,7 @@ module.exports.run = async (client, message, args) => {
     },
     {
       name:"infor do meu sistema:",
-      value:"ffpeg: **canvascord** \ndatabase: **megaDB** \nsistema: **discord.js** \nalearorizador: **mach**\nversão da bot: **"+packag.version+"**\nbits do meu sistema: **64-BITS**"
+      value:"ffpeg: **canvascord** \ndatabase: **mongoose** \nsistema: **discord.js** \nalearorizador: **mach**\nversão da bot: **"+packag.version+"**\nbits do meu sistema: **64-BITS**"
     },
     {
       name: "fui criada no dia..",

@@ -1,39 +1,30 @@
 const Discord = require("discord.js");
-const db = require("megadb");
-let MoneyDB = new db.crearDB("Economy");
-let PrefixDB = new db.crearDB("Prefix");
+let {economydb} = require("../mongoDB/ini.js").user 
 
 exports.run = async (client, message, args) => {
+let user = message.mentions.users.first() || client.users.cache.get(args[0]);
 
-  if (!PrefixDB.tiene(`${message.guild.id}`))
-    PrefixDB.establecer(`${message.guild.id}`, {
-      name: message.guild.name,
-      prefix: "f/"
-    });
 
-  let prefixoAtual = await PrefixDB.obtener(`${message.guild.id}.prefix`);
+let user_ = message.author;
 
-let user;
-if (message.mentions.users.first() || client.users.cache.get(args[0])) {
-  user = message.mentions.users.first() || client.users.cache.get(args[0]);
-} else {
-    user = message.author;
-}
-  if (!MoneyDB.tiene(`${user.id}`))
-    MoneyDB.establecer(`${user.id}`, { coins: 0 });
+let value_ = await economydb.fech(user)
 
-  let ruby = await MoneyDB.obtener(`${message.author.id}.coins`);
+let value = await economydb.fech(user_)
+
+  
+
+  let ruby = value.coins;
 
   if(ruby < args[1]) return message.channel.send(`Você não tem **Panther-coins** suficientes!`)
 
- const deleteCount = parseInt(args[1], 10);
+ const count = parseInt(args[1], 10);
 
 if (!user) {
-        return message.channel.send(`mercione um usuario! \n \n ex: ${prefixoAtual}pay @user-aleatorio 200`)
+        return message.channel.send(`mercione um usuario! \n \n ex: \`<prefixo>pay @user-aleatorio 200\``)
     }
 
-if (!deleteCount) {
-        return message.channel.send(`forneça um numero! \n \n ex: ${prefixoAtual}pay @user-aleatorio 200`)
+if (!count) {
+        return message.channel.send(`forneça um numero! \n \n ex: \`<prefixo>pay @user-aleatorio 200\``)
     }
     if (message.content.includes('-')) {
         return message.channel.send('numeros neativos não comtam!')
@@ -44,8 +35,7 @@ if (!deleteCount) {
     .setColor("#be41f4")
   message.channel.send(embed);
 
-  MoneyDB.sumar(`${user.id}.coins`, args[1])
-  MoneyDB.restar(`${message.author.id}.coins`, args[1])
+await economydb.pay(user_,user,args[1])
 
 }
 exports.help = {

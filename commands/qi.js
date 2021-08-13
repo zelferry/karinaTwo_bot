@@ -1,8 +1,5 @@
 const Discord = require('discord.js');
 
-let db = require('megadb')
-
-let PrefixDB = new db.crearDB("Prefix");
 
 module.exports.run = async (client, message, args) => {
   var list = [
@@ -112,14 +109,10 @@ module.exports.run = async (client, message, args) => {
 var rand = list[Math.floor(Math.random() * list.length)];
 let user = message.mentions.users.first() || client.users.cache.get(args[0]);
 
-    if (!PrefixDB.tiene(`${message.guild.id}`))
-    PrefixDB.establecer(`${message.guild.id}`, {
-      name: message.guild.name,
-      owner: message.guild.owner.user.id,
-      prefix: "f/"
-    });
+    let {prefix} = require("../mongoDB/ini.js").guild 
 
-let prefixoAtual = await PrefixDB.obtener(`${message.guild.id}.prefix`);
+	const prefixoAtual = await prefix.findPrefix(message.guild,message,false)
+
     
 
 if (!user) {

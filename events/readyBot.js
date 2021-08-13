@@ -44,4 +44,5 @@ commands__.loadingSlashCommands();
 commands__.loadingCommands();
 
 console.log(`${client.user.tag} online!`);
+console.log(client.commands)
 }

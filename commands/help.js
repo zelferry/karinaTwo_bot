@@ -4,16 +4,10 @@ var ownerID = config.ownerID;
 
 module.exports.run = async (client, message, args) => {
 
-    let db = require('megadb')
+    let {prefix} = require("../mongoDB/ini.js").guild 
 
-    let PrefixDB = new db.crearDB("Prefix");
-
-    if (!PrefixDB.tiene(`${message.guild.id}`))
-    PrefixDB.establecer(`${message.guild.id}`, {
-      prefix: "f/"
-    });
-
-let prefixoAtual = await PrefixDB.obtener(`${message.guild.id}.prefix`);
+    let prefixoAtual = await prefix.findPrefix(message.guild,message,false)
+	
     
 let diversao = ["coin","emoji","inverter","morse","owo","say","fleur","jokempo"].map((x) => `\`${x}\``)//.join(", ")//9
 

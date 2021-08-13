@@ -1,28 +1,17 @@
 const Discord = require("discord.js");
-const db = require("megadb");
 
-let MoneyDB = new db.crearDB("Economy");
-let VipDB = new db.crearDB("Vip");
+let {economydb} = require("../mongoDB/ini.js").user 
 
 exports.run = async (client, message, args) => {
 
- if(!MoneyDB.tiene(`${message.author.id}`))
-      MoneyDB.establecer(`${message.author.id} `, {
-        coins: 0
-    })
+let user = message.author;
 
-  const ruby = await MoneyDB.obtener(`${message.author.id}.coins`);
+	let value = await economydb.fech(user)
 
-  if(ruby <= 1975) return message.channel.send(`Você não tem **Panther-coins** suficientes!`)
+
+  if(value.coins <= 1975) return message.channel.send(`Você não tem **Panther-coins** suficientes!`)
     
-  if(!VipDB.tiene(`${message.author.id}`))
-      VipDB.establecer(`${message.author.id}`, {
-        vip: 'No'
-      })
-
-  const vip = await VipDB.obtener(`${message.author.id}.vip`);
-
-  if(vip == 'Yes') return message.channel.send(`Você já é um usuário Vip!`);
+  if(value.vipUser == true) return message.channel.send(`Você já é um usuário Vip!`);
 
   const embed = new Discord.MessageEmbed()
     .setTitle("**Vip User Comprado**")
@@ -30,9 +19,11 @@ exports.run = async (client, message, args) => {
     .setColor("#be41f4")
   message.channel.send(embed);
 
-  VipDB.set(`${message.author.id}.vip`, 'Yes')  
-  MoneyDB.restar(`${message.author.id}.coins`, 1976)
-  
+ // VipDB.set(`${message.author.id}.vip`, 'Yes')
+
+ // MoneyDB.restar(`${message.author.id}.coins`, 1976)
+ await economydb.setVip(user)
+  await economydb.removemoney(user,1976)
 }
 exports.help = {
   name:"vip",

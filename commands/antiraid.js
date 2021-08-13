@@ -1,34 +1,27 @@
 const Discord = require("discord.js");
-const enjoosp = require("../database/emojis/on-off.json");
-
-const db = require("megadb");
-
-let InviteDB = new db.crearDB("anti_raid");
+let {configs} = require("../mongoDB/ini.js").guild 
 
 exports.run = async (client, message, args) => {
   
   const f = "🚫";
-  const on = `${enjoosp.ligado} ativado`;
-  const off = `${enjoosp.desligado} desativado`;
+  let on = `✔️ ativado`;
+  let off = `⚠️ desativado`;
 
 if(!message.member.permissions.has("ADMINISTRATOR"))return message.channel.send("Somente adms")
+
+  let stats = await configs.getConfig(message.guild,true)
+
+  if(stats.error) await configs.newGuild(message.guild)
   
-  if (!InviteDB.tiene(`${message.guild.id}`))
-    InviteDB.establecer(`${message.guild.id}`, {
-      name: message.guild.name,
-      status: "Off"
-    });
-
-  let stats = await InviteDB.obtener(`${message.guild.id}.status`);
-
+  if(!stats.antiraid)on = off
+  
   const embed = new Discord.MessageEmbed()
     .setDescription("**Configurações Atualizadas**")
-    .addField("Status:", `${stats === 'On' ? off : on}`)
-    .setColor("#e0000f")
+    .addField("Status:", on).setColor("#e0000f")
+    
   const embed1 = new Discord.MessageEmbed()
     .setDescription("**Configurações Atuais**")
-    .addField("Status:", `${stats === 'On' ? on : off}`)
-    .setColor("#e0000f")
+    .addField("Status:", on).setColor("#e0000f")
 
   const command = args[0]
 
@@ -38,24 +31,23 @@ if(!message.member.permissions.has("ADMINISTRATOR"))return message.channel.send(
   
 if(command === "ativar") {
   
-  if(stats === "On") return message.channel.send(`${f} | O módulo já está ligado.`)
-  
-  if (stats === "Off") {
-    InviteDB.set(`${message.guild.id}.status`, "On").then(
-      message.channel.send(embed)
+  if(stats.antiraid) return message.channel.send(`${f} | O módulo já está ligado.`)
+ 
+    configs.setConfig({antiraid:true},message.guild).then(
+      message.channel.send("✔️| o modulo foi ativado!\no seu servidor esta seguro contra raids")
     );
-  }
+  
 }
   
 if(command === "desativar") {
   
-  if(stats === "Off") return message.channel.send(`${f} | O módulo já está desligado.`)
+  if(!stats.antiraid) return message.channel.send(`${f} | O módulo já está desligado.`)
   
-  if (stats === "On") {
-    InviteDB.set(`${message.guild.id}.status`, "Off").then(
-      message.channel.send(embed)
+  
+    configs.setConfig({antiraid:false},message.guild).then(
+      message.channel.send("⚠️|o módulo foi desativado\no seu servidor esta desprotegido contra raids!!")
       );
-    }
+    
   }
 
   if (command === 'help') {

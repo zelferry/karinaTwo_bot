@@ -1,5 +1,13 @@
+let {economydb} = require("../mongoDB/ini.js").user 
+/*
+exports.ruqn = async(client,message ,args) => {
+	let user = await cuu.fech(message.author)
+	
+	if(!user){}else{console.log(user)}
+}*/
+
 const Discord = require("discord.js");
-const db = require("megadb");
+//const db = require("megadb");
 const talkedRecently = new Set();
 //const math = require("mathjs");
 
@@ -7,42 +15,16 @@ const ms = require("parse-ms")
 const timeout = 86400000
 //let dbfunc = require("../KariModules/db-low.js")
 
-let MoneyDB = new db.crearDB("Economy");
-let util = require("../utils/main.js")
-
-let _cooling = new util.db.cooling()
-
 exports.run = async (client, message, args) => {
+	let user = message.author;
 
-  if (!MoneyDB.tiene(`${message.author.id}`))
-    MoneyDB.establecer(`${message.author.id}`, { coins: 0 });
-
-  let ruby = await MoneyDB.obtener(`${message.author.id}.coins`);
-  
-const db = require("megadb");
-let VipDB = new db.crearDB("Vip");
-
-  if(!VipDB.tiene(`${message.author.id}`))
-      VipDB.establecer(`${message.author.id}`, {
-        vip: 'No'
-      })
-
-const vip = await VipDB.obtener(`${message.author.id}.vip`);
-
-  
-  let user = message.author;
+	let value = await economydb.fech(user)
 
   let pesca = ["1", "2", "3", "4", "5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","40","50","60","70","80","90","100"];
 
   let pescaresult = Math.floor(Math.random() * pesca.length);
 
-var value = _cooling.find(message.author)// dbfunc.db.get('all').find({id: message.author.id}).value()
 
-	if(value == undefined) {
-		_cooling.new(message.author)
-		message.reply(`Você não estava na minha DataBase de cowdon, use o comando novamente.`)
-		return
-	}
 
   /*if (talkedRecently.has(message.author.id)) {
     message.channel.send(
@@ -57,7 +39,7 @@ if(value.daily !== null && timeout - (Date.now() - value.daily) > 0) {
     let answer;
     try {
      // answer = pesca[pescaresult] * pesca[pescaresult] + 10
-      if(vip == 'Yes') {
+      if(value.vipUser == true) {
         answer = pesca[pescaresult] * pesca[pescaresult] *2+ 100
       } else {
         answer = pesca[pescaresult] * pesca[pescaresult] + 10
@@ -82,12 +64,11 @@ if(value.daily !== null && timeout - (Date.now() - value.daily) > 0) {
       .setTimestamp();
       
     message.channel.send(perf);
-    MoneyDB.sumar(`${message.author.id}.coins`, answer);
-
+    //MoneyDB.sumar(`${message.author.id}.coins`, answer);
+await economydb.addmoney(user,answer,true)
 /*dbfunc.db.get('all').find({id: message.author.id}).assign({
 			daily: Date.now()
 		}).write()*/
-_cooling.add(message.author, Date.now())
   }
  /* talkedRecently.add(message.author.id);
   setTimeout(() => {

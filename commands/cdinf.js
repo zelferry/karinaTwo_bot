@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
-const db = require("megadb");
 
-let PrefixDB = new db.crearDB("Prefix");
+let {prefix} = require("../mongoDB/ini.js").guild 
 
 exports.run = async (client, message, args) => {
   
@@ -9,13 +8,8 @@ try {
   
   const props = require(`../commands/${args}.js`);
 
-if (!PrefixDB.tiene(`${message.guild.id}`))
-    PrefixDB.establecer(`${message.guild.id}`, {
-      prefix: "f/"
-    });
-
-  let prefix = await PrefixDB.obtener(`${message.guild.id}.prefix`);
-
+let prefix = await prefix.findPrefix(message.guild,message,false)
+	
 //const comando = args.shift().toLowerCase();
 
 

@@ -25,7 +25,7 @@ module.exports = [
 			)
 				return;
 
-			require('../database/controllers/delete/megaDB.js')(guild);
+			await require('../mongoDB/ini.js').guild.deleteGuild(guild);
 
 			client.giveawaysManager.giveaways
 				.filter(g => g.guildID === guild.id)

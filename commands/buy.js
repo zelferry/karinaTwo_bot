@@ -1,12 +1,7 @@
 const Discord = require("discord.js");
-const db = require("megadb");
-
-let MoneyDB = new db.crearDB("Economy");
-let ChestDB = new db.crearDB("Chests" );
-let PrefixDB = new db.crearDB("Prefix");
 
 exports.run = async (client, message, args) => {
-
+/*
     if (!PrefixDB.tiene(`${message.guild.id}`))
     PrefixDB.establecer(`${message.guild.id}`, {
       name: message.guild.name,
@@ -98,7 +93,7 @@ if(vip == 'No') return message.channel.send(`:x: |apenas para usuários **vips**
   }
   if(item === 'D'){
     message.channel.send("em breve...")
-  }
+  }*/
 }
 exports.help = {
   name:"buy",

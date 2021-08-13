@@ -46,7 +46,7 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
 
 ## 🔋 estrutura
 
- 💻| karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **Discord**  a **Discord.js**, para o Banco de Dados, eu usei a **lowdb** e a **megaDB** (`em breve o banco de dados pode mudar, como por exemplo moongoose ser a nova banca de dados no futuro!`)
+ 💻| karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **Discord**  a **Discord.js**, para o Banco de Dados, eu usei a **moongoose**
  
 #### 💾 **- arquivo** `config.json`
 (na pasta **database/client**)
@@ -90,16 +90,18 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
 #### 📄 **- arquivo** `.env`
 
 ```
-TOKEN="" # token do bot
-PROTECTION_BOT_TOKEN="" # TOKEN de um bot para fazer requisições EXTERNAS/EXTRAS na api do discord
+TOKEN="" token do bot
+PROTECTION_BOT_TOKEN="" TOKEN de um bot para fazer requisições EXTERNAS/EXTRAS na api do discord
 
-LINK_ADD="" # link para adicionar o bot
-BOT_ID="" # id do bot
+LINK_ADD="" link para adicionar o bot
+BOT_ID="" id do bot
 
-PORT="" # PORT para o express
+PORT="" PORT para o express
 
-TOP_GG_API="" # token do bot na top.gg
-topggpas="" # seu passe para a top.gg
+TOP_GG_API="" token do bot na top.gg
+topggpas="" seu passe para a top.gg
+
+moongoose="" sua url da moongoose
 ```
 ⚠ALERTA!
 

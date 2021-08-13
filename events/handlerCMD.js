@@ -3,7 +3,12 @@ let Discord = require('discord.js');
 let ms = require('ms');
 let clientConfig = require('../database/client/config.json');
 let cooldowns = new Discord.Collection();
-let db = require('megadb');
+//let db = require('megadb');
+
+let {prefix} = require("../mongoDB/ini.js").guild
+
+let {bansUsers} = require("../mongoDB/ini.js").user 
+
 
 let KariWebhooks = new util.webhooks();
 
@@ -18,24 +23,13 @@ exports.start = async(client,clusterID,ipc,message) => {
 if (message.author.bot) return;
 	if (message.channel.type === 'dm') return;
 
-	let PrefixDB = new db.crearDB('Prefix');
+	
+	const prefix_ = await prefix.findPrefix(message.guild,message,true)
+	
+	let vailar = await bansUsers.seekAndValidateBan(message.author)
+//	let prefix = prefixoAtual;
 
-	if (!PrefixDB.tiene(`${message.guild.id}`))
-		PrefixDB.establecer(`${message.guild.id}`, {
-			prefix: 'f/'
-		});
-
-	let prefixoAtualp_ = await PrefixDB.obtener(`${message.guild.id}.prefix`);
-
-	const prefixoAtual = message.content.includes(prefixoAtualp_)
-		? prefixoAtualp_
-		: 'f/';
-
-	const banimentos = bans.find(message.author)
-
-	let prefix = prefixoAtual;
-
-	if (!message.content.toLowerCase().startsWith(prefix.toLowerCase())) return;
+	if (!message.content.toLowerCase().startsWith(prefix_.toLowerCase())) return;
 
 	if (
 		message.content.startsWith(`<@!${client.user.id}>`) ||
@@ -43,23 +37,23 @@ if (message.author.bot) return;
 	)
 		return;
 
-	if (banimentos) return message.reply({
-			content: '',
+	if(vailar.ready) return message.reply({
 			embed: {
 				description: ':no_entry_sign: você foi banido de usar meus comandos!',
 				color: 389301,
 				fields: [
 					{
 						name: 'com o motivo',
-						value: '**' + banimentos.motive + '**'
+						value: '**' + vailar.reason + '**'
 					}
 				]
 			}
 		});
 
+
 	const args = message.content
 		.trim()
-		.slice(prefix.length)
+		.slice(prefix_.length)
 		.split(/ +/g);
 
 	const comando = args.shift().toLowerCase();
@@ -93,8 +87,8 @@ if (message.author.bot) return;
 		//let commandFile = require(`./commands/${comando}.js`);
 
 		var cmd =
-			client.commands.get(comando.slice(prefix.lenght)) ||
-			client.commands.get(client.aliases.get(comando.slice(prefix.lenght)));
+			client.commands.get(comando.slice(prefix_.lenght)) ||
+			client.commands.get(client.aliases.get(comando.slice(prefix_.lenght)));
 
 		const test = atsn.findOne(
 			(ops = {
@@ -115,7 +109,7 @@ if (message.author.bot) return;
 		KariWebhooks.commands(
 			new Discord.MessageEmbed()
 				.setDescription(
-					`✅| o **${message.author.username}** ussou **${prefix}${comando} **${
+					`✅| o **${message.author.username}** ussou **${prefix_}${comando} **${
 						args[0]
 							? `com **${message.content.split(`${comando}`)[1]}**`
 							: `sem argumentos`
@@ -133,7 +127,7 @@ if (message.author.bot) return;
 					'🚫 o comando `' +
 					comando +
 					'` não **existe**.\n\nuse `' +
-					prefix +
+					prefix_ +
 					'help` para ver meus comandos **listados** e **categorizados**! :3'
 			}
 		});
@@ -141,7 +135,7 @@ if (message.author.bot) return;
 		KariWebhooks.commands(
 			new Discord.MessageEmbed()
 				.setDescription(
-					`❌| o **${message.author.username}** ussou **${prefix}${comando} **${
+					`❌| o **${message.author.username}** ussou **${prefix_}${comando} **${
 						args[0]
 							? `com **${message.content.split(`${comando}`)[1]}**`
 							: `sem argumentos`

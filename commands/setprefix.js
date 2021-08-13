@@ -1,20 +1,13 @@
-const Discord = require("discord.js");
-const db = require("megadb");
 
-let PrefixDB = new db.crearDB("Prefix");
+const Discord = require("discord.js");
+let {prefix} = require("../mongoDB/ini.js").guild 
 
 exports.run = async (client, message, args) => {
 
   if(!message.member.hasPermission("ADMINISTRATOR"))
     return message.channel.send(" | Você não tem permissão para executar esse comando! Permissão necessária: `Administrador`");
 
-  if (!PrefixDB.tiene(`${message.guild.id}`))
-    PrefixDB.establecer(`${message.guild.id}`, {
-      prefix: "f/"
-    });
-
-  let prefix = await PrefixDB.obtener(`${message.guild.id}.prefix`);
-
+  
   const newPrefix = args[0]
 
   const embedError = await new Discord.MessageEmbed()
@@ -25,8 +18,7 @@ exports.run = async (client, message, args) => {
   if(newPrefix.length >= 5) return message.channel.send(embedError);
   message.guild.me.setNickname(`[${newPrefix}] ${client.user.username}`,"prefixo alterado via comando")
 
-  PrefixDB.set(`${message.guild.id}.prefix`, newPrefix)
-
+prefix.setPrefix(message.guild,newPrefix)
   const embed = await new Discord.MessageEmbed()
     .setDescription("**Configurações Atualizadas**")
     .addField("Novo Prefixo:", '`' + newPrefix + '`')

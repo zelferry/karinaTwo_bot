@@ -1,14 +1,19 @@
 const Discord = require("discord.js");
-const db = require("megadb");
+
+//onst db = require("megadb");
 const talkedRecently = new Set();
 //const math = require("mathjs");
 const cooldown = new Set();
 
-let MoneyDB = new db.crearDB("Economy");
+let {economydb} = require("../mongoDB/ini.js").user 
 
 exports.run = async (client, message, args) => {
 
-  let user = message.author;
+  
+let user = message.author;
+
+	let value = await economydb.fech(user)
+
 
   var test = "dias";
 
@@ -32,8 +37,7 @@ if(random[randomresult] < 2) {
   test = "dia";
 }
 
-  if (!MoneyDB.tiene(`${message.author.id}`))
-    MoneyDB.establecer(`${message.author.id}`, { coins: 0 })
+ 
   if (cooldown.has(message.author.id)) {
       message.delete();
      return message.channel.send(
@@ -47,8 +51,6 @@ if(random[randomresult] < 2) {
   
   }
   
-
-  let bal = await MoneyDB.obtener(`${user.id}.coins`);
 
   let perf = new Discord.MessageEmbed()
     .setColor("#be41f4")
@@ -64,7 +66,7 @@ if(random[randomresult] < 2) {
 
   message.channel.send(perf);
 
-  MoneyDB.sumar(`${user.id}.coins`, answer);
+await economydb.addmoney(user,answer,false)
 
   
 };

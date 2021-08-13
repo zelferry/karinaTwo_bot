@@ -1,13 +1,7 @@
 const Discord = require('discord.js');
-const db = require("megadb");
+//onst db = require("megadb");
 
 exports.run = async (client, message, args) => {
-  let MoneyDB = new db.crearDB("Economy");
-
-  if (!MoneyDB.tiene(`${message.author.id}`))
-    MoneyDB.establecer(`${message.author.id}`, { coins: 0 });
-
-  let ruby = await MoneyDB.obtener(`${message.author.id}.coins`);
   
 let testez = require("../database/controllers/get/social.js")
 
@@ -38,8 +32,6 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
         .setFooter('Kissu kissu kissu')
         .setAuthor(message.author.tag, avatar);
   await message.channel.send(embed);
-console.log(`comando f/kiss usado`);
-MoneyDB.sumar(`${message.author.id}.coins`, 12)
 }
 exports.help = {
   name:"kiss",
