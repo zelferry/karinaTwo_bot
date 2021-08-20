@@ -36,9 +36,9 @@ exports.run = async (client, message, args) => {
 }
 
 exports.help = {
-  name:"yiffy",
+  name:"yiff",
   permisoes: "nenhuma",
-  aliases: ["yiff"],
-  description: "veja ||yiffy|| 7-7",
-  usage: "yiffy <"+data_2.map(x => `${x}`).slice(0, -1).join(", ") + " ou " + data_2[data_2.length -1]+">"
+  aliases:[],
+  description: "veja ||yiff|| 7-7",
+  usage: "yiff <"+data_2.map(x => `${x}`).slice(0, -1).join(", ") + " ou " + data_2[data_2.length -1]+">"
 }

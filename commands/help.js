@@ -27,7 +27,7 @@ let economy = ["buy","daily","furcoins","open","pay","roll","vip","work"].map((x
 
 let misela = ["help","karina-oc","karinainfor","wiki","hex"].map((x) => `\`${x}\``)//.join(", ")//^
 
-let nsfw = ["e621","furry-nsfw","furry-gay","gay","nsfw","nekos","yiffy"].map((x) => `\`${x}\``)//.join(", ")//Int8Array
+let nsfw = ["e621","furry-nsfw","furry-gay","gay","nsfw","nekos","yiff"].map((x) => `\`${x}\``)//.join(", ")//Int8Array
 
 let ower = ["eval","userban","usersbanslist","userurban"].map((x) => `\`${x}\``).join(", ")
 

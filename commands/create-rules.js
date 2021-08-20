@@ -60,10 +60,8 @@ message.channel.send({
  const infos = msg.createReactionCollector(infosFilter);
  
  infos.on('collect', r2 => {
-  msg.delete().then(
-  message.channel.send({
-  content: "",
-  embed: {
+  msg.delete()
+ let embeds = [{
     title: "❌ gore(pessado)",
     color: 14353143,
     fields: [
@@ -76,12 +74,8 @@ message.channel.send({
         value: "somente o adm sabe "
       }
     ]
-  }
-})); 
-
-  message.channel.send({
-  content: "",
-  embed: {
+  },
+  {
     title: "❌ conteudo adulto(+18, +16)",
     color: 14353143,
     fields: [
@@ -94,12 +88,8 @@ message.channel.send({
         value: "somente o adm sabe "
       }
     ]
-  }
-})
-
- message.channel.send({
-  content: "",
-  embed: {
+  },
+  {
     title: "❌ sem racismo",
     color: 14353143,
     fields: [
@@ -112,12 +102,8 @@ message.channel.send({
         value: "somente o adm sabe "
       }
     ]
-  }
-})
-
- message.channel.send({
-  content: "",
-  embed: {
+  },
+  {
     title: "❌ Evite spam!",
     color: 14353143,
     fields: [
@@ -127,15 +113,11 @@ message.channel.send({
       },
       {
         name: "qual e o tipo de punição?",
-        value: "somente o adm sabe "
+        value: "silenciamento,banimento ou exlulsamemto"
       }
     ]
-  }
-})
-
-message.channel.send({
-  content: "",
-  embed: {
+  },
+  {
     title: "❌ Por favor, não grite. Evite o uso excessivo do CAPS LOCK",
     color: 14353143,
     fields: [
@@ -148,12 +130,8 @@ message.channel.send({
         value: "somente o adm sabe "
       }
     ]
-  }
-})
-
-message.channel.send({
-  content: "",
-  embed: {
+  },
+  {
     title: "❌ Assédio é estritamente proibido",
     color: 14353143,
     fields: [
@@ -166,12 +144,8 @@ message.channel.send({
         value: "somente o adm sabe "
       }
     ]
-  }
-})
-
-message.channel.send({
-  content: "",
-  embed: {
+  },
+  {
     title: "❌ É proibido ofender qualquer pessoa ou administrador no server",
     color: 14353143,
     fields: [
@@ -184,26 +158,18 @@ message.channel.send({
         value: "somente o adm sabe "
       }
     ]
-  }
-})
-
-message.channel.send({
-  content: "",
-  embed: {
+  },
+ {
     title: "Informações Adicionais:",
     description: "* A quebra de uma ou várias regras acima citadas poderá implicar em uma punição.\n\n* As regras podem ser alteradas a qualquer momento, é importante estar sempre atento a qualquer atualização.\n\n* Qualquer duvida ou recomendação de uma possivel nova regra, procure um Administrador.\n\n* As regras não se aplicam a equipe administrativa.",
-    color: 12912122,
-    author: {
-      name: "codigo fornecido por: zelferry(meu pai)",
-      url: "https://sourceb.in/f3dbc143c7"
-    }
+    color: 12912122
   }
-})
+]
 
+message.multipleEmbedSend({ embeds },[])
 })
 
  })
- console.log(`acabei de criar regras`);
 }
 exports.help = {
   name:"create-rules",

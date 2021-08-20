@@ -56,7 +56,7 @@ class cmds {
 			.filter(file => file.endsWith('.js'));
 		for (const file of commandFiles) {
 			const command = require(`${foo}/slash_comands/${file}`);
-
+/*
 			if (command.global == true) {
 				client.api.applications(client.user.id).commands.post({
 					data: {
@@ -76,7 +76,7 @@ class cmds {
 							options: command.commandOptions
 						}
 					});
-			}
+			}*/
 			client.commands2.set(command.name, command);
 			console.log(
 				`--- comando postado : ${command.name}  em ${file} (${

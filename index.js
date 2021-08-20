@@ -23,6 +23,10 @@ let client = new client_bot.client({bot:{
 let events = new client_bot.events(`${clientConfig.footer.root}/events`,client,"a","b")
 
 client.cluster = new Cluster.Client(client)
+/*
+mongoose.connection.on('connected', function() {
+		console.log("db conectada! ");
+	});*/
 
 disbut(client);
 events.loadEVENTS()

@@ -1,4 +1,4 @@
-const { APIMessage, Structures,UserFlags } = require("discord.js");
+const { APIMessage, Structures,UserFlags,MessageEmbed } = require("discord.js");
 
 class Message extends Structures.get("Message") {
     async inlineReply(content, options) {
@@ -83,7 +83,7 @@ return key ? `https://cdn.discordapp.com/avatars/${id}/${key}.${format}${size ? 
 			};
 		};
     	
-    	let user = await this.client.api.users[inforUser.id].get()
+    	let user = await this.client.api.users[inforUser].get()
     	
     	let userFlags = new UserFlags(user.public_flags);
     	
@@ -114,6 +114,11 @@ return key ? `https://cdn.discordapp.com/avatars/${id}/${key}.${format}${size ? 
 				toString: `<@${user.id}>`
 			}
 		};
+    }
+
+
+    async multipleEmbedSend(d,f){
+    	return this.client.api.channels[this.channel.id].messages.post({ data:d, files:f }).then(d => this.client.actions.MessageCreate.handle(d).message);
     }
     
 }

@@ -31,9 +31,9 @@ await bansUsers.removeBan(member)
     }
 }
 exports.help = {
-  name:"userban",
+  name:"userurban",
   permisoes:"ser um dos meus criadores",
   aliases: [],
-  description: "banir um usuário de usar meus comandos",
-  usage: "userban <usuario>"
+  description: "desbanir um usuário de usar meus comandos",
+  usage: "userurban <usuario>"
 }

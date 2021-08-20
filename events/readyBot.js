@@ -38,11 +38,10 @@ function status() {
 status();
 setInterval(status, 5000);
 
-client.user.setStatus('online').catch(console.error);
+client.user.setStatus('indle').catch(console.error);
 
 commands__.loadingSlashCommands();
 commands__.loadingCommands();
 
 console.log(`${client.user.tag} online!`);
-console.log(client.commands)
 }

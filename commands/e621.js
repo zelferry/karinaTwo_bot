@@ -41,7 +41,7 @@ const opts = {method: 'GET',headers: {'User-Agent': 'crosdid/1.0',},};
   
 //const nada = await message.channel.send(`buscado por **${searchTerms}**...`);
 
-y.getposts(pos).then(async (json) => {
+y.getposts(encodeURI(pos)).then(async (json) => {
 /*
 fetch(`https://e621.net/posts.json?tags=${pos.join("+")}`).then((res) => res.json()).then(async (json) => {
   */
