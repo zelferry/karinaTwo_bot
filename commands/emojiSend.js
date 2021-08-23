@@ -25,12 +25,12 @@ module.exports.run = async (client, message, args) => {
   } else {
     message.channel.send(`<:${args[0]}:${emoji.id}>`);
   }
-console.log(`comando f/emoji usado`);
+//onsole.log(`comando f/emoji usado`);
 };
 exports.help = {
-  name:"emoji",
+  name:"emojiSend",
   permisoes: "nenhuma",
   aliases: ["send-emoji"],
   description: "fassa eu enviar um emogi de seu servidor",
-  usage: "emoji <nome do emoji>"
+  usage: "emojiSend <nome do emoji>"
 }

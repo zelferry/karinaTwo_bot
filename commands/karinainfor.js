@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
  
  message.channel.send({embed: {
   title: "KARINA",
-  description: "sou uma bot de diversão con vários comandos de diversão e gerenciamento \neu quase sempre estou ativa e porque estou com um soninho 😴 \n\nabaixo algumas informações ",
+  description: "OH, OLA!!\nsou a karinaTwo!, uma bot multiuso com funções e comandos bem legais!\n\nvocê pode me chamar de KARINA, KARI ou d que vc achar melhor!\n\nsou uma bot focada mais para o público **FURRY**, mas qualquer um pode usar minhas funcionalidades e comandos para se entreter",
   color: 65531,
   author: {
     name: "clique aqui para entrar em meu servidor de suporte",
@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args) => {
   fields: [
     {
       name: "linguagem de programação",
-      value: "fui feita usando a linguagem de programação JS \neu usso a livraria do [discord.js](https://discord.js.org/#/)\n sou progamada no [repl.it](https://repl.it/)"
+      value: "fui feita usando a linguagem de programação JS \neu usso a livraria do [discord.js](https://discord.js.org/#/)"
     },
     {
       name: "ultimas alterações a:",

@@ -41,11 +41,11 @@ const embed = {
     },
     {
       "name":" bagdes",
-      "value":""+flags.map(x => "[**"+x+"**]").length <= 0 ? "não  tem :(":flags.map((x,y)=> "`"+(y+1)+"` "+x+"").join("\n")+""
+      "value":""+flags.map(x => "[**"+x+"**]").length <= 0 ? "não  tem :(":flags.map((x,y)=> ""+(y+1)+" • "+x+"").join("\n")+""
     },
     {
       "name":"texto do usuário:",
-      "value":"`"+testdosei+"`"
+      "value":""+testdosei+""
     }
   ]
 };

@@ -3,7 +3,8 @@ let handlers = require('./handlers/index.js');
 let token = process.env.TOKEN;
 let manager = new handlers.shard('./index.js', {
 	mode:"process" ,
-	token: token
+	token: token,
+	usev13: false,
 });
 let teste = require("./plugins/index.js")
 let ara = teste.autoTopGgPost(manager)
@@ -28,14 +29,29 @@ function send_PING() {
 app.use(express.static('./public'));
 app.use('/api/v1', require('./webClient/controllers/v1.js'));
 app.use('/api/v2', require('./webClient/controllers/v2.js'));
-app.use('/topgg', require('./webClient/controllers/topGG.js'));
+app.use('/topgg', require('./webClient/controllers/topGG.js'));/*
+app.use(function(req, res, next){
+  res.status(404);
+  res.sendFile('' + Config.footer.root + '/webClient/public/404/404.html');
+});
+*/
 
-if (fs.existsSync('' + Config.footer.root + '/webClient/public/home/index.html')) {
+if (fs.existsSync(`${Config.footer.root}/webClient/public/`)) {
 	app.use('/html.css.js', require('./webClient/controllers/files.js'));
 
 	app.get('/', async (req, res) => {
+		res.status(200)
 		res.sendFile('' + Config.footer.root + '/webClient/public/home/index.html');
 	});
+app.get('/ping_1', (req, res) => {
+	res.sendStatus(200)
+});
+	app.get('/*', (req, res) => {
+		res.sendFile('' + Config.footer.root + '/webClient/public/404/404.html');
+
+	//	next()
+	});
+
 } else {
 	app.get('/', (req, res) => {
 		res.sendStatus(200);
@@ -59,10 +75,6 @@ app.get('/teapot', (req, res) => {
 	res.sendStatus(418);
 });
 
-app.get('/ping', (req, res) => {
-	res.sendStatus(200);
-});
-
 /*manager.on("json_shard", (data) =>{
 	console.log(data)
 });*/
@@ -74,15 +86,6 @@ ap.on('posted', async () => {
 //erros routeds
 process.on('unhandledRejection', error => {
 	console.error(error);
-});
-
-app.get('/*', (req, res) => {
-	res.status(404);
-	if (fs.existsSync('' + Config.footer.root + '/webClient/public/404/404.html')) {
-		res.sendFile('' + Config.footer.root + '/webClient/public/404/404.html');
-	} else {
-		res.send({ status: false, error: 404, message: 'not find route' });
-	}
 });
 
 //start system

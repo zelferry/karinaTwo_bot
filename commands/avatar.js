@@ -2,8 +2,10 @@ const Discord = require("discord.js");
 const botID = process.env.BOT_ID;
 
 exports.run = async (client, message, args) => {
+	
+	let input =message.mentions.users.first() ? message.mentions.users.first().id : (parseInt(args[0]) ? args[0] : message.author.id)
 
-  let user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author;
+  let user = await client.users.fetch(input)
   
   let avatar = user.avatarURL({ dynamic: true, format: "png", size: 1024 });
   

@@ -12,7 +12,7 @@ let {bansUsers} = require("../mongoDB/ini.js").user
 
 let KariWebhooks = new util.webhooks();
 
-let bans = new util.bans()
+//let bans = new util.bans()
 
 let blacklist = require('../database/client/blacklisted.json');
 require("../extenders/replymessage.js")

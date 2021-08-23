@@ -5,7 +5,7 @@ let {prefix} = require("../mongoDB/ini.js").guild
 exports.run = async (client, message, args) => {
 
   if(!message.member.hasPermission("ADMINISTRATOR"))
-    return message.channel.send(" | Você não tem permissão para executar esse comando! Permissão necessária: `Administrador`");
+    return message.channel.send("🚫 | Você não tem permissão para executar esse comando! Permissão necessária: `Administrador`");
 
   
   const newPrefix = args[0]

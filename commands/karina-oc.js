@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args) => {/*
  message.channel.send({embed: {
   title: "KARINA",
   description: "sou uma pantera negra que ama frango frito e de animes :3",
@@ -60,7 +60,8 @@ module.exports.run = async (client, message, args) => {
  })
 })
 message.delete().catch(O_o => {});
-console.log(`um usuario agora sabe como e eu`);
+console.log(`um usuario agora sabe como e eu`);*/
+message.channel.send("🚫| o comando esta na manutenção, espero que volte a funcionar...")
 }
 exports.help = {
   name:"karina-oc",

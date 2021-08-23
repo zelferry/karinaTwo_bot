@@ -23,7 +23,10 @@ const _giveaway = new GiveawayManagerWithShardSupport(client, {
 	}
 });
 
-let commands__ = new util.commands(client, clientConfig, _giveaway);
+
+client.giveawaysManager = _giveaway;
+
+let commands__ = new util.commands(client, clientConfig);
 
 function status() {
 	let clusterID = client.cluster.id

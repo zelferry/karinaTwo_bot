@@ -17,8 +17,8 @@
     "nekos.life": "^2.0.7",
     "node-fetch": "^2.6.1",
     "parse-ms": "^2.1.0",
-    "discord-hybrid-sharding": "^1.1.1",
-    "discord-buttons": "4.0.0",
+    "discord-hybrid-sharding": "^1.2.1",
+    "discord-buttons": "^4.0.0",
     "topgg-autoposter": "^2.0.0",
     "yiff_api": "^2.0.4-hotflix"
   },

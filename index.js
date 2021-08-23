@@ -20,9 +20,10 @@ let client = new client_bot.client({bot:{
   }
 });
 
+const usev13 = false
 let events = new client_bot.events(`${clientConfig.footer.root}/events`,client,"a","b")
 
-client.cluster = new Cluster.Client(client)
+client.cluster = new Cluster.Client(client,usev13)
 /*
 mongoose.connection.on('connected', function() {
 		console.log("db conectada! ");

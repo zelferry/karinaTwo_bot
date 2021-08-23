@@ -9,7 +9,7 @@ class cmds {
 		client.commands.array = [];
 		client.commands2 = new Discord.Collection();
 		client.cooldown = new Discord.Collection();
-	*/	client.giveawaysManager = giveaways;
+		client.giveawaysManager = giveaways;*/
 
 		this.client = client;
 		this.foo = config.footer.root

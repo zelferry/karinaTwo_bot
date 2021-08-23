@@ -2,16 +2,17 @@ const Discord = require("discord.js");
 const { MessageButton, MessageActionRow } = require('discord-buttons');
 
 class ButtonPages {
-
   constructor(message,client) {
     
     this.message = message;
     this.client = client
+    //this.c = {}
     
   }
  async buttonPages(database){
   	var {message,client} = this
-  	
+	
+	
   	var randNumerViaDatabase = Math.floor(Math.random() * database.length)
   	var arr = database
   	var numberViaDatabase = randNumerViaDatabase
@@ -22,7 +23,7 @@ class ButtonPages {
   	let buttonNext = new MessageButton().setID("next").setEmoji(`➡️`).setStyle(`grey`);
   	let buttonRandon = new MessageButton().setID("random").setEmoji(`🔄`).setStyle(`grey`);
   	
-  	let removed = false
+  	//let removed = false
 
 if(numberViaDatabase <= 0) buttonPrevious.setDisabled()
        
@@ -37,13 +38,12 @@ if(numberViaDatabase > 0) buttonPrevious.setDisabled(false)
   	let msg = await message.channel.send({embed:embed_, components: [row]});
   	
   	const filter = (buttons) => buttons.clicker.id === message.author.id
-  	const collector = msg.createButtonCollector(filter, { time: 1000*60 });
+  	const collector = msg.createButtonCollector(filter, { idle: 1000*60 });
 
 
 collector.on('collect',async r => {
- 
-    r.reply.defer()
-
+	r.reply.defer()
+    
       if(r.id === "next"){
        // numberViaDatabase = 
         numberViaDatabase++
@@ -90,30 +90,31 @@ const embed = new Discord.MessageEmbed().setImage(arr[randNumerViaDatabase]).set
         msg.edit({embed:embed,components: r.message.components})
       }
       if(r.id === "stop"){
-        let embed = new Discord.MessageEmbed().setColor("RED").setDescription('as páginas foram fechadas!').setTimestamp(Date.now());
-        
-msg.components[0].components[0].setDisabled();
-  	msg.components[0].components[1].setDisabled();
-  	msg.components[0].components[2].setDisabled();
-  	msg.components[0].components[3].setDisabled();
-  	removed = true 
-  	msg.edit(embed,{components: msg.components})      //  message.channel.send(embed)
+        collector.stop(200)
       }
   });
+  
 
-  collector.on('end', ()=>{
+  collector.on('end', (colle,p) =>{
   	if(msg){
-  		if(removed == false){
-  	const embed = new Discord.MessageEmbed().setImage(arr[numberViaDatabase]).setColor("RED")
 
-  	msg.components[0].components[0].setDisabled();
-  	msg.components[0].components[1].setDisabled();
-  	msg.components[0].components[2].setDisabled();
-  	msg.components[0].components[3].setDisabled();
-  	
-  	msg.edit(embed,{components: msg.components})
+  	//	console.log(p)
+  			const embed = new Discord.MessageEmbed().setImage(arr[numberViaDatabase])//.setColor("RED");
+
+  		if(p ===  200){
+  			embed.setColor("#FFF0F5")
+  			msg.edit(embed,{components: []})
   		} else {
   		//	console.log("cu")
+  		msg.components[0].components[0].setDisabled();
+  		msg.components[0].components[1].setDisabled();
+  		msg.components[0].components[2].setDisabled();
+  		msg.components[0].components[3].setDisabled();
+  		
+  		embed.setColor("RED")
+  		embed.setFooter("desativado por inatividade")
+  		
+  		msg.edit(embed,{components: msg.components})
   		}
   	} else {
   		console.log("1")

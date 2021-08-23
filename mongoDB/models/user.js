@@ -13,7 +13,7 @@ const profileSchema = mongoose.Schema({
   },
   usertext:{
   	type: String,
-  	default:"karina e minha amiga :)\ne você sabia que vocêvo pode mudar esse texto usando o **f/usertext**?!"
+  	default:"karina e minha amiga :)\ne você sabia que você pode mudar esse texto usando o **f/usertext**?!"
   },
   vipUser:{
   	type: Boolean,

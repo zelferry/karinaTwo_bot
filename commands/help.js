@@ -9,21 +9,21 @@ module.exports.run = async (client, message, args) => {
     let prefixoAtual = await prefix.findPrefix(message.guild,message,false)
 	
     
-let diversao = ["coin","emoji","inverter","morse","owo","say","fleur","jokempo"].map((x) => `\`${x}\``)//.join(", ")//9
+let diversao = ["coin","emojiSend","inverter","morse","owo","say","fleur","jokempo"].map((x) => `\`${x}\``)//.join(", ")//9
 
 let sosial = ["afk","atack","dancar","hug","idiot","kiss","kill","perfil","qi","slap","usertext"].map((x) => `\`${x}\``)//.join(", ")//0
 
-let imgs = ["furry","gerarmeme","pitaya","spoiler-image"].map((x) => `\`${x}\``)//.join(", ")//11993343
+let imgs = ["furry","gerarmeme","spoiler-image","nekos"].map((x) => `\`${x}\``)//.join(", ")//11993343
 
-let admits = ["antiraid","anunciar","ban","banlist","clear","create-rules","gstart","setprefix"].map((x) => `\`${x}\``)//.join(", ")//!
+let admits = ["antiraid","anunciar","ban","banlist","clear","create-rules","gstart","slowmode","setprefix"].map((x) => `\`${x}\``)//.join(", ")//!
 
 let memes = ["creeper?","dino","meme","mcc"].map((x) => `\`${x}\``)//.join(", ")//&
 
 let photo = ["affect","beautiful","changemymind","fuse","invert","triggered"].map((x) => `\`${x}\``)//.join(", ")//new
 
-let discor = ["avatar","cdinf","convidar","lembrete","ping","relatorio"].map((x) => `\`${x}\``)//.join(", ")//7
+let discor = ["avatar","cdinf","convidar","lembrete","ping","relatorio","emojis"].map((x) => `\`${x}\``)//.join(", ")//7
 
-let economy = ["buy","daily","furcoins","open","pay","roll","vip","work"].map((x) => `\`${x}\``)//.join(", ")//7
+let economy = ["daily","furcoins","pay","roll","vip","work"].map((x) => `\`${x}\``)//.join(", ")//7
 
 let misela = ["help","karina-oc","karinainfor","wiki","hex"].map((x) => `\`${x}\``)//.join(", ")//^
 
