@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
     return message.channel.send(
       `**${message.author.username}, a sintaxe correta é:** ` +
         "`" +
-        "" + prefixoAtual + "emoji nomedoemoji`"
+        "" + prefixoAtual + "emojisend nomedoemoji`"
     ); 
   let emoji = message.guild.emojis.cache.find(emoji => emoji.name === args[0]);
 
@@ -28,9 +28,9 @@ module.exports.run = async (client, message, args) => {
 //onsole.log(`comando f/emoji usado`);
 };
 exports.help = {
-  name:"emojiSend",
+  name:"emojisend",
   permisoes: "nenhuma",
   aliases: ["send-emoji"],
   description: "fassa eu enviar um emogi de seu servidor",
-  usage: "emojiSend <nome do emoji>"
+  usage: "emojisend <nome do emoji>"
 }

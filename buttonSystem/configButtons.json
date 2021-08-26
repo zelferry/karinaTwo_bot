@@ -9,8 +9,7 @@
 				}
 			},
 			"e621":{
-				"embedcolor":{
-					"resume":"#C0C0C0",
+				"embedcolor":{"resume":"#C0C0C0",
 					"stop":"RED"
 				}
 			},

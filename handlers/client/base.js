@@ -11,6 +11,7 @@ class _client extends Discord.Client {
 		this.commands = new Discord.Collection();
 		this.aliases = new Discord.Collection();
 		this.commands.array = [];
+        this.config = clientConfig
 		this.commands2 = new Discord.Collection();
 		this.cooldown = new Discord.Collection()
 	}
@@ -39,14 +40,14 @@ class _client extends Discord.Client {
 			ignoreBots: true,
 			verbose: true,
 			muteRoleName: "antiraid_role",
-			removeMessages: false,
+			removeMessages: true,
 			ignoredUsers: [],
 			ignoredPermissions: ['ADMINISTRATOR'],
 			ignoredChannels:[...channels_,...channels_2],
 			errorMessages:  true,
-			kickErrorMessage: 'não foi possível expulsar o **{user_tag}** por conta que eu não tenho a permissão **expulsar membros** em meu cargo principal.',
-			banErrorMessage: 'não foi possível banir o  **{user_tag}** por conta que eu não tenho a permissão **banir membros** em meu cargo principal.',
-			muteErrorMessage: 'Não foi possível silenciar **{user_tag}** devido a permissões impróprias ou a função mudo não pôde ser encontrada',
+			kickErrorMessage: '🚫| não foi possível expulsar o **{user_tag}** por conta que eu não tenho a permissão **expulsar membros** em meu cargo principal.',
+			banErrorMessage: '🚫| não foi possível banir o  **{user_tag}** por conta que eu não tenho a permissão **banir membros** em meu cargo principal.',
+			muteErrorMessage: '🚫| não foi possível silenciar **{user_tag}** devido a permissões impróprias ou a função mudo não pôde ser encontrada',
 			debug: true,
 		});
 

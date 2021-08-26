@@ -10,7 +10,6 @@ const dbOptions = {
 	useNewUrlParser: true
 };
 
-
 let client = new client_bot.client({bot:{
 	shards: Cluster.data.SHARD_LIST, 
 	shardCount: Cluster.data.TOTAL_SHARDS,
@@ -30,6 +29,8 @@ mongoose.connection.on('connected', function() {
 	});*/
 
 disbut(client);
+require("./extenders/index.js")(client)
 events.loadEVENTS()
+
 mongoose.connect(process.env.MONGOOSE, dbOptions);
 client.connect(process.env.TOKEN);

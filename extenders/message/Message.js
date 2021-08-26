@@ -1,5 +1,5 @@
 const { APIMessage, Structures,UserFlags,MessageEmbed } = require("discord.js");
-
+module.exports = (client) => {
 class Message extends Structures.get("Message") {
     async inlineReply(content, options) {
         const mentionRepliedUser = typeof ((options || content || {}).allowedMentions || {}).repliedUser === "undefined" ? true : ((options || content).allowedMentions).repliedUser;
@@ -124,3 +124,4 @@ return key ? `https://cdn.discordapp.com/avatars/${id}/${key}.${format}${size ? 
 }
 
 Structures.extend("Message", () => Message);
+}

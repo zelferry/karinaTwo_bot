@@ -46,10 +46,10 @@ if (fs.existsSync(`${Config.footer.root}/webClient/public/`)) {
 app.get('/ping_1', (req, res) => {
 	res.sendStatus(200)
 });
-	app.get('/*', (req, res) => {
-		res.sendFile('' + Config.footer.root + '/webClient/public/404/404.html');
+	app.get('/404', (req, res,next) => {
+	//	res.sendFile('' + Config.footer.root + '/webClient/public/404/404.html');
 
-	//	next()
+		next()
 	});
 
 } else {
@@ -75,9 +75,9 @@ app.get('/teapot', (req, res) => {
 	res.sendStatus(418);
 });
 
-/*manager.on("json_shard", (data) =>{
+manager.on("debug", (data) =>{
 	console.log(data)
-});*/
+});
 /*
 ap.on('posted', async () => {
 	console.log('Status postados na TOP.GG!');
@@ -87,6 +87,31 @@ ap.on('posted', async () => {
 process.on('unhandledRejection', error => {
 	console.error(error);
 });
+app.use(function(req, res, next){
+	res.status(404);
+ // res.sendFile('' + Config.footer.root + '/webClient/public/404/404.html');
+    res.format({
+    	html: function () {
+    		if(fs.existsSync(`${Config.footer.root}/webClient/public/`)){
+    			res.sendFile('' + Config.footer.root + '/webClient/public/404/404.html')
+    		} else {
+    			res.send(`<h1> ${req.url} não existe!</h1>`)
+    		}
+    	},
+    	json: function () {
+    		res.json({
+                sucess: false,
+                status: "404",
+    			error: `${req.url} não existe`,
+                route: req.url
+            })
+    	},
+    	default: function () {
+    		res.type('txt').send('Not found')
+    	}
+    })
+    
+})
 
 //start system
 app.listen(kariModu.normalizaPort(process.env.PORT || '3000'));

@@ -7,7 +7,6 @@ class ButtonPages {
     this.message = message;
     this.client = client
     //this.c = {}
-    
   }
  async buttonPages(database){
   	var {message,client} = this
