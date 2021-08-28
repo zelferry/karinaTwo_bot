@@ -35,13 +35,13 @@ function status() {
 		`f/help | guilds: ${client.guilds.cache.size} | V${
 			require('../package.json').version
 		} | cluster[${clusterID}]`,
-		{ type: 'WATCHING' }
+		{ type: "WATCHING",status:"indle" }
 	);
 }
 status();
 setInterval(status, 5000);
 
-client.user.setStatus('indle').catch(console.error);
+//client.user.setStatus('indle').catch(console.error);
 
 commands__.loadingSlashCommands();
 commands__.loadingCommands();

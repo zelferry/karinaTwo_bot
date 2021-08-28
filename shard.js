@@ -8,7 +8,7 @@ let manager = new handlers.shard('./index.js', {
 });
 let teste = require("./plugins/index.js")
 let ara = teste.autoTopGgPost(manager)
-ara.on("posted", (data ) => {
+ara.on("posted", (data) => {
 	console.log(`[${new Date().toString().split(' ', 5).join(' ')}] Status Postado na top.gg!`);
 })
 let AutoPoster = require('topgg-autoposter');
@@ -20,6 +20,12 @@ let Config = require('./database/client/config.json');
 let kariModu = require('./KariModules/index.js');
 let fetch = require('node-fetch');
 let urls = Config.host.links;
+let mongoose = require("mongoose");
+let dbOptions = {
+	useUnifiedTopology: true,
+	useNewUrlParser: true
+};
+
 function send_PING() {
 	for (var i = 0; i < urls.length; i++) {
 		fetch(urls[i]);
@@ -102,7 +108,7 @@ app.use(function(req, res, next){
     		res.json({
                 sucess: false,
                 status: "404",
-    			error: `${req.url} não existe`,
+                error: `${req.url} não existe`,
                 route: req.url
             })
     	},
@@ -117,4 +123,6 @@ app.use(function(req, res, next){
 app.listen(kariModu.normalizaPort(process.env.PORT || '3000'));
 manager.start();
 send_PING();
+
+mongoose.connect(process.env.MONGOOSE, dbOptions);
 setInterval(send_PING, 120000);

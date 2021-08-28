@@ -3,7 +3,7 @@ let usermodel = require("../../../models/user.js")
 class topgg {
 	static async newUser(author){
 		const isUser = await usermodel.findOne({ UserId: author });
-		if(isUser) return false;
+		if(isUser) return true;
 		
 		let new_ = new usermodel({
 			UserId: author
@@ -33,5 +33,10 @@ class topgg {
 		await user.save().catch(e => console.log(e))
 		return user
 	}
+    static async ready(user,funcion_){
+    usermodel.findOne({UserId:user},async(err,obj) => {
+        funcion_(err,obj,usermodel)
+     })
+    }
 }
 module.exports = topgg

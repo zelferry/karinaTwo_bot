@@ -3,6 +3,7 @@ let Discord = require('discord.js');
 let ms = require('ms');
 let clientConfig = require('../database/client/config.json');
 let cooldowns = new Discord.Collection();
+//let takg_ = new Discord.Collection();
 //let db = require('megadb');
 
 let {prefix} = require("../mongoDB/ini.js").guild
@@ -85,7 +86,7 @@ if (message.author.bot) return;
 		const atsn = require(`../KariModules/anti-fuck.js`);
 
 		//let commandFile = require(`./commands/${comando}.js`);
-
+        
 		var cmd =
 			client.commands.get(comando.slice(prefix_.lenght)) ||
 			client.commands.get(client.aliases.get(comando.slice(prefix_.lenght)));
@@ -103,6 +104,7 @@ if (message.author.bot) return;
 		} else {
 			//console.log(cmd.run)
 			cmd.run(client, message, args);
+            
 		//	console.log(await message.moreUserJson(message.author))
 		}
 
