@@ -31,6 +31,9 @@ class WEBHOOK {
 		let { hook } = this;
 		hook._exit_.send(c);
 	}
+    webhookTest(c){
+        
+    }
 }
 
 module.exports = WEBHOOK

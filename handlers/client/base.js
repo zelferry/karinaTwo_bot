@@ -14,15 +14,20 @@ class _client extends Discord.Client {
         this.config = clientConfig
 		this.commands2 = new Discord.Collection();
 		this.cooldown = new Discord.Collection()
+        this.extra = {}
+        this.extra.utils = require("../../utils/main.js") 
 	}
 	 connect(token) {
-	 	this.on("ready",()=>{
+	 	this.on("ready",() => {
 	 		
 	 		
-	 		let channels_ = this.channels.cache.filter((channel) => channel.name.includes("spam")).map(x => x.id)
+	 		let channels_1 = this.channels.cache.filter((channel) => channel.name.includes("spam")).map(x => x.id)
 	 	
 	 		let channels_2 = this.channels.cache.filter((channel) => channel.name.includes("contagem")).map(x => x.id)
-	 	
+            
+	 	this.antiSpamGlobalCofig = {
+            ignoredCannels: [...channels_1,...channels_2]
+        } 
 		this.antiSpam = new AntiSpam({
 			warnThreshold: 3, 
 			muteThreshold: 4,
@@ -43,7 +48,7 @@ class _client extends Discord.Client {
 			removeMessages: true,
 			ignoredUsers: [],
 			ignoredPermissions: ['ADMINISTRATOR'],
-			ignoredChannels:[...channels_,...channels_2],
+			ignoredChannels: this.antiSpamGlobalCofig.ignoredCannels,
 			errorMessages:  true,
 			kickErrorMessage: '🚫| não foi possível expulsar o **{user_tag}** por conta que eu não tenho a permissão **expulsar membros** em meu cargo principal.',
 			banErrorMessage: '🚫| não foi possível banir o  **{user_tag}** por conta que eu não tenho a permissão **banir membros** em meu cargo principal.',

@@ -112,7 +112,7 @@ class ButtonPages {
 		});
 
 		const filter = buttons => buttons.clicker.id === message.author.id;
-		const collector = msg.createButtonCollector(filter, { time: 1000 * 60 });
+		const collector = msg.createButtonCollector(filter, { idle: 1000 * 60 });
 
 		collector.on('collect', async r => {
 			r.reply.defer();

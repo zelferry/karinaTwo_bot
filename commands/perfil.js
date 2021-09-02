@@ -6,7 +6,7 @@ var config = require('../config.js');
 var ownerID = config.ownerID;
 exports.run = async (client, message, args) => {
   
-let user = message.author
+let user = message.mentions.users.first()||message.author 
 let value = await profile.find(user);
 
 const testdosei = value.usertext
@@ -54,7 +54,7 @@ message.channel.send({ embed });
 exports.help = {
   name:"perfil",
   permisoes: "nenhuma",
-  aliases: ["profile","infor-user"],
+  aliases: ["profile","potifolio"],
   description: "seu perfil!",
-  usage: "perfil"
+  usage: "perfil [usuário]"
 }

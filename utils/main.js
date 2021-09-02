@@ -5,5 +5,8 @@ module.exports = {
 	webhooks: require("../utils/webhooks/index.js"),
 	db: require("../utils/db/index.js"), 
 	bans: require("../utils/db/types/banneds/ini.js"),
-	fetch: require("../utils/discord/userFETCH.js")
+	fetch: require("../utils/discord/userFETCH.js"),
+    message:{
+        noNsfw: require("../utils/message/noNsfw.js")
+    }
 }

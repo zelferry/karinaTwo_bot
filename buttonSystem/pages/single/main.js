@@ -32,7 +32,7 @@ class ButtonPages {
 		let msg = await message.channel.send({ embed: embed_, components: [row] });
 
 		const filter = buttons => buttons.clicker.id === message.author.id;
-		const collector = msg.createButtonCollector(filter, { time: 1000 * 60 });
+		const collector = msg.createButtonCollector(filter, { idle: 1000 * 60 });
 
 		collector.on('collect', async r => {
 			r.reply.defer();

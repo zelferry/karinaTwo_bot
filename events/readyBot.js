@@ -35,7 +35,7 @@ function status() {
 		`f/help | guilds: ${client.guilds.cache.size} | V${
 			require('../package.json').version
 		} | cluster[${clusterID}]`,
-		{ type: "WATCHING",status:"indle" }
+		{ type: "WATCHING",status:"idle" }
 	);
 }
 status();

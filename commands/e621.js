@@ -20,14 +20,7 @@ const vip = await VipDB.obtener(`${message.author.id}.vip`);
 
 if(vip == 'No') return message.channel.send(`:x: |apenas para usuários **vips** :v`);
   */
-const aff = message.guild.channels.cache.filter((channel) => channel.nsfw).map(x => "<#"+x.id+">" ).join(",")
-
- let teste;
-
-if(aff){teste = `tente usar novamente em ${aff}`}else{teste = "este servidor não tem nenhum canal de texto com a função NSFW ativada :("}
-  
-  
-if (!message.channel.nsfw) return message.channel.send(":x:|o canal não tem a função NSFW ativada, "+teste+"");
+    if (!message.channel.nsfw) return client.extra.utils.message.noNsfw(client, message);
 
 const searchTerms = args[0]
 let count = args[1]

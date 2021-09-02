@@ -19,7 +19,7 @@ let admits = ["antiraid","anunciar","ban","banlist","clear","create-rules","gsta
 
 let memes = ["creeper?","dino","meme","mcc"].map((x) => `\`${x}\``)//.join(", ")//&
 
-let photo = ["affect","beautiful","changemymind","fuse","invert","triggered"].map((x) => `\`${x}\``)//.join(", ")//new
+let photo = ["affect","beautiful","changemymind","fuse","invert","triggered","clyde"].map((x) => `\`${x}\``)//.join(", ")//new
 
 let discor = ["avatar","cdinf","convidar","lembrete","ping","relatorio","emojis"].map((x) => `\`${x}\``)//.join(", ")//7
 

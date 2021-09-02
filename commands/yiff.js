@@ -6,17 +6,7 @@ var data_2 = ["gay","straight","lesbian","synormorph","bulge","andromorph"]
 var yiff_ = new yiff.yiff()
 
 exports.run = async (client, message, args) => {
-	const aff = message.guild.channels.cache.filter((channel) => channel.nsfw).map(x => "<#"+x.id+">" ).join(",")
-	
-	let teste;
-	
-	if(aff){
-		teste = `tente usar novamente em ${aff}`
-	}else{
-		teste = "este servidor não tem nenhum canal de texto com a função NSFW ativada :("
-	}
-  
-  if (!message.channel.nsfw) return message.channel.send(":x:|o canal não tem a função NSFW ativada, "+teste+"");
+	if (!message.channel.nsfw) return client.extra.utils.message.noNsfw(client, message)
 
 	let data = args[0]
 	if(!data_2.includes(data)){

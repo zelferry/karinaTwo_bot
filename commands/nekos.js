@@ -22,10 +22,6 @@ exports.run = async (client, message, args) => {
 	
 	let row1 = new disbut.MessageActionRow().addComponent(button_)
 
-	const map_nsfw = message.guild.channels.cache.filter((channel) => channel.nsfw).map(x => "<#"+x.id+">" ).join(",")
-	
-	let content_error_nsfw = map_nsfw ? `tente usar novamente em ${map_nsfw}` : `este servidor não tem nenhum canal de texto com a função NSFW ativada`
-  
 	let {sfw,nsfw} = endpoints.mekos
 	
 let {prefix} = require("../mongoDB/ini.js").guild 
@@ -76,7 +72,7 @@ let {prefix} = require("../mongoDB/ini.js").guild
 		if(args_1_1 == "nsfw"){
 			if(nsfw.includes(args_1_2)){
 				let arr_2 = await neko.nsfw[args_1_2]()
-				if (!message.channel.nsfw) return message.channel.send(":x:|o canal não tem a função NSFW ativada, "+content_error_nsfw+"");
+				if (!message.channel.nsfw) return client.extra.utils.message.noNsfw(client, message)
 				let button_2 = new disbut.MessageButton().setStyle('url').setURL(arr_2.url) .setLabel('baixar imagem...') 
 
 				row1.addComponent(button_2)
