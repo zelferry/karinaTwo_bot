@@ -15,7 +15,8 @@ class _client extends Discord.Client {
 		this.commands2 = new Discord.Collection();
 		this.cooldown = new Discord.Collection();
         this.extra = {};
-        this.extra.utils = require("../../utils/main.js") 
+        this.extra.utils = require("../../utils/main.js");
+        this.shard = process.env.CLUSTER_MANAGER ? Discord.ShardClientUtil.singleton(this) : null;
 	}
 	 connect(token) {
 	 	this.on("ready",() => {
