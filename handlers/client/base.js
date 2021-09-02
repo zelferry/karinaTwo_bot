@@ -11,10 +11,10 @@ class _client extends Discord.Client {
 		this.commands = new Discord.Collection();
 		this.aliases = new Discord.Collection();
 		this.commands.array = [];
-        this.config = clientConfig
+        this.config = clientConfig;
 		this.commands2 = new Discord.Collection();
-		this.cooldown = new Discord.Collection()
-        this.extra = {}
+		this.cooldown = new Discord.Collection();
+        this.extra = {};
         this.extra.utils = require("../../utils/main.js") 
 	}
 	 connect(token) {
@@ -28,6 +28,7 @@ class _client extends Discord.Client {
 	 	this.antiSpamGlobalCofig = {
             ignoredCannels: [...channels_1,...channels_2]
         } 
+            
 		this.antiSpam = new AntiSpam({
 			warnThreshold: 3, 
 			muteThreshold: 4,
