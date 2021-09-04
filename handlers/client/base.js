@@ -1,13 +1,19 @@
 const Discord = require('discord.js');
 const AntiSpam = require('discord-anti-spam');
 const { GiveawaysManager } = require('discord-giveaways');
-
 const clientConfig = require('../../database/client/config.json');
+const Cluster = require('discord-hybrid-sharding');
+const usev13 = false;
 
 class _client extends Discord.Client {
 	constructor(opts) {
-		super(opts.bot);
+		super({
+			shards: Cluster.data.SHARD_LIST,
+			shardCount: Cluster.data.TOTAL_SHARDS,
+			...opts.bot
+		});
 
+		this.cluster = new Cluster.Client(this, usev13);
 		this.commands = new Discord.Collection();
 		this.aliases = new Discord.Collection();
 		this.commands.array = [];
@@ -17,7 +23,10 @@ class _client extends Discord.Client {
 		this.extra = {};
 		this.extra.utils = require('../../utils/main.js');
 		this.shard = process.env.CLUSTER_MANAGER
-			? Discord.ShardClientUtil.singleton(this)
+			? Discord.ShardClientUtil.singleton(
+					this,
+					process.env.CLUSTER_MANAGER_MODE
+			  )
 			: null;
 	}
 	connect(token) {

@@ -10,9 +10,9 @@ const dbOptions = {
 	useNewUrlParser: true
 };
 
-let client = new client_bot.client({bot:{
+let client = new client_bot.client({bot:{/*
 	shards: Cluster.data.SHARD_LIST, 
-	shardCount: Cluster.data.TOTAL_SHARDS,
+	shardCount: Cluster.data.TOTAL_SHARDS,*/
   	http: {
   		version: "9"
   	}
@@ -22,7 +22,7 @@ let client = new client_bot.client({bot:{
 const usev13 = false
 let events = new client_bot.events(`${clientConfig.footer.root}/events`,client,"a","b")
 
-client.cluster = new Cluster.Client(client,usev13)
+//client.cluster = new Cluster.Client(client,usev13)
 /*
 mongoose.connection.on('connected', function() {
 		console.log("db conectada! ");
