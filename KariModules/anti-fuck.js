@@ -1,4 +1,4 @@
-function getOne(haystack, arr) {
+ifunction getOne(haystack, arr) {
   return arr.find(v => haystack.includes(v));
 }
 

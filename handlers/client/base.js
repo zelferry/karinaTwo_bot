@@ -23,11 +23,7 @@ class _client extends Discord.Client {
 		this.extra = {};
 		this.extra.utils = require('../../utils/main.js');
 		this.shard = process.env.CLUSTER_MANAGER
-			? Discord.ShardClientUtil.singleton(
-					this,
-					process.env.CLUSTER_MANAGER_MODE
-			  )
-			: null;
+			? Discord.ShardClientUtil.singleton(this, process.env.CLUSTER_MANAGER_MODE) : null;
 	}
 	connect(token) {
 		this.on('ready', () => {

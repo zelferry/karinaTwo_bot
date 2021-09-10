@@ -1,4 +1,3 @@
-//var DISCORD = require('discord.js');
 const Cluster = require("discord-hybrid-sharding");
 
 class ClusterCLIENT extends Cluster.Manager {

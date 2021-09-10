@@ -51,6 +51,7 @@ if (fs.existsSync(`${Config.footer.root}/webClient/public/`)) {
 	});
 app.get('/ping_1', (req, res) => {
 	res.sendStatus(200)
+    console.log(`[${new Date().toString().split(' ', 5).join(' ')}] ping recebido!`);
 });
 	app.get('/404', (req, res,next) => {
 	//	res.sendFile('' + Config.footer.root + '/webClient/public/404/404.html');
@@ -69,12 +70,7 @@ manager.on('message', (shard, message) => {
 });
 
 manager.on('clusterCreate', shard => {
-	console.log(
-		`[${new Date()
-			.toString()
-			.split(' ', 5)
-			.join(' ')}] cluster[${shard.id}] iniciado!`
-	);
+	console.log(`[${new Date().toString().split(' ', 5).join(' ')}] cluster[${shard.id}] iniciado!`);
 });
 
 app.get('/teapot', (req, res) => {
@@ -125,4 +121,4 @@ manager.start();
 send_PING();
 
 mongoose.connect(process.env.MONGOOSE, dbOptions);
-setInterval(send_PING, 120000);
+setInterval(send_PING, 150000);

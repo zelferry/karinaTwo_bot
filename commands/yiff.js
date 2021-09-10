@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
 		
 	var json = await yiff_[`${data}`]()
 	
-	let embed = new Discord.MessageEmbed().setImage(json.url).setColor("#7B68EE").setDescription([					`[[ShortURL]](${json.shortURL})`,					`[[ReportURL]](${json.reportURL})`,					`${!json.sources || json.sources.length === 0 || !json.sources[0] ? `[NoSource]` : `[[source]](${json.sources[0]})`}`				].join("\n"))
+	let embed = new Discord.MessageEmbed().setImage(json.url).setColor("#7B68EE").setDescription([					`[[ShortURL]](${json.shortURL})`,					`[[Reporta imagem?]](${json.reportURL})`,					`${!json.sources || json.sources.length === 0 || !json.sources[0] ? `[sem source]` : `[[source]](${json.sources[0]})`}`				].join("\n"))
 	
 	message.channel.send(embed)
 

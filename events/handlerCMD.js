@@ -144,7 +144,7 @@ if (message.author.bot) return;
 					}, no canal **${message.channel.name}** \`cluster[ **${client.cluster.id}** ]\``
 				)
 				.setColor('#FF0000')
-				.addField('mas deu erro devido a:', '```js ' + err + '```')
+				.addField('mas deu erro devido a:', '```js \n' + err + '```')
 		);
 	}
 }

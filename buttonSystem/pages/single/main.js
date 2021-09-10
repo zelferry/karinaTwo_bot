@@ -18,11 +18,11 @@ class ButtonPages {
 			.setFooter(`${randNumerViaDatabase + 1} / ${arr.length}`);
 
 		let buttonStop = new MessageButton()
-			.setID("stop")
+			.setID('stop')
 			.setEmoji(`❌`)
 			.setStyle(`red`);
 		let buttonRandon = new MessageButton()
-			.setID("random")
+			.setID('random')
 			.setEmoji(`🔄`)
 			.setStyle(`grey`);
 
@@ -48,32 +48,44 @@ class ButtonPages {
 				msg.edit({ embed: embed, components: r.message.components });
 			}
 			if (r.id === 'stop') {
-				let embed = new Discord.MessageEmbed()
-					.setColor('RED')
-					.setDescription('as páginas foram fechadas!')
-					.setTimestamp(Date.now());
-
-				msg.components[0].components[0].setDisabled();
-				msg.components[0].components[1].setDisabled();
-
-				removed = true;
-				msg.edit(embed, { components: msg.components }); //  message.channel.send(embed)
+				collector.stop(200);
+				//  message.channel.send(embed)
 			}
 		});
 
-		collector.on('end', () => {
+		collector.on('end', (pingaa, p) => {
+			/*
 			if (msg) {
-				if (removed == false) {
-					const embed = new Discord.MessageEmbed()
-						.setImage(arr[numberViaDatabase])
-						.setColor('RED');
+                const embed = new Discord.MessageEmbed().setImage(arr[numberViaDatabase]).setColor('RED');
 
+				if (removed == false) {
+					
 					msg.components[0].components[0].setDisabled();
 					msg.components[0].components[1].setDisabled();
 
 					msg.edit(embed, { components: msg.components });
 				} else {
 					console.log('cu');
+				}
+			} else {
+				console.log('1');
+			}*/
+			if (msg) {
+				//	console.log(p)
+				const embed = new Discord.MessageEmbed().setImage(arr[numberViaDatabase]); //.setColor("RED");
+
+				if (p === 200) {
+					embed.setColor('#FFF0F5');
+					msg.edit(embed, { components: [] });
+				} else {
+					//	console.log("cu")
+					msg.components[0].components[0].setDisabled();
+					msg.components[0].components[1].setDisabled();
+
+					embed.setColor('RED');
+					embed.setFooter('desativado por inatividade');
+
+					msg.edit(embed, { components: msg.components });
 				}
 			} else {
 				console.log('1');

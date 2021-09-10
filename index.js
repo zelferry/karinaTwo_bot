@@ -10,14 +10,13 @@ const dbOptions = {
 	useNewUrlParser: true
 };
 
-let client = new client_bot.client({bot:{/*
-	shards: Cluster.data.SHARD_LIST, 
-	shardCount: Cluster.data.TOTAL_SHARDS,*/
-  	http: {
-  		version: "9"
-  	}
-  }
-});
+let client = (global.client = new client_bot.client({
+    bot:{
+        http: {
+            version: "9"
+        }
+    }
+}));
 
 const usev13 = false
 let events = new client_bot.events(`${clientConfig.footer.root}/events`,client,"a","b")
