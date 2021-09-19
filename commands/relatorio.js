@@ -16,7 +16,7 @@ if (!args[0]) {
   KariWebhooks.suport(
     new Discord.MessageEmbed()
     .setColor("#FFFFF1")
-    .addField("Autor:", message.author)
+    .addField("Autor:", `${message.author} (${message.author.id})`)
     .addField("Conteúdo", content)
     .setFooter(`suporte por: ${message.author.tag}`, message.author.displayAvatarURL({format: "png"}))
   );

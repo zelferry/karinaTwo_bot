@@ -8,9 +8,6 @@ const { Client, Structures } = require("discord.js");
 const { MessageMenu, MessageMenuOption, MessageActionRow } = require("discord-buttons");
 
 module.exports = (client) => {
-	
-  if (version != 12) throw new Error("'discord-menu-embed' => The discord.js version must be v12");
-  if (!client || !client instanceof Client) throw new Error("'discord-menu-embed' => The discord.js client is not provided or is invalid.");
 
   class ExtendTextChannel extends Structures.get("TextChannel") {
      menu(author, options = {}) {
@@ -96,6 +93,10 @@ module.exports = (client) => {
         });
       })
     }
+      get serverLang(){
+          //coming soon
+          return "???"
+      }
   };
 
   Structures.extend("TextChannel", () => ExtendTextChannel);

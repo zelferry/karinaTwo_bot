@@ -117,7 +117,7 @@ return key ? `https://cdn.discordapp.com/avatars/${id}/${key}.${format}${size ? 
     }
 
 
-    async multipleEmbedSend(d,f){
+    async multipleEmbedSend(d,f = []){
     	return this.client.api.channels[this.channel.id].messages.post({ data:d, files:f }).then(d => this.client.actions.MessageCreate.handle(d).message);
     }
     

@@ -74,6 +74,19 @@ class _client extends Discord.Client {
 		});
 		this.login(token);
 	}
+    get AllCofigs(){
+        return {
+            sytem: clientConfig,
+            antiraid:{
+                global: this.antiSpamGlobalCofig,
+                privateOnGuild: {
+                   options: this.antiSpam.options,
+                    cache: this.antiSpam.cache
+                }
+            },
+            userv13: false
+        }
+    }
 	disconnectBOT() {}
 }
 
