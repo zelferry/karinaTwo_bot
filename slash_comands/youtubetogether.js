@@ -28,7 +28,7 @@ module.exports = {
                 }
             }
         });
-        channel.activityInvite("755600276941176913").then((in_) => {
+        channel.activityInvite("880218394199220334").then((in_) => {
             embed.setTitle("YouTube Together iniciado!");
             embed.setDescription(`iniciado o **YouTube Together** no \`${channel.name}\`, agora você pode escutar suas músicas e vídeos também direto do YT para o discord!\n> [clique aqui para entrar no canal de voz](https://discord.gg/${in_.code})!`);
             embed.setColor("#7289DA")

@@ -23,9 +23,10 @@ class WEBHOOK {
 		let { hook } = this;
 		hook.topgg.send(c);
 	}
-	suport(c) {
-		let { hook } = this;
-		hook.suport.send(c);
+	suport(c) {/*
+		let hook = thqis.hook
+		hook.suport.send(c);*/
+new Discord.WebhookClient(suports_.id, suports_.token).send(c)
 	}
 	_exit(c) {
 		let { hook } = this;

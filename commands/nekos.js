@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
 	let args_1_1 = args[0]
 	let args_1_2 = args[1]
 	
-	let button_ = new disbut.MessageButton().setStyle('url').setURL('https://nekos.life/') .setLabel('ver website original !') 
+	let button_ = new disbut.MessageButton().setStyle('url').setURL('https://nekos.life/').setLabel('ver website original!') 
 	
 	let row1 = new disbut.MessageActionRow().addComponent(button_)
 
@@ -59,7 +59,7 @@ let {prefix} = require("../mongoDB/ini.js").guild
 		if(args_1_1 == "sfw"){
 			if(sfw.includes(args_1_2)){
 				let arr_1 = await neko.sfw[args_1_2]()
-				let button_1 = new disbut.MessageButton().setStyle('url').setURL(arr_1.url) .setLabel('baixar imagem...') 
+				let button_1 = new disbut.MessageButton().setStyle('url').setURL(arr_1.url).setLabel('baixar imagem...') 
 
 				row1.addComponent(button_1)
 			
@@ -73,7 +73,7 @@ let {prefix} = require("../mongoDB/ini.js").guild
 			if(nsfw.includes(args_1_2)){
 				let arr_2 = await neko.nsfw[args_1_2]()
 				if (!message.channel.nsfw) return client.extra.utils.message.noNsfw(client, message)
-				let button_2 = new disbut.MessageButton().setStyle('url').setURL(arr_2.url) .setLabel('baixar imagem...') 
+				let button_2 = new disbut.MessageButton().setStyle('url').setURL(arr_2.url).setLabel('baixar imagem...') 
 
 				row1.addComponent(button_2)
 				

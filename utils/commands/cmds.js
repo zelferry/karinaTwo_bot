@@ -16,7 +16,29 @@ class cmds {
 	}
 	loadingCommands() {
 		let { client,foo } = this;
+    fs.readdirSync(`${foo}/aaaaaaaaaaaaa/`).forEach(dirs => {
+    const commands = fs.readdirSync(`${foo}/aaaaaaaaaaaaa/${dirs}`).filter(files => files.endsWith('.js'));
 
+    for (const file of commands) {
+        const command = require(`${foo}/aaaaaaaaaaaaa/${dirs}/${file}`);
+      command.help.category = dirs 
+       // console.log(`-> Loaded command ${command.help.name.toLowerCase()}`);
+        client.commands.set(command.help.name, command);
+      if (!command.help.description) return console.log(`--- Comando ${file} sem a string "description"`);
+      if (!command.help.permisoes) return console.log(`--- Comando ${file} sem a string "permisoes"`);
+      client.commands.array.push({
+        name: command.help.name,
+        desc: command.help.desc,
+        permisoes: command.help.permisoes
+      });
+      if (!command.help.aliases) return;
+					command.help.aliases.forEach(alias => {
+						client.aliases.set(alias, command.help.name, command);
+					});
+       // delete require.cache[require.resolve(`../commands/${dirs}/${file}`)];
+    };
+})
+/*
 		fs.readdir(""+foo+"/commands", async function(err, files) {
 			if (err) console.log(err);
 			var jsf = files.filter(f => f.split('.').pop() === 'js');
@@ -45,7 +67,7 @@ class cmds {
 					console.error('ERROR: ' + e);
 				}
 			});
-		});
+		});*/
 	}
 	async loadingSlashCommands() {
 		

@@ -13,6 +13,6 @@ exports.help = {
   name:"invert",
   permisoes: "nenhuma",
   aliases: ["imagem-invertida"],
-  description: "inverta a imagem(avatar) de alguém!",
+  description: "inverta as cores da imagem(avatar) de alguém!",
   usage: "invert [usuário]"
 }

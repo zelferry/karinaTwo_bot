@@ -13,6 +13,11 @@ if (!args[0]) {
 } else if (content.length > 1000) {
   return message.channel.send(`${message.author.username}, forneça um relatorio de no máximo 1000 caracteres.`);
 } else {
+    let {suport} = require("../buttonSystem/init.js")
+
+let button_2 = new suport.suport(message,client)
+
+await button_2.buttonSuport(args, content, KariWebhooks.suport)/*
   KariWebhooks.suport(
     new Discord.MessageEmbed()
     .setColor("#FFFFF1")
@@ -25,7 +30,7 @@ if (!args[0]) {
   description: `${message.author} relatorio enviado com suseso no meu servidor de suporte!`
 }}).then(msg => msg.delete({ timeout: 5000 }))
 
-  
+  */
 }
 }
 exports.help = {

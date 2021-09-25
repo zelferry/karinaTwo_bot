@@ -6,6 +6,8 @@ module.exports = {
 	db: require("../utils/db/index.js"), 
 	bans: require("../utils/db/types/banneds/ini.js"),
 	fetch: require("../utils/discord/userFETCH.js"),
+  actvies: require("../utils/discord/actvies.js"),
+  makeCommandsCategory: require("../utils/discord/makecommand.js"),
     message:{
         noNsfw: require("../utils/message/noNsfw.js")
     }

@@ -20,12 +20,11 @@ let [title, contents] = args.join(" ").split("|");
             return message.channel.send(` **|** ${message.author}, a descrição precisa ter no maximo **22 letras**!`);
         }; 
 
-        message.channel.startTyping();
+
 
         const url = `https://www.minecraftskinstealer.com/achievement/a.php?i=${rnd}&h=${encodeURIComponent(title)}&t=${encodeURIComponent(contents)}`;
 
         message.channel.send(`${message.author}`, new Discord.MessageAttachment(url, 'mcconquista.png')); 
-        message.channel.stopTyping(true); 
 	
 }
 exports.help = {
