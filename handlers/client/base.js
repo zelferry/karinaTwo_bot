@@ -20,10 +20,10 @@ class _client extends Discord.Client {
 		this.config = clientConfig;
 		this.commands2 = new Discord.Collection();
 		this.cooldown = new Discord.Collection();
-    this.discordTogether = new utils_.actvies(this);
+        this.discordTogether = new utils_.actvies(this);
 		this.extra = {};
 		this.extra.utils = utils_;
-    this.extra.makeCommandsCategory = new utils_.makeCommandsCategory(this)
+        this.extra.makeCommandsCategory = new utils_.makeCommandsCategory(this)
 		this.shard = process.env.CLUSTER_MANAGER
 			? Discord.ShardClientUtil.singleton(this, process.env.CLUSTER_MANAGER_MODE) : null;
 	}
@@ -40,11 +40,10 @@ class _client extends Discord.Client {
 			this.antiSpamGlobalCofig = {
 				ignoredCannels: [...channels_1, ...channels_2]
 			};
-      this.get_images = function(message,args){
-        const mention = message.attachments.size > 0 || message.mentions.users.first() || this.users.cache.get(args[0]) || message.author;
-        
-        return (message.attachments.size > 0 && (message.attachments).array()[0].url) || mention.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 });
-    }
+            this.get_images = function(message,args){
+                const mention = message.attachments.size > 0 || message.mentions.users.first() || this.users.cache.get(args[0]) || message.author;
+                return (message.attachments.size > 0 && (message.attachments).array()[0].url) || mention.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 });
+            }
 
 			this.antiSpam = new AntiSpam({
 				warnThreshold: 3,

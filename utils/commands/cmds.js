@@ -16,11 +16,11 @@ class cmds {
 	}
 	loadingCommands() {
 		let { client,foo } = this;
-    fs.readdirSync(`${foo}/aaaaaaaaaaaaa/`).forEach(dirs => {
-    const commands = fs.readdirSync(`${foo}/aaaaaaaaaaaaa/${dirs}`).filter(files => files.endsWith('.js'));
+        fs.readdirSync(`${foo}/commands/`).forEach(dirs => {
+    const commands = fs.readdirSync(`${foo}/commands/${dirs}`).filter(files => files.endsWith('.js'));
 
     for (const file of commands) {
-        const command = require(`${foo}/aaaaaaaaaaaaa/${dirs}/${file}`);
+        const command = require(`${foo}/commands/${dirs}/${file}`);
       command.help.category = dirs 
        // console.log(`-> Loaded command ${command.help.name.toLowerCase()}`);
         client.commands.set(command.help.name, command);
@@ -37,37 +37,7 @@ class cmds {
 					});
        // delete require.cache[require.resolve(`../commands/${dirs}/${file}`)];
     };
-})
-/*
-		fs.readdir(""+foo+"/commands", async function(err, files) {
-			if (err) console.log(err);
-			var jsf = files.filter(f => f.split('.').pop() === 'js');
-			if (jsf <= 0)
-				return console.log(
-					'Pasta commands não existe, ou está sem arquivos .js'
-				);
-			jsf.forEach(f => {
-				try {
-					var cmd = require(""+foo+"/commands/"+f+"");
-					client.commands.set(cmd.help.name, cmd);
-					if (!cmd.help.description)
-						return console.log(`--- Comando ${f} sem a string "description"`);
-					if (!cmd.help.permisoes)
-						return console.log(`--- Comando ${f} sem a string "permisoes"`);
-					client.commands.array.push({
-						name: cmd.help.name,
-						desc: cmd.help.desc,
-						permisoes: cmd.help.permisoes
-					});
-					if (!cmd.help.aliases) return;
-					cmd.help.aliases.forEach(alias => {
-						client.aliases.set(alias, cmd.help.name, cmd);
-					});
-				} catch (e) {
-					console.error('ERROR: ' + e);
-				}
-			});
-		});*/
+        })
 	}
 	async loadingSlashCommands() {
 		
