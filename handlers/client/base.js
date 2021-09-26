@@ -4,7 +4,8 @@ const { GiveawaysManager } = require('discord-giveaways');
 const clientConfig = require('../../database/client/config.json');
 const Cluster = require('discord-hybrid-sharding');
 const usev13 = false;
-let utils_ = require('../../utils/main.js')
+let utils_ = require('../../utils/main.js');
+
 class _client extends Discord.Client {
 	constructor(opts) {
 		super({
@@ -20,12 +21,14 @@ class _client extends Discord.Client {
 		this.config = clientConfig;
 		this.commands2 = new Discord.Collection();
 		this.cooldown = new Discord.Collection();
-        this.discordTogether = new utils_.actvies(this);
+		this.discordTogether = new utils_.actvies(this);
 		this.extra = {};
 		this.extra.utils = utils_;
-        this.extra.makeCommandsCategory = new utils_.makeCommandsCategory(this)
+		this.extra.makeCommandsCategory = new utils_.makeCommandsCategory(this);
 		this.shard = process.env.CLUSTER_MANAGER
-			? Discord.ShardClientUtil.singleton(this, process.env.CLUSTER_MANAGER_MODE) : null;
+			? Discord.ShardClientUtil.singleton(this, process.env.CLUSTER_MANAGER_MODE
+			  ) : null;
+        this.test = "test" 
 	}
 	connect(token) {
 		this.on('ready', () => {
@@ -40,10 +43,18 @@ class _client extends Discord.Client {
 			this.antiSpamGlobalCofig = {
 				ignoredCannels: [...channels_1, ...channels_2]
 			};
-            this.get_images = function(message,args){
-                const mention = message.attachments.size > 0 || message.mentions.users.first() || this.users.cache.get(args[0]) || message.author;
-                return (message.attachments.size > 0 && (message.attachments).array()[0].url) || mention.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 });
-            }
+			this.get_images = function(message, args) {
+				const mention =
+					message.attachments.size > 0 ||
+					message.mentions.users.first() ||
+					this.users.cache.get(args[0]) ||
+					message.author;
+				return (
+					(message.attachments.size > 0 &&
+						message.attachments.array()[0].url) ||
+					mention.displayAvatarURL({ dynamic: true, format: 'png', size: 1024 })
+				);
+			};
 
 			this.antiSpam = new AntiSpam({
 				warnThreshold: 3,
@@ -52,11 +63,9 @@ class _client extends Discord.Client {
 				banThreshold: 7,
 				maxInterval: 5000,
 				warnMessage: '{@user}, Por Favor Pare De Spamar/flooda nesse servidor.',
-				kickMessage:
-					'😠|**{user_tag}** Foi Kicado do Server por **raid/flood**.',
+				kickMessage: '😠|**{user_tag}** Foi Kicado do Server por **raid/flood**.',
 				banMessage: '🔨| **{user_tag}** Foi BANIDO Por **raid/flood**.',
-				muteMessage:
-					'🔇|**{user_tag}** foi silenciado por Spamar/floodar nesse servidor.',
+				muteMessage: '🔇|**{user_tag}** foi silenciado por Spamar/floodar nesse servidor.',
 				maxDuplicatesWarning: 6,
 				maxDuplicatesKick: 10,
 				maxDuplicatesBan: 12,
@@ -69,31 +78,30 @@ class _client extends Discord.Client {
 				ignoredPermissions: ['ADMINISTRATOR'],
 				ignoredChannels: this.antiSpamGlobalCofig.ignoredCannels,
 				errorMessages: true,
-				kickErrorMessage:
-					'🚫| não foi possível expulsar o **{user_tag}** por conta que eu não tenho a permissão **expulsar membros** em meu cargo principal.',
-				banErrorMessage:
-					'🚫| não foi possível banir o  **{user_tag}** por conta que eu não tenho a permissão **banir membros** em meu cargo principal.',
-				muteErrorMessage:
-					'🚫| não foi possível silenciar **{user_tag}** devido a permissões impróprias ou a função mudo não pôde ser encontrada',
+				kickErrorMessage: '🚫| não foi possível expulsar o **{user_tag}** por conta que eu não tenho a permissão **expulsar membros** em meu cargo principal.',
+				banErrorMessage: '🚫| não foi possível banir o  **{user_tag}** por conta que eu não tenho a permissão **banir membros** em meu cargo principal.',
+				muteErrorMessage: '🚫| não foi possível silenciar **{user_tag}** devido a permissões impróprias ou a função mudo não pôde ser encontrada',
 				debug: true
 			});
 		});
 		this.login(token);
 	}
-    get AllCofigs(){
-        return {
-            sytem: clientConfig,
-            antiraid:{
-                global: this.antiSpamGlobalCofig,
-                privateOnGuild: {
-                   options: this.antiSpam.options,
-                    cache: this.antiSpam.cache
-                }
-            },
-            userv13: false
-        }
+	get AllCofigs() {
+		return {
+			sytem: clientConfig,
+			antiraid: {
+				global: this.antiSpamGlobalCofig,
+				privateOnGuild: {
+					options: this.antiSpam.options,
+					cache: this.antiSpam.cache
+				}
+			},
+			userv13: false
+		};
+	}
+	disconnect(){
+        this.destroy()
     }
-	disconnectBOT() {}
 }
 
 module.exports = _client;
