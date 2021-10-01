@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 //const fs = require('fs');
 exports.run = async (client, message, args) => {
   
-const imagestest = client.get_images(message,args)
+const imagestest = client.images.displayURL(message,args,0)
 /*
  if (imagestest) {
 const imageIDSpoilef = makeimageID(12)
@@ -23,7 +23,7 @@ const imageIDSpoilef = makeimageID(12)
 
 const attachment = new Discord.MessageAttachment(imagestest, `SPOILER_${imageIDSpoilef}.png`);
 
-       return message.channel.send(`imagen enviada por ${message.author} `,attachment)
+       return message.channel.send(`📸**|** ${message.author} mídia marcada como spoiler com sucesso!`,attachment)
      }
       } else {
         return message.channel.send('você precisa anexar uma imagem!')
@@ -49,5 +49,5 @@ exports.help = {
   permisoes: "nenhuma",
   aliases: ["spimg","esconder-imagem"],
   description: "marca alguma imagem como spoiler",
-  usage: "spoilers-image [imagem anexada ou avatar e um usuário]"
+  usage: "spoilers-image [imagem]"
 }

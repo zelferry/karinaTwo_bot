@@ -5,6 +5,7 @@ const clientConfig = require('../../database/client/config.json');
 const Cluster = require('discord-hybrid-sharding');
 const usev13 = false;
 let utils_ = require('../../utils/main.js');
+let imagesStructure = require("./structures/Images.js")
 
 class _client extends Discord.Client {
 	constructor(opts) {
@@ -25,10 +26,8 @@ class _client extends Discord.Client {
 		this.extra = {};
 		this.extra.utils = utils_;
 		this.extra.makeCommandsCategory = new utils_.makeCommandsCategory(this);
-		this.shard = process.env.CLUSTER_MANAGER
-			? Discord.ShardClientUtil.singleton(this, process.env.CLUSTER_MANAGER_MODE
-			  ) : null;
-        this.test = "test" 
+		this.shard = process.env.CLUSTER_MANAGER ? Discord.ShardClientUtil.singleton(this, process.env.CLUSTER_MANAGER_MODE) : null;
+        this.images = new imagesStructure(this);
 	}
 	connect(token) {
 		this.on('ready', () => {

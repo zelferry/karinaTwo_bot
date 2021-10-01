@@ -58,7 +58,8 @@ let {prefix} = require("../../mongoDB/ini.js").guild
 	if(["nsfw","sfw"].includes(args_1_1)){
 		if(args_1_1 == "sfw"){
 			if(sfw.includes(args_1_2)){
-				let arr_1 = await neko.sfw[args_1_2]()
+				let arr_1 = await neko.sfw[args_1_2]();
+                                               if(!arr_1.url) return message.inlineReply("😥**|** desculpa, mas parece que a imagem não existe ou esta corrompida :(")
 				let button_1 = new disbut.MessageButton().setStyle('url').setURL(arr_1.url).setLabel('baixar imagem...') 
 
 				row1.addComponent(button_1)

@@ -8,7 +8,7 @@ const avatar = args.join(' ');
 if (!avatar) return message.reply('Você precisa inserir o texto!');
   let image = await canvacord.Canvas.changemymind(avatar);
   let attachment = new Discord.MessageAttachment(image, "changemymind.png");
-  return message.channel.send(attachment);
+  return message.inlineReply(attachment);
 }
 exports.help = {
   name:"changemymind",

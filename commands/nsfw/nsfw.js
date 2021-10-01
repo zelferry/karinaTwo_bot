@@ -26,7 +26,7 @@ const embed = new Discord.MessageEmbed().setImage(randNsfw);
    message.channel.send(embed);
   */
   
-let {pages} = require("../buttonSystem/init.js")
+let {pages} = require("../../buttonSystem/init.js")
 
 let button_2 = new pages.normal(message,client)
 await button_2.buttonPages(listNsfw)

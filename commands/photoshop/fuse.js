@@ -9,15 +9,10 @@ module.exports.run = async (client, message, args) => {
   if (!user)return message.reply('lembre-se de mencionar um usuário válido para misturar os avatares!');
 
   let userf = user.displayAvatarURL({ dynamic: false, format: 'png' });
-  
-setTimeout(() => {
-  message.channel.send("fusão ,HA!");
-}, 2000)
- 
 
   let image = await canvacord.Canvas.fuse(avatar, userf);
   let attachment = new Discord.MessageAttachment(image, "changemymind.png");
-  return message.channel.send(attachment);
+  return message.inlineReply(attachment);
 }
 exports.help = {
   name:"fuse",
