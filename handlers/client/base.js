@@ -14,6 +14,7 @@ class _client extends Discord.Client {
 			shardCount: Cluster.data.TOTAL_SHARDS,
 			...opts.bot
 		});
+        this.a = "b"
 	}
     makeTHIS(){
         this.cluster = new Cluster.Client(this, usev13);
