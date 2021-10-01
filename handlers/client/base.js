@@ -15,20 +15,26 @@ class _client extends Discord.Client {
 			...opts.bot
 		});
 
-		this.cluster = new Cluster.Client(this, usev13);
 		this.commands = new Discord.Collection();
 		this.aliases = new Discord.Collection();
 		this.commands.array = [];
 		this.config = clientConfig;
 		this.commands2 = new Discord.Collection();
 		this.cooldown = new Discord.Collection();
-		this.discordTogether = new utils_.actvies(this);
-        this.images = new imagesStructure(this);
-		this.extra = {};
-		this.extra.utils = utils_;
-		this.extra.makeCommandsCategory = new utils_.makeCommandsCategory(this);
-		this.shard = process.env.CLUSTER_MANAGER ? Discord.ShardClientUtil.singleton(this, process.env.CLUSTER_MANAGER_MODE) : null;
+		
+		
+        this.makeTHIS()
 	}
+    makeTHIS(){
+        this.cluster = new Cluster.Client(this, usev13);
+        this.shard = process.env.CLUSTER_MANAGER ? Discord.ShardClientUtil.singleton(this, process.env.CLUSTER_MANAGER_MODE) : null;
+        this.images = new imagesStructure(this);
+        this.discordTogether = new utils_.actvies(this);
+        this.extra = {
+            utils: utils_,
+            makeCommandsCategory: new utils_.makeCommandsCategory(this)
+        };
+    }
 	connect(token) {
 		this.on('ready', () => {
 			let channels_1 = this.channels.cache
