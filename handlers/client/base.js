@@ -14,7 +14,6 @@ class _client extends Discord.Client {
 			shardCount: Cluster.data.TOTAL_SHARDS,
 			...opts.bot
 		});
-        this.makeTHIS({})
 	}
     makeTHIS(){
         this.cluster = new Cluster.Client(this, usev13);
@@ -33,6 +32,7 @@ class _client extends Discord.Client {
         this.aliases = new Discord.Collection();
     }
 	connect(token) {
+        this.makeTHIS({})
 		this.on('ready', () => {
 			let channels_1 = this.channels.cache
 				.filter(channel => channel.name.includes('spam'))
