@@ -32,4 +32,4 @@ require("./extenders/index.js")(client)
 events.loadEVENTS()
 
 mongoose.connect(process.env.MONGOOSE, dbOptions);
-client.connect(process.env.TOKEN);
+client.connectBOT(process.env.TOKEN);

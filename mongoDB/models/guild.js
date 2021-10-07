@@ -11,7 +11,11 @@ const guildSchema = mongoose.Schema({
 		antiraid:{
 			type: Boolean,
 			default: false
-		}
+		},
+        pagesBUTONS:{
+            type: Boolean,
+            default: false
+        }
 	}
 })
 

@@ -121,20 +121,17 @@ if (message.author.bot) return;
 		);
 	} catch (err) {
 		console.error(err);
-
-		message.channel.send({
-			embed: {
-				color: '#FF0000',
-				description:
-					'🚫 o comando `' +
-					comando +
-					'` não **existe**.\n\nuse `' +
-					prefix_ +
-					'help` para ver meus comandos **listados** e **categorizados**! :3'
-			}
-		});
-
-		KariWebhooks.commands(
+        if((err.code) == undefined){
+            message.channel.send({
+                embed: {
+                    color: '#FF0000',
+                    description: '🚫 o comando `' + comando + '` não **existe**.\n\nuse `' + prefix_ + 'help` para ver meus comandos **listados** e **categorizados**! :3'
+                }
+            });
+        } else {
+            message.inlineReply("⚠️**|** alguna coisa deu extremamente de errado ao executar o comando:( \n🙇‍♂️**|** tente novamente mais tarde")
+        }
+KariWebhooks.commands(
 			new Discord.MessageEmbed()
 				.setDescription(
 					`❌| o **${message.author.username}** ussou **${prefix_}${comando} **${

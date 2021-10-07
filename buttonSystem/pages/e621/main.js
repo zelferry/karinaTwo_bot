@@ -3,6 +3,7 @@ const { MessageButton, MessageActionRow } = require('discord-buttons');
 
 const ava9 = require("../../../database/client/blacklisted.json");
 let blacklist = ava9.e6.blacklist
+let {configs} = require("../../../mongoDB/ini.js").guild 
 
 class ButtonPages {
 	constructor(message, client) {
@@ -11,6 +12,7 @@ class ButtonPages {
 	}
 	async buttonPages(posts, pos) {
 		var { message, client } = this;
+        let __configs = await configs.getConfig(message.guild,true);
 
 		let sla = Math.floor(Math.random() * posts.length);
 
@@ -82,7 +84,7 @@ class ButtonPages {
 				}
 			}
 		};
-		
+        if(__configs.pagesBUTONS == true){
 		let redVersion = {
 			embed: {
 				color: 'RED',
@@ -230,6 +232,12 @@ class ButtonPages {
 				console.log('1');
 			}
 		});
+        //
+        } else {
+            message.channel.send({
+                embed: ava.embed
+            })
+        }
 	}
 }
 module.exports = ButtonPages;

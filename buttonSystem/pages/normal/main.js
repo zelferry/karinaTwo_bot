@@ -1,17 +1,37 @@
 const Discord = require("discord.js");
 const { MessageButton, MessageActionRow } = require('discord-buttons');
+let {configs} = require("../../../mongoDB/ini.js").guild 
+
 
 class ButtonPages {
   constructor(message,client) {
-    
+    let self = this 
     this.message = message;
-    this.client = client
+   // this.__buttons = false 
+    this.client = client;
+/*
+      async function aaa(){
+          let cmd = await configs.getConfig(message.guild,true)
+        
+          
+        console.log(cmd)
+        
+            if(cmd.pagesBUTONS){
+                self.__buttons = true 
+            } else {
+                self.__buttons = false
+            }
+        
+          
+      }
+      aaa()*/
     //this.c = {}
   }
  async buttonPages(database){
   	var {message,client} = this
-	
-	
+	let __configs = await configs.getConfig(message.guild,true)
+     
+	if(__configs.pagesBUTONS == true){
   	var randNumerViaDatabase = Math.floor(Math.random() * database.length)
   	var arr = database
   	var numberViaDatabase = randNumerViaDatabase
@@ -23,14 +43,11 @@ class ButtonPages {
   	let buttonRandon = new MessageButton().setID("random").setEmoji(`🔄`).setStyle(`grey`);
   	
   	//let removed = false
-
-if(numberViaDatabase <= 0) buttonPrevious.setDisabled()
-       
-if(numberViaDatabase <= arr.length-1)buttonNext.setDisabled(false)
+        if(numberViaDatabase <= 0) buttonPrevious.setDisabled();
+        if(numberViaDatabase <= arr.length-1)buttonNext.setDisabled(false);
 //numberViaDatabase++
-if(numberViaDatabase >= arr.length-1) buttonNext.setDisabled()
-        
-if(numberViaDatabase > 0) buttonPrevious.setDisabled(false)
+        if(numberViaDatabase >= arr.length-1) buttonNext.setDisabled();
+        if(numberViaDatabase > 0) buttonPrevious.setDisabled(false)
   	
  
   	let row = new MessageActionRow().addComponents(buttonPrevious, buttonNext,buttonRandon,buttonStop);
@@ -119,6 +136,13 @@ const embed = new Discord.MessageEmbed().setImage(arr[randNumerViaDatabase]).set
   		console.log("1")
   	}
   })
+ } else {
+        var randNumerViaDatabase = Math.floor(Math.random() * database.length);
+        var arr = database;
+        var numberViaDatabase = randNumerViaDatabase;
+        var embed_ = new Discord.MessageEmbed().setImage(database[randNumerViaDatabase]).setColor("#7B68EE").setFooter(`${randNumerViaDatabase+1} / ${arr.length}`);
+        message.channel.send(embed_)
+ }
   }
 }
 module.exports = ButtonPages
