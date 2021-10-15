@@ -6,11 +6,14 @@ var rand = Math.floor(Math.random() * (100 - 1)) + 1
 
 //let user = message.mentions.users.first() || client.users.cache.get(args[0]);
 
-message.channel.send({embed: {
+message.reply({embeds: [{
   color: 3447003,
   description: `sua idiotice e de **` + (rand) + `**`
-}});
+}]});
 
+}
+exports.config = {
+    test: true
 }
 exports.help = {
   name:"idiot",

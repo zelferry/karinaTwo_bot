@@ -19,13 +19,8 @@ module.exports = [
 	{
 		type: 'guildDelete',
 		start: async(client,clusterID,ipc,guild) => {
-			if (
-				guild.id === '810990219281039391' ||
-				guild.id === '803456484369367081'
-			)
-				return;
-
-			await require('../mongoDB/ini.js').guild.deleteGuild(guild);
+			if (guild.id === '810990219281039391' || guild.id === '803456484369367081') return;
+            await require('../mongoDB/ini.js').guild.deleteGuild(guild);
 
 			client.giveawaysManager.giveaways
 				.filter(g => g.guildID === guild.id)

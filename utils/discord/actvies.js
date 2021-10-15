@@ -43,8 +43,8 @@ class DiscordTogether {
         })
           .then((res) => res.json())
           .then((invite) => {
-            if (invite.error || !invite.code) throw new Error('Ocorreu um erro ao recuperar os dados!');
-            if (Number(invite.code) === 50013) console.warn('o bot não tem permissão para realizar essa ação');
+            if (invite.error || !invite.code) throw new Error('!');
+            if (Number(invite.code) === 50013) console.warn('');
             returnData.code = `https://discord.com/invite/${invite.code}`;
           });
       } catch (err) {
@@ -52,7 +52,7 @@ class DiscordTogether {
       }
       return returnData;
     } else {
-      throw new SyntaxError('usso invalido!');
+      throw new SyntaxError('!');
     }
   }
 }

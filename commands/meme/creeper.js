@@ -17,10 +17,13 @@ var list = [
   ':V'
 ];
 var rand = list[Math.floor(Math.random() * list.length)];
-let user = message.mentions.users.first() || client.users.cache.get(args[0]);
 
-message.channel.send(rand);
-console.log(`comando f/creeper? usado`);
+message.reply({content:[rand]});
+
+    
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"creeper?",

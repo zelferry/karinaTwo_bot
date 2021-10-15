@@ -1,19 +1,12 @@
 const Discord = require('discord.js');
-const furryGay  = require("../../database/imagens/furryPorn/furrygay.json");
+const furryGay  = require("../../database/imagens/furryPorn/furryFuta.json");
 //const db = require("megadb");
 
 //et VipDB = new db.crearDB("Vip");
 
 module.exports.run = async (client, message, args) => {
   /*
-if(!VipDB.tiene(`${message.author.id}`))
-      VipDB.establecer(`${message.author.id}`, {
-        vip: 'No'
-      })
-
-  const vip = await VipDB.obtener(`${message.author.id}.vip`);
-
-if(vip == 'No') return message.channel.send(`:x: |apenas para usuários **vips** :v`);
+is para usuários **vips** :v`);
 */
     if (!message.channel.nsfw) return client.extra.utils.message.noNsfw(client, message)
 
@@ -27,9 +20,9 @@ exports.config = {
     test: false
 }
 exports.help = {
-  name:"furry-gay",
+  name:"furry-gynomorph",
   permisoes: "nenhuma",
-  aliases: ["fg","gay-furry","furrygay"],
-  description: "veja inagens furrys ||gays||",
-  usage: "furry-gay"
+  aliases: ["gynomorph-furry","furrygynomorph"],
+  description: "veja inagens furrys ||gynomorph||",
+  usage: "furry-gynomorph"
 }

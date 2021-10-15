@@ -13,20 +13,25 @@ let [title, contents] = args.join(" ").split("|");
         if (args.join(" ").toLowerCase().includes("cake")) rnd = 10; 
 
         if (!args.join(" ")) {
-            return message.channel.send(`**|** ${message.author}, você precisa escrever a descrição da sua conquista!`); 
+            return message.reply({content:`❌**|** você precisa escrever a descrição da sua conquista!`}); 
         };
 
         if (title.length > 24 || contents.length > 22) {
-            return message.channel.send(` **|** ${message.author}, a descrição precisa ter no maximo **22 letras**!`);
+            return message.reply({content:`❌**|** a descrição precisa ter no maximo **22 letras**!`});
         }; 
 
-        message.channel.startTyping();
+        //message.channel.startTyping();
 
         const url = `https://www.minecraftskinstealer.com/achievement/a.php?i=${rnd}&h=${encodeURIComponent(title)}&t=${encodeURIComponent(contents)}`;
 
-        message.channel.send(`${message.author}`, new Discord.MessageAttachment(url, 'mcconquista.png')); 
-        message.channel.stopTyping(true); 
+        message.reply({
+            files:[new Discord.MessageAttachment(url, 'mcconquista.png')]
+        })
+     //   message.channel.stopTyping(true); 
 	
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"mcc",

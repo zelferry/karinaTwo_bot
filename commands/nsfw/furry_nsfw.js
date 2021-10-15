@@ -27,12 +27,15 @@ const embed = new Discord.MessageEmbed()
     message.channel.send(embed);
 */
 
-let {pages} = require("../buttonSystem/init.js")
+let {pages} = require("../../buttonSystem/init.js")
 
 let button_2 = new pages.normal(message,client)
 await button_2.buttonPages(furryNsfw)
 
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"furry-nsfw",
   permisoes: "nenhuma",

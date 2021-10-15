@@ -1,24 +1,5 @@
 {
 	"pages":{
-		"timer": 60000,
-		"all_pages":{
-			"normal":{
-				"embedcolor":{
-					"resume":"#7B68EE",
-					"stop":"RED"
-				}
-			},
-			"e621":{
-				"embedcolor":{"resume":"#C0C0C0",
-					"stop":"RED"
-				}
-			},
-			"single":{
-				"embedcolor":{
-					"resume":"#7B68EE",
-					"stop":"RED"
-				}
-			}
-		}
+		"timer": 60000
 	}
 }

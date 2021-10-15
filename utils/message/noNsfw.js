@@ -8,8 +8,10 @@ module.exports = (client,message) =>{
 	if(channels_.length > 0){
 		embed_2.addFields({
             name: `tente novamente em:`,
-            value: `${text}`
+            value: `${text}.`
         });
 	}
-	message.inlineReply(embed_2);
+	message.reply({
+        embeds: [embed_2]
+    });
 }

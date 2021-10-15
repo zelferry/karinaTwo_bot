@@ -1,37 +1,37 @@
 const ms = require('ms');
 
 exports.run = async (client, message, args) => {
-    if(!message.member.hasPermission('MANAGE_MESSAGES') && !message.member.roles.cache.some((r) => r.name === "Giveaways")){
-        return message.channel.send(':x: você não tem a permissão **MANAGE_MESSAGES** para iniciar um **Giveaway**!');
+    if(!message.member.permissions.has('MANAGE_MESSAGES') && !message.member.roles.cache.some((r) => r.name === "Giveaways")){
+        return message.reply({content:':x:**|** você não tem a permissão **MANAGE_MESSAGES** para iniciar um **Giveaway**!'});
     }
 
     let giveawayChannel = message.mentions.channels.first();
 
     if(!giveawayChannel){
-        return message.channel.send(':x: merciona um canal valido!!');
+        return message.reply({content:':x:**|** merciona um canal valido!!'});
     }
 
     let giveawayDuration = args[1];
 
     if(!giveawayDuration || isNaN(ms(giveawayDuration))){
-        return message.channel.send(':x: insira uma duração valida \n\`exenplos: 1m, 2h, 3d, 24h\`');
+        return message.reply({content:':x:**|** insira uma duração valida \n\`exenplos: 1m, 2h, 3d, 24h\`'});
     }
 
  
     let giveawayNumberWinners = args[2];
 
     if(isNaN(giveawayNumberWinners) || (parseInt(giveawayNumberWinners) <= 0)){
-        return message.channel.send(':x: insira uma quantidade de ganhadores validos!');
+        return message.reply({content:':x:**|** insira uma quantidade de ganhadores validos!'});
     }
 
     let giveawayPrize = args.slice(3).join(' ');
  
     if(!giveawayPrize){
-        return message.channel.send(':x: você precisa colocar um prêmio valido!');
+        return message.reply({content:':x: você precisa colocar um prêmio valido!'});
     }
 
     client.giveawaysManager.start(giveawayChannel, {
-        time: ms(giveawayDuration),
+        duration: ms(giveawayDuration),
         prize: giveawayPrize,
         winnerCount: parseInt(giveawayNumberWinners),
         hostedBy: message.author,
@@ -44,12 +44,12 @@ exports.run = async (client, message, args) => {
         messages: {
             giveaway: "🎉 GIVEAWAY 🎉",
             giveawayEnded: "🎉 GIVEAWAY finalizado 🎉",
-            timeRemaining: "Tempo restante: **{duration}**!",
+            drawing: "Tempo restante: **{timestamp}**!",
             inviteToParticipate: "Reaja em 🎉 para participar!",
-            winMessage: "PARABENS {winners}!, você(s) ganhou(ram) **{prize}**!",
-            embedFooter: "Giveaways",
+            winMessage: "PARABENS {winners}!, você(s) ganhou(ram) **{this.prize}**!",
+            embedFooter: "{this.winnerCount} ganhadores",
             noWinner: "Giveaway cancelado, não a participates válidos.",
-            hostedBy: "hospedado por: {user}",
+            hostedBy: "hospedado por: {this.hostedBy}",
             winners: "ganhador(res)",
             endedAt: "finalizado",
             units: {
@@ -57,18 +57,20 @@ exports.run = async (client, message, args) => {
                 minutes: "minutos",
                 hours: "horas",
                 days: "dias",
-                pluralS: false 
+                pluralS: true 
             }
         }
     });
 
-    message.channel.send(`Giveaway iniciado em ${giveawayChannel}!`);
+    message.channel.send({content: `Giveaway iniciado em <#${giveawayChannel.id}>!`});
 
 };
-
+exports.config = {
+    test: false
+}
 exports.help = {
   name: "gstart",
-  permisoes: "{ADMINISTRATOR}",
+  permisoes: "administrador",
   aliases: ["criarsorteio","giveaway"],
   description: "criar um sorteio em seu servidor\nexemplo:\n\`gstart #geral 1m 2 minecraft\`",
   usage: "gstart <canal> <tempo> <número de ganhadores> <premio>"

@@ -11,11 +11,11 @@ var value = await afk.find(message.author,true)
 
 if(value.afk.ready == false) {
 		
-     message.channel.send("💤| afk ativado! \nos usuários irão saber que você esta "+content+"\n\npara sua conivência, eu irei desativar o seu afk quando você falar algo no chat! 😉")
+     message.reply({content:"💤**|** afk ativado! \nos usuários irão saber que você esta "+content+"\n\npara sua conivência, eu irei desativar o seu afk quando você falar algo no chat! 😉"})
 return await afk.setAFK(message.author, content)
 
 	}
-if(value.afk.ready == true) return message.channel.send(`:x:| você ja esta com o afk ativo!`)
+if(value.afk.ready == true) return message.channel.send({content:`:x:**|** você ja esta com o afk ativo!`})
  
 	/*
   let afk = new (require("megadb")).crearDB("afk")
@@ -27,6 +27,9 @@ if(value.afk.ready == true) return message.channel.send(`:x:| você ja esta com 
 		afk.establecer(`${message.guild.id}.${message.author.id}.reason`, razon)
 		afk.establecer(`${message.guild.id}.${message.author.id}.id`, message.author.id)
      message.channel.send("💤| afk ativado! \nos usuários irão saber que você esta "+razon, {allowedMentions: {parse: []}}+"\n\npara sua conivência, eu irei desativar o seu afk quando você falar algo no chat! 😉")*/
+}
+exports.config = {
+    test: true
 }
 exports.help = {
   name: "afk",

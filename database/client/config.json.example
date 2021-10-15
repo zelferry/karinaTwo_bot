@@ -1,33 +1,32 @@
 {
+  "shard":{},
+  "status":"",
+  "guildId":"",
   "functions":{
-  	"ignoredUsers":[] 
+  	"ignoredUsers":[]
   },
   "host":{
-  	"links":[] 
-  },
-  "adverts":{
-  	"auto":true,
-  	"guilds":[] 
+  	"links":[""]
   },
   "footer":{
   	"root":""
   },
   "webhooks":{ 
-   "commands":{
-    "id":"", 
- 	"token":""
- 	},
- 	"topgg":{
- 	 "id":"", 
-  	 "token":""
-  	},
-  	"suport":{
- 	 "id":"", 
- 	 "token":"" 
- 	},
- 	"exit_":{
- 	 "id":"",
-  	 "token":""
-  	}
+      "commands":{
+          "id":"",
+          "token":""
+      },
+      "topgg":{
+          "id":"",
+          "token":""
+      },
+      "suport":{
+          "id":"",
+          "token":""
+      },
+      "exit_":{
+          "id":"",
+          "token":""
+      }
   }
 }

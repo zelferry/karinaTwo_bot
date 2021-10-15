@@ -55,9 +55,6 @@ class events extends EventEmitter{
 					if (!event.type || !event.start) {
 						continue;
 					}
-					if(event.type == "INTERACTION_CREATE"){
-						client.ws.on(event.type, (...args) => event.start(client,clusterID,ipc,...args))
-					}
 					client.on(event.type, (...args) => event.start(client,clusterID,ipc, ...args));
 				}
 			}

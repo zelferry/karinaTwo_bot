@@ -116,16 +116,19 @@ let user = message.mentions.users.first() || client.users.cache.get(args[0]);
     
 
 if (!user) {
-return message.reply({embed: {
+return message.reply({embed: [{
   color: 3446103,
   description: 'mercione um usuario valido \n \n exemplo: `'+prefixoAtual+'qi @violet#2184`'
-}});
+}]});
 }
 
-message.channel.send({embed: {
+message.reply({embeds: [{
   color: 3447003,
   description: `o QI de ${user} e de **` + (rand) + `**`
-}});
+}]});
+}
+exports.config = {
+    test: true
 }
 exports.help = {
   name:"qi",

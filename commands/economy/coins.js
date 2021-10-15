@@ -4,13 +4,13 @@ let {economydb} = require("../../mongoDB/ini.js").user
 
 
 module.exports.run = async (client, message, args) => {
-  
-  let user = message.author;
-
-	let value = await economydb.fech(user)
-
-  message.channel.send(`voce tem **${value.coins}** Panther-coins!`);
+    let value = await economydb.fech(message.author);
+    
+    message.reply({content:`voce tem **${value.coins}** Panther-coins!`});
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"furcoins",
   permisoes: "nenhuma",

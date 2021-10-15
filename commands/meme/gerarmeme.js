@@ -5,6 +5,9 @@ module.exports.run = async (client, message, args) => {
     let button_2 = new pages.normal(message,client);
     await button_2.buttonPages(list.all)
 }
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"gerarmeme",
   permisoes: "nenhuma",

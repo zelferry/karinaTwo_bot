@@ -18,28 +18,17 @@ let KariWebhooks = new util.webhooks();
 let blacklist = require('../database/client/blacklisted.json');
 //require("../extenders/replymessage.js")
 
-exports.type = "message";
+exports.type = "messageCreate";
 exports.start = async(client,clusterID,ipc,message) => {
-	
-if (message.author.bot) return;
-	if (message.channel.type === 'dm') return;
-
-	
-	const prefix_ = await prefix.findPrefix(message.guild,message,true)
-	
-	let vailar = await bansUsers.seekAndValidateBan(message.author)
-//	let prefix = prefixoAtual;
-
-	if (!message.content.toLowerCase().startsWith(prefix_.toLowerCase())) return;
-
-	if (
-		message.content.startsWith(`<@!${client.user.id}>`) ||
-		message.content.startsWith(`<@${client.user.id}>`)
-	)
-		return;
+    if (!message.guild || message.author.bot) return;
+    
+    const prefix_ = await prefix.findPrefix(message.guild,message,true);
+	let vailar = await bansUsers.seekAndValidateBan(message.author);
+    if(!message.content.toLowerCase().startsWith(prefix_.toLowerCase())) return;
+    if(message.content.startsWith(`<@!${client.user.id}>`)||message.content.startsWith(`<@${client.user.id}>`)) return; 
 
 	if(vailar.ready) return message.reply({
-			embed: {
+			embeds: [{
 				description: ':no_entry_sign: você foi banido de usar meus comandos!',
 				color: 389301,
 				fields: [
@@ -48,14 +37,11 @@ if (message.author.bot) return;
 						value: '**' + vailar.reason + '**'
 					}
 				]
-			}
+			}]
 		});
 
 
-	const args = message.content
-		.trim()
-		.slice(prefix_.length)
-		.split(/ +/g);
+	const args = message.content.trim().slice(prefix_.length).split(/ +/g);
 
 	const comando = args.shift().toLowerCase();
 	let command = comando;
@@ -73,11 +59,7 @@ if (message.author.bot) return;
 	}
 	if (now < expTime) {
 		var timeLeft = (expTime - now) / 1000;
-		return message.inlineReply(
-			`Espere mais **${timeLeft.toFixed(
-				1
-			)}** segundos para executar este comando novamente.`
-		);
+		return message.reply(`Espere mais **${timeLeft.toFixed(1)}** segundos para executar este comando novamente.`);
 	}
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
@@ -100,9 +82,10 @@ if (message.author.bot) return;
 		);
 
 		if (test) {
-			message.inlineReply('🙍‍♂️| EI!,\nmodere sua linguagem!');
+			message.reply('🙍‍♂️| EI!,\nmodere sua linguagem!');
 		} else {
 			//console.log(cmd.run)
+           // message.followUp({content:":/"})
 			cmd.run(client, message, args);
             
 		//	console.log(await message.moreUserJson(message.author))
@@ -123,25 +106,14 @@ if (message.author.bot) return;
 		console.error(err);
         if((err.code) == undefined){
             message.channel.send({
-                embed: {
+                embeds: [{
                     color: '#FF0000',
                     description: '🚫 o comando `' + comando + '` não **existe**.\n\nuse `' + prefix_ + 'help` para ver meus comandos **listados** e **categorizados**! :3'
-                }
+                }]
             });
         } else {
-            message.inlineReply("⚠️**|** alguna coisa deu extremamente de errado ao executar o comando:( \n🙇‍♂️**|** tente novamente mais tarde")
+            message.reply("⚠️**|** alguna coisa deu extremamente de errado ao executar o comando:( \n🙇‍♂️**|** tente novamente mais tarde")
         }
-KariWebhooks.commands(
-			new Discord.MessageEmbed()
-				.setDescription(
-					`❌| o **${message.author.username}** ussou **${prefix_}${comando} **${
-						args[0]
-							? `com **${message.content.split(`${comando}`)[1]}**`
-							: `sem argumentos`
-					}, no canal **${message.channel.name}** \`cluster[ **${client.cluster.id}** ]\``
-				)
-				.setColor('#FF0000')
-				.addField('mas deu erro devido a:', '```js \n' + err + '```')
-		);
+KariWebhooks.commands(new Discord.MessageEmbed().setDescription(`❌| o **${message.author.username}** ussou **${prefix_}${comando} **${args[0] ? `com **${message.content.split(`${comando}`)[1]}**` : `sem argumentos`}, no canal **${message.channel.name}** \`cluster[ **${client.cluster.id}** ]\``).setColor('#FF0000').addField('mas deu erro devido a:', '```js \n' + err + '```'));
 	}
 }

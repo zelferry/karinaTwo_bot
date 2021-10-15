@@ -1,18 +1,16 @@
 const Discord = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
-    if(!message.member.permissions.has("ADMINISTRATOR"))return message.channel.send({embed: {
+    if(!message.member.permissions.has("ADMINISTRATOR"))return message.reply({embeds: [{
   title: `SEM PERMISÃO`,
   color: 3447003,
-  description: `${message.author} você não tem permisão de cetar regras para esse servidor, requer um cargo admistradivo na sua conta`,
-  image: {
-      url: `https://cdn.discordapp.com/attachments/753635920879812720/755083599123841205/unknown.png`
-    }
-}}).then(msg => msg.delete({ timeout: 5000 }));
+  description: `<@${message.author.id}> você não tem permisão de cetar regras para esse servidor, requer um cargo admistradivo na sua conta`
+}]}).then(msg => {
+        setTimeout(() => msg.delete(), 5000)
+    });
 
 message.channel.send({
-  content: "",
-  embed: {
+   embed: {
     title: "criar regras",
     description: "ola eu irei cricar regras automaticamente apos você reagir em ✅ \nabaixo estara as regras que irei criar ",
     color: 14353143,
@@ -51,17 +49,16 @@ message.channel.send({
     ]
   }
 }).then(msg => {
-  msg.react('✅').then(r => {
-  })
+  msg.react('✅').then(r => {})
   
   
  const infosFilter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
 
- const infos = msg.createReactionCollector(infosFilter);
+ const infos = msg.createReactionCollector({filter: infosFilter});
  
  infos.on('collect', r2 => {
   msg.delete()
- let embeds = [{
+ let embeds_ = [{
     title: "❌ gore(pessado)",
     color: 14353143,
     fields: [
@@ -166,10 +163,14 @@ message.channel.send({
   }
 ]
 
-message.multipleEmbedSend({ embeds },[])
+message.channel.send({ embeds:[embeds_] });
+     infos.stop()
 })
 
  })
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"create-rules",

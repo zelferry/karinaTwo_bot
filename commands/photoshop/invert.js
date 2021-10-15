@@ -7,7 +7,10 @@ module.exports.run = async (client, message, args) => {
   let avatar = client.images.displayURL(message,args,0);
   let image = await canvacord.Canvas.invert(avatar);
   let attachment = new Discord.MessageAttachment(image, "triggered.png");
-  return message.inlineReply(attachment);
+  return message.reply({files:[attachment]})
+}
+exports.config = {
+    test: true
 }
 exports.help = {
   name:"invert",

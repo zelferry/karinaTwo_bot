@@ -10,28 +10,31 @@ exports.run = async (client, message, args) => {
   
   let ruby = value.coins;
 
-  if(ruby < args[1]) return message.channel.send(`Você não tem **Panther-coins** suficientes!`)
+  if(ruby < args[1]) return message.reply({content:`Você não tem **Panther-coins** suficientes!`})
 
  const count = parseInt(args[1], 10);
 
 if (!user) {
-        return message.channel.send(`mercione um usuario! \n \n ex: \`<prefixo>pay @user-aleatorio 200\``)
+        return message.reply({content:`mercione um usuario! \n \n ex: \`<prefixo>pay @user-aleatorio 200\``})
     }
 
 if (!count) {
-        return message.channel.send(`forneça um numero! \n \n ex: \`<prefixo>pay @user-aleatorio 200\``)
+        return message.reply({content:`forneça um numero! \n \n ex: \`<prefixo>pay @user-aleatorio 200\``})
     }
-    if (message.content.includes('-')) {
-        return message.channel.send('numeros neativos não comtam!')
+    if (args[1] <= 0) {
+        return message.reply({content:'numeros neativos não comtam!'})
     }
 
   const embed = new Discord.MessageEmbed()
     .setDescription(`<@${message.author.id}> finalmente te deu os ${args[1]} Panther-coins da passoca :)`)
     .setColor("#be41f4")
-  message.channel.send(embed);
+  message.reply({embeds:[embed]});
 
 await economydb.pay(user_,user,args[1])
 
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"pay",

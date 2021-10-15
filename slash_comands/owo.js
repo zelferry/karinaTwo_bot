@@ -4,18 +4,15 @@ const neko = new ne();
 module.exports = {
 	name: 'owo',
 	description: '《😹 diversão 》owo',
-	commandOptions: null,
+	commandOptions: [],
 	global: true,
-	execute(interaction, client) {
-		neko.sfw.catText().then(catText => {
-			client.api.interactions(interaction.id, interaction.token).callback.post({
-				data: {
-					type: 4,
-					data: {
-						content: catText.cat
-					}
-				}
-			});
-		});
-	}
-};
+	async execute(interaction, client) {
+		neko.sfw.catText().then(async (catText) => {
+            let text = catText.cat;
+            
+            await interaction.reply({
+                content: text
+            })
+        })
+    }
+}

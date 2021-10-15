@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Cluster = require('discord-hybrid-sharding');
-const usev13 = false;
+const usev13 = true;
 
 class baseClient extends Discord.Client {
     constructor(opts){

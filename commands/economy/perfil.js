@@ -7,7 +7,7 @@ var ownerID = config.ownerID;
 exports.run = async (client, message, args) => {
 	let user = message.mentions.users.first() || message.author;
 	if (user.bot)
-		return message.inlineReply('❌ **|**isso e um bot! pera que...');
+		return message.reply({content:'❌ **|**isso e um bot! pera que...'});
 	let value = await profile.find(user);
 
 	const testdosei = value.usertext;
@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
 	if (ownerID.includes(message.author.id)) flags.push('👨‍💻 karina dev!');
 	//if(bans) color = "FF4500"
 
-	const embed = {
+	const embed_ = {
 		title: '' + message.author.username + ' profile:',
 		color: '#' + color + '',
 		fields: [
@@ -52,8 +52,11 @@ exports.run = async (client, message, args) => {
 			}
 		]
 	};
-	message.channel.send({ embed });
+	message.reply({ embeds:[embed_] });
 };
+exports.config = {
+    test: false
+}
 exports.help = {
 	name: 'perfil',
 	permisoes: 'nenhuma',

@@ -5,7 +5,10 @@ const { GiveawaysManager } = require('discord-giveaways');
 
 exports.type = "ready";
 exports.start = async(client,clusterID,ipc,a) => {
-	
+    let commands__ = new util.commands(client, clientConfig);
+    commands__.loadingSlashCommands(clientConfig.guildId);
+    commands__.loadingCommands();
+    
 const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
 	async refreshStorage() {
 		return client.cluster.broadcastEval(() =>
@@ -26,25 +29,18 @@ const _giveaway = new GiveawayManagerWithShardSupport(client, {
 
 client.giveawaysManager = _giveaway;
 
-let commands__ = new util.commands(client, clientConfig);
-
 function status() {
-	let clusterID = client.cluster.id
-	
-	client.user.setActivity(
-		`f/help | guilds: ${client.guilds.cache.size} | V${
-			require('../package.json').version
-		} | cluster[${clusterID}]`,
-		{ type: "WATCHING",status:"idle" }
-	);
+	let clusterID = client.cluster.id;
+    let status = clientConfig.status;
+    status = status.replace("!!{version}!!", `v${require('../package.json').version}`);
+        client.user.setActivity(`${status} | cluster[${clusterID}]`, {
+            type: "WATCHING",
+            status:"idle"
+        });
 }
 status();
 setInterval(status, 5000);
-
 //client.user.setStatus('indle').catch(console.error);
-
-commands__.loadingSlashCommands();
-commands__.loadingCommands();
-
-console.log(`${client.user.tag} online!`);
+    console.log(`${client.user.tag} online!`);
+    
 }

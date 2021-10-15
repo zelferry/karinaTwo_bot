@@ -6,22 +6,23 @@ exports.run = async (client, message, args, db) => {
     if (ownerID.includes(message.author.id)) {
         try {
             let argumentos = args.join(" ");
-    		if(!args.join(' ')) return message.reply('Burro pa krl')
+    		if(!args.join(' ')) return message.reply({content:'Burro pa krl'})
             let código = eval(argumentos);
 
-            if (typeof código !== 'string')
-                código = require('util').inspect(código, { depth: 0 });
-            let embed = new Discord.MessageEmbed()
-            .setColor('RANDOM')
-            .addField('Entrada', `\`\`\`js\n${argumentos}\`\`\``)
-            .addField('Saída', `\`\`\`js\n${código}\n\`\`\``)
-            message.channel.send(embed)
+            if (typeof código !== 'string') código = require('util').inspect(código, { depth: 0 });
+            
+            let embed = new Discord.MessageEmbed().setColor('RANDOM').addField('Entrada', `\`\`\`js\n${argumentos}\`\`\``).addField('Saída', `\`\`\`js\n${(código.toString().split("").length >= 1069 ? "muitos caracteres!" : código) == client.token ? "NÃO POSSO MOSTRAR MEU TOKEN!" : (código.toString().split("").length >= 1069 ? "muitos caracteres!" : código)}\n\`\`\``);
+            //console.log(código)
+            message.channel.send({embeds:[embed]})
         } catch(e) {
-            message.channel.send(`\`\`\`js\n${e}\n\`\`\``);
+            message.channel.send({content:`\`\`\`js\n${e}\n\`\`\``});
         }
     } else {
-    	message.reply(":x:|apenas pessoas ESPECIAIS podem usar esse comando :3")
+    	message.reply({content:":x:|apenas pessoas ESPECIAIS podem usar esse comando :3"})
     }
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"eval",

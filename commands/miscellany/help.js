@@ -32,15 +32,17 @@ if(ownerID.includes(message.author.id)){
 }
 
 const embed = {
-  "title": "Minha lista de comandos!",
-  "description": "Meu prefixo nesse servidor: `"+prefixoAtual+"` \ncomo usar meus comandos?: \n`"+prefixoAtual+"<command name>`\n \nexenplos:\n`"+prefixoAtual+"kiss @catarina`\n`"+prefixoAtual+"furry-nsfw`\n\n para obter informações de um comando em específico use `"+prefixoAtual+"cdinf <comando>`",
-  "color": "#7A67EE",
-  "fields": frields
-  
+  title: "Minha lista de comandos!",
+  description: "Meu prefixo nesse servidor: `"+prefixoAtual+"` \ncomo usar meus comandos?: \n`"+prefixoAtual+"<command name>`\n \nexenplos:\n`"+prefixoAtual+"kiss @catarina`\n`"+prefixoAtual+"furry-nsfw`\n\n para obter informações de um comando em específico use `"+prefixoAtual+"cdinf <comando>`",
+  color: "#7A67EE",
+  fields: frields
 };
-  message.channel.send({ embed });
+  message.reply({ embeds:[embed] });
   
 //makeOwnerComandCategoy
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"help",

@@ -19,6 +19,9 @@ let {pages} = require("../../buttonSystem/init.js")
 let button_2 = new pages.normal(message,client)
 await button_2.buttonPages(muttubus)
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"furry",
   permisoes: "nenhuma",

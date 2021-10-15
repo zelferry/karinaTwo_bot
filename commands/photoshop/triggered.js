@@ -7,7 +7,10 @@ module.exports.run = async (client, message, args) => {
   let avatar = client.images.displayURL(message,args,0);
   let image = await canvacord.Canvas.trigger(avatar);
   let attachment = new Discord.MessageAttachment(image, "triggered.gif");
-  return message.inlineReply(attachment);
+  return message.reply({files:[attachment]})
+}
+exports.config = {
+    test: true
 }
 exports.help = {
   name:"triggered",

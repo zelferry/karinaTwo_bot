@@ -13,18 +13,18 @@ exports.run = async (client, message, args) => {
 	
 	let text = data_2.map(x => `\`${x}\``).slice(0, -1).join(", ") + ` e \`${data_2[data_2.length -1]}\``
 	
-		message.channel.send(":x: | usso inválido\nas tags disponíveis são: "+text+"")
+		message.reply({content:":x: | usso inválido\nas tags disponíveis são: "+text+""})
 	} else {
 		
 	var json = await yiff_[`${data}`]()
 	
-	let embed = new Discord.MessageEmbed().setImage(json.url).setColor("#7B68EE").setDescription([					`[[ShortURL]](${json.shortURL})`,					`[[Reporta imagem?]](${json.reportURL})`,					`${!json.sources || json.sources.length === 0 || !json.sources[0] ? `[sem source]` : `[[source]](${json.sources[0]})`}`				].join("\n"))
-	
-	message.channel.send(embed)
-
+	let embed = new Discord.MessageEmbed().setImage(json.url).setColor("#7B68EE").setDescription([					`[[ShortURL]](${json.shortURL})`,					`[[Reporta imagem?]](${json.reportURL})`,					`${!json.sources || json.sources.length === 0 || !json.sources[0] ? `[sem source]` : `[[source]](${json.sources[0]})`}`].join("\n"))
+        message.reply({embeds:[embed]})
 	}
 }
-
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"yiff",
   permisoes: "nenhuma",

@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
 
   let uptime = `${days.toFixed()}D ${hours.toFixed()}H ${minutes.toFixed()}M ${seconds.toFixed()}S`;
  
- message.channel.send({embed: {
+ message.reply({embeds: [{
   title: "KARINA",
   description: "OH, OLA!!\nsou a karinaTwo!, uma bot multiuso com funções e comandos bem legais!\n\nvocê pode me chamar de KARINA, KARI ou d que vc achar melhor!\n\nsou uma bot focada mais para o público **FURRY**, mas qualquer um pode usar minhas funcionalidades e comandos para se entreter",
   color: 65531,
@@ -45,7 +45,10 @@ module.exports.run = async (client, message, args) => {
       value:"em breve..."
     }
   ]
-}});
+}]});
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"karinainfor",

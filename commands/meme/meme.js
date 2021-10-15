@@ -20,19 +20,19 @@ var list = [
 ];
 var rand = list[Math.floor(Math.random() * list.length, 9)];
 
-message.channel.send({
-  content: "",
-  embed: {
+message.reply({
+  embed: [{
     title: "sera que o Knuckles aprovou seu meme?",
-    description: "vamos ver >:3...",
     color: 1639005,
     image: {
-      url: `` + (rand) + ``
+      url: `${rand}`
     }
-  }
+  }]
 })
 
-console.log(`comando f/meme usado`);
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"meme",

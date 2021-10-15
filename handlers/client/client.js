@@ -1,6 +1,10 @@
 let baseClient = require("./baseClient.js");
 let Discord = require('discord.js');
+
 let imagesStructure = require("./structures/Images.js");
+let webhookStructure_ = require("./structures/Webhooks.js");
+let actviesStructure = require("./structures/DiscordActivies.js");
+
 let utils_ = require('../../utils/main.js');
 let clientConfig = require('../../database/client/config.json');
 let AntiSpam = require('discord-anti-spam');
@@ -20,7 +24,7 @@ class clientBot extends baseClient {
         client.shard = process.env.CLUSTER_MANAGER ? Discord.ShardClientUtil.singleton(client, process.env.CLUSTER_MANAGER_MODE) : null;
         client.cooldown = new Discord.Collection();
         client.images = new imagesStructure(client);
-        client.discordTogether = new utils_.actvies(client);
+        client.discordTogether = new actviesStructure(client);
         client.extra = {
             utils: utils_,
             makeCommandsCategory: new utils_.makeCommandsCategory(client)
@@ -30,6 +34,22 @@ class clientBot extends baseClient {
         client.commands = new Discord.Collection();
         client.commands.array = [];
         client.aliases = new Discord.Collection();
+        client.defautPermissions = [
+            Discord.Permissions.FLAGS.ADMINISTRATOR,
+            Discord.Permissions.FLAGS.BAN_MEMBERS,
+            Discord.Permissions.FLAGS.MANAGE_CHANNELS,
+            Discord.Permissions.FLAGS.ADD_REACTIONS,
+            Discord.Permissions.FLAGS.VIEW_CHANNEL,
+            Discord.Permissions.FLAGS.SEND_MESSAGES,
+            Discord.Permissions.FLAGS.MANAGE_MESSAGES,
+            Discord.Permissions.FLAGS.ATTACH_FILES,
+            Discord.Permissions.FLAGS.READ_MESSAGE_HISTORY,
+            Discord.Permissions.FLAGS.MANAGE_WEBHOOKS,
+            Discord.Permissions.FLAGS.USE_EXTERNAL_EMOJIS,
+            Discord.Permissions.FLAGS.CHANGE_NICKNAME,
+            Discord.Permissions.FLAGS.KICK_MEMBERS,
+            Discord.Permissions.FLAGS.START_EMBEDDED_ACTIVITIES
+        ] 
     }
     displaySpecialTHIS(client){
         let channels_1 = client.channels.cache.filter(channel => channel.name.includes('spam')).map(x => x.id);
@@ -41,21 +61,22 @@ class clientBot extends baseClient {
         client.antiSpam = new AntiSpam({
             warnThreshold: 3,
             muteThreshold: 4,
-            kickThreshold: 7,
+            kickThreshold: 5,
             banThreshold: 7,
-            maxInterval: 5000,
+            maxInterval: 2000,
+            maxDuplicatesInterval: 2000,
             warnMessage: '{@user}, Por Favor Pare De Spamar/flooda nesse servidor.',
             kickMessage: '😠|**{user_tag}** Foi Kicado do Server por **raid/flood**.',
             banMessage: '🔨| **{user_tag}** Foi BANIDO Por **raid/flood**.',
             muteMessage: '🔇|**{user_tag}** foi silenciado por Spamar/floodar nesse servidor.',
-            maxDuplicatesWarning: 6,
+            maxDuplicatesWarn: 7,
             maxDuplicatesKick: 10,
-            maxDuplicatesBan: 12,
-            maxDuplicatesMute: 8,
+            maxDuplicatesBan: 11,
+            maxDuplicatesMute: 9,
             ignoreBots: true,
             verbose: true,
             muteRoleName: 'antiraid_role',
-            removeMessages: true,
+            removeMessages: false,
             ignoredUsers: [],
             ignoredPermissions: ['ADMINISTRATOR'],
             ignoredChannels: client.antiSpamGlobalCofig.ignoredCannels,
@@ -63,8 +84,11 @@ class clientBot extends baseClient {
             kickErrorMessage: '🚫| não foi possível expulsar o **{user_tag}** por conta que eu não tenho a permissão **expulsar membros** em meu cargo principal.',
             banErrorMessage: '🚫| não foi possível banir o  **{user_tag}** por conta que eu não tenho a permissão **banir membros** em meu cargo principal.',
             muteErrorMessage: '🚫| não foi possível silenciar **{user_tag}** devido a permissões impróprias ou a função mudo não pôde ser encontrada',
+            removeBotMessages: true,
+            removeBotMessagesAfter: 5000,
             debug: true
         });
+        client.webhooks = new webhookStructure_(client)
 
     }
     connect(){

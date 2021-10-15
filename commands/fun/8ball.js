@@ -18,40 +18,27 @@ var fortunes = [
 exports.run = async (client, message, args) => {
   
     if(!args[0]){
-      return message.channel.send(":x: | Por favor insira uma pergunta!")
+      return message.reply({content:":x: | Por favor insira uma pergunta!"})
     }
     if (args[0]) {
-    	
-    	
-let webhook = await message.channel.fetchWebhooks();
-    webhook = webhook.find(x => x.name === "kariWebhook");
-
-    if(!webhook) {
-        webhook = await message.channel.createWebhook(`kariWebhook`, {
-            avatar: client.user.displayAvatarURL({dynamic: true})
-        });
-    }
-
-    await webhook.edit({
-        name: "FLEUR",
-        avatar: "https://cdn.discordapp.com/attachments/854883006787747853/865644234593009694/JPEG_20210715_020637.jpg"
-    })
-
-let resultado = fortunes[Math.floor(Math.random() * fortunes.length)]
-    webhook.send(`<@${message.author.id}>, ${resultado}`).catch( m => {});
-
-    await webhook.edit({
-        name: `kariWebhook`,
-        avatar: client.user.displayAvatarURL({dynamic:true})
-    })
+        await client.webhooks.makeWebhookAndSend({
+            name: "fleur",
+            avatar: "https://cdn.discordapp.com/attachments/854883006787747853/865644234593009694/JPEG_20210715_020637.jpg",
+            msg:{
+                content: `<@${message.author.id}>, ${fortunes[Math.floor(Math.random() * fortunes.length)]}`
+            }
+        },message)
     
     } else {
-    	message.channel.send(":x: " + "| Não foi possível ler sua pergunta! :(")
+    	message.reply({content:":x:**|** Não foi possível ler sua pergunta! :("})
     	
     }
   };
   
-//export.global = {} 
+//export.global = {}
+exports.config = {
+    test: false
+}
 exports.help = {
   name: "fleur",
   permisoes: "nenhuma",

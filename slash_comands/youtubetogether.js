@@ -14,32 +14,26 @@ module.exports = {
         }
     ],
 	global: true,
-	execute(interaction,client) {
-        let data1 = interaction.data.options[0].value;
-        let channel = client.channels.cache.get(data1);
+	async execute(interaction,client) {
+        
+        let data1 = interaction.options.getChannel("channel");
+        let channel = client.channels.cache.get(data1.id);
         let embed = new MessageEmbed();
 
         
-        if(channel.type !== "voice") return client.api.interactions(interaction.id, interaction.token).callback.post({
-            data: {
-                type: 4,
-                data: {
-                    content: "❌| o canal selecionado não e um canal de voz!\nusse o comando novamente"
-                }
-            }
+        if(channel.type !== "GUILD_VOICE") return await interaction.reply({
+            content: "❌| o canal selecionado não e um canal de voz!\nusse o comando novamente",
+            ephemeral: true
         });
-        channel.activityInvite("880218394199220334").then((in_) => {
+        client.discordTogether.createTogetherCode(channel.id,"youtube").then(async(in_) => {
             embed.setTitle("YouTube Together iniciado!");
             embed.setDescription(`iniciado o **YouTube Together** no \`${channel.name}\`, agora você pode escutar suas músicas e vídeos também direto do YT para o discord!\n> [clique aqui para entrar no canal de voz](https://discord.gg/${in_.code})!`);
             embed.setColor("#7289DA")
 
-            client.api.interactions(interaction.id, interaction.token).callback.post({data: {
-                type: 4,
-                data: {
-                    embeds: [embed]
-                }
-            }
-                                                                                     })
+            await interaction.reply({
+                embeds: [embed]
+            })
         })
+        
     }
 }

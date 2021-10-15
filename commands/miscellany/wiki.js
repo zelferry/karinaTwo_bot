@@ -2,7 +2,7 @@ let Discord = require("discord.js");
 
 const fetch = require('node-fetch')
 
-const disbut = require('discord-buttons');
+//const disbut = require('discord-buttons');
 
 /*
 
@@ -38,20 +38,20 @@ exports.run = async (client, message, args) => {
 
         let thumbnail = data.originalimage ? data.originalimage.source : null 
         let url = data.content_urls ? data.content_urls.desktop.page : null
-        let button_ = new disbut.MessageButton().setStyle('url').setURL(url ? url:"https://pt.wikipedia.org/").setLabel('ver mais na web') 
+        let button_ = new Discord.MessageButton().setStyle('LINK').setURL(url ? url:"https://pt.wikipedia.org/").setLabel('ver mais na web') 
         if(url == null) button_.setDisabled()
 
-        const embed = new Discord.MessageEmbed()
-            .setColor(`#00b140`)
-            .setTitle(title)
-            .setURL(url)
-            .setThumbnail(thumbnail)
-            .setDescription(text)
-            .setFooter("Powered by Wikipedia", "https://i.ibb.co/VWvCzg1/wikipedia.png")
-message.channel.send(embed,button_)
+        const embed = new Discord.MessageEmbed().setColor(`#00b140`).setTitle(title).setURL(url).setThumbnail(thumbnail).setDescription(text).setFooter("Powered by Wikipedia", "https://i.ibb.co/VWvCzg1/wikipedia.png")
+    
+    message.reply({
+        embeds: [embed],
+        components: [new Discord.MessageActionRow().addComponents(button_)]
+    })
 	
 }
-
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"wiki",
   permisoes: "nenhuma",
@@ -59,3 +59,4 @@ exports.help = {
   description: "pesquise algo na Wikipédia!",
   usage: "wiki <texto>"
 }
+//.setURL(url)

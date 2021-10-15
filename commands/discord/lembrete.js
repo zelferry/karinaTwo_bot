@@ -2,8 +2,8 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 	var time = args[0];
 	var reminder = args.splice(1).join(' ');
 
-	if (!time) return message.reply('Não posso te lembrar se você não definir um tempo...');
-	if (!reminder) return message.reply('Você esqueceu de inserir uma mensagem!');
+	if (!time) return message.reply({ content:'Não posso te lembrar se você não definir um tempo...' });
+	if (!reminder) return message.reply({ content:'Você esqueceu de inserir uma mensagem!' });
 
 	// This will not work if the bot is restarted or stopped
 
@@ -22,23 +22,26 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 		var timeday = await time.replace(/d.*/, '');
 		timems = await timeday * 60 * 60 * 24 * 1000;
 	}	else {
-		return message.reply('O tempo deve ser númerico [s/m/h/d]');
+		return message.reply({content:'O tempo deve ser númerico [s/m/h/d]'});
 	}
 
-	message.reply(`Eu vou lembrar você de \`${reminder}\` daqui \`${time}\` na sua dm!`);
+	message.reply({content: `Eu vou lembrar você de \`${reminder}\` daqui \`${time}\` na sua dm!`});
 
 	setTimeout(function () {
-		message.author.send(`${message.author}`, {embed: {
+		message.author.send({embeds: [{
   color: 3447003,
   description: `Você me pediu para te lembrar de \`${reminder}\` `
-}});
+}]});
 	}, parseInt(timems));
 
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"lembrete",
   permisoes: "nenhuma",
   aliases: ["lenbrar"],
-  description: "esqueceu do ep novo do seu anime? \n ent use esae comandos para não esquecer de novo!",
+  description: "esqueceu do ep novo do seu anime? \n ent use este comandos para não esquecer de novo!",
   usage: "lembrete <tempo> <texto>"
 }

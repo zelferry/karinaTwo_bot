@@ -7,26 +7,24 @@ module.exports.run = async (client, message, args) => {
 	
 
 
-  message.delete();
+ // message.delete();
   if (!args[0])
-    return message.channel.send(
-      `**${message.author.username}, a sintaxe correta é:** ` +
-        "`" +
-        "" + prefixoAtual + "emojisend nomedoemoji`"
-    ); 
+    return message.channel.send({content: `**${message.author.username}, a sintaxe correta é:** ` + "`" + "" + prefixoAtual + "emojisend nomedoemoji`"}); 
+    
   let emoji = message.guild.emojis.cache.find(emoji => emoji.name === args[0]);
 
   if (!emoji) {
-    message.channel.send(
-      "`" + args[0] + "` **não é um emoji deste servidor.**"
-    );
+    message.channel.send({content: "`" + args[0] + "` **não é um emoji deste servidor.**"});
   } else if (emoji.animated === true) {
-    message.channel.send(`<a:${args[0]}:${emoji.id}>`);
+    message.reply({content:`<a:${args[0]}:${emoji.id}>`});
   } else {
-    message.channel.send(`<:${args[0]}:${emoji.id}>`);
+    message.reply({content:`<:${args[0]}:${emoji.id}>`});
   }
 //onsole.log(`comando f/emoji usado`);
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"emojisend",
   permisoes: "nenhuma",

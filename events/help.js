@@ -1,8 +1,8 @@
 const Discord = require("discord.js")
 
-exports.type = "message";
+exports.type = "messageCreate";
 exports.start = async(client,clusterID,ipc,message) => {
-	if (!message.guild) return;
+	if (!message.guild || message.author.bot) return;
 	mention(client, message)
 }
 
@@ -21,10 +21,8 @@ async function mention (client, message) {
 
 	const prefixoAtual = await prefix.findPrefix(message.guild,message,false)
 
-    const embed = await new Discord.MessageEmbed()
-        .addField(`Meu Prefixo Neste Servidor:`, "`" + prefixoAtual + "`")
-        .setColor("#ff47ec")
+    const embed = new Discord.MessageEmbed().addField(`Meu Prefixo Neste Servidor:`, "`" + prefixoAtual + "`").setColor("#ff47ec")
 
-    message.channel.send(embed) 
+    message.reply({ embeds: [embed]})
   }
 }

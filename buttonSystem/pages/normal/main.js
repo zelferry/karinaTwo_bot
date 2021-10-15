@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { MessageButton, MessageActionRow } = require('discord-buttons');
+//const { MessageButton, MessageActionRow } = require('discord-buttons');
 let {configs} = require("../../../mongoDB/ini.js").guild 
 
 
@@ -37,33 +37,42 @@ class ButtonPages {
   	var numberViaDatabase = randNumerViaDatabase
   	var embed_ = new Discord.MessageEmbed().setImage(database[randNumerViaDatabase]).setColor("#7B68EE").setFooter(`${randNumerViaDatabase+1} / ${arr.length}`)
   	
-  	let buttonPrevious = new MessageButton().setID("previous").setEmoji(`⬅️`).setStyle(`grey`)//.setDisabled();
-  	let buttonStop = new MessageButton().setID("stop").setEmoji(`❌`).setStyle(`red`);
-  	let buttonNext = new MessageButton().setID("next").setEmoji(`➡️`).setStyle(`grey`);
-  	let buttonRandon = new MessageButton().setID("random").setEmoji(`🔄`).setStyle(`grey`);
-  	
-  	//let removed = false
-        if(numberViaDatabase <= 0) buttonPrevious.setDisabled();
-        if(numberViaDatabase <= arr.length-1)buttonNext.setDisabled(false);
-//numberViaDatabase++
-        if(numberViaDatabase >= arr.length-1) buttonNext.setDisabled();
-        if(numberViaDatabase > 0) buttonPrevious.setDisabled(false)
+  	let buttonPrevious = new Discord.MessageButton().setCustomId("previous").setEmoji(`⬅️`).setStyle(`SUCCESS`)//.setDisabled();
+  	let buttonNext = new Discord.MessageButton().setCustomId("next").setEmoji(`➡️`).setStyle(`SUCCESS`);
+  	let buttonRandon = new Discord.MessageButton().setCustomId("random").setEmoji(`🔄`).setStyle(`SUCCESS`);
+        let buttonStop = new Discord.MessageButton().setCustomId("stop").setEmoji(`❌`).setStyle(`DANGER`);
+        
+        if(numberViaDatabase <= 0) buttonPrevious.setDisabled(true);
+        if(numberViaDatabase <= (arr.length-1))buttonNext.setDisabled(false);
+        if(numberViaDatabase >= (arr.length-1)) buttonNext.setDisabled(true);
+        if(numberViaDatabase > 0) buttonPrevious.setDisabled(false);
   	
  
-  	let row = new MessageActionRow().addComponents(buttonPrevious, buttonNext,buttonRandon,buttonStop);
-  	let msg = await message.channel.send({embed:embed_, components: [row]});
+  	let row = new Discord.MessageActionRow().addComponents(buttonPrevious, buttonNext,buttonRandon,buttonStop);
+  	let msg = await message.channel.send({
+        embeds: [embed_],
+        components: [row]
+    });
   	
-  	const filter = (buttons) => buttons.clicker.id === message.author.id
-  	const collector = msg.createButtonCollector(filter, { idle: 1000*60 });
+  	const filter_ = (interaction) => {
+        return (interaction.customId === 'stop' || interaction.customId === 'random' || interaction.customId === 'next' || interaction.customId === 'previous') && interaction.user.id === message.author.id 
+    };
+        
+  	const collector = msg.createMessageComponentCollector({
+        filter: filter_,
+        componentType: 'BUTTON',
+        idle: 1000*60
+    });
 
 
 collector.on('collect',async r => {
-	r.reply.defer()
+    r.deferUpdate()
+	//r.reply.defer()
     
-      if(r.id === "next"){
+      if(r.customId === "next"){
        // numberViaDatabase = 
         numberViaDatabase++
-        if(numberViaDatabase >= arr.length-1) r.message.components[0].components[1].setDisabled()
+        if(numberViaDatabase >= (arr.length-1)) r.message.components[0].components[1].setDisabled(true)
         
        if(numberViaDatabase > 0) r.message.components[0].components[0].setDisabled(false)
         
@@ -71,41 +80,45 @@ collector.on('collect',async r => {
         const embed = new Discord.MessageEmbed().setImage(result).setColor("#7B68EE").setFooter(`${numberViaDatabase+1} / ${arr.length}`)
       
         
-        msg.edit({embed:embed,components: r.message.components})
+        msg.edit({
+            embeds: [embed],
+            components: r.message.components
+        })
         
       }
-      if(r.id === 'previous'){
+      if(r.customId === 'previous'){
         //numberViaDatabase = 
         numberViaDatabase--
         if(numberViaDatabase <= 0) r.message.components[0].components[0].setDisabled()
        
-       if(numberViaDatabase <= arr.length-1)r.message.components[0].components[1].setDisabled(false)
+       if(numberViaDatabase <= (arr.length-1)) r.message.components[0].components[1].setDisabled(false)
        
         let result = arr[numberViaDatabase]
         const embed = new Discord.MessageEmbed().setImage(result).setColor("#7B68EE").setFooter(`${numberViaDatabase+1} / ${arr.length}`)
       
-        msg.edit({embed:embed,components: r.message.components})
+        msg.edit({
+            embeds: [embed],
+            components: r.message.components
+        })
     
       }
-      if(r.id=== "random"){
+      if(r.customId === "random"){
       	randNumerViaDatabase = Math.floor(Math.random() * database.length)
       	arr = database
       	numberViaDatabase = randNumerViaDatabase
-
-
-
-if(numberViaDatabase <= 0) r.message.components[0].components[0].setDisabled()
-       
-if(numberViaDatabase <= arr.length-1)r.message.components[0].components[1].setDisabled(false)
-//numberViaDatabase++
-if(numberViaDatabase >= arr.length-1) r.message.components[0].components[1].setDisabled()
-        
-if(numberViaDatabase > 0) r.message.components[0].components[0].setDisabled(false)
-
-const embed = new Discord.MessageEmbed().setImage(arr[randNumerViaDatabase]).setColor("#7B68EE").setFooter(`${numberViaDatabase+1} / ${arr.length}`)
-        msg.edit({embed:embed,components: r.message.components})
+          
+            if(numberViaDatabase <= 0) r.message.components[0].components[0].setDisabled(true);
+          if(numberViaDatabase <= (arr.length-1)) r.message.components[0].components[1].setDisabled(false);
+          if(numberViaDatabase >= (arr.length-1)) r.message.components[0].components[1].setDisabled(true);
+          if(numberViaDatabase > 0) r.message.components[0].components[0].setDisabled(false);
+          const embed = new Discord.MessageEmbed().setImage(arr[randNumerViaDatabase]).setColor("#7B68EE").setFooter(`${numberViaDatabase+1} / ${arr.length}`);
+          
+        msg.edit({
+            embeds: [embed],
+            components: r.message.components
+        })
       }
-      if(r.id === "stop"){
+      if(r.customId === "stop"){
         collector.stop(200)
       }
   });
@@ -119,7 +132,10 @@ const embed = new Discord.MessageEmbed().setImage(arr[randNumerViaDatabase]).set
 
   		if(p ===  200){
   			embed.setColor("#FFF0F5")
-  			msg.edit(embed,{components: []})
+  			msg.edit({
+                embeds: [embed],
+                components: []
+            })
   		} else {
   		//	console.log("cu")
   		msg.components[0].components[0].setDisabled();
@@ -130,7 +146,10 @@ const embed = new Discord.MessageEmbed().setImage(arr[randNumerViaDatabase]).set
   		embed.setColor("RED")
   		embed.setFooter("desativado por inatividade")
   		
-  		msg.edit(embed,{components: msg.components})
+  		msg.edit({
+            embeds: [embed],
+            components: msg.components
+        })
   		}
   	} else {
   		console.log("1")
@@ -141,7 +160,9 @@ const embed = new Discord.MessageEmbed().setImage(arr[randNumerViaDatabase]).set
         var arr = database;
         var numberViaDatabase = randNumerViaDatabase;
         var embed_ = new Discord.MessageEmbed().setImage(database[randNumerViaDatabase]).setColor("#7B68EE").setFooter(`${randNumerViaDatabase+1} / ${arr.length}`);
-        message.channel.send(embed_)
+        message.channel.send({
+            embeds: [embed_]
+        })
  }
   }
 }

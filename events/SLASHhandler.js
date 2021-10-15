@@ -1,25 +1,20 @@
-exports.type = "INTERACTION_CREATE";
+exports.type = "interactionCreate";
 exports.start = async(client,clusterID,ipc,interaction) => {
-	if (!client.commands2.has(interaction.data.name)) return;
+    if (!interaction.isCommand()) return;
+	if (!client.commands2.has(interaction.commandName.toLowerCase())) return;
 	
 	try {
-		client.commands2.get(interaction.data.name).execute(interaction, client);
-		/*
-let te = await client.api.applications(client.user.id).commands.get()//.then(console.log);
-		console.log(te.filter((x) => x.name === "yiff"))*/
+		client.commands2.get(interaction.commandName.toLowerCase()).execute(interaction, client);
+	
 	} catch (error) {
-		console.log(
-			`erro no comando de barra ${interaction.data.name} : ${error.message}`
-		);
+		console.log(`erro no comando de barra ${interaction.commandName.toLowerCase()} : ${error.message}`);
+        
 		console.log(`${error.stack}\n`);
-		client.api.interactions(interaction.id, interaction.token).callback.post({
-			data: {
-				type: 4,
-				data: {
-					content: `ops!\ndeu um erro\"estranho\" ao executar o comando!`
-				}
-			}
-		});
+    
+		await interaction.reply({
+            content:"🚫***|*** ouve um erro \"estranho\" ao executar o comando\ndesculpe a inconveniência :(",
+            ephemeral: true
+        })
 	}
 	
 }

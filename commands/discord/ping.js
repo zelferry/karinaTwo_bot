@@ -1,11 +1,13 @@
 module.exports.run = async (client, message, args) => {
-	let results = await client.cluster.broadcastEval("this.ws.ping");
-	const m = await message.channel.send('ping?');
+	let results = await client.cluster.broadcastEval((c) => c.ws.ping);
+	const m = await message.reply({content:'ping?'});
 
-   m.edit(`🏓 **| Pong!** (cluster[**${client.cluster.id}**/**${client.cluster.count-1}**])\nLatência do Server: **${m.createdTimestamp -
-      message.createdTimestamp}-ms.**\nLatência da API: **${Math.round(results.reduce((prev, val) => prev + val, 0))}-ms**`
-  );
+   m.edit({content: `🏓 **| Pong!** (cluster[**${client.cluster.id}**/**${client.cluster.count-1}**])\nLatência do Server: **${m.createdTimestamp -
+      message.createdTimestamp}-ms.**\nLatência da API: **${Math.round(results.reduce((prev, val) => prev + val, 0))}-ms**`});
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"ping",
   permisoes: "nenhuma",

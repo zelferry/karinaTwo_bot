@@ -17,19 +17,19 @@ const imageIDSpoilef = makeimageID(12)
     
  if (imagestest) {
    if (imagestest) {
-     message.delete()
+     //message.delete()
      if (imagestest){
 const imageIDSpoilef = makeimageID(12)
 
 const attachment = new Discord.MessageAttachment(imagestest, `SPOILER_${imageIDSpoilef}.png`);
 
-       return message.channel.send(`📸**|** ${message.author} mídia marcada como spoiler com sucesso!`,attachment)
+       return message.reply({content:`📸**|** ${message.author} mídia marcada como spoiler com sucesso!`,files:[attachment]})
      }
       } else {
-        return message.channel.send('você precisa anexar uma imagem!')
+        return message.reply({content:'você precisa anexar uma imagem!'})
       }
     } else {
-      return message.channel.send("você precisa anexar uma imagem!")
+      return message.reply({content:"você precisa anexar uma imagem!"})
     }
     
     
@@ -43,6 +43,9 @@ function makeimageID(length) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"spoiler-image",

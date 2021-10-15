@@ -23,16 +23,18 @@ const roleColor = message.guild.me.displayHexColor === "#FF1493" ? "##FF1493" : 
         
    if (args[0]) {
      const comEmbed = new Discord.MessageEmbed().setColor(roleColor).setDescription("<> = obrigatório\n[] = opcional\n\n`texto` = inserir um texto\n`imagem` = URL da imagem, menção, id de um usuário ou imagem anexada\n`mumero` = um numero de 1 a 🔁\n`usuário` = ID do usuário ou a mersão dele\n`canal` = canal de texto").addField("nome do comando:",`${props.help.name}`).addField("descrição:", `${props.help.description ? props.help.description : "???"}`).addField("aliases",`${aliases ? aliases : "???"}`).addField("como usar?:",`\`${prefix_}${props.help.usage ? props.help.usage : "???"}\``).addField("permissões necesarias:",`${props.help.permisoes ? props.help.permisoes : "???"}`)
-      return message.channel.send(comEmbed)
+      return message.reply({ embeds:[comEmbed] })
     }
  } catch (err) {
-   console.log(err)
-message.channel.send({embed: {
-  color: 13893887,
-  description: "🚫 o comando `"+ (args) +"` não **existe** ou esta com **erro**."}}).catch();
-    
+    console.log(err);
+    message.reply({embeds: [{
+        color: 13893887,
+        description: "🚫 o comando `"+ (args) +"` não **existe** ou esta com **erro**."}]}).catch();
   }
   
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"cdinf",

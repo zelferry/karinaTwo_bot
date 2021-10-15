@@ -5,15 +5,15 @@ let util = require("../../utils/main.js")
 let KariWebhooks = new util.webhooks()
 
 exports.run = async (client, message, args) => {
-message.delete();
+//message.delete();
 const content = args.join(" ");
 
 if (!args[0]) {
-  return message.channel.send(`${message.author.username}, escreva o relatorio após o comando`)
+  return message.reply({content: `escreva o relatorio após o comando`})
 } else if (content.length > 1000) {
-  return message.channel.send(`${message.author.username}, forneça um relatorio de no máximo 1000 caracteres.`);
+  return message.reply({content:`forneça um relatorio de no máximo 1000 caracteres.`});
 } else {
-    let {suport} = require("../buttonSystem/init.js")
+    let {suport} = require("../../buttonSystem/init.js")
 
 let button_2 = new suport.suport(message,client)
 
@@ -32,6 +32,9 @@ await button_2.buttonSuport(args, content, KariWebhooks.suport)/*
 
   */
 }
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"relatorio",

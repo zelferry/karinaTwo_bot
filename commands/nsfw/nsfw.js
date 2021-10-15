@@ -32,6 +32,9 @@ let button_2 = new pages.normal(message,client)
 await button_2.buttonPages(listNsfw)
 
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"nsfw",
   permisoes: "nenhuma",

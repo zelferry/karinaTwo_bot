@@ -6,19 +6,19 @@ module.exports.run = async (client, message, args) =>{
 
         if (mchannel) {
         	if(!args.slice(1).length){
-        		message.channel.send("❌ |inválido, insira algo apos a mersão do canal de texto!")
+        		message.reply({content:"❌ |inválido, insira algo apos a mersão do canal de texto!"})
         	} else {
-            argsresult = args.slice(1).join(' '); 
-            message.delete().catch(O_o => { });
-            mchannel.send(`${argsresult}\n\n - Mensagem Enviada por ${message.author}.`);
+                argsresult = args.slice(1).join(' '); 
+                message.delete().catch(O_o => { });
+                mchannel.send({content:`${argsresult}\n\n - Mensagem Enviada por ${message.author.toString()}.`});
         	}
         } else {
         	if(!args.length){
-        		message.channel.send("❌ |inválido, insira algo apos o comando!")
+        		message.reply({content:"❌ |inválido, insira algo apos o comando!"})
         	} else {
             argsresult = args.join(' '); 
             message.delete().catch(O_o => { });
-            message.channel.send(`${argsresult}\n\n - Mensagem Enviada por ${message.author}.`);
+            message.channel.send({content:`${argsresult}\n\n - Mensagem Enviada por ${message.author.toString()}.`});
         	}
         };
   
@@ -28,6 +28,9 @@ module.exports.run = async (client, message, args) =>{
   if (!args[0]) return message.channel.send("insira um texto na frente do COMANDO!");
   message.channel.send(`${sayMessage} \n \n - mensagem enviada por ${message.author}☕`);*/
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"say",
   permisoes: "nenhuma",

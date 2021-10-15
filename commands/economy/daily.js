@@ -47,23 +47,12 @@ if(value.daily !== null && timeout - (Date.now() - value.daily) > 0) {
       
       //math.evaluate(pesca[pescaresult] + " * 10");
     } catch (err) {
-      return message.reply(`**Quantia inválida** ${err}`);
+      return message.reply({content:`**Quantia inválida**\n${err}`});
     }
 
-    let perf = new Discord.MessageEmbed()
-      .setColor("be41f4")
-      .setThumbnail(message.author.avatarURL())
-      //.setImage('https://media0.giphy.com/media/2HvoTVcuSOnS0/giphy.gif')
-      .setDescription(
-        "**" +
-          message.author.tag +
-          `** | Parabéns, Você pescou \`` +
-          pesca[pescaresult] +
-          ` pokémon(s) aquático(s)\`!! \nQuantia recebida pela venda dos pokémons: \`${answer} Panther-coins\``
-      )
-      .setTimestamp();
+    let perf = new Discord.MessageEmbed().setColor("be41f4").setThumbnail(message.author.avatarURL()).setDescription("**" + message.author.tag + `** | Parabéns, Você pescou \`` + pesca[pescaresult] + ` pokémon(s) aquático(s)\`!! \nQuantia recebida pela venda dos pokémons: \`${answer} Panther-coins\``).setTimestamp();
       
-    message.channel.send(perf);
+    message.channel.send({embeds:[perf]});
     //MoneyDB.sumar(`${message.author.id}.coins`, answer);
 await economydb.addmoney(user,answer,true)
 /*dbfunc.db.get('all').find({id: message.author.id}).assign({
@@ -76,6 +65,9 @@ await economydb.addmoney(user,answer,true)
     talkedRecently.delete(message.author.id);
   }, 86400000);*/
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"daily",
   permisoes: "nenhuma",

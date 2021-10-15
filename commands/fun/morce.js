@@ -23,16 +23,16 @@ exports.run = async (client, message, args) => {
 				}
 				text = text.join(" ");
 			}
-      message.delete().catch(O_o => {});
-			return message.channel.send({
-  content: "",
-  embed: {
+			return message.reply({embeds: [{
     title: "morse! bip bup",
     description: "```"+text+"```",
     color: 8384739
-  }
+  }]
 })
-message.delete().catch(O_o => {});
+
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"morse",

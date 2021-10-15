@@ -29,6 +29,9 @@ exports.run = async (client, message, args) => {
 	}
 	message.channel.send(estbf)*/
 }
+exports.config = {
+    test: true
+}
 exports.help = {
   name:"userbanslist",
   permisoes:"ser um dos meus criadores",

@@ -18,7 +18,7 @@ var list = [
 var rand = list[Math.floor(Math.random() * list.length)];
 let user = message.mentions.users.first() || client.users.cache.get(args[0]);
 if (!user) {
-return message.reply('lembre-se de mencionar um usuário válido para dancar \n \n PA PO PE ');
+return message.reply({content:'lembre-se de mencionar um usuário válido para dancar \nPA PO PE '});
 }
 /*
 message.channel.send(`${message.author.username} **acaba de beijar** ${user.username}! :heart:`, {files: [rand]});
@@ -27,14 +27,15 @@ let avatar = message.author.displayAvatarURL({format: 'png'});
   const embed = new Discord.MessageEmbed()
         .setTitle('TAP')
         .setColor('#169597')
-        .setDescription(`${message.author} e ${user} estão dancando :D`)
+        .setDescription(`<@${message.author.id}> e <@${user.id}> estão dancando :D`)
         .setImage(rand)
         .setThumbnail(avatar)
         .setFooter('PA PO PE')
-        .setAuthor(message.author.tag, avatar);
-  await message.channel.send(embed);
-message.delete().catch(O_o => {});
-console.log(`comando f/dancar usado`);
+        .setAuthor(message.author.tag, `${avatar}`);
+  await message.reply({embeds:[embed]});
+}
+exports.config = {
+    test: true
 }
 exports.help = {
   name:"dancar",

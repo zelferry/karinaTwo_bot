@@ -1,11 +1,10 @@
 const Discord = require("discord.js");
 let {afk} = require("../mongoDB/ini.js").user 
 
-exports.type = "message";
+exports.type = "messageCreate";
 exports.start = async(client,clusterID,ipc,message) => {
-	
-if (message.author.bot) return;
-if (message.channel.type === "dm") return;
+    if (!message.guild || message.author.bot) return;
+
   
 const mentioned = message.mentions.members.first()
   
@@ -18,7 +17,7 @@ if(stats.error !== "404") {
   "description": "o <@"+mentioned.id+"> esta `"+stats.afk.reason+"`.\nja ja ele(a) volte para o servidor",
   "color": 8905155
 };
-     message.channel.send({ embed });
+     message.channel.send({ embeds: [embed] });
      }
  
  
@@ -30,14 +29,11 @@ if(stats.error !== "404") {
   
   
   if(userAFK.error !== "404"){
-  	
-  if(userAFK.afk.ready) {
-   await afk.deleteAFK(message.author)
-    message.channel.send(`bem vindo de volta <@${message.author.id}> :)`).then(msg => msg.delete({timeout: 5000}))
-    
-    console.log("afk desativado para a/o "+message.author.id+"")
+      if(userAFK.afk.ready) {
+          await afk.deleteAFK(message.author)
+              let msg = await message.channel.send({
+                  content:`bem vindo de volta <@${message.author.id}> :)`
+              });
+      }
   }
- 
-}
-	
 }

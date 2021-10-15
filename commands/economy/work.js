@@ -19,7 +19,7 @@ let user = message.author;
 
   let random = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11","12","13","14","15","16","17","18","19","20"];
 
-  let work  = ["Garçom", "DJ", "Traficante", "Secretário", "Caçador", "Entregador", "Gari", "Pedreiro", "Illuminati","adm do discord", "desenhista", "gacha-tuber", "progamador", "trava zap", "progamador da loritta", "progamador de bots e de apps", "bailarino", "ajudante", "FURRY OwO", "fursuit maker", "desenhista MSFW", "desenhista NSFW GAY"];
+  let work  = ["Garçom", "DJ", "Traficante", "Secretário", "Caçador", "Entregador", "Gari", "Pedreiro", "Illuminati","adm do discord", "desenhista", "gacha-tuber", "progamador", "trava zap", "progamador da loritta", "progamador de bots e de apps", "bailarino", "ajudante", "FURRY OwO", "fursuit maker", "desenhista NSFW", "desenhista NSFW GAY"];
   
   let workresult  = Math.floor(Math.random() * work.length,3 + 9);
   let randomresult = Math.floor(Math.random() * random.length);
@@ -30,7 +30,7 @@ let user = message.author;
   try {
     answer = random[randomresult] * 10;
   } catch (err) {
-    return message.reply(`**Quantia inválida** ${err}`);
+    return message.reply({content:`**Quantia inválida**\n${err}`});
   }
 
 if(random[randomresult] < 2) {
@@ -40,15 +40,13 @@ if(random[randomresult] < 2) {
  
   if (cooldown.has(message.author.id)) {
       message.delete();
-     return message.channel.send(
-      `:x:| **Você precisa esperar 1 hora para usar esse comando!**`
-    ); }
-  else {     //esse else tem valor de AI
-    cooldown.add(message.author.id); //aqui ele tem valor se nao
-    setTimeout(() => {
-    cooldown.delete(message.author.id);
-  },  3600000)
-  
+     return message.channel.send({content:
+      `:x:| **Você precisa esperar 1 hora para usar esse comando!**`});
+  } else {
+      cooldown.add(message.author.id);
+      setTimeout(() => {
+          cooldown.delete(message.author.id);
+      },  3600000)
   }
   
 
@@ -64,12 +62,15 @@ if(random[randomresult] < 2) {
     )
     .setTimestamp();
 
-  message.channel.send(perf);
+  message.channel.send({embeds:[perf]});
 
 await economydb.addmoney(user,answer,false)
 
   
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"work",
   permisoes: "nenhuma",

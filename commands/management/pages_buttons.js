@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
   let on = `✔️ ativado`;
   let off = `⚠️ desativado`;
 
-if(!message.member.permissions.has("ADMINISTRATOR"))return message.channel.send("Somente adms")
+if(!message.member.permissions.has("ADMINISTRATOR"))return message.reply({content: "Somente adms"})
 
   let stats = await configs.getConfig(message.guild,true)
 
@@ -25,28 +25,22 @@ if(!message.member.permissions.has("ADMINISTRATOR"))return message.channel.send(
 
   const command = args[0]
 
-  if(command === 'info') return message.channel.send(embed1);
+  if(command === 'info') return message.reply({embeds:[embed1]});
 
-  if(!command) return message.channel.send(`${f} | Você não forneceu o subcomando do módulo.`)
+  if(!command) return message.reply({content:`${f}**|** você não forneceu o subcomando do módulo.`})
   
 if(command === "ativar") {
   
-  if(stats.pagesBUTONS) return message.channel.send(`${f} | O módulo já está ligado.`)
+  if(stats.pagesBUTONS) return message.reply({content:`${f}**|** O módulo já está ligado.`})
  
-    configs.setConfig({pagesBUTONS:true},message.guild).then(
-      message.channel.send("✔️| o modulo foi ativado!\ncertos comandos terão botões para seus membros ou ate você navegar nas imagens sem precisar executar o mesmo comando o tempo todo!")
-    );
+    configs.setConfig({pagesBUTONS:true},message.guild).then((x) => message.reply({content:"✔️**|** o modulo foi ativado!\ncertos comandos terão botões para seus membros ou ate você navegar nas imagens sem precisar executar o mesmo comando o tempo todo!"}));
   
 }
   
 if(command === "desativar") {
   
-  if(!stats.pagesBUTONS) return message.channel.send(`${f} | O módulo já está desligado.`)
-  
-  
-    configs.setConfig({pagesBUTONS:false},message.guild).then(
-      message.channel.send("⚠️|o módulo foi desativado\ncertos comandos ficaram sem botões")
-      );
+  if(!stats.pagesBUTONS) return message.reply({content:`${f}**|** O módulo já está desligado.`});
+    configs.setConfig({pagesBUTONS:false},message.guild).then((x) => message.reply({content:"⚠️|o módulo foi desativado\ncertos comandos ficaram sem botões"}));
     
   }
 
@@ -57,9 +51,12 @@ if(command === "desativar") {
               "• **info** -> Mostra as configurações do sistema de páginas por botões\n" +
               "• **ativar/desativar** -> Ativa/Desativa o módulo dos botões em certos comandos")
 
-      message.channel.send(embedHelp)
+      message.reply({embeds:[embedHelp]})
   }
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"pagesbuttons",
   permisoes: "administrador",

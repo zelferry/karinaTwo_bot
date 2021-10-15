@@ -24,14 +24,17 @@ exports.run = async (client, message, args) => {
     let b = parseInt(hex.substring(4, 6), 16);
 
     try {
-        if (!args[0]) return message.channel.send('Você precisa informar a cor em HEX');
-        if (!validate(args.join(''))) return message.reply('Essa não é uma cor HEX valida!');
+        if (!args[0]) return message.reply({content:'Você precisa informar a cor em HEX'});
+        if (!validate(args.join(''))) return message.reply({content:'Essa não é uma cor HEX valida!'});
 
-        message.channel.send(new Discord.MessageEmbed().setColor(args[0]).setThumbnail(`http://placehold.it/500/${args[0]}/${args[0]}`).addField(`**HEX**: #${args[0]}`, `**RGB**: rgb(${r},${g},${b})`).setTimestamp());
+        message.reply({embeds:[new Discord.MessageEmbed().setColor(args[0]).setThumbnail(`http://placehold.it/500/${args[0]}/${args[0]}`).addField(`**HEX**: #${args[0]}`, `**RGB**: rgb(${r},${g},${b})`).setTimestamp()]})
     } catch (err) {
-        message.channel.send('Aconteceu um erro!\n' + err).catch();
+        console.log(err)
     }
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"hex",
   permisoes: "nenhuma",

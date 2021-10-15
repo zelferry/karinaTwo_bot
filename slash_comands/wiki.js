@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const fetch = require('node-fetch')
-const disbut = require('discord-buttons');
+//const disbut = require('discord-buttons');
 /*
 choices: [
                 { name: "pg", value: "pg" },
@@ -23,7 +23,7 @@ module.exports = {
             name: "language",
             description: "idioma para a pesquisar na wiki!",
             required: false,
-            choices:[
+            choices: [
             	{
             		name:"português",
             		value:"pt"
@@ -32,19 +32,19 @@ module.exports = {
             		name:"inglês (english)",
             		value:"en"
             	}
-            	]
-		}
+            ]
+        }
     ],
 	global: true,
 	async execute(interaction,client) {
-		const args1 = interaction.data.options[0].value.split(" ")
-const language = interaction.data.options[1] ? interaction.data.options[1].value : "pt"
+		const args1 = interaction.options.getString('search-query').split(" ");
+        const language = interaction.options.getString('language') ?? "pt";
     
         const search = args1.join('_');
 
-        const searchword = encodeURI(search)
+        const searchword = encodeURI(search);
+        const res = await fetch("https://"+language+".wikipedia.org/api/rest_v1/page/summary/" + searchword);
         
-const res = await fetch("https://"+language+".wikipedia.org/api/rest_v1/page/summary/" + searchword);
         const data = await res.json();
 //onsole.log(data)
         const title = data.title;
@@ -52,24 +52,16 @@ const res = await fetch("https://"+language+".wikipedia.org/api/rest_v1/page/sum
 
         let thumbnail = data.originalimage ? data.originalimage.source : null 
         let url = data.content_urls ? data.content_urls.desktop.page : null
-        let button_ = new disbut.MessageButton().setStyle('url').setURL(url ? url:"https://pt.wikipedia.org/").setLabel('ver mais na web') 
-        if(url == null) button_.setDisabled()
+        let button_ = new Discord.MessageButton().setStyle('LINK').setURL(url ? url:"https://pt.wikipedia.org/").setLabel('ver mais na web') 
+        if(url == null) button_.setDisabled();
 
-        const embed = new Discord.MessageEmbed()
-            .setColor(`#00b140`)
-            .setTitle(title)
-            .setURL(url)
-            .setThumbnail(thumbnail)
-            .setDescription(text)
-            .setFooter("Powered by Wikipedia", "https://i.ibb.co/VWvCzg1/wikipedia.png")
-            
-client.api.interactions(interaction.id, interaction.token).callback.post({data: {
-                type: 4,
-                data: {
-                        embeds: [embed],
-                        components:[{ type: 1, components: [button_] }]
-                    }
-                }
-            })
+        let embed = new Discord.MessageEmbed().setColor(`#00b140`).setTitle(title).setURL(url).setThumbnail(thumbnail).setDescription(text).setFooter("Powered by Wikipedia", "https://i.ibb.co/VWvCzg1/wikipedia.png");
+        
+        let row = new Discord.MessageActionRow().addComponents(button_);
+        
+        await interaction.reply({
+            embeds: [embed],
+            components: [row]
+        })
 	}
 }

@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
   var rand = list[Math.floor(Math.random() * list.length)];
   let user = message.mentions.users.first() || client.users.cache.get(args[0]);
   if (!user) {
-    return message.reply('lembre-se de mencionar um usuário válido para dar o tapa! ');
+    return message.reply({content:'lembre-se de mencionar um usuário válido para dar o tapa! '});
   }
   /*
   message.channel.send(`${message.author.username} **acaba de beijar** ${user.username}! :heart:`, {files: [rand]});
@@ -23,14 +23,15 @@ exports.run = async (client, message, args) => {
   const embed = new Discord.MessageEmbed()
     .setTitle('TAP')
     .setColor('#000000')
-    .setDescription(`${message.author} acaba de dar um tapa na cara de ${user}`)
+    .setDescription(`<@${message.author.id}> acaba de dar um tapa na cara de <${user.id}>`)
     .setImage(rand)
     .setThumbnail(avatar)
     .setFooter('AI!! D:')
     .setAuthor(message.author.tag, avatar);
-  await message.channel.send(embed);
-  message.delete().catch(O_o => { });
-  console.log(`comando f/slap usado`);
+  await message.reply({embeds:[embed]});
+}
+exports.config = {
+    test: true
 }
 exports.help = {
   name:"slap",

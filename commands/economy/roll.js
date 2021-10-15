@@ -11,17 +11,13 @@ exports.run = async(client, message, args) => {
 	let value = await economydb.fech(user);
 	
 
-  if (value.coins <= "49")
-    return message.channel.send(
-      `:x:| Você não tem Panther-coins o suficiente para girar o roll! Necessários: **50 Panther-coins**`
-    );
+  if (value.coins <= 49)
+    return message.channel.send({content:`:x:| Você não tem Panther-coins o suficiente para girar o roll! Necessários: **50 Panther-coins**`});
 
 //  let user = message.author;
 
   if (talkedRecently.has(message.author.id)) {
-    message.channel.send(
-      `:x:| Espere 10 segundos para poder usar o roll novamente - ${message.author}`
-    );
+    message.channel.send({content:`:x:| Espere 10 segundos para poder usar o roll novamente - ${message.author}`});
   } else {
     let roll = [
       "🍌", 
@@ -32,7 +28,8 @@ exports.run = async(client, message, args) => {
       "🕖", 
       "💳", 
       "💜", 
-      "💸"
+      "💸",
+      "🤡"
       ];
 
     let reels = Math.floor(Math.random() * roll.length);
@@ -44,9 +41,7 @@ exports.run = async(client, message, args) => {
       result = "Parabéns! Você ganhou.";
       await economydb.addmoney(user,250,false)
       
-      message.channel.send(
-        "Foi adicionada a quantia de `250 Panther-coins` a sua carteira por você ter ganhado!"
-      );
+      message.channel.send({content:"Foi adicionada a quantia de `250 Panther-coins` a sua carteira por você ter ganhado!"});
     }
     const embed = new Discord.MessageEmbed()
       .setTitle("🎰 Slot Machine 🎰")
@@ -57,22 +52,22 @@ exports.run = async(client, message, args) => {
       .setFooter(` ${result}`)
       .setTimestamp();
 
-    await message.channel.send(embed);
+    await message.channel.send({embeds:[embed]});
 
     if (result === "Desculpa, você perdeu.")
       return economydb.removemoney(user,50).then(
-        message.channel.send(
-          "Você perdeu... Retirei 50 Panther-coins da sua carteira pela derrota."
-        )
+        message.channel.send({content: "Você perdeu... Retirei 50 Panther-coins da sua carteira pela derrota."})
       );
 
     talkedRecently.add(message.author.id);
     setTimeout(() => {
-      // Removes the user from the set after a minute
       talkedRecently.delete(message.author.id);
     }, 10000 /* 300000 */);
   }
 };
+exports.config = {
+    test: false
+}
 exports.help = {
   name:"roll",
   permisoes: "nenhuma",

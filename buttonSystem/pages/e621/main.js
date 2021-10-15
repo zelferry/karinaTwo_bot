@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { MessageButton, MessageActionRow } = require('discord-buttons');
+//const { MessageButton, MessageActionRow } = require('discord-buttons');
 
 const ava9 = require("../../../database/client/blacklisted.json");
 let blacklist = ava9.e6.blacklist
@@ -74,7 +74,10 @@ class ButtonPages {
 			embed: {
 				color: '#C0C0C0',
 				description: cestis,
-				author: { name: pos.join(' '), icon_url: avatar },
+				author: {
+                    name: pos.join(' '),
+                    icon_url: avatar 
+                },
 				image: {
 					url: file
 				},
@@ -95,31 +98,34 @@ class ButtonPages {
 			}
 		};
 
-		let buttonStop = new MessageButton()
-			.setID("stop")
-			.setEmoji(`❌`)
-			.setStyle(`red`);
-		let buttonRandon = new MessageButton()
-			.setID("random")
-			.setEmoji(`🔄`)
-			.setStyle(`grey`);
+		let buttonStop = new Discord.MessageButton().setCustomId("stop").setEmoji(`❌`).setStyle(`DANGER`);
+            
+		let buttonRandon = new Discord.MessageButton().setCustomId("random").setEmoji(`🔄`).setStyle(`PRIMARY`);
 
 		let removed = false;
 
-		let row = new MessageActionRow().addComponents(buttonRandon, buttonStop);
+		let row = new Discord.MessageActionRow().addComponents(buttonRandon, buttonStop);
 
 		let msg = await message.channel.send({
-			embed: ava.embed,
+			embeds: [ava.embed],
 			components: [row]
 		});
 
-		const filter = buttons => buttons.clicker.id === message.author.id;
-		const collector = msg.createButtonCollector(filter, { idle: 1000 * 60 });
+		const filter_ = (interaction) => {
+        return (interaction.customId === 'stop' || interaction.customId === 'random') && interaction.user.id === message.author.id 
+    };
+            
+		const collector = msg.createMessageComponentCollector({
+            filter: filter_,
+            componentType: 'BUTTON',
+            idle: 1000 * 60
+        });
 
 		collector.on('collect', async r => {
-			r.reply.defer();
+            r.deferUpdate()
+			//r.reply.defer();
 
-			if (r.id === 'random') {
+			if (r.customId === 'random') {
 				let sla = Math.floor(Math.random() * posts.length);
 
 				let result = posts[sla];
@@ -198,17 +204,20 @@ class ButtonPages {
 			}
 		};
 				
-				msg.edit({ embed: ava.embed, components: msg.components }); //  message.channel.send(embed)
+				msg.edit({
+                    embeds: [ava.embed], 
+                    components: msg.components
+                }); //  message.channel.send(embed)
 			}
-			if (r.id === 'stop') {
-				let embed = new Discord.MessageEmbed()
-					.setColor('RED')
-					.setDescription('as páginas foram fechadas!')
-					.setTimestamp(Date.now());
+			if (r.customId === 'stop') {
+				let embed = new Discord.MessageEmbed().setColor('RED').setDescription('as páginas foram fechadas!').setTimestamp(Date.now());
 				msg.components[0].components[0].setDisabled();
 				msg.components[0].components[1].setDisabled();
 				removed = true;
-				msg.edit(embed, { components: msg.components });
+				msg.edit({
+                    embeds: [embed],
+                    components: msg.components 
+                });
 				//  message.channel.send(embed)
 			}
 		});
@@ -224,7 +233,10 @@ class ButtonPages {
 					msg.components[0].components[0].setDisabled();
 					msg.components[0].components[1].setDisabled();
 
-					msg.edit({embed:redVersion.embed, components: msg.components });
+					msg.edit({
+                        embeds: [redVersion.embed],
+                        components: msg.components
+                    });
 				} else {
 					console.log('cu');
 				}
@@ -235,7 +247,7 @@ class ButtonPages {
         //
         } else {
             message.channel.send({
-                embed: ava.embed
+                embeds: [ava.embed]
             })
         }
 	}

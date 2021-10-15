@@ -28,7 +28,7 @@ let pos = args
 
 if (pos && !Array.isArray(pos)) pos = pos.split(' ');
  
- if (!searchTerms) return message.channel.send("💢|insira um filtro na frente do comando!");
+ if (!searchTerms) return message.reply({content:"💢|insira um filtro na frente do comando!"});
 
 const opts = {method: 'GET',headers: {'User-Agent': 'crosdid/1.0',},};
   
@@ -41,7 +41,7 @@ fetch(`https://e621.net/posts.json?tags=${pos.join("+")}`).then((res) => res.jso
   const {posts} = json
   
   if (!posts.length) {
-    return message.channel.send(`nenhum resultado para: \`${pos.join("+")}\` \ntente novamente ♨`);}
+    return message.reply({content:`nenhum resultado para: \`${pos.join("+")}\` \ntente novamente ♨`});}
  
  //let total = posts.length
 /* if(total >= 75){
@@ -66,8 +66,11 @@ await button_2.buttonPages(posts,pos)
 }).catch((err) => {
 	console.error(err);
   //message.channel.send
-  message.channel.send("deu erro! \ntente novamente mais tarde\n```"+err+"```")
+  message.reply({content:"deu erro! \ntente novamente mais tarde\n```"+err+"```"})
 });
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"e621",

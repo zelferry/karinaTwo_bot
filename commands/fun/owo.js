@@ -4,9 +4,12 @@ const neko = new ne();
 //let client = global.client 
 exports.run = async (client, message, args) => {
   neko.sfw.catText().then((catText) =>{
-    message.channel.send(catText.cat)
+    message.reply({content:`${catText.cat}`})
    //   let aa = require("../../../aa.j") 
   })
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name: "owo",

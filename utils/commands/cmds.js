@@ -1,16 +1,13 @@
 const Discord = require('discord.js');
 const fs = require('fs');
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+
 //let foo = "/home/runner/karinaTwo"
 
 class cmds {
-	constructor(client,config,giveaways) {/*
-		client.commands = new Discord.Collection();
-		client.aliases = new Discord.Collection();
-		client.commands.array = [];
-		client.commands2 = new Discord.Collection();
-		client.cooldown = new Discord.Collection();
-		client.giveawaysManager = giveaways;*/
-
+	constructor(client,config,giveaways) {
 		this.client = client;
 		this.foo = config.footer.root
 	}
@@ -39,67 +36,62 @@ class cmds {
     };
         })
 	}
-	async loadingSlashCommands() {
+	async loadingSlashCommands(guildprivateId) {
 		
 		let { client,foo } = this;
-		
-		const commandFiles = fs
-			.readdirSync(''+foo+'/slash_comands')
-			.filter(file => file.endsWith('.js'));
+		let commands_slash = [] 
+		const commandFiles = fs.readdirSync(''+foo+'/slash_comands').filter(file => file.endsWith('.js'));
+        
 		for (const file of commandFiles) {
 			const command = require(`${foo}/slash_comands/${file}`);
-
+            
 			if (command.global == true) {
-				client.api.applications(client.user.id).commands.post({
-					data: {
-						name: command.name,
-						description: command.description,
-						options: command.commandOptions
-					}
-				});
+				commands_slash.push({
+                    global: "yes",
+                    data:{
+                        name: command.name,
+                        description: command.description,
+                        options: command.commandOptions
+                    }
+                })
 			} else {
-				client.api
-					.applications(client.user.id)
-					.guilds('831611383233249381')
-					.commands.post({
-						data: {
-							name: command.name,
-							description: command.description,
-							options: command.commandOptions
-						}
-					});
+				commands_slash.push({
+                    global: "no",
+                    data:{
+                        name: command.name,
+                        description: command.description,
+                        options: command.commandOptions
+                    }
+                })
 			}
-			client.commands2.set(command.name, command);
-			console.log(
-				`--- comando postado : ${command.name}  em ${file} (${
-					command.global ? 'global' : 'guild'
-				})`
-			);
-		}
-		console.log('a');
-/*
-		let cmdArrGlobal = await client.api
-			.applications(client.user.id)
-			.commands.get();
-		let cmdArrGuild = await client.api
-			.applications(client.user.id)
-			.guilds('831611383233249381')
-			.commands.get();
-		cmdArrGlobal.forEach(element => {
-			console.log(
-				'--- comando global caregado : ' + element.name + ' (' + element.id + ')'
-			);
-		});
-		console.log('');
-		cmdArrGuild.forEach(element => {
-			console.log(
-				'--- comando privado caregado : ' +
-					element.name +
-					' (' +
-					element.id +
-					')'
-			);
-		});*/
+            client.commands2.set(command.name, command);
+		};
+        let globalcmds = commands_slash.filter((x) => x.global == "yes").map((x) => {
+            return {
+                name: x.data.name,
+                description: x.data.description,
+                options: x.data.options ?? []
+            }
+        })
+        let privatecmds = commands_slash.filter((x) => x.global == "no").map((x) => {
+            return {
+                name: x.name,
+                description: x.description,
+                options: x.commandOptions ?? []
+            }
+        })
+        //console.log(globalcmds)
+
+        try {
+            await client.application?.commands.set(globalcmds);
+            await rest.put(Routes.applicationCommands(client.user.id, guildprivateId), {
+                body: globalcmds 
+            },);
+            
+        //   await client.guilds.cache.get(guildprivateId)?.commands.set(privatecmds);
+        } catch (err){
+            console.log(err);
+        }
 	}
 }
 module.exports = cmds;

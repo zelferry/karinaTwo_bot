@@ -2,11 +2,14 @@ const Discord = require("discord.js");
 const canvacord = require("canvacord");
 
 module.exports.run = async (client, message, args) => {
-  if(!args.length > 0) return message.channel.send("❌| insira um texto!")
+  if(!args.length > 0) return message.reply({content:"❌**|** insira um texto!"})
   
   let image = await canvacord.Canvas.clyde(args.join(" "));
   let attachment = new Discord.MessageAttachment(image, "clyde.png");
-  return message.inlineReply(attachment);
+  return message.reply({files:[attachment]})
+}
+exports.config = {
+    test: true
 }
 exports.help = {
   name:"clyde",

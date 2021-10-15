@@ -6,7 +6,7 @@ const disbut = Discord
 exports.run = async (client, message, args) => {
   if (!message.channel.nsfw) return client.extra.utils.message.noNsfw(client, message);
   let button_ = new disbut.MessageButton().setStyle('LINK').setURL('https://nekos.life/').setLabel('ver website original!');
-  let arr_2 = await neko.nsfw.trap()
+  let arr_2 = await neko.nsfw.futanari()
   let button_2 = new disbut.MessageButton().setStyle('LINK').setURL(arr_2.url).setLabel('ver imagem na web');
   let row1 = new disbut.MessageActionRow().addComponents(button_,button_2);
 
@@ -21,9 +21,9 @@ exports.config = {
     test: false
 }
 exports.help = {
-  name:"trap-nsfw",
+  name:"futa-nsfw",
   permisoes: "nenhuma",
-  aliases: ["nsfwtrap","tn"],
-  description: "||nsfw de... femboy?||",
-  usage: "trap-nsfw"
+  aliases: ["gynomorphNsfw","futa","intersexNsfw"],
+  description: "||nsfw de... futa?||",
+  usage: "futa-nsfw"
 }

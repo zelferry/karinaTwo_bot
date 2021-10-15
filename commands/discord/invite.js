@@ -2,12 +2,16 @@ const Discord = require('discord.js');
 const convite = process.env.LINK_ADD;
 
 module.exports.run = async (client, message, args) => {
-    message.inlineReply(new Discord.MessageEmbed({
+    let link =  client.generateInvite({
+        permissions: [...client.defautPermissions],
+        scopes: ['bot','applications.commands']
+    });
+    message.reply({embeds: [new Discord.MessageEmbed({
     "color": 40447,
     "fields": [
       {
         "name": "adiciona-me",
-        "value": "me adicione em seu servidor [clicando aqui](https://discord.com/api/oauth2/authorize?client_id="+process.env.BOT_ID+"&permissions=805317758&scope=bot%20applications.commands)!"
+        "value": "me adicione em seu servidor [clicando aqui]("+link+")!"
       },
       {
         "name": "suporte?",
@@ -18,13 +22,16 @@ module.exports.run = async (client, message, args) => {
         "value": "em breve!..."
       }
     ]
-  }))/*
+  })]})/*
   message.channel.send({embed: {
   color: 3447003,
   description: `oi ${message.author} você quer me chamar no seu servidor? \n [clique aqui para me convidar para seu servidor](${convite})`
 }}); 
 message.delete().catch(O_o => {});*/
 
+}
+exports.config = {
+    test: false
 }
 exports.help = {
   name:"convidar",
