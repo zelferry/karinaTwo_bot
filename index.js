@@ -33,15 +33,7 @@ let client = (global.client = new client_bot.client({
 const usev13 = true
 let events = new client_bot.events(`${clientConfig.footer.root}/events`,client,"a","b")
 
-//client.cluster = new Cluster.Client(client,usev13)
-/*
-mongoose.connection.on('connected', function() {
-		console.log("db conectada! ");
-	});*/
 
-//disbut(client);
-//require("./extenders/index.js")(client)
 events.loadEVENTS()
-
 mongoose.connect(process.env.MONGOOSE, dbOptions);
 client.connectBOT(process.env.TOKEN);
