@@ -21,6 +21,8 @@ let blacklist = require('../database/client/blacklisted.json');
 exports.type = "messageCreate";
 exports.start = async(client,clusterID,ipc,message) => {
     if (!message.guild || message.author.bot) return;
+    if (message.channel.partial) await message.channel.fetch();
+    if (message.partial) await message.fetch();
     
     const prefix_ = await prefix.findPrefix(message.guild,message,true);
 	let vailar = await bansUsers.seekAndValidateBan(message.author);
@@ -59,7 +61,12 @@ exports.start = async(client,clusterID,ipc,message) => {
 	}
 	if (now < expTime) {
 		var timeLeft = (expTime - now) / 1000;
-		return message.reply(`Espere mais **${timeLeft.toFixed(1)}** segundos para executar este comando novamente.`);
+		return message.reply({
+            embeds:[{
+                color: 389301,
+                description: `Espere mais **${timeLeft.toFixed(1)}** segundos para executar este comando novamente.`
+            }]
+        });
 	}
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);

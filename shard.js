@@ -6,15 +6,18 @@ let manager = new handlers.shard('./index.js', {
 	token: token,
 	usev13: true,
 });
-/*
+
 let teste = require("./plugins/index.js")
 let ara = teste.autoTopGgPost(manager)
 ara.on("posted", (data) => {
 	console.log(`[${new Date().toString().split(' ', 5).join(' ')}] Status Postado na top.gg!`);
+})
+/*
+let {AutoPoster} = require('topgg-autoposter');
+let ap = AutoPoster(process.env['TOP_GG_API'], manager);
+ap.on("posted", (data) => {
+	console.log(`[${new Date().toString().split(' ', 5).join(' ')}] Status Postado naooo top.gg!`);
 })*/
-
-let AutoPoster = require('topgg-autoposter');
-//let ap = AutoPoster(process.env['TOP_GG_API'], manager);
 let express = require('express');
 let app = express();
 let fs = require('fs');
@@ -33,7 +36,8 @@ function send_PING() {
 		fetch(urls[i]);
 	}
 }
-//app.use('/topgg', require('./webClient/controllers/topGG.js'));
+
+app.use('/topgg', require('./webClient/controllers/topGG.js'));
 
 app.get('/', (req, res) => {
     res.sendStatus(200);

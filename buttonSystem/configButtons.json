@@ -1,5 +1,23 @@
 {
 	"pages":{
-		"timer": 60000
+		"timer": 60000,
+        "styles":{
+            "next": {
+                "emoji": "",
+                "color": ""
+            },
+            "previous": {
+                "emoji": "",
+                "color": ""
+            },
+            "random": {
+                "emoji": "",
+                "color": ""
+            },
+            "stop": {
+                "emoji": "",
+                "color": ""
+            }
+        }
 	}
 }

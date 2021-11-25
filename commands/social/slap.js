@@ -23,7 +23,7 @@ exports.run = async (client, message, args) => {
   const embed = new Discord.MessageEmbed()
     .setTitle('TAP')
     .setColor('#000000')
-    .setDescription(`<@${message.author.id}> acaba de dar um tapa na cara de <${user.id}>`)
+    .setDescription(`<@${message.author.id}> acaba de dar um tapa na cara de <@${user.id}>`)
     .setImage(rand)
     .setThumbnail(avatar)
     .setFooter('AI!! D:')

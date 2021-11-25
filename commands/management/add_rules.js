@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
     });
 
 message.channel.send({
-   embed: {
+   embeds: [{
     title: "criar regras",
     description: "ola eu irei cricar regras automaticamente apos você reagir em ✅ \nabaixo estara as regras que irei criar ",
     color: 14353143,
@@ -47,7 +47,7 @@ message.channel.send({
         value: "⠀⠀⠀⠀⠀⠀⠀⠀"
       }
     ]
-  }
+  }]
 }).then(msg => {
   msg.react('✅').then(r => {})
   
@@ -163,7 +163,7 @@ message.channel.send({
   }
 ]
 
-message.channel.send({ embeds:[embeds_] });
+message.channel.send({ embeds:[...embeds_] });
      infos.stop()
 })
 

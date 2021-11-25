@@ -14,9 +14,9 @@ class ButtonPages {
 		var numberViaDatabase = randNumerViaDatabase;
 		var embed_ = new Discord.MessageEmbed().setImage(database[randNumerViaDatabase]).setColor('#7B68EE').setFooter(`${randNumerViaDatabase + 1} / ${arr.length}`);
 
-		let buttonStop = new Discord.MessageButton().setCustomId('stop').setEmoji(`❌`).setStyle(`DANGER`);
+		let buttonStop = new Discord.MessageButton().setCustomId('stop').setEmoji(`❌`).setStyle(`SECONDARY`);
         
-		let buttonRandon = new Discord.MessageButton().setCustomId('random').setEmoji(`🔄`).setStyle(`SUCCESS`);
+		let buttonRandon = new Discord.MessageButton().setCustomId('random').setEmoji(`🔄`).setStyle(`SECONDARY`);
 
 		let removed = false;
 

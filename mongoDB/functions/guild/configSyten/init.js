@@ -15,7 +15,7 @@ class configs_ {
 	static async getConfig(guild,type){
 		const isGuild = await guildModel.findOne({ guildId: guild.id });
 		
-		if(type) if(!isGuild) return {error:"404"} 
+		if(type) if(!isGuild) return { error:"404" } 
 		return isGuild.configs
 	}
 	static async setConfig(entrada,guild){

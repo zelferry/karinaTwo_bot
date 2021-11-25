@@ -23,7 +23,7 @@ exports.config = {
 exports.help = {
   name:"clean",
   permisoes: "gerenciar mensagens",
-  aliases: ["limpar"],
+  aliases: ["limpar","clear"],
   description: "limpar mensagens em um canal de texto",
   usage: "clean <numero>"
 }

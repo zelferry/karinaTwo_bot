@@ -18,7 +18,7 @@ var list = [
 ];
 var rand = list[Math.floor(Math.random() * list.length)];
 
-message.reply({content:[rand]});
+message.reply({content:`${rand}`});
 
     
 }

@@ -37,7 +37,7 @@ exports.config = {
 exports.help = {
   name:"morse",
   permisoes: "nenhuma",
-  aliases: ["traduzir-morse"],
+  aliases: ["traduzir-morse","morce"],
   description: "\"morsa não, e morse\" tradusa um texto em morse ---..--",
   usage: "morse <texto>"
 }

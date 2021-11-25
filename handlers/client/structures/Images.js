@@ -1,6 +1,7 @@
 const regexImgUrl = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png|jpeg|jfif|webp|bmp)/gi
 const regexGifUrl = /(http(s?):)([/|.|\w|\s|-])*\.(?:gif)/gi
 const regexVidUrl = /(http(s?):)([/|.|\w|\s|-])*\.(?:mp4|webm|m4a|mov)/gi
+
 //.displayAvatarURL(options)
 class Images {
     constructor(client){

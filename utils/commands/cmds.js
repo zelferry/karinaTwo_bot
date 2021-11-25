@@ -7,7 +7,7 @@ const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 //let foo = "/home/runner/karinaTwo"
 
 class cmds {
-	constructor(client,config,giveaways) {
+	constructor(client, config, giveaways) {
 		this.client = client;
 		this.foo = config.footer.root
 	}

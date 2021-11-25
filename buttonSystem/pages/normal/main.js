@@ -28,8 +28,8 @@ class ButtonPages {
     //this.c = {}
   }
  async buttonPages(database){
-  	var {message,client} = this
-	let __configs = await configs.getConfig(message.guild,true)
+     var {message,client} = this
+     let __configs = await configs.getConfig(message.guild,true)
      
 	if(__configs.pagesBUTONS == true){
   	var randNumerViaDatabase = Math.floor(Math.random() * database.length)
@@ -37,10 +37,10 @@ class ButtonPages {
   	var numberViaDatabase = randNumerViaDatabase
   	var embed_ = new Discord.MessageEmbed().setImage(database[randNumerViaDatabase]).setColor("#7B68EE").setFooter(`${randNumerViaDatabase+1} / ${arr.length}`)
   	
-  	let buttonPrevious = new Discord.MessageButton().setCustomId("previous").setEmoji(`⬅️`).setStyle(`SUCCESS`)//.setDisabled();
-  	let buttonNext = new Discord.MessageButton().setCustomId("next").setEmoji(`➡️`).setStyle(`SUCCESS`);
-  	let buttonRandon = new Discord.MessageButton().setCustomId("random").setEmoji(`🔄`).setStyle(`SUCCESS`);
-        let buttonStop = new Discord.MessageButton().setCustomId("stop").setEmoji(`❌`).setStyle(`DANGER`);
+  	let buttonPrevious = new Discord.MessageButton().setCustomId("previous").setEmoji(`⬅️`).setStyle(`SECONDARY`)//.setDisabled();
+  	let buttonNext = new Discord.MessageButton().setCustomId("next").setEmoji(`➡️`).setStyle(`SECONDARY`);
+  	let buttonRandon = new Discord.MessageButton().setCustomId("random").setEmoji(`🔄`).setStyle(`SECONDARY`);
+        let buttonStop = new Discord.MessageButton().setCustomId("stop").setEmoji(`❌`).setStyle(`SECONDARY`);
         
         if(numberViaDatabase <= 0) buttonPrevious.setDisabled(true);
         if(numberViaDatabase <= (arr.length-1))buttonNext.setDisabled(false);

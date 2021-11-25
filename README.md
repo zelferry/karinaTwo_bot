@@ -46,6 +46,8 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
 
 ## 🔋 estrutura
 
+ ⚠️| a karinaTwo usa o **node v16** para poder fazer.... quase que tudo+
+
  💻| karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **Discord**  a **Discord.js**, para o Banco de Dados, eu usei a **moongoose**
  
 #### 💾 **- arquivo** `config.json`
@@ -53,36 +55,34 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
 
 ```json
 {
+  "status":"", //status do bot 
+  "guildId":"", //id do server do bot
   "functions":{
-  	"ignoredUsers":[] //usuários ignorados
+  	"ignoredUsers":[] //ignorar tais usuários
   },
   "host":{
-  	"links":[] //lind da host do seu bot
-  },
-  "adverts":{
-  	"auto":true,
-  	"guilds":[] //servidores que vão ser a função de auto post de anúncios
+  	"links":[""] //link ou ip da host do bot
   },
   "footer":{
-  	"root":"" //sua root global(exemplos: /project/mybot , home/runner/bot , C:/myname/bots/bot
+  	"root":"" //sua root global(exemplos: /project/mybot, home/runner/bot, C:/myname/bots/bot
   },
-  "webhooks":{ 
- "commands":{
- 	"id":"", //id do WEBHOOK que avisa se alguém usou um comando
- 	"token":"" //token do WEBHOOK que avisa se alguém usou um comando
- },
- "topgg":{
- 	"id":"", //id do WEBHOOK da top.gg
- 	"token":"" //token do WEBHOOK da top.gg
- },
- "suport":{
- 	"id":"", //id do WEBHOOK do comando de suporte
- 	"token":"" //token do WEBHOOK do comando de suporte
- },
- "exit_":{
- 	"id":"", //id do WEBHOOK que avisa se o bot saiu de um servido
- 	"token":"" //token do WEBHOOK que avisa se o bot saiu de um servidor
-   }
+  "webhooks":{ //webhooks
+      "commands":{
+          "id":"",
+          "token":""
+      },
+      "topgg":{
+          "id":"",
+          "token":""
+      },
+      "suport":{
+          "id":"",
+          "token":""
+      },
+      "exit_":{
+          "id":"",
+          "token":""
+      }
   }
 }
 ```

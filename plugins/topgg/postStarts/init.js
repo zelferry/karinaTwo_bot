@@ -7,12 +7,13 @@ class DJSSharderPoster extends BasePoster {
 		this._binder({
 			clientReady: () => this.clientReady(),
 			waitForReady: fn => this.waitForReady(fn),
-			getStats: () => this.getStats()
+			getStats: () => this.allStatus()
 		});
 	}
 	clientReady() {
+       // console.log({e:this.client.clusters.size > 0 ,a:this.client.clusters})
 		return (
-			this.client.clusters.size > 0 /*&& this.client.clusters.every(x => x.ready)*/
+			this.client.clusters.size > 0 
 		);
 	}
 	waitForReady(fn) {
@@ -26,12 +27,20 @@ class DJSSharderPoster extends BasePoster {
 		this.client.on('clusterCreate', listener);
 	}
 	async getStats() {
-		const response = await this.client.fetchClientValues('guilds.cache.size');
-		return {
-			serverCount: response.reduce((a, b) => a + b, 0),
-			shardCount: response.length
-		};
-	}
+        return this.client.fetchClientValues('guilds.cache.size').then(results => {
+            return {
+                serverCount: results.reduce((prev, val) => prev + val, 0),
+                shardCount: results.length
+            };
+        })
+    }
+    async allStatus(){
+        let guild = await this.getStats()
+        return {
+            guilds: guild.serverCount,
+            shards: guild.shardCount
+        }
+    }
 }
 
 module.exports = DJSSharderPoster;

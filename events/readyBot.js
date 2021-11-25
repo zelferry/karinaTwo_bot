@@ -2,21 +2,22 @@ let util = require('../utils/main.js');
 const clientConfig = require('../database/client/config.json');
 const { GiveawaysManager } = require('discord-giveaways');
 
+let plugins = require("../plugins/index.js") 
 
 exports.type = "ready";
 exports.start = async(client,clusterID,ipc,a) => {
     let commands__ = new util.commands(client, clientConfig);
     commands__.loadingSlashCommands(clientConfig.guildId);
     commands__.loadingCommands();
+    /*
+    const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
+        async refreshStorage() {
+            return client.cluster.broadcastEval(() => this.giveawaysManager.getAllGiveaways());
+        }
+    };*/
     
-const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
-	async refreshStorage() {
-		return client.cluster.broadcastEval(() =>
-			this.giveawaysManager.getAllGiveaways());
-	}
-};
-const _giveaway = new GiveawayManagerWithShardSupport(client, {
-	storage: `${clientConfig.footer.root}/database/giveaway/data.json`,
+const _giveaway = new plugins.giveaway(client, {
+	/*storage: `${clientConfig.footer.root}/database/giveaway/data.json`,*/
 	updateCountdownEvery: 10000,
 	default: {
 		botsCanWin: false,
@@ -42,5 +43,12 @@ status();
 setInterval(status, 5000);
 //client.user.setStatus('indle').catch(console.error);
     console.log(`${client.user.tag} online!`);
+    /*
+    client.guilds.cache.map(async (g) => {
+        if(!g.available){
+            await g.fetch()
+            console.log(`[error] o servidor \`${g.name} (${g.id})\`e um servidor inválido!`)
+        }
+    })*/
     
 }

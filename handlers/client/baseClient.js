@@ -21,6 +21,12 @@ class baseClient extends Discord.Client {
     connectBOT(){
         this.on("ready", () => {
             this.binder.displaySpecialTHIS(this);
+            this.guilds.cache.forEach(async (g) => {
+                if(!g.available){
+                    await g.fetch();
+                    console.log(`[error] o servidor \`${g.name} (${g.id})\`e um servidor inválido!`);
+                }
+            })
         });
         
         try {

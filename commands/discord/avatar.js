@@ -23,9 +23,15 @@ exports.run = async (client, message, args) => {
     if(user.id === client.user.id) {
         avatardrscri = "meu avatar foi desenhado pelo **M&M**\n\n conhesa o trabalho dele no:\n[Twitter!](https://twitter.com/Miguel94244829)"
     }
+    
+    let button_ = new Discord.MessageButton().setStyle('LINK').setURL(`${avatar}`).setLabel('ver na web');
+    
     let embed = new Discord.MessageEmbed().setColor(`#4cd8b2`).setTitle(`Avatar de ${user.username}`).setDescription(avatardrscri).setImage(avatar);
     
-    message.reply({embeds:[embed]}); 
+    message.reply({
+        embeds:[embed],
+        components:[new Discord.MessageActionRow().addComponents(button_)]
+    }); 
     
 };
 exports.config = {

@@ -5,9 +5,7 @@ module.exports = {
 		single: require("./pages/single/main.js"),
 		e621:require("./pages/e621/main.js"),
 		iteration:{
-			pages:{
-                
-            }
+			pages:{}
 		}
 	},
     suport:{

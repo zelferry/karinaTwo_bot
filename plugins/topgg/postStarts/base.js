@@ -1,5 +1,8 @@
 const EventEmitter = require('events');
-const Topgg = require(`@top-gg/sdk`)
+const Topgg = require(`@top-gg/sdk`);
+const Botlister = require('botlister');
+//const lister = new Botlister({ apiToken: process.env.DBL_TOKEN, defaultBotId: process.env.BOT_ID })
+
 
 class BasePoster extends EventEmitter{
     constructor(options,client) {
@@ -22,6 +25,8 @@ class BasePoster extends EventEmitter{
     }
     async _binder(binds) {
         this.binds = binds
+        //this.start()
+        
         if (this.options.startPosting) {
             if (await this.binds.clientReady())
                 this.start();
@@ -56,10 +61,15 @@ class BasePoster extends EventEmitter{
     }
     async post() {
     	let json = await this.binds.getStats()
+        //console.log(json)
        try {
-       	await this.api.postStats(json)
+       	await this.api.postStats({
+            serverCount: json.guilds,
+            shardCount: json.shards
+        })
        	this.emit('posted', json)
        } catch (e){
+          // console.log(e)
        	this.emit("erro",e)
        }
     }
