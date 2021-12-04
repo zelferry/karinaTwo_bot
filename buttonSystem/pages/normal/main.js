@@ -138,17 +138,17 @@ collector.on('collect',async r => {
             })
   		} else {
   		//	console.log("cu")
-  		msg.components[0].components[0].setDisabled();
+  		/*msg.components[0].components[0].setDisabled();
   		msg.components[0].components[1].setDisabled();
   		msg.components[0].components[2].setDisabled();
-  		msg.components[0].components[3].setDisabled();
+  		msg.components[0].components[3].setDisabled();*/
   		
   		embed.setColor("RED")
   		embed.setFooter("desativado por inatividade")
   		
   		msg.edit({
             embeds: [embed],
-            components: msg.components
+            components: []
         })
   		}
   	} else {

@@ -215,9 +215,10 @@ class ButtonPages {
 				msg.components[0].components[1].setDisabled();
 				removed = true;
 				msg.edit({
-                    embeds: [embed],
+                    embeds: [redVersion.embed],
                     components: msg.components 
                 });
+                collector.stop(2)
 				//  message.channel.send(embed)
 			}
 		});

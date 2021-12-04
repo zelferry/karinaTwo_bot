@@ -6,8 +6,7 @@ var config = require('../../config.js');
 var ownerID = config.ownerID;
 exports.run = async (client, message, args) => {
 	let user = message.mentions.users.first() || message.author;
-	if (user.bot)
-		return message.reply({content:'❌ **|**isso e um bot! pera que...'});
+	if (user.bot) return message.reply({content:'❌ **|**isso e um bot! pera que...'});
 	let value = await profile.find(user);
 
 	const testdosei = value.usertext;
@@ -52,7 +51,22 @@ exports.run = async (client, message, args) => {
 			}
 		]
 	};
-	message.reply({ embeds:[embed_] });
+    if(vip == true){
+        const Manager = require("../../plugins/commands/profile/index.js");
+        
+        const options = {
+            model: "i",
+            avatarURL: user.displayAvatarURL({ format: "png", size: 512 }),
+            background: "./assets/profile/images/backgrounds/background.jpg", 
+            username: user.username,
+            discriminator: user.discriminator,
+            money: ruby,
+            aboutme: testdosei
+        };
+        Manager(message, options);
+    } else {
+        message.reply({ embeds:[embed_] });
+    }
 };
 exports.config = {
     test: false
