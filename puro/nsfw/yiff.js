@@ -1,3 +1,5 @@
+let comando = require("../../frameworks/commando/command_slash.js");
+
 var data_2 = ["gay","straight","lesbian","synormorph","bulge","andromorph"]
 
 var yiff = require("yiff_api")
@@ -5,11 +7,14 @@ var yiff = require("yiff_api")
 var Discord = require("discord.js")
 var yiff_ = new yiff.yiff()
 
-module.exports = {
-	name: 'yiff',
-	description: '《😈nsfw》yiff 7w7',
-	commandOptions: [
-		{
+
+class Command extends comando {
+    constructor(...args) {
+        super(...args, {
+            name: "yiff",
+            description: "[ 😈 nsfw ] yiff booru(?)",
+            commandOptions: [
+                {
 			type: 3,
             name: "type_image",
             description: "qual sera o tipo? 7-7",
@@ -41,12 +46,12 @@ module.exports = {
             	}
             ]
 		}
-    ],
-	global: true,
-	async execute(interaction,client){
-		
-		let data = interaction.options.getString('type_image')//.split(" ")
-		let channel = client.channels.cache.get(interaction.channelId)
+            ]
+        })
+    }
+    async interactionRun(interaction){
+        let data = interaction.options.getString('type_image')//.split(" ")
+		let channel = this.client.channels.cache.get(interaction.channelId)
 		
 		let text = data_2.map(x => `\`${x}\``).slice(0, -1).join(", ") + ` e \`${data_2[data_2.length -1]}\``;
         if (!channel.nsfw) return await interaction.reply({
@@ -66,8 +71,6 @@ module.exports = {
             embeds:[embed]
         })
     }
-  } //6
-}
-
-//embeds: [embed]
-//
+    }
+} 
+module.exports = Command 

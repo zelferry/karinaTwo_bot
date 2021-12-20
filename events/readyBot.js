@@ -7,7 +7,9 @@ let plugins = require("../plugins/index.js")
 exports.type = "ready";
 exports.start = async(client,clusterID,ipc,a) => {
     let commands__ = new util.commands(client, clientConfig);
-    commands__.loadingSlashCommands(clientConfig.guildId);
+    //commands__.loadingSlashCommands(clientConfig.guildId);
+    let slashready = new  client.commands_utils.slash(client, clientConfig);
+    slashready.slashCmd()
     commands__.loadingCommands();
     /*
     const GiveawayManagerWithShardSupport = class extends GiveawaysManager {

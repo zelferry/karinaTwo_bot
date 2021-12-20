@@ -19,7 +19,7 @@ class baseClient extends Discord.Client {
         this.binder.displayTHIS(this);
     }
     connectBOT(){
-        this.on("ready", () => {
+        this.on("ready", async() => {
             this.binder.displaySpecialTHIS(this);
             this.guilds.cache.forEach(async (g) => {
                 if(!g.available){

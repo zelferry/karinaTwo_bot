@@ -5,7 +5,8 @@ const clientConfig = require('../../database/client/config.json');
 const Cluster = require('discord-hybrid-sharding');
 const usev13 = false;
 let utils_ = require('../../utils/main.js');
-let imagesStructure = require("./structures/Images.js")
+let imagesStructure = require("./structures/Images.js");
+
 
 class _client extends Discord.Client {
 	constructor(opts) {
@@ -31,6 +32,7 @@ class _client extends Discord.Client {
         this.commands = new Discord.Collection();
         this.commands.array = [];
         this.aliases = new Discord.Collection();
+        this.commands_utils = require("../../frameworks/commando/index.js");
     }
 	connect(token) {
         this.makeTHIS({})
@@ -63,7 +65,8 @@ class _client extends Discord.Client {
 				maxDuplicatesMute: 8,
 				ignoreBots: true,
 				verbose: true,
-				muteRoleName: 'antiraid_role',
+				muteRoleName: 'antiraid role',
+                unMuteTime: 18,
 				removeMessages: true,
 				ignoredUsers: [],
 				ignoredPermissions: ['ADMINISTRATOR'],
@@ -95,4 +98,6 @@ class _client extends Discord.Client {
     }
 }
 
-module.exports = _client;
+module.exports = {};
+
+

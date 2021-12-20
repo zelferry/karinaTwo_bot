@@ -1,3 +1,5 @@
+let comando = require("../../frameworks/commando/command_slash.js");
+
 var fortunes = [
     "Sim",
     "Não",
@@ -15,18 +17,17 @@ var fortunes = [
     "CLARO QUE NÃO, ISSO SERIA LOUCURA HAHA!! :D"
   ];
 
-module.exports = {
-	name: 'fleur',
-	description: '《😹 diversão》fleur vai te dar a resposta para sua pergunta',
-	commandOptions: [{
-        type: 3,
-        name: "question",
-        description: "qual a pergunta?",
-        required: true
-    }],
-	global: true,
-	async execute(interaction,client) {
-        const args1 = interaction.options.getString('question')//split(" ");
+class Command extends comando {
+    constructor(...args) {
+        super(...args, {
+            name: "fleur",
+            description: "[ 😂 diversão ] fleufurr tem a resposta para sua pergunta!",
+            commandOptions: [{ type: 3, name: "question", description: "qual a pergunta?", required: true }]
+        })
+    }
+    async interactionRun(interaction){
+        const args1 = interaction.options.getString('question');
+
         if(!args1){
             await interaction.reply({ content: "🚫**|** insira uma pergunta valida!" })
         } else {
@@ -43,4 +44,5 @@ module.exports = {
             })
         }
     }
-};
+}
+module.exports = Command

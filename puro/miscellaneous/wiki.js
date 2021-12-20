@@ -1,18 +1,15 @@
+let comando = require("../../frameworks/commando/command_slash.js");
+
 const Discord = require('discord.js')
 const fetch = require('node-fetch')
-//const disbut = require('discord-buttons');
-/*
-choices: [
-                { name: "pg", value: "pg" },
-                { name: "pg13", value: "pg13" },
-                { name: "r", value: "r" }
-            ]
-            */
-module.exports = {
-	name: 'wiki',
-	description: '《🔁 micelânea》pesquisar algo na wikipédia!',
-	commandOptions: [
-		{
+
+class Command extends comando {
+    constructor(...args) {
+        super(...args, {
+            name: "wiki",
+            description: "[ 🤪 miscelânea ] pesquiss algo na wikipedia sem sair do discord!",
+            commandOptions: [
+                {
 			type: 3,
             name: "search-query",
             description: "o que você vai pesquisar?",
@@ -34,10 +31,11 @@ module.exports = {
             	}
             ]
         }
-    ],
-	global: true,
-	async execute(interaction,client) {
-		const args1 = interaction.options.getString('search-query').split(" ");
+            ]
+        })
+    }
+    async interactionRun(interaction){
+        const args1 = interaction.options.getString('search-query').split(" ");
         const language = interaction.options.getString('language') ?? "pt";
     
         const search = args1.join('_');
@@ -63,5 +61,6 @@ module.exports = {
             embeds: [embed],
             components: [row]
         })
-	}//6
-}
+    }
+} 
+module.exports = Command 

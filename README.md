@@ -36,12 +36,9 @@
 
 ## 💜 introdução
 
-😊| Finalmente depois de muito tempo, eu finalmente mostrei a Source da **karina**!
-E eu estou muito feliz de retirar esse fardo das minhas costas, pelo medo de mostrar o código fonte dela, mais hoje é o dia! A **karina** foi a minha bot que mais me deu trabalho, e **hoje** estarei mostrando tudo que já desenvolvi nela, como comandos e funções!
+🕜| atualmente focando a maioria do meu tempo nela, contando com mais de **67** comandos dentre eles comandos de **diversão**,**administração**,**nsfw**, **micelanea** dentre outros!
 
-🕛| atualmente focando a maioria do meu tempo nela, contando com mais de **67** comandos dentre eles comandos de **diversão**,**administração**,**nsfw**, **micelanea** dentre outros!
-
-😉| Espero que todos respeitem esse repositório, e não usem para ganhar fama em sua aplicação(`bot`), use apenas para aprender as funções que a **karinaTwo** Possui!
+😉| Espero que todos respeitem esse repositório, e não usem para ganhar fama em seu bot, use apenas para aprender as funções que a **karinaTwo** Possui!
 Não quero saber de usuários que estão usando essa Source para criar outros bots e ganhando dinheiro com isso!(`se não serão banidos de usar a karinaTwo!`)
 
 ## 🔋 estrutura

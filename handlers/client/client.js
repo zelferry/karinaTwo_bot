@@ -22,6 +22,7 @@ class clientBot extends baseClient {
     }
     displayTHIS(client){
         client.shard = process.env.CLUSTER_MANAGER ? Discord.ShardClientUtil.singleton(client, process.env.CLUSTER_MANAGER_MODE) : null;
+        this.commands_utils = require("../../frameworks/commando/index.js").client
         client.cooldown = new Discord.Collection();
         client.images = new imagesStructure(client);
         client.discordTogether = new actviesStructure(client);
@@ -75,8 +76,9 @@ class clientBot extends baseClient {
             maxDuplicatesMute: 9,
             ignoreBots: true,
             verbose: true,
-            muteRoleName: 'antiraid_role',
-            removeMessages: false,
+            muteRoleName: 'antiraid role',
+            unMuteTime: 18,
+            removeMessages: true,
             ignoredUsers: [],
             ignoredPermissions: ['ADMINISTRATOR'],
             ignoredChannels: client.antiSpamGlobalCofig.ignoredCannels,

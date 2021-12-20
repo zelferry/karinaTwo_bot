@@ -64,13 +64,11 @@ manager.on("debug", (data) =>{
 	console.log(data)
 });
 
-//erros routeds
+
 process.on('unhandledRejection', error => {
 	console.error(error);
 });
 
-
-//start system
 app.listen(kariModu.normalizaPort(process.env.PORT || '3000'));
 manager.start();
 send_PING();
