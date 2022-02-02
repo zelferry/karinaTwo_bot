@@ -1,6 +1,6 @@
 const EventEmitter = require('events');
 const Topgg = require(`@top-gg/sdk`);
-const Botlister = require('botlister');
+//const Botlister = require('botlister');
 //const lister = new Botlister({ apiToken: process.env.DBL_TOKEN, defaultBotId: process.env.BOT_ID })
 
 

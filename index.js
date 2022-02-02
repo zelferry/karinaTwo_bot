@@ -9,7 +9,7 @@ const dbOptions = {
 	useNewUrlParser: true
 };
 
-let { Intents } = Discord 
+let { Intents } = Discord
 let client = (global.client = new client_bot.client({
     bot:{
         messageCacheLifetime: 60,
@@ -30,13 +30,13 @@ let client = (global.client = new client_bot.client({
         ], 
         allowedMentions: {
             parse: ["users","roles"],
-            repliedUser: false
+            repliedUser: true
         },
         partials: ["MESSAGE", "CHANNEL", "REACTION"]
-    }
+    },
+    db: {}
 }));
 
-const usev13 = true
 let events = new client_bot.events(`${clientConfig.footer.root}/events`,client,"a","b")
 
 

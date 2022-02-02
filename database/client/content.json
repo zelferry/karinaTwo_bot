@@ -1,3 +1,52 @@
 {
- "yiff":["gay","straight","lesbian","synormorph"]
+    "yiff":["gay","straight","lesbian","synormorph"],
+    "minecraft":{
+        "crepeer": [
+            "ele tem tnt?",
+            "CORRE!!!!!!!!!!!!!!!!!!!!!.",
+            "pera! vou pegar minha espada de diamande aqui meu.",
+            "a não vey, DE NOVO!!!!",
+            "catapinbas ._.",
+            "eu cuido disso!",
+            "vou testar minha nova flexa nele!",
+            "AAAAAHH!!!!!!!!!! E SO JOGAR UMA TNT NELE!!",
+            "AWWW MEN!!!!!!!!!!!!!!!",
+            "ja sei!... vou assar um bolo!",
+            "mano :v"
+        ]
+    },
+    "knuckles": [
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284648324595722/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284969218736168/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284648324595722/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284969218736168/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284648324595722/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284969218736168/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284648324595722/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284969218736168/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284648324595722/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284969218736168/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284648324595722/unknown.png",
+        "https://cdn.discordapp.com/attachments/753628468398260265/768284969218736168/unknown.png",
+        "https://cdn.discordapp.com/attachments/812270135540449300/841009657425690644/Screenshot_2021-05-09-14-49-58-1-1.png",
+        "https://cdn.discordapp.com/attachments/812270135540449300/841009657425690644/Screenshot_2021-05-09-14-49-58-1-1.png",
+        "https://cdn.discordapp.com/attachments/812270135540449300/841009657425690644/Screenshot_2021-05-09-14-49-58-1-1.png"
+    ],
+    "links":{
+        "server": "https://discord.gg/Xmu7HrH3yy",
+        "api": "https://karina-two.glitch.me"
+    },
+    "devs": [
+        {
+            "name": "zelferry",
+            "description": "ola!\n meu nome é zelferry, sou FURRY, desenvolvedor de bots do DISCORD que quer aprender a fazer jogos e aplicativos, adoro anime e sou **GC youtuber** e design(eu acho).",
+            "tag": "zelferret#5690",
+            "links": [
+                {
+                    "name": "linktree",
+                    "link": "https://linktr.ee/zelferry"
+                }
+            ]
+        }
+    ]
 }

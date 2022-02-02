@@ -1,5 +1,3 @@
 module.exports = {
-    client: {
-        slash: require("./client_slash.js")
-    }
-} 
+    client: require("./client.js")
+}

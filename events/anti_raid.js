@@ -11,6 +11,8 @@ exports.start = async(client,clusterID,ipc,message) => {
 	if(config__.error !== "404"){
 		if(config__.antiraid){
             client.antiSpam.message(message)
-		} else {};
+		} else {
+            return;
+        };
 	};
 }

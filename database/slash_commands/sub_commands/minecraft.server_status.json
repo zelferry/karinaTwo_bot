@@ -1,0 +1,14 @@
+[
+    {
+        "type": 3,
+        "name": "ip",
+        "description": "ip do servidor",
+        "required": true
+    },
+    {
+        "type": 10,
+        "name": "port",
+        "description": "porta do SERVIDOR",
+        "required": false
+    }
+]

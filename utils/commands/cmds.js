@@ -13,11 +13,11 @@ class cmds {
 	}
 	loadingCommands() {
 		let { client,foo } = this;
-        fs.readdirSync(`${foo}/commands/`).forEach(dirs => {
-    const commands = fs.readdirSync(`${foo}/commands/${dirs}`).filter(files => files.endsWith('.js'));
+        fs.readdirSync(`${foo}/owners_commands/`).forEach(dirs => {
+    const commands = fs.readdirSync(`${foo}/owners_commands/${dirs}`).filter(files => files.endsWith('.js'));
 
     for (const file of commands) {
-        const command = require(`${foo}/commands/${dirs}/${file}`);
+        const command = require(`${foo}/owners_commands/${dirs}/${file}`);
       command.help.category = dirs 
        // console.log(`-> Loaded command ${command.help.name.toLowerCase()}`);
         client.commands.set(command.help.name, command);

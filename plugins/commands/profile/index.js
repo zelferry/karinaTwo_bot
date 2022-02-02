@@ -2,7 +2,8 @@
 const jimp = require("jimp");
 const Discord = require("discord.js");
 
-module.exports = async (message, options) => {
+module.exports = async (interaction, options) => {
+    await interaction.deferReply()
 	//message.channel.startTyping();
 
 	let avatar = await jimp.read(options.avatarURL);
@@ -25,18 +26,23 @@ module.exports = async (message, options) => {
 
 	model.print(font70, 178, 9, options.username);
 	model.print(font36, 337, 91, options.money);
-	//model.print(font36_2, 279, 129, options.marry);
+	model.print(font20, 267, 124, options.vip, 690);
 	model.print(font20, 9, 405, options.aboutme, 690);
 
 	background.composite(model, 0, 0);
 	background.getBuffer(jimp.MIME_PNG, (err, buffer) => {
     	if (err) {
     		//message.channel.stopTyping(true);
-
-    		return message.channel.send({content:`🚫**|** <@${message.author.id}>, ouve um erro ao resgatar as informações :(\nnotifique os meus devs sobre o ocorrido.`});
+    		return interaction.editReply({
+                content:`🚫**|** ouve um erro ao resgatar as informações :(\nnotifique os meus devs sobre o ocorrido.`
+            });
     	} else {
     	//	message.channel.stopTyping(true);
-    		return message.reply({content:`📱 **|** <@${message.author.id}>`,files:[new Discord.MessageAttachment(buffer, "Profile.png")]})
+            let card = new Discord.MessageAttachment(buffer, "Profile.png")
+    		return interaction.editReply({
+                content:`📱 **|** perfil`,
+                files: [card]
+            })
     	};
     });
 };

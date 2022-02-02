@@ -12,7 +12,11 @@ const guildSchema = mongoose.Schema({
 			type: Boolean,
 			default: false
 		},
-        pagesBUTONS:{
+        pagesBUTONS: {
+            type: Boolean,
+            default: false
+        },
+        antiNsfw: {
             type: Boolean,
             default: false
         }

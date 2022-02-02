@@ -2,6 +2,10 @@
   "shard":{},
   "status":"",
   "guildId":"",
+  "owners":{
+      "ids": [],
+      "prefix": ""
+  },
   "functions":{
   	"ignoredUsers":[]
   },

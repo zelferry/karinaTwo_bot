@@ -1,0 +1,14 @@
+[
+    {
+        "name": "pedra",
+        "value": "pedra"
+    },
+    {
+        "name": "papel",
+        "value": "papel"
+    },
+    {
+        "name":"tesoura",
+        "value":"tesoura"
+    }
+]

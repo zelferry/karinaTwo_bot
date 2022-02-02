@@ -1,0 +1,8 @@
+[
+    {
+        "name": "cmd",
+        "type": 3,
+        "description": "nome do comando",
+        "required": true
+    }
+]

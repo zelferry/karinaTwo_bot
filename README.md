@@ -54,6 +54,10 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
 {
   "status":"", //status do bot 
   "guildId":"", //id do server do bot
+    "owners":{
+      "ids": [], //ids dos devs
+      "prefix": "" //prefixo padrão
+  },
   "functions":{
   	"ignoredUsers":[] //ignorar tais usuários
   },
@@ -110,7 +114,7 @@ npm start
 ```
 ou...
 ```node
-node shard.js
+node Cluster.js
 ```
 
 ## 🔗 links

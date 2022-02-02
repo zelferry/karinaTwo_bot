@@ -33,10 +33,8 @@ class topgg {
 		await user.save().catch(e => console.log(e))
 		return user
 	}
-    static async ready(user,funcion_){
-    usermodel.findOne({UserId:user},async(err,obj) => {
-        funcion_(err,obj,usermodel)
-     })
+    static async ready(user, funcion_){
+        usermodel.findOne({ UserId:user }, async(err, obj) => { funcion_(err, obj, usermodel) })
     }
 }
 module.exports = topgg

@@ -1,0 +1,8 @@
+[
+    {
+        "name": "emoji",
+        "type": 3,
+        "description": "nome do emoji ou o emoji em si",
+        "required": true
+    }
+]

@@ -1,4 +1,5 @@
 let baseClient = require("./baseClient.js");
+let commandsSructure = require("../../frameworks/commando/index.js")
 let Discord = require('discord.js');
 
 let imagesStructure = require("./structures/Images.js");
@@ -8,6 +9,8 @@ let actviesStructure = require("./structures/DiscordActivies.js");
 let utils_ = require('../../utils/main.js');
 let clientConfig = require('../../database/client/config.json');
 let AntiSpam = require('discord-anti-spam');
+
+let fetch = require('node-fetch');
 
 class clientBot extends baseClient {
     constructor(opitions){
@@ -21,8 +24,14 @@ class clientBot extends baseClient {
         })
     }
     displayTHIS(client){
+        client.getContainer = async function(endpoit){
+            let ops88 = { method: 'GET', headers: { 'User-Agent': 'crosdid/1.0' } };
+            let url = `${client.contents.links.api}/${endpoit??"api"}`;
+            let result = await fetch(url,ops88);
+            return result.json() ?? { send:false }
+        };
         client.shard = process.env.CLUSTER_MANAGER ? Discord.ShardClientUtil.singleton(client, process.env.CLUSTER_MANAGER_MODE) : null;
-        this.commands_utils = require("../../frameworks/commando/index.js").client
+        this.commands_utils = new commandsSructure.client(this, clientConfig)
         client.cooldown = new Discord.Collection();
         client.images = new imagesStructure(client);
         client.discordTogether = new actviesStructure(client);
@@ -50,7 +59,9 @@ class clientBot extends baseClient {
             Discord.Permissions.FLAGS.CHANGE_NICKNAME,
             Discord.Permissions.FLAGS.KICK_MEMBERS,
             Discord.Permissions.FLAGS.START_EMBEDDED_ACTIVITIES
-        ] 
+        ];
+        client.dist = require("../../dist/main.js");
+        client.contents = require("../../database/client/content.json");
     }
     displaySpecialTHIS(client){
         let channels_1 = client.channels.cache.filter(channel => channel.name.includes('spam')).map(x => x.id);
@@ -90,8 +101,7 @@ class clientBot extends baseClient {
             removeBotMessagesAfter: 5000,
             debug: true
         });
-        client.webhooks = new webhookStructure_(client)
-
+        client.webhooks = new webhookStructure_(client);
     }
     connect(){
         this.login(process.env.TOKEN);

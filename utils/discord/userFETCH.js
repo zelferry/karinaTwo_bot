@@ -98,7 +98,15 @@ class _fetch {
 				},
 				toString: `<@${user.id}>`
 			},
-			discordInput: user
+			discordInput: user,
+            resolve: function(){
+                return {
+                    id: user.id,
+                    username: user.username,
+                    tag: `${user.username}#${user.discriminator}`,
+                    avatar: this.cmd_img().avatar(user.avatar, user.id, true, 'png')
+                }
+            }
 		};
 	}
 }

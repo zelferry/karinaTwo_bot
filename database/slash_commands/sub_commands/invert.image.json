@@ -1,0 +1,8 @@
+[
+    {
+        "type": 6,
+        "name": "user",
+        "description": "mensão de um usuário",
+        "required": false
+    }
+]

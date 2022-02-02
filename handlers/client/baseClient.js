@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const Cluster = require('discord-hybrid-sharding');
-const usev13 = true;
 
 class baseClient extends Discord.Client {
     constructor(opts){
@@ -9,7 +8,7 @@ class baseClient extends Discord.Client {
             shardCount: Cluster.data.TOTAL_SHARDS,
             ...opts
         })
-        this.cluster = new Cluster.Client(this, usev13); 
+        this.cluster = new Cluster.Client(this);
     }
     /**
      * @private

@@ -1,0 +1,30 @@
+[
+                        { 
+                            "name": "youtube",
+                            "value": "youtube"
+                        },
+                        {
+                            "name": "youtubedev",
+                            "value": "youtubedev"
+                        },
+                        {
+                            "name": "poker",
+                            "value": "poker"
+                        },
+                        {
+                            "name": "betrayal",
+                            "value": "betrayal"
+                        },
+                        {
+                            "name": "fishing",
+                            "value": "fishing"
+                        },
+                        {
+                            "name": "chess",
+                            "value": "chess"
+                        },
+                        {
+                            "name": "chessdev",
+                            "value": "chessdev"
+                        }
+                    ]
