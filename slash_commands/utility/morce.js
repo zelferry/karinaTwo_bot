@@ -51,7 +51,7 @@ class Command extends comando {
             title1 = "texto => MORSE" 
         }
 
-        return interaction.reply({
+        return interaction.editReply({
             embeds: [
                 {
                     title: `${title1}`,

@@ -44,7 +44,7 @@ class Command extends comando {
         if(subCOMMAND === "text"){
             let str = interaction.options.getString('text');
             
-            interaction.reply({
+            interaction.editReply({
                 content: `🔄**|** ${(str.split('').reverse().join('')).toString()}`
             })
             return {}
@@ -59,7 +59,7 @@ class Command extends comando {
             let image = await canvacord.Canvas.invert(avatar);
             let attachment = new Discord.MessageAttachment(image, "invert.png");
 
-            interaction.reply({
+            interaction.editReply({
                 files: [attachment]
             })
             return {}

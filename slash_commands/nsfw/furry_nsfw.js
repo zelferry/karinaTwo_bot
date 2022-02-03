@@ -58,7 +58,7 @@ class Command extends comando {
             
             let embed_1 = new Discord.MessageEmbed().setImage(data1).setColor("#7B68EE").setFooter(`${number1 + 1} / ${data_1.length}`);
 
-            interaction.reply({
+            interaction.editReply({
                 embeds: [embed_1]
             });
             return {}
@@ -68,7 +68,7 @@ class Command extends comando {
 
             let embed_2 = new Discord.MessageEmbed().setImage(data2).setColor("#7B68EE").setFooter(`${number2 + 1} / ${data_2.length}`);
 
-            interaction.reply({
+            interaction.editReply({
                 embeds: [embed_2]
             })
             return {}
@@ -78,7 +78,7 @@ class Command extends comando {
 
             let embed_3 = new Discord.MessageEmbed().setImage(data3).setColor("#7B68EE").setFooter(`${number3 + 1} / ${data_3.length}`);
 
-            interaction.reply({
+            interaction.editReply({
                 embeds: [embed_3]
             });
             return {}

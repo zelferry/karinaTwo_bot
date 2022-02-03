@@ -27,11 +27,11 @@ class Command extends comando {
         let value = await economydb.fech(user);
 
         if(user.id == interaction.user.id){
-            return interaction.reply({
+            return await interaction.editReply({
                 content: `você tem **${value.coins}** panther-coins!`
             })
         } else {
-            return interaction.reply({
+            return await interaction.editReply({
                 content: `o usuário ***${user.tag}*** tem **${value.coins}** panther-coins!`
             })
         }

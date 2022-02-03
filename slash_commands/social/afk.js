@@ -26,13 +26,13 @@ class Command extends comando {
         let value = await afk.find(interaction.user, true);
 
         if(value.afk.ready == false){
-            interaction.reply({
+            interaction.editReply({
                 content: "💤**|** afk ativado! \nos usuários irão saber que você esta `"+reason+"`\n\npara sua conivência, eu irei desativar o seu afk quando você falar algo no chat! 😉"
             });
             await afk.setAFK(interaction.user, reason);
             return {}
         } else if(value.afk.ready == true){
-            interaction.reply({
+            interaction.editReply({
                 content: `:x:**|** você ja esta com o afk ativo!`,
                 ephemeral: true
             });

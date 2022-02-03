@@ -16,21 +16,19 @@ class Command extends comando {
         let value = await economydb.fech(user);
 
         if(value.coins <= 2500){
-            return interaction.reply({
+            return interaction.followUp({
                 content: "🚫**|** você não tem *panther-coins* o suficiente!\n💸**|** e necessário ter ***2.500*** panther-coins ou mais para comprar o *vip user*",
                 ephemeral: true
             })
         } else if(value.vipUser == true){
-            return interaction.reply({
+            return interaction.followUp({
                 content: "🚫**|** você ja e um usuário vip!",
                 ephemeral: true
             })
         } else {
             const embed = new Discord.MessageEmbed().setTitle("**Vip User Comprado**").setDescription(`você comprou: **vip user** por **2.500 Panther-coins**`).setColor("#be41f4");
             
-            interaction.reply({
-                embeds: [embed]
-            });
+            await interaction.editReply({ embeds: [embed] });
             
             await economydb.setVip(user);
             await economydb.removemoney(user, 2500);

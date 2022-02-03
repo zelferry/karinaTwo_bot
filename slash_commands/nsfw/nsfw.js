@@ -66,7 +66,7 @@ class Command extends comando {
             
             let embed1 = new Discord.MessageEmbed().setImage(data1).setColor("#7B68EE").setFooter(`${number1 + 1} / ${data_1.length}`);
 
-            interaction.reply({
+            interaction.editReply({
                 embeds: [embed1]
             });
             return {}
@@ -76,16 +76,15 @@ class Command extends comando {
 
             let embed2 = new Discord.MessageEmbed().setImage(data2).setColor("#7B68EE").setFooter(`${number2 + 1} / ${data_2.length}`);
 
-            interaction.reply({
+            interaction.editReply({
                 embeds: [embed2]
             });
             return {}
         } else if(subCOMMAND === "futa"){
             let url = await this.client.getContainer("api/nekos/nsfw/futanari");
             if(url.send === false){
-                interaction.reply({
-                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
-                    ephemeral: true
+                interaction.followUp({
+                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c"
                 })
                 return {}
             } else {
@@ -93,7 +92,7 @@ class Command extends comando {
                 let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
                 let row1 = new Discord.MessageActionRow().addComponents(button_1,button_2);
                 let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
-                interaction.reply({
+                interaction.editReply({
                     embeds: [embed3],
                     components: [row1]
                 });
@@ -102,7 +101,7 @@ class Command extends comando {
         } else if(subCOMMAND === "trap"){
             let url = await this.client.getContainer("api/nekos/nsfw/trap");
             if(url.send === false){
-                interaction.reply({
+                interaction.followUp({
                     content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
                     ephemeral: true
                 })
@@ -112,7 +111,7 @@ class Command extends comando {
                 let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
                 let row1 = new Discord.MessageActionRow().addComponents(button_1,button_2);
                 let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
-                interaction.reply({
+                interaction.editReply({
                     embeds: [embed3],
                     components: [row1]
                 });

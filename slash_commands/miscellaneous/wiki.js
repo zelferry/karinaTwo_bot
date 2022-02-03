@@ -48,7 +48,7 @@ class Command extends comando {
         
         let row = new Discord.MessageActionRow().addComponents(button_);
         
-        await interaction.reply({
+        await interaction.editReply({
             embeds: [embed],
             components: [row]
         })

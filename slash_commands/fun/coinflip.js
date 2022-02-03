@@ -38,18 +38,18 @@ class Command extends comando {
         let array = this.coinflip_system[Math.floor(Math.random() * this.coinflip_system.length)];
 
         if(value.coins <= 19){
-            return interaction.reply({
+            return interaction.followUp({
                 content: "🚫**|** você não tem panther-coins suficientes!\n💸**|** e necessário ter **20** ou mais panther-coins para girar a moeda"
             })
         } else if(data == array.value){
             await economydb.addmoney(interaction.user, 20, false);
-            interaction.reply({
+            interaction.editReply({
                 content: `${array.emoji}**|** deu **${array.value}**, você ganhou dessa vez!\n💸**|** adiconei **20** panther-coins na sua carreira!`
             })
             return {}
         } else if(data != array.value){
             await economydb.removemoney(interaction.user, 20);
-            interaction.reply({
+            interaction.editReply({
                 content: `${array.emoji}**|** deu **${array.value}**, você perdeu dessa vez!\n💸**|** retirei **20** panther-coins da sua carreira pela derrota`
             })
             return {}

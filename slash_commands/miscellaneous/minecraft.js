@@ -49,7 +49,7 @@ class Command extends comando {
         if(subCOMMAND === "creeper"){
             let data = this.client.contents.minecraft.crepeer[Math.floor(Math.random() * this.client.contents.minecraft.crepeer.length)];
 
-            interaction.reply({
+            interaction.editReply({
                 content: `🏔**|** ${data}`
             });
             return {}
@@ -65,7 +65,7 @@ class Command extends comando {
             if (args.toLowerCase().includes("cake")) rnd = 10;
 
             if (title.length > 24 || contents.length > 22){
-                interaction.reply({
+                interaction.followUp({
                     content: "❌**|** a descrição precisa ter no maximo **22 letras**!",
                     ephemeral: true
                 })
@@ -73,7 +73,7 @@ class Command extends comando {
             } else {
                 const url = `https://www.minecraftskinstealer.com/achievement/a.php?i=${rnd}&h=${encodeURIComponent(title)}&t=${encodeURIComponent(contents)}`;
 
-                interaction.reply({
+                interaction.editReply({
                     files:[
                         new Discord.MessageAttachment(url, 'mcconquista.png')
                     ]
@@ -90,7 +90,7 @@ class Command extends comando {
             let body = await res.json()
 
             if(body.status === "error"){
-                interaction.reply({
+                interaction.followUp({
                     content: "❌**|** aconteceu um pequeno erro\n🌐**|** insira um IP válido",
                     ephemeral: true
                 });
@@ -99,7 +99,7 @@ class Command extends comando {
                 let attachment = new Discord.MessageAttachment(Buffer.from(body.favicon.substr('data:image/png;base64,'.length), 'base64'), "icon.png");
                  let embed = new Discord.MessageEmbed().setThumbnail("attachment://icon.png").addField("versão", body.server.name).addField("conectados", `${body.players.now} players`).addField("maximo", `${body.players.max} players`).addField("status", (body.online ? "online" : "offline")).addField("motd:", `\`\`\`\n${body.motd}\n\`\`\``).setColor("#FF0000");
 
-                interaction.reply({
+                interaction.editReply({
                     files: [attachment],
                     embeds: [embed]
                 })

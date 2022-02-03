@@ -33,7 +33,7 @@ class Command extends comando {
     }
     async interactionRun(interaction){
         let tags1 = interaction.options.getString('tags').trim().split(/ +/g);
-        interaction.deferReply()
+        //interaction.deferReply()
 
         if (tags1 && !Array.isArray(tags1)) tags1 = tags1.split(' ');
 

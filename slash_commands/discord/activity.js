@@ -38,7 +38,7 @@ class Command extends comando {
         
         let channel = this.client.channels.cache.get(data1.id);
 
-        if(channel.type !== "GUILD_VOICE") return await interaction.reply({
+        if(channel.type !== "GUILD_VOICE") return await interaction.followUp({
             content: "❌| o canal selecionado não e um canal de voz!\nusse o comando novamente",
             ephemeral: true
         });
@@ -48,7 +48,7 @@ class Command extends comando {
             embed.setDescription(`iniciado o **YouTube Together** no \`${channel.name}\`, agora você pode escutar suas músicas e vídeos também direto do YT para o discord!\n> [clique aqui para entrar no canal de voz](https://discord.gg/${in_.code})!`);
             embed.setColor("#7289DA");
 
-            await interaction.reply({
+            await interaction.editReply({
                 embeds: [embed]
             });
         })

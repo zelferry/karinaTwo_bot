@@ -69,13 +69,13 @@ class Command extends comando {
             let emoji = interaction.guild.emojis.cache.find(emoji => emoji.name === emoginame2);
 
             if(!emoji){
-                interaction.reply({
+                interaction.followUp({
                     content: `\`${emoginame2}\`**não ** e um emoji ddesse servidor!`,
                     ephemeral: true
                 })
                 return {} 
             } else if(emoji.animated === true){
-                interaction.reply({
+                interaction.editReply({
                     content: "✅**|** enviado com sucesso!",
                     ephemeral: true
                 })
@@ -84,7 +84,7 @@ class Command extends comando {
                 })
                 return {}
             } else {
-                interaction.reply({
+                interaction.editReply({
                     content: "✅**|** enviado com sucesso!",
                     ephemeral: true
                 });

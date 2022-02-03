@@ -32,7 +32,7 @@ class Command extends comando {
         let membro2 = interaction.options.getUser("user_2");
 
         if(membro1.id === membro2.id){
-            interaction.reply({
+            interaction.followUp({
                 content: "🚫**|** mencione duas pessoas diferentes",
                 ephemeral: true
             });
@@ -125,7 +125,7 @@ class Command extends comando {
             let amorat = new Discord.MessageAttachment(canvas.toBuffer(), 'chances-image.png');
             let amorEmbed = new Discord.MessageEmbed().setColor('#ffffff').setDescription(""+desc+"\n\n**"+amor+"%** ["+loveLevel+"]").setImage('attachment://chances-image.png');
 
-            interaction.reply({
+            interaction.editReply({
                 embeds: [amorEmbed],
                 files: [amorat]
             })

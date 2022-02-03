@@ -25,9 +25,8 @@ class Command extends comando {
         let user = interaction.options.getUser('user') || interaction.user;
         
         if(user.bot){
-            return interaction.reply({
-                content: "🚫**|** esse usuário e um bot!",
-                ephemeral: true
+            return interaction.editReply({
+                content: "🚫**|** esse usuário e um bot!"
             })
         } else {
             let value = await profile.find(user);

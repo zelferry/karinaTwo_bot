@@ -45,7 +45,7 @@ class Command extends comando {
 
         if(subCOMMAND === "on"){
             if(stats.antiraid){
-                interaction.reply({
+                interaction.followUp({
                     content: "❌**|**  O módulo já está ligado.",
                     ephemeral: true
                 });
@@ -54,7 +54,7 @@ class Command extends comando {
                 configs.setConfig({
                     antiraid: true
                 }, interaction.guild).then((x) => {
-                    interaction.reply({
+                    interaction.editReply({
                         content: "✔️**|** o modulo foi ativado!\n❓**|** o seu servidor esta seguro contra raids"
                     })
                 });
@@ -62,7 +62,7 @@ class Command extends comando {
             }
         } else if(subCOMMAND === "off"){
             if(!stats.antiraid){
-                interaction.reply({
+                interaction.followUp({
                     content: "❌**|** o módulo já está desligado.",
                     ephemeral: true
                 });
@@ -71,7 +71,7 @@ class Command extends comando {
                 configs.setConfig({
                     antiraid: false
                 }, interaction.guild).then((x) => {
-                    interaction.reply({
+                    interaction.editReply({
                         content: "⚠️**|** o módulo foi desativado\n❓**|** o seu servidor esta desprotegido contra raids!"
                     })
                 });

@@ -53,25 +53,12 @@ class Command extends comando {
         const giveawayPrize = interaction.options.getString('prize');
         
         if(!giveawayChannel.isText()) {
-            return interaction.reply({
+            return interaction.editReply({
                 content: ':x:**|** O canal selecionado não é baseado em texto.',
                 ephemeral: true
             });
         }
     
-        // Start the giveaway
-        /*client.giveawaysManager.start(giveawayChannel, {
-            // The giveaway duration
-            duration: ms(giveawayDuration),
-            // The giveaway prize
-            prize: giveawayPrize,
-            // The giveaway winner count
-            winnerCount: giveawayWinnerCount,
-            // Who hosts this giveaway
-            hostedBy: client.config.hostedBy ?  : null,
-            // Messages
-            messages
-        });*/
         this.client.giveawaysManager.start(giveawayChannel, {
         duration: ms(giveawayDuration),
         prize: giveawayPrize,
@@ -105,7 +92,7 @@ class Command extends comando {
     });
 
     
-        interaction.reply(`sorteio iniciado em ${giveawayChannel}!`);
+        interaction.editReply(`sorteio iniciado em ${giveawayChannel}!`);
     
     }
 } 

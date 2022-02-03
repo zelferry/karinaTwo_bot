@@ -14,7 +14,7 @@ class Command extends comando {
             permissions: [...client.defautPermissions],
             scopes: ['bot','applications.commands']
         });
-        await interaction.reply({
+        await interaction.editReply({
             content: `me adicione em seu servidor!\n${link}`
         })
     }

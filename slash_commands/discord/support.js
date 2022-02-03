@@ -42,7 +42,7 @@ class Command extends comando {
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "server"){
-            return interaction.reply({
+            return await interaction.editReply({
                 content: "😁**|** meu servidor de suporte!\nhttps://discord.gg/Xmu7HrH3yy",
                 ephemeral: true
             })
@@ -50,7 +50,7 @@ class Command extends comando {
             let support1 = interaction.options.getString('support_args');
 
             if(support1.length >= 1001){
-                return interaction.reply({
+                return await interaction.followUp({
                     content:"🚫**|** forneça um relatorio de no máximo 1000 caracteres.",
                     ephemeral: true
                 })
@@ -63,7 +63,7 @@ class Command extends comando {
                 
                 KariWebhooks.suport(suport_);
 
-                return interaction.reply({
+                return await interaction.editReply({
                     content: "✅**|** enviado com sucesso!",
                     ephemeral: true
                 })

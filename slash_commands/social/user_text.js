@@ -25,7 +25,7 @@ class Command extends comando {
         let value = await profile.find(interaction.user);
 
         if(!value.vipUser){
-            interaction.reply({
+            interaction.followUp({
                 content: ":x: |apenas usuários **vips** podem alterar os textos personalizados",
                 ephemeral: true
             });
@@ -33,7 +33,7 @@ class Command extends comando {
         } else {
             if(args.length >= 602){
                 let embed = new Discord.MessageEmbed().setTitle('Erro').setDescription("**Textos com +603 caracteres não são permitidos, assim, evitarei bugs.**").setColor("#e0000f")
-                interaction.reply({
+                interaction.followUp({
                     embeds: [embed],
                     ephemeral: true
                 });
@@ -41,7 +41,7 @@ class Command extends comando {
             } else {
                 let embed1 = new Discord.MessageEmbed().addField("Novo usser text:", '```txt\n' + args + '```').setColor("#e0000f");
                 
-                interaction.reply({
+                interaction.editReply({
                     embeds: [embed1]
                 });
                 await profile.setUserText(interaction.user, args);

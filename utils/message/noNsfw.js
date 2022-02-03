@@ -11,8 +11,5 @@ module.exports = (client,interaction) =>{
             value: `${text}.`
         });
 	}
-	interaction.reply({
-        embeds: [embed_2],
-        ephemeral: true
-    });
+	interaction.editReply({ embeds: [embed_2], ephemeral: true });
 }

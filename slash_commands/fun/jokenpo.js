@@ -15,6 +15,7 @@ class Command extends comando {
                     type: 3,
                     name: "value",
                     description: "pedra, papel ou tesoura?",
+                    required: true,
                     choices: [...choices1]
                 }
             ]
@@ -26,49 +27,49 @@ class Command extends comando {
         
         if(data === "pedra"){
             if(rng > 0 && rng <= 34){
-                interaction.reply({
+                interaction.editReply({
                     content: ":rock:**|** pedra!\n🔹️**|** empatamos!"
                 })
                 return {}
             } else if(rng > 34 && rng <= 67){
-                interaction.reply({
+                interaction.editReply({
                     content: ":newspaper:**|** papel!\n🔹️**|** você perdeu!"
                 })
                 return {}
             } else if(rng > 67 && rng <= 100){
-                interaction.reply({
+                interaction.editReply({
                     content: "✂️**|** tesoura!\n🔹️**|** eu perdi :c"
                 })
                 return {}
             }
         } else if(data === "papel") {
             if(rng > 0 && rng <= 34){
-                interaction.reply({
+                interaction.editReply({
                     content: ":newspaper:**|** papel!\n🔹️**|** empatamos!"
                 })
                 return {}
             } else if(rng > 34 && rng <= 67){
-                interaction.reply({
+                interaction.editReply({
                     content: "✂️**|** tesoura!\n🔹️**|** você perdeu!"
                 })
                 return {}
             } else if(rng > 67 && rng <= 100){
-                interaction.reply({
+                interaction.editReply({
                     content: ":rock:**|** pedra!\n🔹️**|** eu perdi!"
                 })
                 return {}
             }
         } else if(data === "tesoura") {
             if(rng > 0 && rng <= 34){
-                interaction.reply({
+                interaction.editReply({
                     content: "✂️**|** tesoura!\n🔹️**|** empatamos!"
                 })
             } else if(rng > 34 && rng <= 67){
-                interaction.reply({
+                interaction.editReply({
                     content: ":rock:**|** pedra!\n🔹️**|** você perdeu!"
                 })
             } else if(rng > 67 && rng <= 100){
-                interaction.reply({
+                interaction.editReply({
                     content: ":newspaper:**|** papel!\n🔹️**|** eu perdi!"
                 })
             }

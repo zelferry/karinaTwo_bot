@@ -42,13 +42,12 @@ class Command extends comando {
         let b = parseInt(hex.substring(4, 6), 16);
 
         if(!validate(hex)){
-            interaction.reply({
-                content: "❌**|** isto não e uma cor HEX válida!",
-                ephemeral: true
+            interaction.editReply({
+                content: "❌**|** isto não e uma cor HEX válida!"
             })
             return {}
         } else {
-            interaction.reply({embeds:[new Discord.MessageEmbed().setColor(hex).setThumbnail(`http://placehold.it/500/${hex}/${hex}`).addField(`**HEX**: #${hex}`, `**RGB**: rgb(${r},${g},${b})`).setTimestamp()]});
+            interaction.editReply({embeds:[new Discord.MessageEmbed().setColor(hex).setThumbnail(`http://placehold.it/500/${hex}/${hex}`).addField(`**HEX**: #${hex}`, `**RGB**: rgb(${r},${g},${b})`).setTimestamp()]});
             return {}
         }
     }

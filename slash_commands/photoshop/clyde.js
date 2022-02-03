@@ -25,7 +25,7 @@ class Command extends comando {
         let image = await canvacord.Canvas.clyde(text);
         let attachment = new Discord.MessageAttachment(image, `${this.name}.png`);
         
-        interaction.reply({
+        interaction.editReply({
             files: [attachment]
         });
     }

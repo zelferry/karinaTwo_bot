@@ -38,11 +38,12 @@ class Command extends comando {
         const args1 = interaction.options.getString('question');
 
         if(!args1){
-            await interaction.reply({
+            await interaction.followUp({
                 content: "🚫**|** insira uma pergunta valida!"
             })
+            return {}
         } else {
-            await interaction.reply({
+            await interaction.editReply({
                 embeds:[
                     {
                         title: "fleur",

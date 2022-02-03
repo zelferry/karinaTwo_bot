@@ -19,7 +19,7 @@ class Command extends comando {
 
         let embed = new Discord.MessageEmbed().setImage(data).setColor("#7B68EE").setFooter(`${number+1} / ${database_image.length}`);
 
-        interaction.reply({
+        interaction.editReply({
             embeds: [embed]
         })
     }

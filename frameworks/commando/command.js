@@ -5,7 +5,8 @@ class Command {
         this.description = options.description ?? 'sem descrição';
         this.category = options.category;
         this.usage = options.usage;
-        this.nsfw =  options.nsfw ?? false
+        this.nsfw =  options.nsfw ?? false;
+        this.deferReply = options.deferReply ?? false
         this.permissions = {
             bot: options.permissions?.bot ?? [],
             user: options.permissions?.user ?? []

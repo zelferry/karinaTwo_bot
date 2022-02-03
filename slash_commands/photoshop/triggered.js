@@ -21,7 +21,6 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
-        await interaction.deferReply();
        // console.log(interaction)
         let url = (interaction.options.getUser('user') ?? interaction.user).displayAvatarURL({ dynamic: false, format: 'png', size: 1024 });
         let image = await canvacord.Canvas.trigger(url);

@@ -11,6 +11,7 @@ class Command extends comando {
                 user: ["BAN_MEMBERS"],
                 bot: ["BAN_MEMBERS"]
             },
+            deferReply: true,
             usage: "<usuário> [motivo]",
             commandOptions: [
                 {
@@ -33,25 +34,22 @@ class Command extends comando {
         let reason = interaction.options.getString('reason') || "...não sei ._.";
 
         if(user.id === interaction.user.id){
-            interaction.reply({
-                content: "❌**|** você não pode se banir",
-                ephemeral: true
+            interaction.followUp({
+                content: "❌**|** você não pode se banir"
             });
             return {}
         } else if(user.id === this.client.user.id){
-            interaction.reply({
-                content: "❌**|** você não pode me banir\n😭**|** você me odeia? :(",
-                ephemeral: true
+            interaction.followUp({
+                content: "❌**|** você não pode me banir\n😭**|** você me odeia? :("
             })
             return {}
         } else if(!user.bannable){
-            interaction.reply({
+            interaction.followUp({
                 content: "❌**|** você não pode punir o membro, pois esse membro não é **Banivel**",
-                ephemeral: true
             })
             return {}
         } else {
-            interaction.reply({
+            interaction.editReply({
                 content: `😡| o usuário **${interaction.options.getUser('user').tag}** foi banido com sucesso por causa de: **${reason}**`
             });
             user.ban({

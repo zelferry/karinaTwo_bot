@@ -34,7 +34,7 @@ class Command extends comando {
         let image = await canvacord.Canvas.fuse(user_1, user_2);
         let attachment = new Discord.MessageAttachment(image, `${this.name}.png`);
         
-        interaction.reply({
+        interaction.editReply({
             files: [attachment]
         });
     }

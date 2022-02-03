@@ -35,7 +35,7 @@ class Command extends comando {
             let embed = new Discord.MessageEmbed() 
 
             if(!command2){
-                return await interaction.reply({
+                return await interaction.followUp({
                     content: `🚫**|** o comando ${commandNAME} não existe ou esta com defeito :p`,
                     ephemeral: true
                 });
@@ -53,7 +53,7 @@ class Command extends comando {
                 embed.addField("como usar?",`\`${usage1}\``);
                 embed.addField("permissões necessárias:",`${permissions1}`);
                 embed.addField("sub comandos:", `${subCommands1}`)
-                return await interaction.reply({
+                return await interaction.editReply({
                     embeds: [embed]
                 })
             }

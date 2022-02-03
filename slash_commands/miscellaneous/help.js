@@ -57,7 +57,7 @@ class Command extends comando {
 
             let uptime = `${days.toFixed()}D ${hours.toFixed()}H ${minutes.toFixed()}M ${seconds.toFixed()}S`;
 
-            interaction.reply({
+            interaction.editReply({
                 embeds: [
                     {
                         title: "karinaTwo",
@@ -91,7 +91,7 @@ class Command extends comando {
             });
             return {}
         } else if(subCOMMAND === "devs"){
-            interaction.reply({
+            interaction.editReply({
                 embeds:[
                     {
                         description: "meus desenvolvedores\ngrassas a eles, eu existo no discord!!",
@@ -170,7 +170,7 @@ class Command extends comando {
                 }
             };
             
-            interaction.reply({embeds:[embed]})
+            interaction.editReply({embeds:[embed]})
             return {}
         }
     }

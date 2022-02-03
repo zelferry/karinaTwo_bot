@@ -43,17 +43,17 @@ class Command extends comando {
 
 
         if(user === interaction.user){
-            return interaction.reply({
+            return interaction.followUp({
                 content: "🚫**|** você não pode pagar você mesmo!",
                 ephemeral: true
             })
         } else if(value_2.coins <= amount){
-            return interaction.reply({
+            return interaction.followUp({
                 content: "🚫**|** você não tem PANTHER-COINS o suficientes!",
                 ephemeral: true
             })
         } else if(amount <= 0){
-            return interaction.reply({
+            return interaction.followUp({
                 content: "🚫**|** numeros neativos não comtam!",
                 ephemeral: true
             })
@@ -62,7 +62,7 @@ class Command extends comando {
             let cancelbutton = new Discord.MessageButton().setStyle("DANGER").setLabel("cancelar").setCustomId("cancel");
             let row = new Discord.MessageActionRow().addComponents(paybutton,cancelbutton);
 
-            await interaction.reply({
+            await interaction.followUp({
                 content: `💸**|** você deseja mesmo transferir ${amount} panther-coins para **${user.username}**? \na equipe da karinaTwo **não se responsabiliza** pelos panther-coins perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \né proibido o comércio de conteúdo NSFW(+18) em troca de panther-coins!`,
                 ephemeral: true,
                 components: [row]
@@ -87,7 +87,7 @@ class Command extends comando {
                     if(message1){
                         interaction.followUp({
                             content:"👍**|** e a MENSAGEM foi enviada com sucesso!",
-                            ephemeral: true,
+                            ephemeral: true
                         })
                         user.send({
                             embeds: [new Discord.MessageEmbed().setDescription(`o ***${interaction.user.tag}*** te deu **${amount}** panther-coins!`).setColor("#be41f4").addField("uma MENSAGEM ele:",`${message1}`)]

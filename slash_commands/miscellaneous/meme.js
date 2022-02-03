@@ -44,14 +44,14 @@ class Command extends comando {
 
             let embed = new Discord.MessageEmbed().setImage(output1).setColor("#7B68EE").setFooter(`${number1+1} / ${data1.length}`);
             
-            interaction.reply({
+            interaction.editReply({
                 embeds: [embed]
             });
             return {}
         } else if(subCOMMAND === "knuckles"){
             let data = this.client.contents.knuckles[Math.floor(Math.random() * this.client.contents.knuckles.length)];
 
-            interaction.reply({
+            interaction.editReply({
                 embeds:[
                     {
                         title: "sera que o Knuckles aprovou seu meme?",

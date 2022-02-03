@@ -7,6 +7,7 @@ class Command extends comando {
             name: "say",
             description: "[ 😂diversão ] faça eu falar alguma coisa!",
             category: "fun",
+            deferReply: true,
             usage: "<texto> [canal]",
             commandOptions: [
                 {
@@ -29,9 +30,9 @@ class Command extends comando {
         let channel = interaction.options.getChannel('channel') || interaction.channel;
 
         if(args.length >= 1500){
-            interaction.reply({
+            interaction.followUp({
                 content: "❌**|** MUITOS CARACTERES!\n⭕**|** o máximo de caracteres e de `1500` CARACTERES!",
-                ephemeral: true
+                //ephemeral: true
             })
             return {}
         } else {
@@ -39,10 +40,11 @@ class Command extends comando {
                 content: `${args}\n\n🦊 MENSAGEM enviada pelo(a) <@${interaction.user.id}>`
             });
             
-            interaction.reply({
-                content: "ENVIADO COM SUCESSO!",
-                ephemeral: true
+            interaction.editReply({
+                content: "ENVIADO COM SUCESSO!"
+                //ephemeral: true
             });
+            
             return {}
         }
     }

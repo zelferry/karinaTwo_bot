@@ -13,7 +13,7 @@ class Command extends comando {
     async interactionRun(interaction){
         let output = smileys.cat();
 
-        interaction.reply({
+        interaction.editReply({
             content: `${output}`
         })
     }

@@ -3,7 +3,7 @@ const jimp = require("jimp");
 const Discord = require("discord.js");
 
 module.exports = async (interaction, options) => {
-    await interaction.deferReply()
+    //await interaction.deferReply()
 	//message.channel.startTyping();
 
 	let avatar = await jimp.read(options.avatarURL);

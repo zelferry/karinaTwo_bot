@@ -35,9 +35,8 @@ class Command extends comando {
         let channel = interaction.options.getChannel('channel') || interaction.channel;
 
         if(!channel.isText()){
-            return interaction.reply({
-                content: `:x:**|** *${channel.name}* não e um canal de texto!`,
-                ephemeral: true
+            return interaction.editReply({
+                content: `:x:**|** *${channel.name}* não e um canal de texto!`
             })
         }
         channel.bulkDelete(number, true).then((x) => {
@@ -45,9 +44,8 @@ class Command extends comando {
             let STRING = `\u200B`
             if(cout_result > 0) STRING = `porém, **${cout_result}** massagens não foram deletadas por terem mais de 2 semanas`;
 
-            interaction.reply({
-                content: `**${x.size} mensagens** limpas em *${channel.name}*!\n${STRING}`,
-                ephemeral: true
+            interaction.editReply({
+                content: `**${x.size} mensagens** limpas em *${channel.name}*!\n${STRING}`
             })
         })
     }

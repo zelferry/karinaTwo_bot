@@ -58,7 +58,7 @@ class Command extends comando {
         let json = await this.client.dist.modules.yiff[`${data}`]();
         
         let embed = new Discord.MessageEmbed().setImage(json.yiffMediaURL).setColor("#7B68EE").setDescription(`artista(s): ${json.artists.length > 0 ? json.artists.map((c) => `\`${c}\``).join(", ") : "não tem"}`);
-        interaction.reply({ embeds: [embed] })
+        interaction.editReply({ embeds: [embed] })
     }
 } 
 module.exports = Command 

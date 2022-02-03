@@ -34,7 +34,7 @@ module.exports = {
         if (command.MemberPerm.includes('USE_VAD')) permissions.push(`\`Usar detecção de voz\``);
         if (command.MemberPerm.includes('PRIORITY_SPEAKER')) permissions.push(`\`Voz Prioritária\``);
 
-        return interaction.reply({
+        return interaction.followUp({
             content: `❌**|** você não pode executar esse comandos, pois você precisa das permissões de ${permissions.join(", ")}.`
         })
     },
@@ -72,7 +72,7 @@ module.exports = {
         if (command.ClientPerm.includes('USE_VAD')) permissions.push(`\`Usar detecção de voz\``);
         if (command.ClientPerm.includes('PRIORITY_SPEAKER')) permissions.push(`\`Voz Prioritária\``);
 
-        return interaction.reply({
+        return interaction.followUp({
             content: `❌**|** eu não posso executar esse comandos, pois eu preciso das permissões de ${permissions.join(", ")} nesse servidor.`
         })
     }

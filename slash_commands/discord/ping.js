@@ -11,7 +11,7 @@ class Command extends comando {
     async interactionRun(interaction){
        // awa""it interaction.deferReply();
        // console.log(interaction.guild)
-        await interaction.reply({
+        await interaction.editReply({
             content: `:ping_pong: **| Pong!** \n:watch: **| Gateway Ping:** \`${Math.round(this.client.ws.ping)}ms\` \n:zap: **| API Ping:** \`${Date.now() - interaction.createdTimestamp}ms\` \n🐱 **| cluster:** \`${Number(this.client.cluster.id) + 1}/${this.client.cluster.count}\``
         });
     }

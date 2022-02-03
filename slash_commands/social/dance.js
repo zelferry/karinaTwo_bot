@@ -28,7 +28,7 @@ class Command extends comando {
         }) ?? null
         let embed = new Discord.MessageEmbed().setTitle(`${this.name}`).setColor('#000000').setDescription(`<@${interaction.user.id}> e <@${user.id}> estão dancando :D`).setImage(`${gif}`).setAuthor({ name: `${user.tag}`, iconURL: `${avatar}`});
         
-        interaction.reply({
+        interaction.editReply({
             embeds: [ embed ]
         })
     }

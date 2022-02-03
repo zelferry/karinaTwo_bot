@@ -11,6 +11,7 @@ class Command extends comando {
                 user: ["MANAGE_CHANNELS"],
                 bot: ["MANAGE_CHANNELS"]
             },
+            deferReply: true,
             usage: "<tempo> [canal]",
             commandOptions: [
                 {
@@ -35,19 +36,18 @@ class Command extends comando {
         let timer = interaction.options.getNumber("time");
 
         if(!channel.isText()){
-            interaction.reply({
-                content: `:x:**|** ***${channel.name}*** não e um canal de texto!`,
-                ephemeral: true
+            interaction.followUp({
+                content: `:x:**|** ***${channel.name}*** não e um canal de texto!`
             })
         } else {
             channel.edit({
                 rateLimitPerUser: timer
             });
-            interaction.reply({
-                content: `🕥**|** o tempo do Slowmode foi alterado com sucesso para **${timer} segundos**!`,
-                ephemeral: true
+            interaction.editReply({
+                content: `🕥**|** o tempo do Slowmode foi alterado com sucesso para **${timer} segundos**!`
             });
-            return {}        }
+            return {}
+        }
     } 
 }
 module.exports = Command 

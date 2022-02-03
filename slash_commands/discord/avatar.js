@@ -28,7 +28,7 @@ class Command extends comando {
         
         let embed = new Discord.MessageEmbed().setColor(`#4cd8b2`).setTitle(`Avatar de ${user.username}`).setImage(avatar);
         
-        await interaction.reply({
+        await interaction.editReply({
             embeds: [embed],
             components: [row]
         });

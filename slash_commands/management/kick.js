@@ -11,6 +11,7 @@ class Command extends comando {
                 user: ["KICK_MEMBERS"],
                 bot: ["KICK_MEMBERS"]
             },
+            deferReply: true,
             usage: "<usuário> [motivo]",
             commandOptions: [
                 {
@@ -34,25 +35,22 @@ class Command extends comando {
         let reason = interaction.options.getString('reason') || "...não sei ._.";
 
         if(user.id === interaction.user.id){
-            interaction.reply({
+            interaction.followUp({
                 content: "❌**|** você não pode se expulsar",
-                ephemeral: true
             });
             return {}
         } else if(user.id === this.client.user.id){
-            interaction.reply({
-                content: "❌**|** você não pode me expulsar\n😭**|** você me odeia? :(",
-                ephemeral: true
+            interaction.followUp({
+                content: "❌**|** você não pode me expulsar\n😭**|** você me odeia? :("
             })
             return {}
         } else if(!user.kickable){
-            interaction.reply({
-                content: "❌**|** você não pode punir o membro, pois esse membro não é **expulsavel**",
-                ephemeral: true
+            interaction.followUp({
+                content: "❌**|** você não pode punir o membro, pois esse membro não é **expulsavel**"
             })
             return {}
         } else {
-            interaction.reply({
+            interaction.editReply({
                 content: `😡| o usuário **${interaction.options.getUser('user').tag}** foi expulso com sucesso por causa de: **${reason}**`
             });
             user.kick(reason)

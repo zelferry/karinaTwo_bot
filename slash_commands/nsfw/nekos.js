@@ -43,14 +43,13 @@ class Command extends comando {
             let url1 = await this.client.getContainer(`api/nekos/sfw/${data1}`);
 
             if(url1.send === false){
-                interaction.reply({
-                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
-                    ephemeral: true
+                interaction.followUp({
+                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c"
                 })
                 return {}
             } else {
                 let embed_1 = new Discord.MessageEmbed().setImage(url1.url).setColor("#FA8072");
-                interaction.reply({
+                interaction.editReply({
                     embeds: [embed_1]
                 })
                 return {}
@@ -63,14 +62,13 @@ class Command extends comando {
             let url2 = await this.client.getContainer(`api/nekos/nsfw/${data2}`)
 
             if(url2.send === false){
-               interaction.reply({
-                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
-                    ephemeral: true
+               interaction.followUp({
+                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c"
                 })
                 return {}
             } else {
                 let embed_2 = new Discord.MessageEmbed().setImage(url2.url).setColor("#FA8072");
-                interaction.reply({
+                interaction.editReply({
                     embeds: [embed_2]
                 })
                 return {}

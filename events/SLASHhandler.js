@@ -19,9 +19,8 @@ exports.start = async(client,clusterID,ipc,interaction) => {
     //client.extra.utils.permissions
 //	await interaction.deferReply()
 	try {
-        //console.log(interaction)
-       // await interaction.deferReply();
-        //nteraction.deferReply();
+        await interaction.deferReply({ ephemeral:  client.commands2.get(interaction.commandName.toLowerCase()).deferReply}).catch(() => {});
+        
         let command =  client.commands2.get(interaction.commandName.toLowerCase());
         let vailar = await bansUsers.seekAndValidateBan(interaction.user);
         let config__ = await configs.getConfig(interaction.guild, true);
@@ -35,12 +34,12 @@ exports.start = async(client,clusterID,ipc,interaction) => {
         }
 
         if (command.nsfw && !interaction.channel.nsfw) return client.extra.utils.message.noNsfw(client, interaction);
-        if(command.nsfw && config__.antiNsfw) return interaction.reply({
+        if(command.nsfw && config__.antiNsfw) return interaction.followUp({
             content: "🚫**|** você não pode utilizar comandos **nsfw** enquanto o módulo **anti-nsfw/anti-gore** estiver ativado",
             ephemeral: true
         })
 
-        if(vailar.ready) return interaction.reply({
+        if(vailar.ready) return interaction.followUp({
             ephemeral: true,
             embeds: [
                 {
@@ -78,7 +77,7 @@ exports.start = async(client,clusterID,ipc,interaction) => {
         
 		console.log(`${error.stack}\n`);
     
-		await interaction.editReply({
+		await interaction.followUp({
             content:"🚫***|*** ouve um erro \"estranho\" ao executar o comando\ndesculpe a inconveniência :(",
             ephemeral: true
         })
