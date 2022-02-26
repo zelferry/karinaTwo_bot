@@ -10,6 +10,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let link = this.client.generateInvite({
             permissions: [...client.defautPermissions],
             scopes: ['bot','applications.commands']

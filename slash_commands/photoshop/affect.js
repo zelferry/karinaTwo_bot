@@ -21,6 +21,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let url = (interaction.options.getUser('user') ?? interaction.user).displayAvatarURL({ dynamic: true, format: 'png', size: 1024 });
         let image = await canvacord.Canvas.affect(url);
         let attachment = new Discord.MessageAttachment(image, `${this.name}.png`);

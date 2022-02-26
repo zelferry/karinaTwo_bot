@@ -32,6 +32,7 @@ class Command extends comando {
         }
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let tags1 = interaction.options.getString('tags').trim().split(/ +/g);
         //interaction.deferReply()
 

@@ -33,8 +33,14 @@ exports.start = async(client,clusterID,ipc,message) => {
         let config__ = await configs.getConfig(message.guild, true);
         if(config__.error !== "404"){
             if(config__.antiNsfw){
+                if(!message.attachments || message.author.bot == true || message.channel.nsfw == true) return;
                 message.attachments.map(async(attachment) => {
-                    if(await isnsfw(attachment.url) == true){ console.log("pegou") }
+                    if(await isnsfw(attachment.url) == true){
+                        if(message){
+                            message.delete();
+                            message.channel.send({embeds: [new Discord.MessageEmbed().setTitle("sem nsfw").setDescription(`${message.author} não envie **nsfw** foda de canais nsfw`).setColor("DARK_RED")]})
+                        }
+                    }
                 })
             } else {
                 return;

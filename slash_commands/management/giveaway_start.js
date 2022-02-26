@@ -40,6 +40,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         /*if(!interaction.member.permissions.has('MANAGE_MESSAGES') && !interaction.member.roles.cache.some((r) => r.name === "Giveaways")){
             return interaction.reply({
                 content: ':x:**|** Você precisa ter permissão para gerenciar mensagens para iniciar brindes.',

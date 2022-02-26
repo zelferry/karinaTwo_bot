@@ -35,6 +35,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "generate"){
@@ -42,7 +43,7 @@ class Command extends comando {
             let number1 = mathRandom(data1.length);
             let output1 = data1[number1]
 
-            let embed = new Discord.MessageEmbed().setImage(output1).setColor("#7B68EE").setFooter(`${number1+1} / ${data1.length}`);
+            let embed = new Discord.MessageEmbed().setImage(output1).setColor("#7B68EE").setFooter({ text:`${number1+1} / ${data1.length}` });
             
             interaction.editReply({
                 embeds: [embed]

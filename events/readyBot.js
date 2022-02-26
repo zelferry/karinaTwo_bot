@@ -38,10 +38,10 @@ function status() {
 	let clusterID = client.cluster.id;
     let status = clientConfig.status;
     status = status.replace("!!{version}!!", `v${require('../package.json').version}`);
-       /* client.user.setActivity(`${status} | cluster[${clusterID}]`, {
+       client.user.setActivity(`${status} | cluster[${clusterID}]`, {
             type: "WATCHING",
             status:"idle"
-        });*/
+        });
 }
 status();
 setInterval(status, 5000);

@@ -15,6 +15,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let value = await economydb.fech(interaction.user);
 
         let pescaresult = Math.floor(Math.random() * 49) + 1;

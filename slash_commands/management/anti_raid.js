@@ -10,6 +10,7 @@ class Command extends comando {
             description: "configurar o módulo ANTIRAID",
             category: "management",
             usage: "<sub comando>",
+            deferReply: true,
             permissions: {
                 user: ["ADMINISTRATOR"]
             },
@@ -38,6 +39,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
         let stats = await configs.getConfig(interaction.guild, true);
@@ -46,8 +48,7 @@ class Command extends comando {
         if(subCOMMAND === "on"){
             if(stats.antiraid){
                 interaction.followUp({
-                    content: "❌**|**  O módulo já está ligado.",
-                    ephemeral: true
+                    content: "❌**|**  O módulo já está ligado."
                 });
                 return {}
             } else {
@@ -63,8 +64,7 @@ class Command extends comando {
         } else if(subCOMMAND === "off"){
             if(!stats.antiraid){
                 interaction.followUp({
-                    content: "❌**|** o módulo já está desligado.",
-                    ephemeral: true
+                    content: "❌**|** o módulo já está desligado."
                 });
                 return {}
             } else {

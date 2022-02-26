@@ -32,6 +32,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let channel =  interaction.options.getChannel("channel") || interaction.channel;
         let timer = interaction.options.getNumber("time");
 

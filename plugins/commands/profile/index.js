@@ -30,7 +30,7 @@ module.exports = async (interaction, options) => {
 	model.print(font20, 9, 405, options.aboutme, 690);
 
 	background.composite(model, 0, 0);
-	background.getBuffer(jimp.MIME_PNG, (err, buffer) => {
+	background.getBuffer(jimp.MIME_PNG, async(err, buffer) => {
     	if (err) {
     		//message.channel.stopTyping(true);
     		return interaction.editReply({

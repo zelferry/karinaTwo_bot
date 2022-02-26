@@ -27,7 +27,8 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
-        console.log(interaction)
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
+        //console.log(interaction)
         let user_1 = interaction.options.getMember('user_1').displayAvatarURL({ dynamic: false, format: 'png' });
         let user_2 = interaction.options.getMember('user_2').displayAvatarURL({ dynamic: false, format: 'png' });
         

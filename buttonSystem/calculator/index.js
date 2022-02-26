@@ -63,11 +63,11 @@ async function calculator(interaction, options = []) {
 
 		const emb = new Discord.MessageEmbed()
 			.setColor(options.embedColor || 0x075fff)
-			.setFooter(foot)
+			.setFooter({text: foot})
 			.setDescription('```0```')
 
 		if (interaction.commandId) {
-			await interaction.reply({
+			await interaction.editReply({
 					embeds: [emb],
 					components: row
 				})
@@ -78,7 +78,7 @@ async function calculator(interaction, options = []) {
 					let isWrong = false
 					let time = 600000
 					let value = ''
-					let emb1 = new Discord.MessageEmbed().setFooter(foot).setColor(options.embedColor || 0x075fff)
+					let emb1 = new Discord.MessageEmbed().setFooter({text: foot}).setColor(options.embedColor || 0x075fff)
 
 					function createCollector(val, result = false) {
 						const filter = (button) =>
@@ -157,7 +157,7 @@ async function calculator(interaction, options = []) {
 					let time = 600000
 					let value = ''
 					let emb1 = new Discord.MessageEmbed()
-						.setFooter(foot)
+						.setFooter({text: foot})
 						.setColor(options.embedColor || 0x075fff)
 
 					function createCollector(val, result = false) {

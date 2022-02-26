@@ -54,6 +54,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let data = interaction.options.getString('type_image');
         let json = await this.client.dist.modules.yiff[`${data}`]();
         

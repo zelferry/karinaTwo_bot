@@ -21,6 +21,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let args = interaction.options.getString('args');
         let value = await profile.find(interaction.user);
 

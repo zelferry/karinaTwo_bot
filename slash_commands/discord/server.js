@@ -24,6 +24,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "info"){
@@ -40,10 +41,3 @@ class Command extends comando {
     }
 } 
 module.exports = Command 
-/*
-    ,
-                {
-                    name: "support",
-                    description: "[ 📲discord + 🤪miscelânea] obter o link do servidor de suporte",
-                    type: 1
-                }*/

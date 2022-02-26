@@ -35,6 +35,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let hex = interaction.options.getString('color');
 
         let r = parseInt(hex.substring(0, 2), 16);

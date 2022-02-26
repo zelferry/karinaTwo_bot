@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const Cluster = require('discord-hybrid-sharding');
+const { RequestManager } = require("discord-cross-ratelimit");
 
 class baseClient extends Discord.Client {
     constructor(opts){
@@ -9,6 +10,7 @@ class baseClient extends Discord.Client {
             ...opts
         })
         this.cluster = new Cluster.Client(this);
+        this.rest = new RequestManager(this, this.cluster);
     }
     /**
      * @private

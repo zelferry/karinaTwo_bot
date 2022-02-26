@@ -14,10 +14,11 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let number = mathRandom(database_image.length)
         let data = database_image[number];
 
-        let embed = new Discord.MessageEmbed().setImage(data).setColor("#7B68EE").setFooter(`${number+1} / ${database_image.length}`);
+        let embed = new Discord.MessageEmbed().setImage(data).setColor("#7B68EE").setFooter({text:`${number+1} / ${database_image.length}`});
 
         interaction.editReply({
             embeds: [embed]

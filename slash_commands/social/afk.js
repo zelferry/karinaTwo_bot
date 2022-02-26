@@ -21,6 +21,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let reason = interaction.options.getString('reason');
 
         let value = await afk.find(interaction.user, true);

@@ -22,6 +22,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let user = interaction.options.getUser('user') || interaction.user;
         
         if(user.bot){

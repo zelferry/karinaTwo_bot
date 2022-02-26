@@ -22,6 +22,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let data = interaction.options.getString("value");
         let rng = Math.floor((Math.random() * 100) + 1);
         

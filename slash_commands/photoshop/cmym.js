@@ -21,6 +21,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let text = interaction.options.getString('text')
         let image = await canvacord.Canvas.changemymind(text);
         let attachment = new Discord.MessageAttachment(image, `${this.name}.png`);

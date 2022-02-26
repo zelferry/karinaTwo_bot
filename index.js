@@ -12,10 +12,10 @@ const dbOptions = {
 let { Intents } = Discord
 let client = (global.client = new client_bot.client({
     bot:{
-        messageCacheLifetime: 60,
+       /* messageCacheLifetime: 60,
         messageCacheMaxSize: 10,
         restTimeOffset: 0,
-        restWsBridgetimeout: 100,
+        restWsBridgetimeout: 100,*/
         intents:[
             Intents.FLAGS.GUILDS,
             Intents.FLAGS.GUILD_VOICE_STATES,
@@ -30,7 +30,7 @@ let client = (global.client = new client_bot.client({
         ], 
         allowedMentions: {
             parse: ["users","roles"],
-            repliedUser: true
+            repliedUser: false
         },
         partials: ["MESSAGE", "CHANNEL", "REACTION"]
     },

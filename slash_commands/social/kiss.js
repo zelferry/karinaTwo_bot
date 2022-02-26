@@ -21,6 +21,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let user = interaction.options.getUser("user");
         let gif = social.kiss();
         let avatar = user.displayAvatarURL({

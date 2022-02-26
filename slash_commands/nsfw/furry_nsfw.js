@@ -50,13 +50,14 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "nsfw"){
             let number1 = mathRandom(data_1.length);
             let data1 = data_1[number1];
             
-            let embed_1 = new Discord.MessageEmbed().setImage(data1).setColor("#7B68EE").setFooter(`${number1 + 1} / ${data_1.length}`);
+            let embed_1 = new Discord.MessageEmbed().setImage(data1).setColor("#7B68EE").setFooter({ text:`${number1 + 1} / ${data_1.length}` });
 
             interaction.editReply({
                 embeds: [embed_1]
@@ -66,7 +67,7 @@ class Command extends comando {
             let number2 = mathRandom(data_2.length);
             let data2 = data_2[number2];
 
-            let embed_2 = new Discord.MessageEmbed().setImage(data2).setColor("#7B68EE").setFooter(`${number2 + 1} / ${data_2.length}`);
+            let embed_2 = new Discord.MessageEmbed().setImage(data2).setColor("#7B68EE").setFooter({ text:`${number2 + 1} / ${data_2.length}` });
 
             interaction.editReply({
                 embeds: [embed_2]
@@ -76,7 +77,7 @@ class Command extends comando {
             let number3 = mathRandom(data_3.length);
             let data3 = data_3[number3];
 
-            let embed_3 = new Discord.MessageEmbed().setImage(data3).setColor("#7B68EE").setFooter(`${number3 + 1} / ${data_3.length}`);
+            let embed_3 = new Discord.MessageEmbed().setImage(data3).setColor("#7B68EE").setFooter({ text:`${number3 + 1} / ${data_3.length}` });
 
             interaction.editReply({
                 embeds: [embed_3]

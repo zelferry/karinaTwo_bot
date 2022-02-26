@@ -5,8 +5,8 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "avatar",
-            description: "[ 📲discord ] sabe aquele avatar lindo que você viu? veja ela em em seu eatado FULL!",
-            category: "discord",
+            description: "[ ❓utilitários ] sabe aquele avatar lindo que você viu? veja ela em em seu eatado FULL!",
+            category: "utility",
             usage: "[usuário]",
             commandOptions: [
                 {
@@ -19,6 +19,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let user = interaction.options.getUser('user') || interaction.user;
         let avatar = user.avatarURL({ dynamic: true, format: "png", size: 1024 });
 

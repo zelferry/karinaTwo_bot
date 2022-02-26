@@ -9,6 +9,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
        // awa""it interaction.deferReply();
        // console.log(interaction.guild)
         await interaction.editReply({

@@ -39,12 +39,12 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "server"){
             return await interaction.editReply({
-                content: "😁**|** meu servidor de suporte!\nhttps://discord.gg/Xmu7HrH3yy",
-                ephemeral: true
+                content: "😁**|** meu servidor de suporte!\nhttps://discord.gg/Xmu7HrH3yy"
             })
         } else if(subCOMMAND === "send"){
             let support1 = interaction.options.getString('support_args');
@@ -64,8 +64,7 @@ class Command extends comando {
                 KariWebhooks.suport(suport_);
 
                 return await interaction.editReply({
-                    content: "✅**|** enviado com sucesso!",
-                    ephemeral: true
+                    content: "✅**|** enviado com sucesso!"
                 })
             }
         }

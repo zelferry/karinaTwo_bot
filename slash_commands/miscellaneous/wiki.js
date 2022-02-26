@@ -26,6 +26,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         const args1 = interaction.options.getString('args').split(" ");
         const language = interaction.options.getString('language') ?? "pt";
     
@@ -44,7 +45,7 @@ class Command extends comando {
         let button_ = new Discord.MessageButton().setStyle('LINK').setURL(url ? url:"https://pt.wikipedia.org/").setLabel('ver mais na web') 
         if(url == null) button_.setDisabled();
 
-        let embed = new Discord.MessageEmbed().setColor(`#00b140`).setTitle(title).setURL(url).setThumbnail(thumbnail).setDescription(text).setFooter("Powered by Wikipedia", "https://i.ibb.co/VWvCzg1/wikipedia.png");
+        let embed = new Discord.MessageEmbed().setColor(`#00b140`).setTitle(title).setURL(url).setThumbnail(thumbnail).setDescription(text).setFooter({text:"Powered by Wikipedia", iconURL: "https://i.ibb.co/VWvCzg1/wikipedia.png"});
         
         let row = new Discord.MessageActionRow().addComponents(button_);
         

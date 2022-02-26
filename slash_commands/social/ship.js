@@ -28,6 +28,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let membro1 = interaction.options.getUser("user_1");
         let membro2 = interaction.options.getUser("user_2");
 

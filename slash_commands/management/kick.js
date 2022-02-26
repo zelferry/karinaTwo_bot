@@ -30,6 +30,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let user = interaction.guild.members.cache.get(interaction.options.getUser('user').id)
         //onsole.log(user.kickable)
         let reason = interaction.options.getString('reason') || "...não sei ._.";

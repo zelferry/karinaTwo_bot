@@ -33,6 +33,7 @@ class Command extends comando {
         ]
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let data = interaction.options.getString("side");
         let value = await economydb.fech(interaction.user);
         let array = this.coinflip_system[Math.floor(Math.random() * this.coinflip_system.length)];

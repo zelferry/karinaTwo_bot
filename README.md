@@ -25,8 +25,8 @@
 
 
 <p align="center">
-<a href="https://karinaTwo.zelferry.repl.co">
-  <img src="https://img.shields.io/badge/website-karinaTwo.zelferry.repl.co-9cf" alt="website" />
+<a href="https://karinaTwo.repl.co">
+  <img src="https://img.shields.io/badge/website-karinaTwo.repl.co-9cf" alt="website" />
   </a>
 <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/zelferry/karinaTwo_bot">
 <img alt="GitHub repo file count" src="https://img.shields.io/github/directory-file-count/zelferry/karinaTwo_bot">
@@ -43,7 +43,7 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
 
 ## 🔋 estrutura
 
- ⚠️| a karinaTwo usa o **node v16** para poder fazer.... quase que tudo+
+ ⚠️| a karinaTwo usa o **node v16** para poder fazer.... quase que tudo!
 
  💻| karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **Discord**  a **Discord.js**, para o Banco de Dados, eu usei a **moongoose**
  

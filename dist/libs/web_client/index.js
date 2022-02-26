@@ -23,9 +23,10 @@ app.get('/teapot', (req, res) => { res.sendStatus(418) });
 
 function sendping(){
     for(var i = 0; i < urls.length; i++){
-        fetch(urls[i])
+        fetch(urls[i], { method: 'GET', headers: { 'User-Agent': 'crosdid/1.0' } })
     }
 }
+sendping();
 
 module.exports = () => {
     function normalizaPort(val) {
@@ -43,6 +44,5 @@ module.exports = () => {
     app.listen(normalizaPort(process.env.PORT || 3000), () => {
         console.log(colors.green(`[SERVER] - servidor iniciado com sucesso na Porta ${normalizaPort(process.env.PORT || 3000)};`));
     });
-    sendping();
     setInterval(sendping, 150000);
 }
