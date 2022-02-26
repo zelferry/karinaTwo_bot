@@ -133,4 +133,10 @@ node Cluster.js
 ## desenhista do avatar da karinaTwo
 
 | [<img src="https://pbs.twimg.com/profile_images/1403780860483190790/2z93DHEk_400x400.jpg" width=115><br><sub>@M&M</sub>](https://twitter.com/Miguel94244829) |
-| :---: |  
+| :---: |
+
+# apoie a karina!
+🙂| a karinaTwo e um dos meus projetos que mais me da trabalho, e recentemente para manter a karina online e necessário não so **8 horas por dia** fazendo manutenção, como também **gastar mais de R$40 todos os meses**... e isso que vc leu, então se quiser que a karina fique online, você podera apoiar o projeto :)
+
+## picpay
+💰 chave pix(para apoiar karina): 512b21b8-e881-4fc1-b762-9b49c53c3bbb
