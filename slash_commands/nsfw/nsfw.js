@@ -29,8 +29,8 @@ class Command extends comando {
                     description: "nsfw futa"
                 },
                 {
-                    name: "trap",
-                    description: "nsfw trap"
+                    name: "femboy",
+                    description: "nsfw femboy"
                 }
             ],
             commandOptions: [
@@ -51,8 +51,8 @@ class Command extends comando {
                 },
                 {
                     type: 1,
-                    name: "trap",
-                    description: "[ 😈nsfw ] nsfw tral"
+                    name: "femboy",
+                    description: "[ 😈nsfw ] nsfw femboy"
                 }
             ]
         })
@@ -99,7 +99,7 @@ class Command extends comando {
                 });
             }
             return {}
-        } else if(subCOMMAND === "trap"){
+        } else if(subCOMMAND === "femboy"){
             let url = await this.client.getContainer("api/nekos/nsfw/trap");
             if(url.send === false){
                 interaction.followUp({

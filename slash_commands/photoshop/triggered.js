@@ -7,7 +7,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "triggered",
-            description: "[ 📷photoshop ] \"PISTOLA!\"",
+            description: "[ 📷photoshop ] deixe um usuário com raiva!",
             category: "photoshop",
             usage: "[usuário]",
             commandOptions: [

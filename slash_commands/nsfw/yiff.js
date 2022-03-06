@@ -1,4 +1,3 @@
-//nsfw" : 1 ,
 let comando = require("../../frameworks/commando/command.js");
 
 var data_2 = ["gay","straight","lesbian","synormorph","bulge","andromorph"]
@@ -13,43 +12,43 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "yiff",
-            description: "[ 😈 nsfw ] yiff booru",
+            description: "[ 😈 nsfw ] obter imagens de uma certa categoria",
             nsfw: true,
             category: "nsfw",
-            usage: "<gay | straight | lesbian | synormorph | bulge | andromorph>",
+            usage: "<gay | straight | lesbian | gynomorph | bulge | andromorph>",
             commandOptions: [
                 {
-			type: 3,
-            name: "type_image",
-            description: "qual sera o tipo? 7-7",
-            required: true,
-            choices:[
-            	{
-            		name:"gay",
-            		value:"gay"
-            	},
-            	{
-            		name:"straight",
-            		value:"straight"
-            	},
-            	{
-            		name:"lesbian",
-            		value:"lesbian"
-            	},
-            	{
-            		name:"synormorph",
-            		value:"synormorph"
-            	},
-            	{
-            		name:"bulge",
-            		value:"bulge"
-            	},
-            	{
-            		name:"andromorph",
-            		value:"andromorph"
-            	}
-            ]
-		}
+                    type: 3,
+                    name: "type_image",
+                    description: "escolha o tipo de imagem para eu enviar",
+                    required: true,
+                    choices: [
+                        {
+                            name: "gay",
+                            value: "gay"
+                        },
+                        {
+                            name: "straight",
+                            value: "straight"
+                        },
+                        {
+                            name: "lesbian",
+                            value: "lesbian"
+                        },
+                        {
+                            name: "gynomorph",
+                            value: "synormorph"
+                        },
+                        {
+                            name: "bulge",
+                            value: "bulge"
+                        },
+                        {
+                            name: "andromorph",
+                            value: "andromorph"
+                        }
+                    ]
+                }
             ]
         })
     }
@@ -62,4 +61,5 @@ class Command extends comando {
         interaction.editReply({ embeds: [embed] })
     }
 } 
+
 module.exports = Command 

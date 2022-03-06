@@ -26,7 +26,7 @@ class Command extends comando {
                 {
                     type: 1,
                     name: "creeper",
-                    description: "[ 🤪miscelânea ] \"AHHW MEN!\""
+                    description: "[ 🤪miscelânea ] você viu um creeper, e qual foi a sua reação",
                 },
                 {
                     type: 1,

@@ -19,6 +19,12 @@ app.get('/ping_1', (req, res) => {
     console.log(`[${colors.green(`${new Date().toString().split(' ', 5).join(' ')}`)}] ping recebido!`);
 });
 
+app.post("/ping_2", (req, res) => res.sendStatus(200));
+app.get("/ping_2", (req, res) => {
+    //console.log("7");
+    res.sendStatus(200)
+});
+
 app.get('/teapot', (req, res) => { res.sendStatus(418) });
 
 function sendping(){
@@ -44,5 +50,5 @@ module.exports = () => {
     app.listen(normalizaPort(process.env.PORT || 3000), () => {
         console.log(colors.green(`[SERVER] - servidor iniciado com sucesso na Porta ${normalizaPort(process.env.PORT || 3000)};`));
     });
-    setInterval(sendping, 150000);
+    setInterval(sendping, 180000);
 }

@@ -5,7 +5,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "kick",
-            description: "[ 👩‍⚖️administração ] expulsar membros chatos!",
+            description: "[ 👩‍⚖️administração ] expulsar membros que estão quebrando as regras!",
             category: "management",
             permissions: {
                 user: ["KICK_MEMBERS"],

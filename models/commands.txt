@@ -1,0 +1,17 @@
+let comando = require("../../frameworks/commando/command.js");
+let Discord = require("discord.js"); 
+
+class Command extends comando {
+    constructor(...args) {
+        super(...args, {
+            name: "",
+            description: "",
+            category: "",
+            usage: "",
+            subCommands: [],
+            commandOptions: []
+        })
+    }
+    async interactionRun(interaction){}
+} 
+module.exports = Command 

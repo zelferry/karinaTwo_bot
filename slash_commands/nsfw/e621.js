@@ -1,5 +1,7 @@
 let comando = require("../../frameworks/commando/command.js");
 let { e6 } = require("../../database/client/blacklisted.json");
+let { profile } = require('../../mongoDB/ini.js').user;
+
 
 let Discord = require("discord.js"); 
 
@@ -22,7 +24,7 @@ class Command extends comando {
                 }
             ]
         })
-        this.blacklist = e6.blacklist;
+        //this.blacklist = e6.blacklist;
         
         this.getOne = function(haystack, arr){
             return arr.find(v => haystack.includes(v));
@@ -63,13 +65,16 @@ class Command extends comando {
                 let score = post.score.total;
                 let tags = post.tags.general.concat(post.tags.species, post.tags.character, post.tags.copyright, post.tags.artist, post.tags.invalid, post.tags.lore, post.tags.meta);
                 
+                let user = await profile.find(interaction.user);
+                let blacklist = user.config.e6.blacklist || [];
+                
                 let __description = `> **votos**: ${score} | **origem**: [original aqui](https://e621.net/post/show/${id})`;
                 let avatar = interaction.user.avatarURL({ dynamic: true, format: 'png', size: 1024 });
 
                 if(tags){
-                    if(this.findOne(this.blacklist, tags)){
+                    if(this.findOne(blacklist, tags)){
                         file = "https://static1.e621.net/data/a8/5e/a85ef1bf5f272c44cbcdd4405b5b94b6";
-                        __description = `tag(s) na blacklist!\ntag: \`${this.getOne(this.blacklist, tags)}\` | [**Link**](https://e621.net/posts/${id})`
+                        __description = `tag(s) na blacklist!\ntag: \`${this.getOne(blacklist, tags)}\` | [**Link**](https://e621.net/posts/${id})\n> caso você queira definir a sua blacklist, você pode ir na opção de edição da karina aqui: [karinatwo.repl.co/dashboard/user/edit](https://karinatwo.repl.co/dashboard/user/edit)`
                     }
                 };
 
