@@ -1,5 +1,5 @@
 <p align="center">
-<img width="69%" src="https://media.discordapp.net/attachments/947205559596228608/950178560830734386/karinaTwo.png">
+<img width="97%" src="https://media.discordapp.net/attachments/947205559596228608/950178560830734386/karinaTwo.png">
 <br>
 
 
