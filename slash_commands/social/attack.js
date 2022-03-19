@@ -7,7 +7,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "attack",
-            description: "[ 👤social ] ALGUEM ESQUESEU DO DINHEIRO DA PASSOCA!, ENT ATAQUE ELA! >:)",
+            description: "[ 👤social ] um usuário esqueceu de pagar os panther-coins da paçoca? tirr no x1 com ele!",
             category: "social",
             usage: "<usuário>",
             commandOptions: [

@@ -9,7 +9,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "furry",
-            description: "[ 🖨imagem ] imagens de furries! 030",
+            description: "[ 🖨imagem ] imagens de furries!",
             category: "image"
         })
     }

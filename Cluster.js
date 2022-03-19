@@ -11,7 +11,6 @@ let manager = new Cluster.Manager("./index.js",{
     mode: 'process'
 });
 new RatelimitManager(manager);
-
 let ara = teste.autoTopGgPost(manager)
 
 ara.on("posted", (data) => {
@@ -26,6 +25,7 @@ manager.on("debug", (data) =>{ console.log(data) });
 
 process.on('unhandledRejection', error => { console.error(error) });
 
+global.clusterManager = manager;
 manager.spawn({ timeout: -1 });
 dbconnect("cluster");
 dist.modules.webclient();

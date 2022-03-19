@@ -5,7 +5,7 @@ class _fetch {
 	constructor(
 		opts = {
 			token: process.env.PROTECTION_BOT_TOKEN,
-			version: 'v8'
+			version: 'v9'
 		}
 	) {
 		this.fetchAPI = fetch_;
@@ -64,7 +64,7 @@ class _fetch {
 
 		if (response.status == '429' || !response.ok || response.status == '404')
 			return {
-				success: false,
+				sucess: false,
 				error: response.status,
 				text: response.statusText
 			};
@@ -74,7 +74,7 @@ class _fetch {
 		let flags_ = userFlags.serialize();
 
 		return {
-			success: true,
+			sucess: true,
 			user: {
 				id: user.id,
 				name: user.username,

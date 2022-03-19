@@ -27,8 +27,8 @@ class clientBot extends baseClient {
         client.getContainer = async function(endpoit){
             let ops88 = { method: 'GET', headers: { 'User-Agent': 'crosdid/1.0' } };
             let url = `${client.contents.links.api}/${endpoit??"api"}`;
-            let result = await fetch(url,ops88);
-            return result.json() ?? { send:false }
+            let result = await fetch(url, ops88);
+            return result.json() ?? { send: false }
         };
         client.shard = process.env.CLUSTER_MANAGER ? Discord.ShardClientUtil.singleton(client, process.env.CLUSTER_MANAGER_MODE) : null;
         this.commands_utils = new commandsSructure.client(this, clientConfig)
@@ -65,10 +65,9 @@ class clientBot extends baseClient {
     }
     displaySpecialTHIS(client){
         let channels_1 = client.channels.cache.filter(channel => channel.name.includes('spam')).map(x => x.id);
-        let channels_2 = client.channels.cache.filter(channel => channel.name.includes('contagem')).map(x => x.id);
         
         client.antiSpamGlobalCofig = {
-            ignoredCannels: [...channels_1, ...channels_2]
+            ignoredCannels: [...channels_1]
         };
         client.antiSpam = new AntiSpam({
             warnThreshold: 3,

@@ -7,7 +7,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "slap",
-            description: "[ 👤social ] de um tapa em algem!",
+            description: "[ 👤social ] de um tapinha em algem!",
             category: "social",
             usage: "<usuário>",
             commandOptions: [

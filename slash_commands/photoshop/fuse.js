@@ -20,7 +20,7 @@ class Command extends comando {
                 {
                     type: 6,
                     name: "user_2",
-                    description: "mensão de um usuário",
+                    description: "mensão de um usuário 2",
                     required: true
                 }
             ]

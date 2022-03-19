@@ -11,12 +11,12 @@ const dbOptions = {
 
 let { Intents } = Discord
 let client = (global.client = new client_bot.client({
-    bot:{
+    bot: {
        /* messageCacheLifetime: 60,
         messageCacheMaxSize: 10,
         restTimeOffset: 0,
         restWsBridgetimeout: 100,*/
-        intents:[
+        intents: [
             Intents.FLAGS.GUILDS,
             Intents.FLAGS.GUILD_VOICE_STATES,
             Intents.FLAGS.GUILD_MESSAGES,
@@ -33,13 +33,12 @@ let client = (global.client = new client_bot.client({
             repliedUser: false
         },
         partials: ["MESSAGE", "CHANNEL", "REACTION"]
-    },
-    db: {}
+    }
 }));
 
 let events = new client_bot.events(`${clientConfig.footer.root}/events`,client,"a","b")
 
 
-events.loadEVENTS()
+events.loadEVENTS();
 mongoose.connect(process.env.MONGOOSE, dbOptions);
 client.connectBOT(process.env.TOKEN);

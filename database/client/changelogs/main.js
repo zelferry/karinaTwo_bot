@@ -31,7 +31,7 @@ src.toString().split(NEWLINES_MATCH).forEach(function (line, idx) {
     }
     //return obj
 })
-let cuu = {} 
+let cuu = {}
 Object.keys(obj).forEach(function (key) {
       if (!Object.prototype.hasOwnProperty.call(cuu, key)) {
         cuu[key] = obj[key]

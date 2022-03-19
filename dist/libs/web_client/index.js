@@ -8,6 +8,7 @@ let app = express();
 let urls = Config.host.links;
 
 app.use("/topgg", require("./routers/top_gg.js"));
+app.use("/api", require("./routers/api.js"));
 
 app.get('/', (req, res) => {
     res.status(200);
@@ -27,12 +28,12 @@ app.get("/ping_2", (req, res) => {
 
 app.get('/teapot', (req, res) => { res.sendStatus(418) });
 
-function sendping(){
+/*function sendping(){
     for(var i = 0; i < urls.length; i++){
         fetch(urls[i], { method: 'GET', headers: { 'User-Agent': 'crosdid/1.0' } })
     }
 }
-sendping();
+sendping();*/
 
 module.exports = () => {
     function normalizaPort(val) {
@@ -50,5 +51,5 @@ module.exports = () => {
     app.listen(normalizaPort(process.env.PORT || 3000), () => {
         console.log(colors.green(`[SERVER] - servidor iniciado com sucesso na Porta ${normalizaPort(process.env.PORT || 3000)};`));
     });
-    setInterval(sendping, 180000);
+    //setInterval(sendping, 180000);
 }

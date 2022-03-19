@@ -45,7 +45,8 @@ class Command extends comando {
 
             if(url1.send === false){
                 interaction.followUp({
-                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c"
+                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
+                    ephemeral: true
                 })
                 return {}
             } else {
@@ -64,7 +65,8 @@ class Command extends comando {
 
             if(url2.send === false){
                interaction.followUp({
-                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c"
+                   content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
+                   ephemeral: true
                 })
                 return {}
             } else {

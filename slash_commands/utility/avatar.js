@@ -5,7 +5,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "avatar",
-            description: "[ ❓utilitários ] sabe aquele avatar lindo que você viu? veja ela em em seu eatado FULL!",
+            description: "[ ❓utilitários ] sabe aquele avatar lindo que você viu? veja ele por completo!",
             category: "utility",
             usage: "[usuário]",
             commandOptions: [

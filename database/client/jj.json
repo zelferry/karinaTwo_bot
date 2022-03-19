@@ -1,0 +1,23 @@
+{
+    "status": "/help | karinatwo.repl.co | !!{version}!!",
+    "guildId": "853111207954874379",
+    "functions": {
+        "ignoredUsers": ["793188009498378270","731164935794458694","751425175777705995","771881680889053195"]
+    },
+    "owners": {
+        "ids": ["793188009498378270"],
+        "prefix": "f/"
+    },
+    "host": {
+        "links":["https://karinaTwo.zelferry.repl.co/ping_1"]
+    },
+    "footer": {
+        "root": "/home/runner/karinaTwo"
+    },
+    "webhooks": {
+        "commands": "",
+        "topgg": "",
+        "suport": "",
+        "_exit": ""
+    }
+}

@@ -7,12 +7,13 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "calculator",
-            description: "[ 📲discord ] Apenas uma calculadora casual.",
+            description: "[ 📲discord ] Apenas uma calculadora",
             category: "discord",
             commandOptions: []
         })
     }
     async interactionRun(interaction){
+        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         //console.log(interaction.commandId)
         calculator(interaction, {
             /*slash: true,*/

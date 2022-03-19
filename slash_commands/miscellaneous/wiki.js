@@ -19,7 +19,7 @@ class Command extends comando {
                 {
                     type: 3,
                     name: "language",
-                    description: "linguagem a ser pesquisada",
+                    description: "idioma a ser pesquisada",
                     choices: [...choices1]
                 }
             ]
