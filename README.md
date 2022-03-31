@@ -52,39 +52,33 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
 
 ```json
 {
-  "status":"", //status do bot 
-  "guildId":"", //id do server do bot
-    "owners":{
-      "ids": [], //ids dos devs
-      "prefix": "" //prefixo padrão
-  },
-  "functions":{
-  	"ignoredUsers":[] //ignorar tais usuários
-  },
-  "host":{
-  	"links":[""] //link ou ip da host do bot
-  },
-  "footer":{
-  	"root":"" //sua root global(exemplos: /project/mybot, home/runner/bot, C:/myname/bots/bot
-  },
-  "webhooks":{ //webhooks
-      "commands":{
-          "id":"",
-          "token":""
-      },
-      "topgg":{
-          "id":"",
-          "token":""
-      },
-      "suport":{
-          "id":"",
-          "token":""
-      },
-      "exit_":{
-          "id":"",
-          "token":""
-      }
-  }
+    "status": "", //status do bot
+    "guildId": "", //id do servidor de suporte
+    "functions": {
+        "ignoredUsers": [] //usuários ignorados
+    },
+    "owners": {
+        "ids": [], //ids dos  devs do bot
+        "prefix": "" //prefixo padrão
+    },
+    "adverts": { //id de canais de anúncios  do servidor de suporte
+        "news": "",
+        "upgrades": "",
+        "status": "",
+        "no_topic": ""
+    },
+    "host": {
+        "links": [] //link(s) ou o ip da máquina onde o bot esta hospedado
+    },
+    "footer": {
+        "root": "" //root global (ex: c:/data/bots/mybot, /home/runner/mybot, sdcard/bots/mybot
+    },
+    "webhooks": { //links dos webhooks
+        "commands": "",
+        "topgg": "",
+        "suport": "",
+        "_exit": ""
+    }
 }
 ```
 
@@ -127,10 +121,11 @@ node Cluster.js
 
 ## criador(es) da karinaTwo:
 
-| [<img src="https://pbs.twimg.com/profile_images/1381692504614051845/8-Q91QGT_400x400.jpg" width=115><br><sub>@zelferry bunny</sub>](https://linktr.ee/zelferry) |
+| [<img src="https://media.discordapp.net/attachments/954016374806700093/959103601324736612/20220329_013411.jpg" width=115><br><sub>@zelferry bunny</sub>](https://linktr.ee/zelferry) |
 | :---: |  
 
 ## desenhista do avatar da karinaTwo
 
-| [<img src="https://pbs.twimg.com/profile_images/1403780860483190790/2z93DHEk_400x400.jpg" width=115><br><sub>@M&M</sub>](https://twitter.com/Miguel94244829) |
+| [<img src="https://media.discordapp.net/attachments/954016374806700093/959104376092381274/Screenshot_20220331-115749_Discord.jpg" width=115><br><sub>@M&M</sub>](https://twitter.com/Miguel94244829) |
 | :---: |
+

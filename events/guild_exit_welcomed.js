@@ -1,19 +1,15 @@
 let util = require('../utils/main.js');
 
-let KariWebhooks = new util.webhooks();
+let KariWebhooks = new util.webhooks1();
 const Discord = require('discord.js');
 
 module.exports = [
 	{
 		type: 'guildCreate',
 		start: async(client,clusterID,ipc,guild) => {
-			KariWebhooks._exit(
-				new Discord.MessageEmbed()
-					.setColor('#FFFFF1')
-					.setTitle(`karina entrou em um server!`)
-					.addField('nome do server:', `${guild.name}`)
-					.addField('id do server:', `${guild.id}`)
-			);
+			KariWebhooks.exit({
+                embeds: [new Discord.MessageEmbed().setColor('#FFFFF1').setTitle(`karina entrou em um servidor!`).addField('nome do server:', `${guild.name}`).addField('id do server:', `${guild.id}`)]
+            });
 		}
 	},
 	{
@@ -26,13 +22,9 @@ module.exports = [
 
 		client.giveawaysManager.giveaways.filter(g => g.guildID === guild.id).forEach(g => client.giveawaysManager.delete(g.messageID));
 
-			KariWebhooks._exit(
-				new Discord.MessageEmbed()
-					.setColor('#FFFFF1')
-					.setTitle(`karina saiu de um server!`)
-					.addField('nome do server:', `${guild.name}`)
-					.addField('id do server:', `${guild.id}`)
-			);
+			KariWebhooks.exit({
+                embeds: [new Discord.MessageEmbed().setColor('#FFFFF1').setTitle(`karina saiu de um servidor!`).addField('nome do server:', `${guild.name}`).addField('id do server:', `${guild.id}`)]
+            });
 		}
 	}
 ];

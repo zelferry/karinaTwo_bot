@@ -1,8 +1,8 @@
 let Discord = require('discord.js');
-let { webhooks } = require('../../database/client/jj.json');
+let { webhooks } = require('../../database/client/config.json');
 
 
-class webhooks {
+class webhooks1 {
     constructor(){
         this.hook = {
             commands: new Discord.WebhookClient({
@@ -23,16 +23,18 @@ class webhooks {
             
         }
     }
-    commands(c, objetc){
-        
+    commands(c, objetc = {}){
+        this.hook.commands.send(c);
     }
-    topgg(c, objetc){
-        
+    topgg(c, objetc = {}){
+        this.hook.topgg.send(c);
     }
-    suport(c, objetc){
-        
+    suport(c, objetc = {}){
+        this.hook.suport.send(c);
     }
-    exit(c, objetc){
-        
+    exit(c, objetc = {}){
+        this.hook.exit_.send(c);
     }
 }
+
+module.exports = webhooks1

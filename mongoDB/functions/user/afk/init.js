@@ -7,7 +7,8 @@ class afkDATA {
 		if(isUser) return false;
 		
 		let new_ = new usermodel({
-			UserId: author.id
+			UserId: author.id,
+            userCreationTimestamp: Date.now()
 		})
 		await new_.save().catch(e => console.log(e));
 		return new_
@@ -31,7 +32,7 @@ class afkDATA {
 		const user = await usermodel.findOne({ UserId: author.id });
 		
 		user.afk.ready = false
-		user.afk.reason = "forafo no momento"
+		user.afk.reason = "fora no momento"
 		
 		await user.save().catch(e => console.log(e));
 		return user

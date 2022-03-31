@@ -26,7 +26,7 @@ class Command extends comando {
                 content: "🚫**|** você ja e um usuário vip!"
             })
         } else {
-            const embed = new Discord.MessageEmbed().setTitle("**Vip User Comprado**").setDescription(`você comprou: **vip user** por **2.500 Panther-coins**`).setColor("#be41f4");
+            const embed = new Discord.MessageEmbed().setTitle("**Vip User Comprado**").setDescription(`você comprou: **vip user** por **2.500 Panther-coins**`).setColor("#fd9058");
             
             await interaction.editReply({ embeds: [embed] });
             

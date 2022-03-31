@@ -1,6 +1,6 @@
 {
   "name": "karinaTwo",
-  "version": "3.3.2",
+  "version": "3.3.3-beta",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -11,9 +11,8 @@
     "colors": "^1.4.0",
     "discord-anti-spam": "^2.6.1",
     "discord-api-types": "^0.23.1",
-    "discord-backup": "^3.0.1",
     "discord-cross-ratelimit": "0.0.4",
-    "discord-giveaways": "^5.0.1",
+    "discord-giveaways": "^5.1.1",
     "discord-hybrid-sharding": "^1.4.4",
     "discord.js": "^13.6.0",
     "express": "^4.17.1",

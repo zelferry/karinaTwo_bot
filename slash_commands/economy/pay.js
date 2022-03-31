@@ -91,7 +91,7 @@ class Command extends comando {
                             ephemeral: true
                         })
                         user.send({
-                            embeds: [new Discord.MessageEmbed().setDescription(`o ***${interaction.user.tag}*** te deu **${amount}** panther-coins!`).setColor("#be41f4").addField("uma MENSAGEM ele:",`${message1}`)]
+                            embeds: [new Discord.MessageEmbed().setDescription(`o ***${interaction.user.tag}*** te deu **${amount}** panther-coins!`).setColor("#fd9058").addField("uma mensagem dele:",`${message1}`)]
                         })
                     }
                     await economydb.pay(interaction.user,user,amount);

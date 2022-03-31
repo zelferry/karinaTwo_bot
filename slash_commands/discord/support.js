@@ -2,7 +2,7 @@ let comando = require("../../frameworks/commando/command.js");
 let subCommand1 = require("../../database/slash_commands/sub_commands/support.send.json");
 
 let util = require("../../utils/main.js")
-let KariWebhooks = new util.webhooks()
+let KariWebhooks = new util.webhooks1()
 
 let Discord = require("discord.js"); 
 
@@ -61,7 +61,9 @@ class Command extends comando {
                 suport_.addField("autor:",`tag: \`${interaction.user.tag}\`\nid: \`${interaction.user.id}\``);
                 suport_.addField("suporte:", `${support1}`);
                 
-                KariWebhooks.suport(suport_);
+                KariWebhooks.suport({
+                    embeds: [suport_]
+                });
 
                 return await interaction.editReply({
                     content: "✅**|** enviado com sucesso!"

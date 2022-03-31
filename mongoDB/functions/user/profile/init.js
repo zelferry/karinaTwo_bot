@@ -7,7 +7,8 @@ class profile {
 		if(isUser) return false;
 		
 		let new_ = new usermodel({
-			UserId: author.id
+			UserId: author.id,
+            userCreationTimestamp: Date.now()
 		})
 		await new_.save().catch(e => console.log(e));
 		return new_

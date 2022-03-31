@@ -6,7 +6,8 @@ class topgg {
 		if(isUser) return true;
 		
 		let new_ = new usermodel({
-			UserId: author
+			UserId: author,
+            userCreationTimestamp: Date.now()
 		})
 		await new_.save().catch(e => console.log(e));
 		return new_
@@ -23,6 +24,7 @@ class topgg {
 		if(!user){
 			const newUser = new usermodel({
 				UserId: author,
+                userCreationTimestamp: Date.now(),
 				topggVotes: VOTES || 0
 			})
 			await newUser.save().catch(e => console.log(e))

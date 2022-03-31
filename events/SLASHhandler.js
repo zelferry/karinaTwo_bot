@@ -1,5 +1,5 @@
 let util = require('../utils/main.js');
-let KariWebhooks = new util.webhooks();
+let KariWebhooks = new util.webhooks1();
 let Discord = require('discord.js');
 
 function interactionresolva(int){
@@ -16,8 +16,7 @@ exports.type = "interactionCreate";
 exports.start = async(client,clusterID,ipc,interaction) => {
     if (!interaction.isCommand()) return;
 	if (!client.commands2.has(interaction.commandName.toLowerCase())) return;
-    //client.extra.utils.permissions
-//	await interaction.deferReply()
+    
 	try {
         let command =  client.commands2.get(interaction.commandName.toLowerCase());
         let vailar = await bansUsers.seekAndValidateBan(interaction.user);
@@ -54,21 +53,27 @@ exports.start = async(client,clusterID,ipc,interaction) => {
             return {}
         } else {
             command.interactionRun(interaction);
+
             KariWebhooks.commands({
-            title: "comando executado",
-            description: `o comando ***/${interaction.commandName.toLowerCase()}*** foi executado pelo ${interaction.user.tag} com sucesso!`,
-            color: "#EE82EE",
-            fields: [
-                {
-                    name: "usuário:",
-                    value: `tag: \`${interaction.user.tag}\`\nid: \`${interaction.user.id}\``
-                },
-                {
-                    name: "comando inteiro",
-                    value: `\`/${interaction.commandName.toLowerCase()} ${interactionresolva(interaction.options)}\``
-                }
-            ]
-        })
+                embeds: [
+                    {
+                        title: "comando executado",
+                        description: `o comando ***/${interaction.commandName.toLowerCase()}*** foi executado pelo ${interaction.user.tag} com sucesso!`,
+                        color: "#EE82EE",
+                        fields: [
+                            {
+                                name: "usuário:",
+                                value: `tag: \`${interaction.user.tag}\`\nid: \`${interaction.user.id}\``
+                            },
+                            {
+                                name: "comando inteiro",
+                                value: `\`/${interaction.commandName.toLowerCase()} ${interactionresolva(interaction.options)}\``
+                            }
+                        ]
+                    }
+                ]
+            });
+            
             return {}
         }
 	} catch (error) {

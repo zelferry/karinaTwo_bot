@@ -5,6 +5,7 @@ let Discord = require('discord.js');
 let imagesStructure = require("./structures/Images.js");
 let webhookStructure_ = require("./structures/Webhooks.js");
 let actviesStructure = require("./structures/DiscordActivies.js");
+let databaseStructure = require("./structures/database.js");
 
 let utils_ = require('../../utils/main.js');
 let clientConfig = require('../../database/client/config.json');
@@ -35,6 +36,7 @@ class clientBot extends baseClient {
         client.cooldown = new Discord.Collection();
         client.images = new imagesStructure(client);
         client.discordTogether = new actviesStructure(client);
+        client.db = new databaseStructure(this);
         client.extra = {
             utils: utils_,
             makeCommandsCategory: new utils_.makeCommandsCategory(client)
@@ -57,8 +59,8 @@ class clientBot extends baseClient {
             Discord.Permissions.FLAGS.MANAGE_WEBHOOKS,
             Discord.Permissions.FLAGS.USE_EXTERNAL_EMOJIS,
             Discord.Permissions.FLAGS.CHANGE_NICKNAME,
-            Discord.Permissions.FLAGS.KICK_MEMBERS,
-            Discord.Permissions.FLAGS.START_EMBEDDED_ACTIVITIES
+            Discord.Permissions.FLAGS.KICK_MEMBERS
+            //Discord.Permissions.FLAGS.START_EMBEDDED_ACTIVITIES
         ];
         client.dist = require("../../dist/main.js");
         client.contents = require("../../database/client/content.json");
@@ -102,7 +104,8 @@ class clientBot extends baseClient {
         });
         client.webhooks = new webhookStructure_(client);
     }
-    connect(){
+    async connect(){
+        await this.db.load()
         this.login(process.env.TOKEN);
     }
     disconect(reason){

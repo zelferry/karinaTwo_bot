@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const guildSchema = mongoose.Schema({
 	guildId: Number,
-	prefix:{
+	prefix: {
 		type: String,
 		default: "f/"
 	},

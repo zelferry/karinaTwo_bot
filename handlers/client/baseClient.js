@@ -31,7 +31,8 @@ class baseClient extends Discord.Client {
         });
         
         try {
-            this.binder.connect();
+            (async () => await this.binder.connect())();
+            //this.binder.connect();
         } catch(err) {
             this.binder.disconect(err);
         }

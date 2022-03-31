@@ -8,7 +8,7 @@ let util = require("../../../../utils/main.js")
 
 let wb = new topgg_api.Webhook(process.env.toggpas);
 let usersfetch = new util.fetch();
-let KariWebhooks = new util.webhooks();
+let KariWebhooks = new util.webhooks1();
 
 
 app.get("/", function(req,res){
@@ -36,14 +36,19 @@ app.post('/', wb.listener(async (vote) => {
                         UserId: user_discord.id
                     });
                     await new_user_db.save().catch(e => console.log(e));
-                    KariWebhooks.topgg(`as informações NECESSÁRIAS do usuario **${userRESY.username}** não foram encrontrados\nmas ja criei os dados :3`);
+                    KariWebhooks.topgg({
+                        content: `as informações NECESSÁRIAS do usuario **${userRESY.username}** não foram encrontrados\nmas ja criei os dados :3`
+                    });
                     return {}
                 } else {
                     let nw = user_db.topggVotes + 1;
                     user_db.save().catch((err) => console.log(err));
 
                     let embed_2 = new Discord.MessageEmbed().setColor("#FF7F50").setAuthor({name:`${user_discord.tag}`, iconURL:`${user_discord.avatar}`}).setDescription(`**${user_discord.username}** votou em mim na [top.gg](https://a.com)!`).setFooter(`ID do autor: ${user_vote_id}`).addFields({name: 'total de votos', value: '**' + user_discord.username + '** votou em mim ' + nw + ' vezes'}).setTimestamp();
-                    KariWebhooks.topgg(embed_2);
+                    
+                    KariWebhooks.topgg({
+                        embeds: [embed_2]
+                    });
                     return {}
                 }
             }

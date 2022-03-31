@@ -2,6 +2,7 @@ let mongoose = require("mongoose");
 
 let profileSchema = mongoose.Schema({
     UserId: Number,
+    userCreationTimestamp: Date,
     coins: { type: Number, default: 0 },
     daily: { type: String, default: "0000" },
     usertext: { type: String, default:"karina e minha amiga :)\ne você sabia que você pode mudar esse texto usando o **f/usertext**?!" },

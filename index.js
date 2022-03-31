@@ -40,5 +40,5 @@ let events = new client_bot.events(`${clientConfig.footer.root}/events`,client,"
 
 
 events.loadEVENTS();
-mongoose.connect(process.env.MONGOOSE, dbOptions);
+//mongoose.connect(process.env.MONGOOSE, dbOptions);
 client.connectBOT(process.env.TOKEN);

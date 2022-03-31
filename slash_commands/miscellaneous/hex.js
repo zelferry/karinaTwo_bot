@@ -28,7 +28,7 @@ class Command extends comando {
                 {
                     type: 3,
                     name: "color",
-                    description: "cor em HEX",
+                    description: "cor em hexadecimal (ex: FF0000, #FF0000)",
                     required: true
                 }
             ]
