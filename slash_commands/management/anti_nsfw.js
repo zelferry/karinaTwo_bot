@@ -56,7 +56,7 @@ class Command extends comando {
                     antiNsfw: true
                 }, interaction.guild).then((x) => {
                     interaction.editReply({
-                        content: "✔️**|** o modulo foi ativado!\n❓**|** o seu servidor esta seguro contra conteúdo nsfw e gore"
+                        content: "✔️**|** o modulo foi ativado!\n❓**|** o seu servidor esta seguro contra conteúdo nsfw"
                     })
                 });
                 return {}
@@ -72,7 +72,7 @@ class Command extends comando {
                     antiNsfw: false
                 }, interaction.guild).then((x) => {
                     interaction.editReply({
-                        content: "⚠️**|** o módulo foi desativado\n❓**|** o seu servidor esta desprotegido contra conteúdo nsfw e gore!"
+                        content: "⚠️**|** o módulo foi desativado\n❓**|** o seu servidor esta desprotegido contra conteúdo nsfw!"
                     })
                 });
                 return {}

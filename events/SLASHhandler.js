@@ -29,14 +29,16 @@ exports.start = async(client,clusterID,ipc,interaction) => {
         } else if (command.nsfw && !interaction.channel.nsfw){
             return client.extra.utils.message.noNsfw(client, interaction);
         } else if(command.nsfw && config__.antiNsfw){
-            interaction.reply({
-                content: "🚫**|** você não pode utilizar comandos **nsfw** enquanto o módulo **anti-nsfw/anti-gore** estiver ativado",
-                ephemeral: true
+            await interaction.deferReply({ ephemeral: true }).catch(() => {});
+            
+            interaction.editReply({
+                content: "🚫**|** você não pode utilizar comandos **nsfw** enquanto o módulo **anti-nsfw** estiver ativado"
             });
             return {}
         } else if(vailar.ready){
-            interaction.reply({
-                ephemeral: true,
+            await interaction.deferReply({ ephemeral: true }).catch(() => {});
+            
+            interaction.editReply({
                 embeds: [
                     {
                         description: ':no_entry_sign: você foi banido de usar meus comandos!',

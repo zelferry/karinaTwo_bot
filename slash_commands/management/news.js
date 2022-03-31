@@ -43,6 +43,9 @@ class Command extends comando {
             }).then(async() => {
                 try {
                     this.client.channels.cache.get(adverts.news).addFollower(channel.id);
+                    this.client.channels.cache.get(adverts.upgrades).addFollower(channel.id);
+                    this.client.channels.cache.get(adverts.status).addFollower(channel.id);
+                    this.client.channels.cache.get(adverts.no_topic).addFollower(channel.id);
                     interaction.editReply({
                         content: "🔔**|** canais seguidos com sucesso!"
                     })

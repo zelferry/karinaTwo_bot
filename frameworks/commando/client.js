@@ -47,9 +47,9 @@ class clientSlash43 {
         })
 
         try {
-            await rest.put(Routes.applicationGuildCommands(client.user.id,"897142336927203328"),{
+            await rest.put(Routes.applicationCommands(client.user.id),{
                 body: commands_slash
-            })
+            });
             //nsole.log(commands_slash)
         } catch(err) {
             console.log(err)
