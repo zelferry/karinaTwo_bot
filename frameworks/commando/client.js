@@ -37,23 +37,23 @@ class clientSlash43 {
               //  console.log(COMMAND.name)
                 client.commands2.set(COMMAND.name, COMMAND);
 
-                commands_slash.push({
+                /*commands_slash.push({
                     name: COMMAND.name,
                     description: COMMAND.description,
-                    /*nsfw: COMMAND.nsfw,*/
+                    /*nsfw: COMMAND.nsfw,
                     options: COMMAND.commandOptions
-                });
+                });*/
             }
         })
 
-        try {
-            await rest.put(Routes.applicationCommands(client.user.id),{
+        /*try {
+            await rest.put(Routes.applicationGuildCommands(client.user.id,"897142336927203328"),{
                 body: commands_slash
-            });
+            })
             //nsole.log(commands_slash)
         } catch(err) {
             console.log(err)
-        }
+        }*/
     }
 }
 module.exports = clientSlash43

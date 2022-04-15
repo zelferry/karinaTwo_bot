@@ -54,6 +54,7 @@ Não quero saber de usuários que estão usando essa Source para criar outros bo
 {
     "status": "", //status do bot
     "guildId": "", //id do servidor de suporte
+    "client_id":"", //id do cliente(bot)
     "functions": {
         "ignoredUsers": [] //usuários ignorados
     },
@@ -101,6 +102,8 @@ moongoose="" sua url da moongoose
 ⚠ALERTA!
 
 > `o token de bot adicional o *PROTECTION_BOT_TOKEN* e necessário para o repositório fazer requisições EXTERNAS/EXTRAS na API do discord sem fazer que o bot principal "*TOKEN*" não pege RATELIMIT`
+
+> a karinaTwo foi feita na replit, e para ter o node v16, [leia este post aqui](https://replit.com/talk/learn/Easiest-way-to-get-Node-v166-and-NPM-v720-for-your-Discordjs-v13-projects/143841)
 
 #### :electric_plug: **- Script de Inicialização**
 ```npm

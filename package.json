@@ -31,6 +31,7 @@
   },
   "scripts": {
     "stop": "exit 1",
+      "build":"bash node register.js",
     "start": "bash node Cluster.js"
   },
   "keywords": [],

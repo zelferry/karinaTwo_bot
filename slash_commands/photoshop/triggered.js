@@ -14,7 +14,7 @@ class Command extends comando {
                 {
                     type: 6,
                     name: "user",
-                    description: "mensão de um usuário",
+                    description: "usuário (@user/id) a ficar com raiva",
                     required: false
                 }
             ]

@@ -15,13 +15,13 @@ class Command extends comando {
                 {
                     type: 6,
                     name: "user_1",
-                    description: "mensão de um usuário",
+                    description: "usuário 1 (@user/id)",
                     required: true
                 },
                 {
                     type: 6,
                     name: "user_2",
-                    description: "mensão de um usuário",
+                    description: "usuário 2 (@user/id)",
                     required: true
                 }
             ]

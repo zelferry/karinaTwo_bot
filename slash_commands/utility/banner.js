@@ -13,7 +13,7 @@ class Command extends comando {
             commandOptions: [
                 {
                     name: "user",
-                    description: "usuário a ser mencionado",
+                    description: "usuário (@user/id) para você ver a banner dele(a)",
                     type: 6,
                     required: false
                 }

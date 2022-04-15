@@ -14,7 +14,7 @@ let { configs } = require("../mongoDB/ini.js").guild
 //antiNsfw
 exports.type = "interactionCreate";
 exports.start = async(client,clusterID,ipc,interaction) => {
-    if (!interaction.isCommand()) return;
+    if (!interaction.isCommand() && !interaction.isAutocomplete()) return;
 	if (!client.commands2.has(interaction.commandName.toLowerCase())) return;
     
 	try {
@@ -54,7 +54,9 @@ exports.start = async(client,clusterID,ipc,interaction) => {
             });
             return {}
         } else {
-            command.interactionRun(interaction);
+            if (interaction.isCommand()){
+                await command.interactionRun(interaction);
+            }
 
             KariWebhooks.commands({
                 embeds: [

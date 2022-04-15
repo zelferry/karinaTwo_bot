@@ -2,7 +2,7 @@
     {
         "type": 6,
         "name": "user",
-        "description": "mensão de um usuário",
+        "description": "usuário (@user/id) para o inverter",
         "required": false
     }
 ]

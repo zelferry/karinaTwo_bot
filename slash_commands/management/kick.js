@@ -17,7 +17,7 @@ class Command extends comando {
                 {
                     type: 6,
                     name: "user",
-                    description: "mencionar um usuário",
+                    description: "usuário (@user/id) a ser punido",
                     required: true
                 },
                 {

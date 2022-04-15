@@ -17,7 +17,7 @@ class Command extends comando {
                 {
                     type: 6,
                     name: "user",
-                    description: "mencionar um usuário",
+                    description: "usuário (@user/id) a ser punido",
                     required: true
                 },
                 {
@@ -32,7 +32,7 @@ class Command extends comando {
     async interactionRun(interaction){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let user = interaction.guild.members.cache.get(interaction.options.getUser('user').id)
-        let reason = interaction.options.getString('reason') || "...não sei ._.";
+        let reason = interaction.options.getString('reason') || "punição não especificada";
 
         if(user.id === interaction.user.id){
             interaction.followUp({

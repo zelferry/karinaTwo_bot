@@ -14,7 +14,7 @@ class Command extends comando {
             commandOptions: [
                 {
                     name: "user",
-                    description: "ver o perfil de outro usuário",
+                    description: "usuário (@user/id) para você ver o perfil",
                     type: 6,
                     required: false
                 }

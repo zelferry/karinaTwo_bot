@@ -11,11 +11,11 @@ let manager = new Cluster.Manager("./index.js",{
     mode: 'process'
 });
 new RatelimitManager(manager);
-let ara = teste.autoTopGgPost(manager)
+/*let ara = teste.autoTopGgPost(manager)
 
 ara.on("posted", (data) => {
 	console.log(`[${new Date().toString().split(' ', 5).join(' ')}] Status Postado na top.gg!`);
-})
+})*/
 
 manager.on('clusterCreate', cluster => {
     console.log(`[${new Date().toString().split(' ', 5).join(' ')}] cluster[${cluster.id}] iniciado!`);
