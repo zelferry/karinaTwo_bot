@@ -3,31 +3,42 @@ let ms = require('ms');
 
 let clientConfig = require('../database/client/config.json');
 let util = require('../utils/main.js');
+let KariWebhooks = new util.webhooks1();
 
-let { prefix } = clientConfig.owners
+//let { prefix } = clientConfig.owners
 let { ids } = clientConfig.owners
+let { prefix } = require("../mongoDB/ini.js").guild
 
 exports.type = "messageCreate";
 exports.start = async(client,clusterID,ipc,message) => {
     if(!message.guild || message.author.bot) return;
     if(message.channel.partial) await message.channel.fetch();
     if(message.partial) await message.fetch();
-    if(!message.content.toLowerCase().startsWith(prefix.toLowerCase())) return;
+    
+    let prefix_ = await prefix.findPrefix(message.guild,message,true);
+    
+    if(!message.content.toLowerCase().startsWith(prefix_.toLowerCase())) return;
     if(message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@${client.user.id}>`)) return;
     
-    let args = message.content.trim().slice(prefix.length).split(/ +/g);
+    let args = message.content.trim().slice(prefix_.length).split(/ +/g);
     let comando = args.shift().toLowerCase();
 
     try {
         if(ids.includes(message.author.id)){
-            var cmd = client.commands.get(comando.slice(prefix.lenght)) || client.commands.get(client.aliases.get(comando.slice(prefix.lenght)));
+            var cmd = client.commands.get(comando.slice(prefix_.lenght)) || client.commands.get(client.aliases.get(comando.slice(prefix_.lenght)));
             cmd.run(client, message, args);
         } else {
+            KariWebhooks.commands({
+                embeds: [
+                    new Discord.MessageEmbed().setDescription(`✅| o **${message.author.username}** usou o **\`${prefix_}${comando}\`** *\`(${message.content})\`*`).setColor('#EE82EE')
+                ]
+            });
+            
             message.reply({
                 embeds: [
                     {
                         title: "que tal usar os comandos de barra!?",
-                        description: "Este comando está disponível via Slash Commands (comandos com `/`)\ncomandos que não usam slash irão desaparecer em **Abril de 2022**, então é melhor ir se acostumando com eles!\n\nas versões dos comandos em **slash Commands são *superiores* as versões originais**, então você não terá nada a perder usando meus slash commands em vez das versões originais!",
+                        description: "Este comando está disponível via Slash Commands (comandos com `/`)\ncomandos que não usam slash irão desaparecer em **Abril deste ano**, então é melhor ir se acostumando com eles!\n\nas versões dos comandos em **slash Commands são *superiores* as versões originais**, então você não terá nada a perder usando meus slash commands em vez das versões originais!",
                         fields: [
                             {
                                 name: "\"mas.. por que?\"",

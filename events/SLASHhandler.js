@@ -14,11 +14,27 @@ let { configs } = require("../mongoDB/ini.js").guild
 //antiNsfw
 exports.type = "interactionCreate";
 exports.start = async(client,clusterID,ipc,interaction) => {
-    if (!interaction.isCommand() && !interaction.isAutocomplete()) return;
+    if (!interaction.isCommand()) return;
 	if (!client.commands2.has(interaction.commandName.toLowerCase())) return;
+
+    let command =  client.commands2.get(interaction.commandName.toLowerCase());
+    
+    function KariHandler() {
+        new Promise(async (res, rej) => {
+            try {
+                await command.interactionRun(interaction);
+            } catch(err) {
+                await interaction.deferReply();
+                console.log(err)
+                
+                let errorEmbed = new Discord.MessageEmbed().setColor("RED").setTitle("Erro ao executar comando").setDescription(`\ \ \`\`\`js\n${err}\n\`\`\``);
+
+                interaction.editReply({ embeds: [errorEmbed], ephemeral: true })
+            }
+        })
+    }
     
 	try {
-        let command =  client.commands2.get(interaction.commandName.toLowerCase());
         let vailar = await bansUsers.seekAndValidateBan(interaction.user);
         let config__ = await configs.getConfig(interaction.guild, true);
         
@@ -54,9 +70,7 @@ exports.start = async(client,clusterID,ipc,interaction) => {
             });
             return {}
         } else {
-            if (interaction.isCommand()){
-                await command.interactionRun(interaction);
-            }
+            KariHandler();
 
             KariWebhooks.commands({
                 embeds: [
@@ -77,17 +91,8 @@ exports.start = async(client,clusterID,ipc,interaction) => {
                     }
                 ]
             });
-            
-            return {}
         }
-	} catch (error) {
-		console.log(`erro no comando de barra ${interaction.commandName.toLowerCase()} : ${error.message}`);
-        
-		console.log(`${error.stack}\n`);
-    
-		await interaction.reply({
-            content:"🚫***|*** ouve um erro \"estranho\" ao executar o comando\ndesculpe a inconveniência :("
-        });
-        return {}
+	} catch (err) {
+		console.error(err);
 	}
 }
