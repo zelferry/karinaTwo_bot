@@ -13,7 +13,7 @@ let { Intents } = Discord
 let client = (global.client = new client_bot.client({
     bot: {
        /* messageCacheLifetime: 60,
-        messageCacheMaxSize: 10,
+        messageCacheMaxSiz: 10,
         restTimeOffset: 0,
         restWsBridgetimeout: 100,*/
         intents: [
