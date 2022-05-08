@@ -13,11 +13,11 @@ class Command extends comando {
                 {
                     name: "sfw",
                     description: "imagens do website nekos.life"
-                },
+                }/*,
                 {
                     name: "nsfw",
                     description: "imagens do website nekos.life (versão nsfw)"
-                }
+                }*/
             ],
             commandOptions: [
                 {
@@ -25,13 +25,13 @@ class Command extends comando {
                     name: "sfw",
                     description: "[ 🖨imagem ] imagens do website nekos.life",
                     options: datacoices.sfw
-                },
+                }/*,
                 {
                     type: 1,
                     name: "nsfw",
                     description: "[ 😈nsfw ] imagens do website nekos.life (versão nsfw)",
                     options: datacoices.nsfw
-                }
+                }*/
             ]
         })
     }

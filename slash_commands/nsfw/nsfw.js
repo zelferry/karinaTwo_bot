@@ -23,7 +23,7 @@ class Command extends comando {
                 {
                     name: "gay",
                     description: "nsfw gay"
-                },
+                }/*,
                 {
                     name: "futa",
                     description: "nsfw futa"
@@ -31,7 +31,7 @@ class Command extends comando {
                 {
                     name: "femboy",
                     description: "nsfw femboy"
-                }
+                }*/
             ],
             commandOptions: [
                 {
@@ -43,7 +43,7 @@ class Command extends comando {
                     type: 1,
                     name: "gay",
                     description: "[ 😈nsfw ] nsfw gay"
-                },
+                }/*,
                 {
                     type: 1,
                     name: "futa",
@@ -53,15 +53,18 @@ class Command extends comando {
                     type: 1,
                     name: "femboy",
                     description: "[ 😈nsfw ] nsfw femboy"
-                }
+                }*/
             ]
         })
     }
     async interactionRun(interaction){
-        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "straight"){
+            await interaction.deferReply({
+                ephemeral: this.deferReply
+            }).catch(() => {});
+            
             let number1 = mathRandom(data_1.length);
             let data1 = data_1[number1];
             
@@ -72,6 +75,10 @@ class Command extends comando {
             });
             return {}
         } else if(subCOMMAND === "gay"){
+            await interaction.deferReply({
+                ephemeral: this.deferReply
+            }).catch(() => {});
+            
             let number2 = mathRandom(data_2.length);
             let data2 = data_2[number2];
 
@@ -82,6 +89,10 @@ class Command extends comando {
             });
             return {}
         } else if(subCOMMAND === "futa"){
+            await interaction.deferReply({
+                ephemeral: this.deferReply
+            }).catch(() => {});
+            
             let url = await this.client.getContainer("api/nekos/nsfw/futanari");
             if(url.send === false){
                 interaction.followUp({
@@ -100,6 +111,10 @@ class Command extends comando {
             }
             return {}
         } else if(subCOMMAND === "femboy"){
+            await interaction.deferReply({
+                ephemeral: this.deferReply
+            }).catch(() => {});
+            
             let url = await this.client.getContainer("api/nekos/nsfw/trap");
             if(url.send === false){
                 interaction.followUp({
