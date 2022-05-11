@@ -3,6 +3,7 @@ let clientConfig = require('./database/client/config.json');
 let client_bot = require("./handlers/index.js")
 let Cluster = require("discord-hybrid-sharding");
 let mongoose = require("mongoose");
+let dist = require("./dist/main.js");
 
 const dbOptions = {
 	useUnifiedTopology: true,
@@ -40,5 +41,6 @@ let events = new client_bot.events(`${clientConfig.footer.root}/events`,client,"
 
 
 events.loadEVENTS();
+dist.extends()
 //mongoose.connect(process.env.MONGOOSE, dbOptions);
 client.connectBOT(process.env.TOKEN);

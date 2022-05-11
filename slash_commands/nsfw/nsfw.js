@@ -1,11 +1,13 @@
 let comando = require("../../frameworks/commando/command.js");
 
 let data_1 = require("../../database/images/nsfw/nsfw.hentai.json");
-let data_2 = require("../../database/images/nsfw/nsfw.gay.json")
+let data_2 = require("../../database/images/nsfw/nsfw.gay.json");
 
 let Discord = require("discord.js"); 
 
 let mathRandom = (number) => ~~(Math.random() * number);
+
+let endpoint = require("../../dist/main.js").image.api()
 
 class Command extends comando {
     constructor(...args) {
@@ -23,7 +25,7 @@ class Command extends comando {
                 {
                     name: "gay",
                     description: "nsfw gay"
-                }/*,
+                },
                 {
                     name: "futa",
                     description: "nsfw futa"
@@ -31,7 +33,11 @@ class Command extends comando {
                 {
                     name: "femboy",
                     description: "nsfw femboy"
-                }*/
+                },
+                {
+                    name: "boobs",
+                    description: "nsfw boobs"
+                }
             ],
             commandOptions: [
                 {
@@ -43,7 +49,7 @@ class Command extends comando {
                     type: 1,
                     name: "gay",
                     description: "[ 😈nsfw ] nsfw gay"
-                }/*,
+                },
                 {
                     type: 1,
                     name: "futa",
@@ -53,7 +59,12 @@ class Command extends comando {
                     type: 1,
                     name: "femboy",
                     description: "[ 😈nsfw ] nsfw femboy"
-                }*/
+                },
+                {
+                    type: 1,
+                    name: "boobs",
+                    description: "[ 😈nsfw ] nsfw boobs"
+                }
             ]
         })
     }
@@ -93,16 +104,15 @@ class Command extends comando {
                 ephemeral: this.deferReply
             }).catch(() => {});
             
-            let url = await this.client.getContainer("api/nekos/nsfw/futanari");
-            if(url.send === false){
+            let url = await endpoint.nekos.danbooru(["rating:explict", "futanari", "-video"])
+            if(url.success === false){
                 interaction.followUp({
                     content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c"
                 })
                 return {}
             } else {
-                let button_1 = new Discord.MessageButton().setStyle('LINK').setURL('https://nekos.life/').setLabel('ver website original!');
-                let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
-                let row1 = new Discord.MessageActionRow().addComponents(button_1,button_2);
+                let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
+                let row1 = new Discord.MessageActionRow().addComponents(button_1);
                 let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
                 interaction.editReply({
                     embeds: [embed3],
@@ -115,17 +125,38 @@ class Command extends comando {
                 ephemeral: this.deferReply
             }).catch(() => {});
             
-            let url = await this.client.getContainer("api/nekos/nsfw/trap");
-            if(url.send === false){
+            let url = await endpoint.nekos.danbooru(["rating:explict", "otoko_no_ko", "-video"])
+            if(url.success === false){
                 interaction.followUp({
                     content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
                     ephemeral: true
                 })
                 return {}
             } else {
-                let button_1 = new Discord.MessageButton().setStyle('LINK').setURL('https://nekos.life/').setLabel('ver website original!');
                 let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
-                let row1 = new Discord.MessageActionRow().addComponents(button_1,button_2);
+                let row1 = new Discord.MessageActionRow().addComponents(button_2);
+                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
+                interaction.editReply({
+                    embeds: [embed3],
+                    components: [row1]
+                });
+            }
+            return {}
+        } else if(subCOMMAND === "boobs") {
+            await interaction.deferReply({
+                ephemeral: this.deferReply
+            }).catch(() => {});
+            
+            let url = await endpoint.nekos.boobs();
+            if(url.success === false){
+                interaction.followUp({
+                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
+                    ephemeral: true
+                })
+                return {}
+            } else {
+                let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
+                let row1 = new Discord.MessageActionRow().addComponents(button_2);
                 let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
                 interaction.editReply({
                     embeds: [embed3],
