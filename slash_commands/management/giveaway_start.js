@@ -54,6 +54,7 @@ class Command extends comando {
                         {
                             name: 'channel',
                             description: 'O canal para iniciar o sorteio',
+                            channelTypes: ['GUILD_TEXT'],
                             type: 7,
                             required: true
                         }
