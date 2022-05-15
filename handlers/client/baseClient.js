@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const Cluster = require('discord-hybrid-sharding');
 const { RequestManager } = require("discord-cross-ratelimit");
+let clientConfig = require('../../database/client/config.json');
 
 class baseClient extends Discord.Client {
     constructor(opts){
@@ -27,7 +28,15 @@ class baseClient extends Discord.Client {
                     await g.fetch();
                     console.log(`[error] o servidor \`${g.name} (${g.id})\`e um servidor inválido!`);
                 }
-            })
+            });
+            let status = clientConfig.status;
+            status = status.replace("!!{version}!!", `v${require('../../package.json').version}`);
+            
+            this.interval.start(async() => {
+                this.user.setActivity(`${status} | cluster[${this.cluster.id}]`, {
+                    type: "WATCHING"
+                })
+            }, 780000, "status");
         });
         
         try {

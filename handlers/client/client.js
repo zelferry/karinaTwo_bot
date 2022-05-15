@@ -6,6 +6,7 @@ let imagesStructure = require("./structures/Images.js");
 let webhookStructure_ = require("./structures/Webhooks.js");
 let actviesStructure = require("./structures/DiscordActivies.js");
 let databaseStructure = require("./structures/database.js");
+let intervalStructure = require("./structures/interval.js");
 
 let utils_ = require('../../utils/main.js');
 let clientConfig = require('../../database/client/config.json');
@@ -64,6 +65,7 @@ class clientBot extends baseClient {
         ];
         client.dist = require("../../dist/main.js");
         client.contents = require("../../database/client/content.json");
+        client.interval = intervalStructure
     }
     displaySpecialTHIS(client){
         let channels_1 = client.channels.cache.filter(channel => channel.name.includes('spam')).map(x => x.id);

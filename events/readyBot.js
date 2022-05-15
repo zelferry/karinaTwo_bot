@@ -33,7 +33,7 @@ const _giveaway = new plugins.giveaway(client, {
 
 
 client.giveawaysManager = _giveaway;
-
+/*
 function status() {
 	let clusterID = client.cluster.id;
     let status = clientConfig.status;
@@ -44,7 +44,7 @@ function status() {
         });
 }
 status();
-setInterval(status, 5000);
+setInterval(status, 5000);*/
 //client.user.setStatus('indle').catch(console.error);
     console.log(`${client.user.tag} online!`);
     /*

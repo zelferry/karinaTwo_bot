@@ -36,6 +36,17 @@ class endpoit_nekos {
                 data: ret
             }
         }
+
+        this.pussy = async function(){
+            let res = await fetch("http://api.nekos.fun:8080/api/pussy");
+            let ret = await res.json();
+
+            return {
+                success: ret.error ? false : true,
+                url: ret.image,
+                data: ret
+            }
+        }
     }
 }
 

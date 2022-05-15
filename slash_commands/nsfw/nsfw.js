@@ -37,6 +37,10 @@ class Command extends comando {
                 {
                     name: "boobs",
                     description: "nsfw boobs"
+                },
+                {
+                    name: "pussy",
+                    description: "nsfw pussy"
                 }
             ],
             commandOptions: [
@@ -64,6 +68,11 @@ class Command extends comando {
                     type: 1,
                     name: "boobs",
                     description: "[ 😈nsfw ] nsfw boobs"
+                },
+                {
+                    type: 1,
+                    name: "pussy",
+                    description: "[ 😈nsfw ] nsfw pussy"
                 }
             ]
         })
@@ -158,6 +167,28 @@ class Command extends comando {
                 let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
                 let row1 = new Discord.MessageActionRow().addComponents(button_2);
                 let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
+                interaction.editReply({
+                    embeds: [embed3],
+                    components: [row1]
+                });
+            }
+            return {}
+        } else if(subCOMMAND === "pussy") {
+            await interaction.deferReply({
+                ephemeral: this.deferReply
+            }).catch(() => {});
+            
+            let url = await endpoint.nekos.pussy()
+            if(url.success === false){
+                interaction.followUp({
+                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
+                    ephemeral: true
+                })
+                return {}
+            } else {
+                let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
+                let row1 = new Discord.MessageActionRow().addComponents(button_2);
+                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE").setURL(url.url);
                 interaction.editReply({
                     embeds: [embed3],
                     components: [row1]
