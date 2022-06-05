@@ -36,7 +36,7 @@ class baseClient extends Discord.Client {
                 this.user.setActivity(`${status} | cluster[${this.cluster.id}]`, {
                     type: "WATCHING"
                 })
-            }, 780000, "status");
+            }, 5600, "status");
         });
         
         try {

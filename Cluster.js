@@ -23,9 +23,11 @@ manager.on('clusterCreate', cluster => {
 
 manager.on("debug", (data) =>{ console.log(data) });
 
-process.on('unhandledRejection', error => { console.error(error) });
+process.on('unhandledRejection', async (bb, aa) => {
+    console.log(bb)
+});
 
 global.clusterManager = manager;
-manager.spawn({ timeout: -1 });
+manager.spawn({ timeout: -1 }).catch(console.error)
 dbconnect("cluster");
 dist.modules.webclient();
