@@ -1,5 +1,5 @@
 <p align="center">
-<img width="97%" src="https://media.discordapp.net/attachments/947205559596228608/950178560830734386/karinaTwo.png">
+<img width="97%" src="https://cdn.discordapp.com/attachments/922623181334908939/1045460919972532244/karinaTwo.png">
 <br>
 
 
@@ -36,76 +36,52 @@
 
 ## 💜 introdução
 
-🕜| atualmente focando a maioria do meu tempo nela, contando com mais de **67** comandos dentre eles comandos de **diversão**,**administração**,**nsfw**, **micelanea** dentre outros!
-
-😉| Espero que todos respeitem esse repositório, e não usem para ganhar fama em seu bot, use apenas para aprender as funções que a **karinaTwo** Possui!
+😊| a karinaTwo e uma bot multiuso feita com muito carinho, amor e javascript, espero que todos respeitem esse repositório, e não usem para ganhar fama em seu bot, use apenas para aprender as funções que a **karinaTwo** Possui!
 Não quero saber de usuários que estão usando essa Source para criar outros bots e ganhando dinheiro com isso!(`se não serão banidos de usar a karinaTwo!`)
 
 ## 🔋 estrutura
 
- ⚠️| a karinaTwo usa o **node v16** para poder fazer.... quase que tudo!
+ ⚠️| a karinaTwo usa o **node v16** ou a **node v18** para poder fazer.... quase que tudo!
 
  💻| karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **Discord**  a **Discord.js**, para o Banco de Dados, eu usei a **moongoose**
  
-#### 💾 **- arquivo** `config.json`
-(na pasta **database/client**)
-
-```json
-{
-    "status": "", //status do bot
-    "guildId": "", //id do servidor de suporte
-    "client_id":"", //id do cliente(bot)
-    "functions": {
-        "ignoredUsers": [] //usuários ignorados
-    },
-    "owners": {
-        "ids": [], //ids dos  devs do bot
-        "prefix": "" //prefixo padrão
-    },
-    "adverts": { //id de canais de anúncios  do servidor de suporte
-        "news": "",
-        "upgrades": "",
-        "status": "",
-        "no_topic": ""
-    },
-    "host": {
-        "links": [] //link(s) ou o ip da máquina onde o bot esta hospedado
-    },
-    "footer": {
-        "root": "" //root global (ex: c:/data/bots/mybot, /home/runner/mybot, sdcard/bots/mybot
-    },
-    "webhooks": { //links dos webhooks
-        "commands": "",
-        "topgg": "",
-        "suport": "",
-        "_exit": ""
-    }
-}
-```
 
 #### 📄 **- arquivo** `.env`
 
 ```
-TOKEN="" token do bot
-PROTECTION_BOT_TOKEN="" TOKEN de um bot para fazer requisições EXTERNAS/EXTRAS na api do discord
+MONGOOSE="" #database da moongoose
+PORT="" #porta para a express(opcional se CONDITION_WEBCLIENT estiver com a válvula "false")
 
-LINK_ADD="" link para adicionar o bot
-BOT_ID="" id do bot
+WEBHOOK_COMMANDS="' #webhook de comandos
+WEBHOOK_TOPGG="" #webhook de logs da top.gg
+WEBHOOK_SUPPORT="" #webhook de suporte
+WEBHOOK_MANAGER="" #webhook do sistema
 
-PORT="" PORT para o express
+CLIENT_ID="" #id do cliente do bot
+TOKEN="" #token do bot
+PROTECTION_BOT_TOKEN="" #token de um bot para requisições externas
 
-TOP_GG_API="" token do bot na top.gg
-topggpas="" seu passe para a top.gg
+TOPGG_PASS="" #passe da top.gg(opcional se CONDITION_BOTLISTPOSTDATA estiver com a valvula "false")
+TOPGG_TOKEN="" #token da top.gg(opcional se CONDITION_BOTLISTPOSTDATA estiver com a valvula "false")
 
-moongoose="" sua url da moongoose
+USER_OWNERS="" #ids dos desenvolvedores(exemplo: id1,id2,id3...)
+USER_IGNORED="" #ids dos usuários ignorados(exemplo: id1,id2,id3...)
+
+GUILD_TEST=""#id do servidor de testes
+
+ADVERTS="" #ids dos canais de anúncios(exemplo: id1,id2,id3...)
+URLS_SUPPORT="" #servidor de suporte
+DONATE_PIX="" #chave pix para doações
+
+CONDITION_PRIVATE_COMMANDS="" #condição para ativar/desativar os comandos privados (apenas true ou false)
+CONDITION_WEBCLIENT="" #condição para ativar/desativar o cliente da express(apenas true ou false)
+CONDITION_BOTLISTPOSTDATA="" #condição para ativar/desativar o sistema de botlist (apenas true ou false)
 ```
 ⚠ALERTA!
 
 > `o token de bot adicional o *PROTECTION_BOT_TOKEN* e necessário para o repositório fazer requisições EXTERNAS/EXTRAS na API do discord sem fazer que o bot principal "*TOKEN*" não pege RATELIMIT`
 
-> a karinaTwo foi feita na replit, e para ter o node v16, [leia este post aqui](https://replit.com/talk/learn/Easiest-way-to-get-Node-v166-and-NPM-v720-for-your-Discordjs-v13-projects/143841)
-
-#### :electric_plug: **- Script de Inicialização**
+#### :electric_plug: **- script de Inicialização**
 ```npm
 npm start
 ```
@@ -116,9 +92,11 @@ node Cluster.js
 
 ## 🔗 links
 
-> - [:bird: Twitter do zelferry](https://twitter.com/zelferry?s=09)
-> - [🐱 server de suporte da karina](https://discord.gg/Xmu7HrH3yy)
-> - [🔗 linktree do zelferry(preguiça de colocar todos os meus links kk)](https://linktr.ee/zelferry)
+> - [:bird: twitter da karinaTwo](https://twitter.com/karinaTwo_bot?s=09)
+> - [🐱 servidor de suporte da karina](https://discord.gg/Xmu7HrH3yy)
+> - [🔗 linktree do zelferry](https://linktr.ee/zelferry)
+> - [🙏 doações](https://picpay.me/joao.kaholo)
+> - [😁 adicione a karinaTwo!](https://discord.com/api/oauth2/authorize?client_id=793530706319114261&scope=bot+applications.commands&permissions=550360165470)
 
 # Menções Incriveis:
 
@@ -131,4 +109,3 @@ node Cluster.js
 
 | [<img src="https://media.discordapp.net/attachments/954016374806700093/959104376092381274/Screenshot_20220331-115749_Discord.jpg" width=115><br><sub>@M&M</sub>](https://twitter.com/Miguel94244829) |
 | :---: |
-

@@ -8,37 +8,26 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "emoji",
-            description: "[ 📲discord ] tudo que tem aver com emojis!",
+            description: "[ 📲discord ] everything to do with emojis!",
             category: "discord",
-            usage: "<sub comando>",
-            subCommands: [
-                {
-                    name: "big",
-                    description: "nunca mais ira precisar de uma lupa para ver os emojis!"
-                },
-                {
-                    name: "send",
-                    description: "enviar um emoji no chat"
-                }
-            ],
             commandOptions: [
                 {
                     name: "big",
-                    description: "[ 📲discord ] nunca mais ira precisar de uma lupa para ver os emojis!",
+                    description: "[ 📲discord ] You'll never need a magnifying glass to see emojis again!",
                     type: 1,
                     options: [...subCommand1]
                 },
                 {
                     name: "send",
-                    description: "[ 😂diversão + 📲discord ] enviar um emoji no chat",
+                    description: "[ 😂fun + 📲discord ] send an emoji in chat",
                     type: 1,
                     options: [...subCommand2]
                 }
             ]
         })
     }
-    async interactionRun(interaction){
-        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
+    async interactionRun(interaction, t){
+        //await interaction.deferReply({ ephemeral:  this.deferReply }).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "big"){
@@ -46,12 +35,13 @@ class Command extends comando {
             let emoji = interaction.guild.emojis.cache.find(emoji => emoji.name === emojiNAME.split(":")[1]);
 
             if(!emoji){
-                return interaction.reply({
-                    content: `🚫**|** o emoji \`${emojiNAME}\` não e um emoji válido!`,
-                    ephemeral: true
+                await interaction.deferReply({ ephemeral: true }).catch(() => {});
+                return interaction.followUp({
+                    content: t("commands:emoji.big.error", { emojiName: emojiNAME })
                 });
             } else {
-                return interaction.reply({
+                await interaction.deferReply({ ephemeral: false }).catch(() => {});
+                return interaction.followUp({
                     embeds: [
                         {
                             description: `${emojiNAME.split(":")[1]}`,
@@ -62,22 +52,22 @@ class Command extends comando {
                         }
                     ]
                 })
-                //fim
             }
         } else if(subCOMMAND === "send"){
+            await interaction.deferReply({ ephemeral: true }).catch(() => {});
             let emoginame2 = interaction.options.getString('emoji_name');
 
             let emoji = interaction.guild.emojis.cache.find(emoji => emoji.name === emoginame2);
 
             if(!emoji){
                 interaction.followUp({
-                    content: `\`${emoginame2}\`**não ** e um emoji ddesse servidor!`,
+                    content: t("commands:emoji.send.noEmoji", { emojiName: emoginame2 }),
                     ephemeral: true
                 })
                 return {} 
             } else if(emoji.animated === true){
                 interaction.editReply({
-                    content: "✅**|** enviado com sucesso!",
+                    content: t("commands:emoji.send.success"),
                     ephemeral: true
                 })
                 interaction.channel.send({
@@ -86,13 +76,59 @@ class Command extends comando {
                 return {}
             } else {
                 interaction.editReply({
-                    content: "✅**|** enviado com sucesso!",
+                    content: t("commands:emoji.send.success"),
                     ephemeral: true
                 });
                 interaction.channel.send({
                    content: `<:${emoginame2}:${emoji.id}>`
                 })
                 return {}
+            }
+        }
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "emoji",
+                description: "tudo sobre emojis!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "discord",
+                usage: "<sub comando>",
+                subCommands: [
+                    {
+                        name: "big",
+                        description: "sabe aquele emoji lindo que você viu? AGORA NÃO PRECISARÁ USAR UMA LUPA PARA VER-LO!"
+                    },
+                    {
+                        name: "send",
+                        description: "faça eu enviar um emoji no chat!"
+                    }
+                ]
+            },
+            en: {
+                name: "??",
+                description: "all about emojis!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "discord",
+                usage: "<sub command>",
+                subCommands: [
+                    {
+                        name: "big",
+                        description: "you know that cute emoji you saw? NOW YOU DON'T NEED TO USE A MAGNIFYING GLASS TO SEE IT!"
+                    },
+                    {
+                        name: "send",
+                        description: "make me send an emoji in chat!"
+                    }
+                ]
             }
         }
     }

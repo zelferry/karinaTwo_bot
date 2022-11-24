@@ -21,12 +21,7 @@
 })(function () {
 	function SetInterval() {
 		this.key = {};
-
-		/**
-		 * @param {Function} fn
-		 * @param {Number} interval
-		 * @param {String} key
-		 */
+        
 		this.start = function start(fn, interval, key) {
 			if (!this.key[key]) {
 				this.key[key] = setInterval(function () {
@@ -34,10 +29,7 @@
 				}, interval);
 			}
 		}
-
-		/**
-		 * @param {String} key
-		 */
+        
 		this.clear = function clear(key) {
 			if (this.key[key]) {
 				clearInterval(this.key[key]);

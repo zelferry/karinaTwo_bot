@@ -2,7 +2,7 @@
     {
         "name": "cmd",
         "type": 3,
-        "description": "nome do comando",
+        "description": "command name",
         "required": true
     }
 ]

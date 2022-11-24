@@ -1,6 +1,6 @@
 var Discord = require("discord.js");
 
-module.exports = async(client,interaction) =>{
+module.exports = async(client, interaction) =>{
     await interaction.deferReply({ephemeral: true});
     let channels_ = interaction.guild.channels.cache.filter((channel) => channel.nsfw).map(x => "<#"+x.id+">");
     let embed_2 = new Discord.MessageEmbed().setColor("#FF7F50").setDescription(`:x:|o canal não tem a função **NSFW** ativada!`).setTimestamp();

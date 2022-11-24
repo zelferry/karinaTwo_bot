@@ -7,34 +7,23 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "meme",
-            description: "memes, memes, memes e mais memes...",
+            description: "memes, memes, memes and memes...",
             category: "miscellaneous",
-            usage: "<sub comando>",
-            subCommands: [
-                {
-                    name: "generate",
-                    description: "gerar um meme aleatório!"
-                },
-                {
-                    name: "knuckles",
-                    description: "\"meme?\""
-                }
-            ],
             commandOptions: [
                 {
                     type: 1,
                     name: "generate",
-                    description: "[ 🤪miscelânea ] gerar um meme aleatório!"
+                    description: "[ 🤪miscellaneous ] generate a random meme!"
                 },
                 {
                     type: 1,
                     name: "knuckles",
-                    description: "[ 🤪miscelânea ] \"meme?\""
+                    description: "[ 🤪miscellaneous ] \"meme?\""
                 }
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
@@ -50,20 +39,72 @@ class Command extends comando {
             });
             return {}
         } else if(subCOMMAND === "knuckles"){
-            let data = this.client.contents.knuckles[Math.floor(Math.random() * this.client.contents.knuckles.length)];
+            let data = [
+                "approved",
+                "illegal",
+                "paralyzed"
+            ];
+            let attachment = new Discord.MessageAttachment(`./assets/knuckles/${t.lng}/knuckles_${data[mathRandom(data.length)]}.png`, "knuckles.png");
 
             interaction.editReply({
                 embeds:[
                     {
-                        title: "sera que o Knuckles aprovou seu meme?",
+                        title: t("commands:meme.knuckles"),
                         color: 1639005,
                         image: {
-                            url: data
+                            url: `attachment://knuckles.png`
                         }
                     }
-                ]
+                ],
+                files: [attachment]
             });
             return {}
+        }
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "meme",
+                description: "comandos só para memes!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "micelanea",
+                usage: "<sub comando>",
+                subCommands: [
+                    {
+                        name: "generate",
+                        description: "gerar um meme aleatório"
+                    },
+                    {
+                        name: "knuckles",
+                        description: "\"meme?\""
+                    }
+                ]
+            },
+            en: {
+                name: "meme",
+                description: "commands only for memes!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "miscellaneous",
+                usage: "<sub command>",
+                subCommands: [
+                    {
+                        name: "generate",
+                        description: "generate a random meme"
+                    },
+                    {
+                        name: "knuckles",
+                        description: "\"meme?\""
+                    }
+                ]
+            }
         }
     }
 } 

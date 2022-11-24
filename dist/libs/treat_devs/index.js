@@ -1,7 +1,7 @@
 let { devs } = require("../../../database/client/content.json") 
 
-module.exports = () => {
-    let data = devs.map((x) => {
+module.exports = (t) => {
+    let data = devs[t].map((x) => {
         let links = x.links.map((x) => `[${x.name}](${x.link})`).join(", ")
         return {
             name: `${x.name}`,

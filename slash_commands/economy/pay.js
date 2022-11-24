@@ -7,25 +7,25 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "pay",
-            description: "[ 💸economia ] dar panther-coins para um usuário!",
+            description: "[ 💸economy ] donate panther-coins to a user!",
             category: "economy",
-            usage: "<usuário> <quantidade> [mensagem]",
+            usage: "<user> <the amount> [message]",
             commandOptions: [
                 {
                     name: "user",
-                    description: "um usuário para quem você quer pagar",
+                    description: "user (@user/id) who you want to pay",
                     type: 6,
                     required: true
                 },
                 {
                     name: "amount",
-                    description: "quantidade que você quer passar",
+                    description: "amount you want to spend",
                     type: 10,
                     required: true
                 },
                 {
                     name: "message",
-                    description: "uma MENSAGEM para ser enviada para o usuário",
+                    description: "a MESSAGE to be sent to the user",
                     type: 3,
                     required: false
                 }
@@ -33,7 +33,7 @@ class Command extends comando {
             buttonCommands: ["pay","cancel"]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let user = interaction.options.getUser('user');
         let message1 = interaction.options.getString("message");
@@ -45,26 +45,26 @@ class Command extends comando {
 
         if(user === interaction.user){
             return interaction.followUp({
-                content: "🚫**|** você não pode pagar você mesmo!",
+                content: t("commands:pay.error.isThatYou"),
                 ephemeral: true
             })
         } else if(value_2.coins <= amount){
             return interaction.followUp({
-                content: "🚫**|** você não tem PANTHER-COINS o suficientes!",
+                content: t("commands:pay.error.insufficient"),
                 ephemeral: true
             })
         } else if(amount <= 0){
             return interaction.followUp({
-                content: "🚫**|** numeros neativos não comtam!",
+                content: t("commands:pay.error.noNegative"),
                 ephemeral: true
             })
         } else {
-            let paybutton = new Discord.MessageButton().setStyle("SUCCESS").setLabel("Pagar").setCustomId("pay");
-            let cancelbutton = new Discord.MessageButton().setStyle("DANGER").setLabel("cancelar").setCustomId("cancel");
+            let paybutton = new Discord.MessageButton().setStyle("SUCCESS").setLabel(t("commands:pay.button.pay")).setCustomId("pay");
+            let cancelbutton = new Discord.MessageButton().setStyle("DANGER").setLabel(t("commands:pay.button.canceled")).setCustomId("cancel");
             let row = new Discord.MessageActionRow().addComponents(paybutton,cancelbutton);
 
             await interaction.followUp({
-                content: `💸**|** você deseja mesmo transferir ${amount} panther-coins para **${user.username}**? \na equipe da karinaTwo **não se responsabiliza** pelos panther-coins perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \né proibido o comércio de conteúdo NSFW(+18) em troca de panther-coins!`,
+                content: t("commands:pay.success.warn", { amount: amount.toString(), userName: user.username }),
                 ephemeral: true,
                 components: [row]
             });
@@ -81,17 +81,17 @@ class Command extends comando {
 
                 if(i.customId === "pay"){
                     await interaction.editReply({
-                        content: `✅**|** Você transferiu **${amount}** ***panther-coins*** para o usuário ***${user.tag}***`,
+                        content: t("commands:pay.success.transferred", { amount: amount.toString(), userTag: user.tag }),
                         ephemeral: true,
                         components: []
                     });
                     if(message1){
                         interaction.followUp({
-                            content:"👍**|** e a MENSAGEM foi enviada com sucesso!",
+                            content: t("commands:pay.success.sendMessage.success"),
                             ephemeral: true
                         })
                         user.send({
-                            embeds: [new Discord.MessageEmbed().setDescription(`o ***${interaction.user.tag}*** te deu **${amount}** panther-coins!`).setColor("#fd9058").addField("uma mensagem dele:",`${message1}`)]
+                            embeds: [new Discord.MessageEmbed().setDescription(t("commands:pay.success.sendMessage.label1", { authorTag: interaction.user.tag, amount: amount.toString() })).setColor("#fd9058").addField(t("commands:pay.success.sendMessage.label2"),`${message1}`)]
                         })
                     }
                     await economydb.pay(interaction.user,user,amount);
@@ -99,13 +99,41 @@ class Command extends comando {
                 }
                 if(i.customId === "cancel"){
                     await interaction.editReply({
-                        content: "👍**|** cancelado",
+                        content: t("commands:global.canceled"),
                         ephemeral: true,
                         components: []
                     })
                     collector.stop(82);
                 }
             })
+        }
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "pay",
+                description: "transferir panther-coins para um usuário!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "economia",
+                usage: "<usuário> <quantidade> [mensagem]",
+                subCommands: []
+            },
+            en: {
+                name: "pay",
+                description: "transfer panther-coins to a user!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "economy",
+                usage: "<user> <the amount> [message]",
+                subCommands: []
+            }
         }
     }
 } 

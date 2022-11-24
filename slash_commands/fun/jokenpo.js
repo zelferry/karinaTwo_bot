@@ -7,21 +7,21 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "jokenpo",
-            description: "[ 😂diversão ] PEDRA, PAPEL E TESOURA!!",
+            description: "[ 😂fun ] ROCK, PAPER AND SCISSOR!",
             category: "fun",
             usage: "<pedra | papel | tesoura>",
             commandOptions: [
                 {
                     type: 3,
                     name: "value",
-                    description: "pedra, papel ou tesoura?",
+                    description: "rock, paper or scissors?",
                     required: true,
                     choices: [...choices1]
                 }
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let data = interaction.options.getString("value");
         let rng = Math.floor((Math.random() * 100) + 1);
@@ -29,53 +29,82 @@ class Command extends comando {
         if(data === "pedra"){
             if(rng > 0 && rng <= 34){
                 interaction.editReply({
-                    content: ":rock:**|** pedra!\n🔹️**|** empatamos!"
+                    content: t("commands:jokenpo.rock.we_tie")
                 })
                 return {}
             } else if(rng > 34 && rng <= 67){
                 interaction.editReply({
-                    content: ":newspaper:**|** papel!\n🔹️**|** você perdeu!"
+                    content: t("commands:jokenpo.rock.loser")
                 })
                 return {}
             } else if(rng > 67 && rng <= 100){
                 interaction.editReply({
-                    content: "✂️**|** tesoura!\n🔹️**|** eu perdi :c"
+                    content: t("commands:jokenpo.rock.win")
                 })
                 return {}
             }
         } else if(data === "papel") {
             if(rng > 0 && rng <= 34){
                 interaction.editReply({
-                    content: ":newspaper:**|** papel!\n🔹️**|** empatamos!"
+                    content: t("commands:jokenpo.paper.we_tie")
                 })
                 return {}
             } else if(rng > 34 && rng <= 67){
                 interaction.editReply({
-                    content: "✂️**|** tesoura!\n🔹️**|** você perdeu!"
+                    content: t("commands:jokenpo.paper.loser")
                 })
                 return {}
             } else if(rng > 67 && rng <= 100){
                 interaction.editReply({
-                    content: ":rock:**|** pedra!\n🔹️**|** eu perdi!"
+                    content: t("commands:jokenpo.paper.win")
                 })
                 return {}
             }
         } else if(data === "tesoura") {
             if(rng > 0 && rng <= 34){
                 interaction.editReply({
-                    content: "✂️**|** tesoura!\n🔹️**|** empatamos!"
+                    content: t("commands:jokenpo.scissor.we_tie")
                 })
             } else if(rng > 34 && rng <= 67){
                 interaction.editReply({
-                    content: ":rock:**|** pedra!\n🔹️**|** você perdeu!"
+                    content: t("commands:jokenpo.scissor.loser")
                 })
             } else if(rng > 67 && rng <= 100){
                 interaction.editReply({
-                    content: ":newspaper:**|** papel!\n🔹️**|** eu perdi!"
+                    content: t("commands:jokenpo.scissor.win")
                 })
             }
         }
         //fim
     }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "jokenpo",
+                description: "pedra papel tesoura!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "diversão",
+                usage: "<pedra | papel | tesoura>",
+                subCommands: []
+            },
+            en: {
+                name: "jokenpo",
+                description: "ROCK, PAPER AND SCISSORS!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "fun",
+                usage: "<stone | paper | scissor>",
+                subCommands: []
+            }
+        }
+    }
 } 
+
 module.exports = Command 

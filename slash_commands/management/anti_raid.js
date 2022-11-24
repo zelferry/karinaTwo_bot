@@ -7,38 +7,28 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "antiraid",
-            description: "configurar o módulo ANTIRAID",
+            description: "configure the ANTIRAID module",
             category: "management",
-            usage: "<sub comando>",
             deferReply: true,
+            dscordPermissions: 8,
             permissions: {
                 user: ["ADMINISTRATOR"]
             },
-            subCommands: [
-                {
-                    name: "on",
-                    description: "ativar o módulo ANTIRAID"
-                },
-                {
-                    name: "off",
-                    description: "desativar o módulo ANTIRAID"
-                }
-            ],
             commandOptions: [
                 {
                     type: 1,
                     name: "on",
-                    description: "[ 👩‍⚖️administração ] ativar o módulo ANTIRAID"
+                    description: "[ 👩‍⚖️management ] activate the ANTIRAID module"
                 },
                 {
                     type: 1,
                     name: "off",
-                    description: "[ 👩‍⚖️administração ] desarivar o módulo ANTIRAID"
+                    description: "[ 👩‍⚖️management ] disable the ANTIRAID module"
                 }
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
@@ -48,7 +38,7 @@ class Command extends comando {
         if(subCOMMAND === "on"){
             if(stats.antiraid){
                 interaction.followUp({
-                    content: "❌**|**  O módulo já está ligado."
+                    content: t("commands:antiraid.error.activated")
                 });
                 return {}
             } else {
@@ -56,7 +46,7 @@ class Command extends comando {
                     antiraid: true
                 }, interaction.guild).then((x) => {
                     interaction.editReply({
-                        content: "✔️**|** o modulo foi ativado!\n❓**|** o seu servidor esta seguro contra raids"
+                        content: t("commands:antiraid.success.ativated")
                     })
                 });
                 return {}
@@ -64,7 +54,7 @@ class Command extends comando {
         } else if(subCOMMAND === "off"){
             if(!stats.antiraid){
                 interaction.followUp({
-                    content: "❌**|** o módulo já está desligado."
+                    content: t("commands:antiraid.error.disabled")
                 });
                 return {}
             } else {
@@ -72,10 +62,51 @@ class Command extends comando {
                     antiraid: false
                 }, interaction.guild).then((x) => {
                     interaction.editReply({
-                        content: "⚠️**|** o módulo foi desativado\n❓**|** o seu servidor esta desprotegido contra raids!"
+                        content: t("commands:antiraid.success.disabled")
                     })
                 });
                 return {}
+            }
+        }
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "antiraid",
+                description: "configurar o módulo ANTIRAID",
+                permissions: {
+                    bot: [],
+                    user: ["ADMINISTRATOR"]
+                },
+                category: "administração",
+                usage: "<off/on>",
+                subCommands: []
+            },
+            en: {
+                name: "antiraid",
+                description: "configure the ANTIRAID module",
+                permissions: {
+                    bot: [],
+                    user: ["ADMINISTRATOR"]
+                },
+                category: "management",
+                usage: "<off/on>",
+                subCommands: []
+            }
+        }
+    }
+
+    _permissions(){
+        return {
+            "pt-BR": {
+                bot: "🚫**|** eu não tenho permissões o suficiente para isso!\n💡**|** eu preciso das seguintes permissões: `administrador`",
+                user: "🚫**|** você não tem permissões o suficiente para isso!\n💡**|** você precisa das seguintes permissões: `administrador`"
+            },
+            "en-US": {
+                bot: "🚫**|** I don't have enough permissions for that!\n💡**|** I need the following permissions: `administrator`",
+                user: "🚫**|** you don't have enough permissions for that!\n💡**|** you need the following permissions: `administrator`"
             }
         }
     }

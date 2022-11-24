@@ -1,0 +1,8 @@
+[api]
+base = "https://karina-rest.vercel.app"
+ [api.external]
+ danbooru = "https://danbooru.donmai.us/posts/random.json?tags="
+ nekos_1 = "http://api.nekos.fun:8080/api"
+ [api.routes]
+ e621 = "/api/e621/"
+ nekos = "/api/nekos/"

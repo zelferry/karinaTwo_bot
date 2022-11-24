@@ -1,0 +1,44 @@
+let comando = require("../../frameworks/commando/command.js");
+let Discord = require("discord.js"); 
+
+class Command extends comando {
+    constructor(...args) {
+        super(...args, {
+            name: "",
+            description: "",
+            category: "",
+            commandOptions: []
+        })
+    }
+    async interactionRun(interaction, t){}
+
+    command_info(){
+        return {
+            activated: false,
+            pt: {
+                name: "??",
+                description: "não especificado",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "",
+                usage: "??",
+                subCommands: []
+            },
+            en: {
+                name: "??",
+                description: "not specified",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "",
+                usage: "??",
+                subCommands: []
+            }
+        }
+    }
+}
+
+module.exports = Command

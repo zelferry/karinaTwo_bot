@@ -7,6 +7,11 @@ class topgg {
 		
 		let new_ = new usermodel({
 			UserId: author,
+            config: {
+                background: {
+                    collection: ["default"]//.push(code)
+                }
+            },
             userCreationTimestamp: Date.now()
 		})
 		await new_.save().catch(e => console.log(e));
@@ -15,7 +20,7 @@ class topgg {
 	static async find(author){
 		const user = await usermodel.findOne({ UserId: author });
 		
-		if(!user) return false
+		if(!user) return (await this.newUser(author))
 		
 		return user 
 	}
@@ -25,6 +30,11 @@ class topgg {
 			const newUser = new usermodel({
 				UserId: author,
                 userCreationTimestamp: Date.now(),
+                config: {
+                    background: {
+                        collection: ["default"]
+                    }
+                },
 				topggVotes: VOTES || 0
 			})
 			await newUser.save().catch(e => console.log(e))

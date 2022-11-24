@@ -12,7 +12,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "yiff",
-            description: "[ 😈 nsfw ] obter imagens de uma certa categoria",
+            description: "[ 😈 nsfw ] get images of a certain category",
             nsfw: true,
             category: "nsfw",
             usage: "<gay | straight | lesbian | gynomorph | bulge | andromorph>",
@@ -20,7 +20,7 @@ class Command extends comando {
                 {
                     type: 3,
                     name: "type_image",
-                    description: "escolha o tipo de imagem para eu enviar",
+                    description: "choose the type of image for me to send",
                     required: true,
                     choices: [
                         {
@@ -52,14 +52,42 @@ class Command extends comando {
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let data = interaction.options.getString('type_image');
-        let json = await this.client.dist.modules.yiff[`${data}`]();
+        let json = await this.client.private_api.yiff[data]();
         
-        let embed = new Discord.MessageEmbed().setImage(json.yiffMediaURL).setColor("#7B68EE").setDescription(`artista(s): ${json.artists.length > 0 ? json.artists.map((c) => `\`${c}\``).join(", ") : "não tem"}`);
+        let embed = new Discord.MessageEmbed().setImage(json.yiffMediaURL).setColor("#7B68EE").setDescription(`${t("commands:yiff.label.artist")}: ${json.artists.length > 0 ? json.artists.map((c) => `\`${c}\``).join(", ") : t("commands:yiff.label.no_foud")}`);
         interaction.editReply({ embeds: [embed] })
     }
-} 
 
-module.exports = Command 
+    command_info(){
+        return {
+            activated: false,
+            pt: {
+                name: "yiff",
+                description: "obter imagens de uma certa caregoria",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "nsfw",
+                usage: "<gay | straight | lesbian | gynomorph | bulge | andromorph>",
+                subCommands: []
+            },
+            en: {
+                name: "yiff",
+                description: "get images of a certain category",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "nsfw",
+                usage: "<gay | straight | lesbian | gynomorph | bulge | andromorph>?",
+                subCommands: []
+            }
+        }
+    }
+}
+
+module.exports = Command

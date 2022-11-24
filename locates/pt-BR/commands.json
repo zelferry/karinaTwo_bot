@@ -1,0 +1,410 @@
+{
+    "global": {
+        "label": {
+            "yes": "sim",
+            "no": "não"
+        },
+        "button": {
+            "web": "ver na web",
+            "execute": "executar",
+            "cancel": "cancelar"
+        },
+        "canceled": "👍**|** cancelado",
+        "error": {
+            "commands": "🚫**|** aconteceu um erro estranho no comando, tente novamente mais tarde\n```md\n{{error}}\n```",
+            "api_error": "🚫**|** o **serviço de estregras de informações externas** não enviou nada,  tente novamente mas tarde.",
+            "user": {
+                "isBot": "🚫**|** esse usuário e um bot!"
+            },
+            "channel": {
+                "text": ":x:**|** `{{channelName}}` não e um canal de texto"
+            }
+        }
+    },
+    "command": {
+        "info": {
+            "noCommand": "🚫**|** o comando {{commandName}} não existe ou esta com defeito :p",
+            "success": {
+                "name": "nome do comando:",
+                "description": "descrição:",
+                "category": "categoria:",
+                "permissions": "permissões necessárias:",
+                "howToUse": "como usar?",
+                "subCommands": {
+                    "title": "sub comandos",
+                    "labelOne": "nome: **{{nameTwo}}**\ndescrição: **{{description}}**\ncomo usar: `/{{nameOne}} {{nameTwo}}`",
+                    "labelTwo": "não tem :/"
+                }
+            }
+        }
+    },
+    "emoji": {
+        "big": {
+            "error": "🚫**|** o emoji `{{emojiName}}` não e um emoji válido"
+        },
+        "send": {
+            "noEmoji": "`{{emojiName}}` **não** e um emoji deste servidor!",
+            "success": "✅**|** enviado com sucesso!"
+        }
+    },
+    "invite": "me adiciona em seu servidor!",
+    "server": {
+        "info": {
+            "title": "informações do servidor",
+            "id": "id:",
+            "name": "nome:",
+            "owner": "dono(a):",
+            "members": "membros:",
+            "date_create": "data de criação:",
+            "date_join": "você entrou em:",
+            "button": {
+                "name": "ver dados do servidor",
+                "embed": {
+                    "title": "dados do servidor",
+                    "description": "essas informações de seu servidor em minha database:"
+                }
+            }
+        },
+        "icon": "ícone do servidor"
+    },
+    "support": {
+        "server": "😁**|** meu servidor de suporte!",
+        "send": {
+            "error": "🚫**|** forneça um relatorio de no máximo 1000 caracteres.",
+            "success": "✅**|** enviado com sucesso!"
+        }
+    },
+    "user": {
+        "avatar": "🖼**|** avatar de {{userName}}",
+        "banner": {
+            "error": {
+                "noUser": "o usuário com o id **{{userId}}** não existe!",
+                "noBanner": "🚫**|** o usuário {{userName}} não tem uma banner!"
+            },
+            "success": "🖼**|** banner de {{userName}}",
+            "description": "cor da banner: **{{color}}**"
+        },
+        "about_me": {
+            "error": {
+                "noVipUser": ":x:**|** apenas usuários **vips** podem alterar o \"sobre mim\"",
+                "manyCharacters": "textos com mais de 603 caracteres não são permitidos, assim, evitarei bugs."
+            },
+            "success": "novo **sobre mim**"
+        }
+    },
+    "panther_coins": {
+        "me": "você tem **{{coins}}** panther-coins!",
+        "user": "***{{userTag}}*** tem **{{coins}}** panther-coins!"
+    },
+    "daily": {
+        "no_time": "você já coletou hoje! \naguarde mais **{{hours}}h {{minutes}}m {{seconds}}s**!",
+        "error": "aconteceu um erro!",
+        "success": "{{userTag}}**|** parabéns, você pescou **{{fishing}} pokémon(s) aquático(s)**! \n🪙**|** quantia recebida pela venda dos pokémons: `{{result}} Panther-coins`"
+    },
+    "pay": {
+        "error": {
+            "isThatYou": "🚫**|** você não pode pagar você mesmo!",
+            "insufficient": "🚫**|** você não tem PANTHER-COINS o suficientes!",
+            "noNegative": "🚫**|** numeros neativos não comtam!"
+        },
+        "button": {
+            "pay": "Pagar",
+            "canceled": "Cancelar pagamento"
+        },
+        "success": {
+            "warn": "💸**|** você deseja mesmo transferir {{amount}} panther-coins para **{{userName}}**? \na equipe da karinaTwo **não se responsabiliza** pelos panther-coins perdidos, então certifique-se de estar transferindo para uma pessoa de confiança! \né proibido o comércio de conteúdo NSFW(+18) em troca de panther-coins!",
+            "transferred": "✅**|** você transferiu **{{amount}}** ***panther-coins*** para o usuário ***{{userTag}}***",
+            "sendMessage": {
+                "success": "👍**|** e a MENSAGEM foi enviada com sucesso!",
+                "label1": "o ***{{authorTag}}*** te deu **{{amount}}** panther-coins!",
+                "label2": "uma mensagem dele:"
+            }
+        }
+    },
+    "buy": {
+        "vip": {
+            "error": {
+                "insufficient": "🚫**|** você não tem *panther-coins* o suficiente!\n💸**|** e necessário ter ***2.500*** panther-coins ou mais para comprar o *vip user*",
+                "vip_activated": "🚫**|** você ja e um usuário vip!"
+            },
+            "success": {
+                "title": "**vip user** comprado!",
+                "description": "você comprou: **vip user** por **2.500 Panther-coins**"
+            }
+        }
+    },
+    "eight_ball": {
+        "error": "🚫**|** insira uma pergunta valida!",
+        "asks": {
+            "label_1": "sim",
+            "label_2": "não",
+            "label_3": "talvez",
+            "label_4": "não sei, tente de novo",
+            "label_5": "quem sabe?",
+            "label_6": "não posso te contar",
+            "label_7": "meu informante disse que não",
+            "label_8": "meu informante disse que sim",
+            "label_9": "provavelmente sim",
+            "label_10": "provavelmente não",
+            "label_11": "me pergunte mais tarde!",
+            "label_12": "claro que não!",
+            "label_13": "não conte comigo para isso",
+            "label_14": "dúvido muito"
+        }
+    },
+    "jokenpo": {
+        "rock": {
+            "win": "✂️**|** tesoura!\n🔹️**|** eu perdi :c",
+            "we_tie": ":rock:**|** pedra!\n🔹️**|** empatamos!",
+            "loser": ":newspaper:**|** papel!\n🔹️**|** você perdeu!"
+        },
+        "paper": {
+            "win": ":rock:**|** pedra!\n🔹️**|** eu perdi :c",
+            "we_tie": ":newspaper:**|** papel!\n🔹️**|** empatamos!",
+            "loser": "✂️**|** tesoura!\n🔹️**|** você perdeu!"
+        },
+        "scissor": {
+            "win": ":newspaper:**|** papel!\n🔹️**|** eu perdi :c",
+            "we_tie": "✂️**|** tesoura!\n🔹️**|** empatamos!",
+            "loser": ":rock:**|** pedra!\n🔹️**|** você perdeu!"
+        }
+    },
+    "say": {
+        "error": "❌**|** MUITOS CARACTERES!\n⭕**|** o máximo de caracteres e de `1400` CARACTERES!",
+        "success": {
+            "return": "{{args_}}\n\n🦊 mensagem enviada pelo(a) <@{{userId}}>",
+            "reply": "enviado com sucesso!"
+        }
+    },
+    "animals": "clique aqui se não estiver aparecendo",
+    "antinsfw": {
+        "error": {
+            "activated": "❌**|** o módulo já está ligado.",
+            "disabled": "❌**|** o módulo já está desligado."
+        },
+        "success": {
+            "activated": "✔️**|** o modulo foi ativado!\n❓**|** o seu servidor esta seguro contra conteúdo nsfw",
+            "disabled": "⚠️**|** o módulo foi desativado\n❓**|** o seu servidor esta desprotegido contra conteúdo nsfw!"
+        }
+    },
+    "antiraid": {
+        "error": {
+            "activated": "❌**|** o módulo já está ligado.",
+            "disabled": "❌**|** o módulo já está desligado."
+        },
+        "success": {
+            "activated": "✔️**|** o modulo foi ativado!\n❓**|** o seu servidor esta seguro contra raids",
+            "disabled": "⚠️**|** o módulo foi desativado\n❓**|** o seu servidor esta desprotegido contra raids!"
+        }
+    },
+    "ban": {
+        "error": {
+            "is_me": "❌**|** você não pode se banir",
+            "is_bot": "❌**|** você não pode me banir\n😭**|** você me odeia? :(",
+            "no_bannable": "❌**|** você não pode punir o membro, pois esse membro não é **Banivel**"
+        },
+        "success": "😡| o usuário **{{userTag}}** foi banido com sucesso por causa de: **{{reason_}}**"
+    },
+    "clean": {
+        "error": {
+            "no_channel": ":x:**|** **{{channelName}}** não e um canal de texto"
+        },
+        "success": {
+            "main": "**{{size}}** mensagens limpas em *{{channelName}}*!\n{{subError}}",
+            "one": "porém, **{{coutResult}}** massagens não foram deletadas por terem mais de 2 semanas ou por serem __*desconhecidas*__",
+            "two": "\u200B"
+        }
+    },
+    "giveaway": {
+        "start": {
+            "error": {
+                "no_channel": ":x:**|** o canal selecionado não é baseado em texto."
+            },
+            "success": "🔆**|** sorteio iniciado em <#{{giveawayChannel_}}>!"
+        },
+        "end": {
+            "success": "✅**|** sucesso, sorteio finalizado!"
+        },
+        "reroll": {
+            "success": "✅**|** sucesso, sorteio reiniciado!"
+        }
+    },
+    "kick": {
+        "error": {
+            "is_me": "❌**|** você não pode expulsar a si mesmo",
+            "is_bot": "❌**|** você não pode me expulsar \n😭**|** você me odeia? :(",
+            "no_kickable": "❌**|** você não pode punir o membro, pois esse membro não é \"**expulsavel**\""
+        },
+        "success": "😡| o usuário **{{userTag}}** foi expulso sucesso por causa de: **{{reason_}}**"
+    },
+    "news": {
+        "wait": "⏺**|** um momento...",
+        "success": "🔔**|** canais de anúncios setados com sucesso!"
+    },
+    "nuke": {
+        "warn": "🚫**|** espera ai!\ndeseja mesmo que eu faça isso?\n\neu estarei fazendo o seguinte:\n  1 - clonar o canal `{{oldchannel}}`\n  2 - deletar o canal `{{oldchannel}}`\n\ndeseja que eu faça isso?",
+        "wait": "⏺**|** aguarde...",
+        "success": "🗿🍷**|** canal **100**% limpo pelo(a) **{{userTag}}**"
+    },
+    "slowmode": "{{emoji}}**|** modo lento definido para **{{timer}} segundos** em __{{channelName}}__!",
+    "help": {
+        "devs": "graças aos meus desenvolvedores eu posso continuar a existir no discord!",
+        "commands": {
+            "categorys": {
+                "discord": "📱 discord",
+                "economy": "🪙 economia",
+                "fun": "🤣 diversão",
+                "image": "📷 imagens",
+                "management": "👩‍⚖️ administração",
+                "miscellaneous": "♾ micelanea",
+                "social": "🫂 social",
+                "utility": "🛠 utilitários"
+            },
+            "title": "minha lista de comandos!",
+            "footer": "alguns comandos não estão aparecendo por serem SubComandos"
+        }
+    },
+    "hex": {
+        "error": "❌**|** isto não e uma cor HEX válida!"
+    },
+    "meme": {
+        "knuckles": "será que o Knuckles aprovou seu meme?"
+    },
+    "minecraft": {
+        "crepeer": {
+            "label_1": "awww men 😎",
+            "label_2": "desvio e mato ele",
+            "label_3": "bom... ja era",
+            "label_4": "corre pra longe dele!",
+            "label_5": "vish..",
+            "label_6": "shhhhh..... 💥💥",
+            "label_7": "se ele tem tnt, então e melhor matar na base ~~da bala quente~~",
+            "label_8": "man :v",
+            "label_9": "catapinbas ._.",
+            "label_10": "wow, free tnt?!",
+            "label_11": "assim... não tem o que fazer."
+        },
+        "mcc": {
+            "defaut_title": "Conquista desbloqueada!",
+            "error": "❌**|** a descrição precisa ter no maximo **22 letras**!"
+        },
+        "server": {
+            "label": {
+                "connected": "conectados",
+                "version": "versão",
+                "max": "maximo de jogadores"
+            },
+            "error": "🚫**|** aconteceu um erro desconhecido!\n📱**|** cheque se o ip esta sem erros de digitação e tente novamente"
+        }
+    },
+    "wikipedia": {
+        "error": "não foi possível recuperar nenhum resultado.\ntente pesquisar com distinção entre maiúsculas e minúsculas."
+    },
+    "e621": {
+        "error": "😭**|** aconteceu um pequeno erro ao recuperar as informações do site!",
+        "no_post": "🚫**|** nenhum resultado para __*{{tags}}*__\n📛**|** tente mais tarde",
+        "label": {
+            "one": "> **votos**: {{postScore}} | **origem**: [original aqui](https://e621.net/post/show/{{postId}})",
+            "two": "tag(s) na blacklist!\ntag: {{tags}} | [**Link**](https://e621.net/posts/{{postId}})\n> caso você queira definir a sua blacklist, você pode ir na opção de edição da karina aqui: [karinatwo.repl.co/dashboard/user/edit](https://karinatwo.repl.co/dashboard/user/edit)",
+            "three": "> **votos:** {{postScore}} | **[Link](https://e621.net/post/show/{{postId}})**\n> *arquivos em (webm/swf/mp3/mp4) não são compatíveis com embeds.*",
+            "four": "> **votos**: {{postScore}} | **[link](https://e621.net/posts/show/{{postId}})*\n\n> **erro 500**\nvocê so pode ver a imagem com uma conta [logada](https://e621.net/users/new) na **e621**"
+        }
+    },
+    "spam": "🔼**|** foram obtidos mais de {{number_all}} URLs na database global",
+    "yiff": {
+        "label": {
+            "artist": "artista(s)",
+            "no_foud": "não tem"
+        }
+    },
+    "afk": {
+        "activated": "💤**|** afk ativado! \nos usuários irão saber que você esta `{{reasonn}}`\n\npara sua conivência, eu irei desativar o seu afk quando você falar algo no chat! 😉",
+        "error": ":x:**|** você ja esta com o afk ativo!"
+    },
+    "actions": {
+        "attack": {
+            "error": "🚫**|** você não pode atacar a si mesmo!\n🤨**|** ta maluco para ficar batendo em si mesmo?",
+            "success": {
+                "title": "ataque!",
+                "description": "**{{user1}}** acabou de atacar o **{{user2}}**"
+            }
+        },
+        "dance": {
+            "error": "🚫**|** mencione uma pessoa que não seja você!",
+            "success": {
+                "title": "\"danca gatinho, dança\"",
+                "description": "**{{user1}}** é **{{user2}}** estão dançando!"
+            }
+        },
+        "hug": {
+            "error": "🚫**|** você não pode abraçar a si mesmo!\n☹**|** sei que você ta na **depre** mais ta na minha programação não te deixar executar uma ação em si mesmo",
+            "success": {
+                "title": "abraços!!",
+                "description": "**{{user1}}** deu um abraço em **{{user2}}**"
+            }
+        },
+        "kiss": {
+            "error": "🚫**|** você não pode beijar a si mesmo!\n🧐**|** se quiser se beijar e so ir em um espelho",
+            "success": {
+                "title": "beijinhos",
+                "description": "**{{user1}}** deu um beijo, um *selilho* em **{{user2}}**"
+            }
+        },
+        "slap": {
+            "error": "🚫**|** você não pode bater em si mesmo!\n🗿**|** não tem mosquito na sua cara não",
+            "success": {
+                "title": "tapas?!",
+                "description": "**{{user1}}** deu um tapa em **{{user2}}**"
+            }
+        }
+    },
+    "profile": "📱**|** perfil",
+    "ship": {
+        "primary": "HMMM, vai rolar ou não vai?",
+        "label": {
+            "me": "ame a si mesmo!",
+            "perfect": "esse é o casal perfeito!",
+            "making_out": "esses aqui já tão se pegando e não contaram pra ninguém!",
+            "want": "talvez só precisa o {{userName}} querer...",
+            "cry": "queria muito dizer que é possível, mas..."
+        }
+    },
+    "morce": {
+        "morse_text": "morse 》texto",
+        "text_morse": "texto 》morse"
+    },
+    "donate": {
+        "description": "você quer que eu continue online?\nentão que tal fazer uma doaçãozinha?\ntoda é bem-vinda e, é claro, você estará me ajudando muito, hoje em dia as hosts estão custando cerca de R$ 45,00 reais, e você pode me ajudar a ficar online doando, vale lembar que é opcional, se você não tem condições de doar, não tem problema :)\n\nchave pix: `{{pix}}`",
+        "footer": "aviso: compartilhar qualquer informação pessoal do meu dev irá resultar em banimento permanente"
+    },
+    "status": {
+        "model": "modelo da cpu",
+        "guilds": "servidores",
+        "users": "usuários em cache",
+        "ram": "usso de ram",
+        "cpuUsage": "usso da cpu",
+        "node": "versão do sistema",
+        "arch": "bits",
+        "platform": "plataforma"
+    },
+    "background": {
+        "buy": {
+            "title": ":moneybag:**|** LOLja de background",
+            "invalid": ":x:**|** código inválido",
+            "alreadyOwned": ":x:**|** você já possui esse background",
+            "purchase": "comprar",
+            "price": "preço",
+            "concept": "conceito por:",
+            "preview": "🖼**|** pré-visualização do background",
+            "noVip": ":x:**|** apenas *vip users* podem comprar esse background",
+            "noMoney": ":x:**|** você não tem panther-coins suficiente",
+            "success": ":moneybag:**|** você comprou o background **{{name}}** por **{{price}} panther-coins**, ele já foi definido automaticamente no seu perfil!"
+        },
+        "set": {
+            "title": "🖼**|** definir background",
+            "notOwned": ":x:**|** você não possui esse background",
+            "success": ":white_check_mark:**|** você definiu o background {{name}}",
+            "description": "📝**|** seus backgrounds são: {{bgList}}"
+        }
+    }
+}

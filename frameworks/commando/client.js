@@ -1,60 +1,52 @@
-const Discord = require('discord.js');
-const fs = require('fs');
+const path = require('path');
+const { promisify } = require('util');
+const glob = promisify(require('glob'));
+const Command = require("./command.js");
 
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
-
-const Command = require("./command.js") 
-
-const rest = new REST({
-    version: '9'
-}).setToken(process.env.TOKEN);
-
-let footercommands = "slash_commands";
-
-class clientSlash43 {
+class CommandRegister {
     constructor(bot, config){
         this.client = bot;
-        this.footer = config.footer.root
     };
     isClass(input) {
         return typeof input === 'function' &&
             typeof input.prototype === 'object' &&
             input.toString().substring(0, 5) === 'class';
     };
-    async slashCmd(){
-        let { client, footer } = this;
-        let commands_slash = [];
-        fs.readdirSync(`${footer}/${footercommands}/`).forEach(dirs => {
-            const commands = fs.readdirSync(`${footer}/${footercommands}/${dirs}`).filter(files => files.endsWith('.js'));
-            for (const file of commands) {
-                const File = require(`${footer}/${footercommands}/${dirs}/${file}`);
-                if (!this.isClass(File)) throw new TypeError(`o comando de barra ${file} NÃO e uma classe.`);
-                
-                let COMMAND = new File(client);
-                
-                if (!(COMMAND instanceof Command)) throw new TypeError(`o COMANDO de barra ${COMMAND.name ?? file} esta mal estruturado`)
-              //  console.log(COMMAND.name)
-                client.commands2.set(COMMAND.name, COMMAND);
+    
+    async loadSlash(){
+        return glob(`${process.cwd()}/slash_commands/**/*.js`).then(commands => {
+            for (const commandFile of commands) {
+                delete require.cache[commandFile];
+                const { name } = path.parse(commandFile);
+                const File = require(commandFile);
+                if (!this.isClass(File)) throw new TypeError(`comando ${name} esta mau estruturado`);
+                const command = new File(this.client);
+                if (!(command instanceof Command)) throw new TypeError(`comando ${name} não pertence aos comandos.`);
+                this.client.commands2.set(command.name, command);
+            };
+        });
+    }
 
-                /*commands_slash.push({
-                    name: COMMAND.name,
-                    description: COMMAND.description,
-                    /*nsfw: COMMAND.nsfw,
-                    options: COMMAND.commandOptions
-                });*/
+    async loadPrefix(){
+        return glob(`${process.cwd()}/owners_commands/**/*.js`).then(commands => {
+            for (const commandFile of commands){
+                const File = require(commandFile);
+                this.client.commands.set(File.help.name, File);
+
+                this.client.commands.array.push({
+                    name: File.help.name,
+                    desc: File.help.desc,
+                    permisoes: File.help.permisoes
+                });
+                
+                if (File.help.aliases){
+                    File.help.aliases.forEach(alias => {
+                        this.client.aliases.set(alias, File.help.name, File);
+                    });
+                }
             }
         })
-
-        /*try {
-            await rest.put(Routes.applicationGuildCommands(client.user.id,"897142336927203328"),{
-                body: commands_slash
-            })
-            //nsole.log(commands_slash)
-        } catch(err) {
-            console.log(err)
-        }*/
     }
 }
-module.exports = clientSlash43
-///// await client.application?.commands.set(commands_slash)
+
+module.exports = CommandRegister

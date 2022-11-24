@@ -4,6 +4,12 @@ let dbconnect = require("./mongoDB/connect.js");
 let dist = require("./dist/main.js");
 let teste = require("./plugins/index.js");
 
+let condittion_web = (process.env.CONDITION_WEBCLIENT === "true");
+let condittion_databotslist = (process.env.CONDITION_BOTLISTPOSTDATA === "true");
+
+const i18next = require('i18next')
+const Backend = require('i18next-fs-backend')
+
 let manager = new Cluster.Manager("./index.js",{
     totalClusters: 'auto',
     totalShards: 'auto',
@@ -11,23 +17,27 @@ let manager = new Cluster.Manager("./index.js",{
     mode: 'process'
 });
 new RatelimitManager(manager);
-/*let ara = teste.autoTopGgPost(manager)
 
-ara.on("posted", (data) => {
-	console.log(`[${new Date().toString().split(' ', 5).join(' ')}] Status Postado na top.gg!`);
-})*/
+if(condittion_databotslist){
+    let bot_lists = teste.autoTopGgPost(manager);
+
+    ara.on("posted", (data) => {
+        console.log(`[${new Date().toString().split(' ', 5).join(' ')}] Status Postado na top.gg!`);
+    })
+}
 
 manager.on('clusterCreate', cluster => {
     console.log(`[${new Date().toString().split(' ', 5).join(' ')}] cluster[${cluster.id}] iniciado!`);
 });
-
-manager.on("debug", (data) =>{ console.log(data) });
-
-process.on('unhandledRejection', async (bb, aa) => {
-    console.log(bb)
+manager.on("debug", (data) =>{
+    console.log(data);
 });
 
 global.clusterManager = manager;
+require("./dist/anti_crash.js").cluster();
 manager.spawn({ timeout: -1 }).catch(console.error)
 dbconnect("cluster");
-dist.modules.webclient();
+
+if(condittion_web) {
+    dist.modules.webclient();
+}

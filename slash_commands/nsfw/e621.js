@@ -11,15 +11,14 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "e621",
-            description: "[ 😈nsfw ] busque algo na e621.net",
+            description: "[ 😈nsfw ] look for something on e621.net",
             category: "nsfw",
             nsfw: true,
-            usage: "<tag única ou tags separadas com espaço>",
             commandOptions: [
                 {
                     type: 3,
                     name: "tags",
-                    description: "tag única ou tags separadas com espaço",
+                    description: "single ag or space-separated tags",
                     required: true
                 }
             ]
@@ -33,18 +32,18 @@ class Command extends comando {
             return arr.some(v => haystack.includes(v));
         }
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let tags1 = interaction.options.getString('tags').trim().split(/ +/g);
         //interaction.deferReply()
 
         if (tags1 && !Array.isArray(tags1)) tags1 = tags1.split(' ');
 
-        let url = await this.client.getContainer(`api/e6?tags=${encodeURI(tags1.join("+"))}`);
+        let url = await this.client.private_api.GET(`api/e6?tags=${encodeURI(tags1.join("+"))}`);
 
         if(url.send === false){
             interaction.editReply({
-                content: "😭**|** aconteceu um pequeno erro ao recuperar as informações do site!",
+                content: t("commands:e621.error"),
                 ephemeral: true
             })
             return {}
@@ -53,7 +52,7 @@ class Command extends comando {
             
             if(!posts.length){
                 interaction.editReply({
-                    content: `🚫**|** nenhum resultado para \`${tags1.join(" ")}\`\n📛**|** tente mais tarde`
+                    content: t("commands:e621.no_post")
                 });
                 return {}
             } else {
@@ -68,26 +67,26 @@ class Command extends comando {
                 let user = await profile.find(interaction.user);
                 let blacklist = user.config.e6.blacklist || [];
                 
-                let __description = `> **votos**: ${score} | **origem**: [original aqui](https://e621.net/post/show/${id})`;
+                let __description = t("commands:e621.label.one", { postScore: (score).toString(), postId: (id).toString() });
                 let avatar = interaction.user.avatarURL({ dynamic: true, format: 'png', size: 1024 });
 
                 if(tags){
                     if(this.findOne(blacklist, tags)){
                         file = "https://static1.e621.net/data/a8/5e/a85ef1bf5f272c44cbcdd4405b5b94b6";
-                        __description = `tag(s) na blacklist!\ntag: \`${this.getOne(blacklist, tags)}\` | [**Link**](https://e621.net/posts/${id})\n> caso você queira definir a sua blacklist, você pode ir na opção de edição da karina aqui: [karinatwo.repl.co/dashboard/user/edit](https://karinatwo.repl.co/dashboard/user/edit)`
+                        __description = t("commands:e621.label.two", { tags: (this.getOne(blacklist, tags)).toString(), postId: (id).toString() });
                     }
                 };
 
                 if(file){
                     if(file.endsWith('.webm') || file.endsWith('.swf')){
-                        __description = `> **votos:** ${score} | **[Link](https://e621.net/post/show/${id})**\n> *arquivos em (webm/swf/mp3/mp4) não são compatíveis com embeds.*`;
+                        __description = t("commands:e621.label.three", { postScore: (score).toString(), postId: (id).toString() });
                     }
                 };
 
                 if(file == null){
-                    __description = `> **votos**:${score} | **[link](https://e621.net/posts/show/${id})*\n\n> **erro 500**\nvocê so pode ver a imagem com uma conta [logada](https://e621.net/users/new) na **e621**`;
+                    __description = t("commands:e621.label.four", { postScore: (score).toString(), postId: (id).toString() });
                 }
-                //console.log(tags1.join(" "))
+                
                 interaction.editReply({
                     embeds: [
                         {
@@ -111,5 +110,33 @@ class Command extends comando {
             }
         }
     }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "e621",
+                description: "ver imagens na e621.net",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "nsfw",
+                usage: "<tag_unica ou tags separadas com espaço>",
+                subCommands: []
+            },
+            en: {
+                name: "e621",
+                description: "view images on e621.net",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "nsfw",
+                usage: "<single_tag or space-separated tags>",
+                subCommands: []
+            }
+        }
+    }
 } 
-module.exports = Command 
+module.exports = Command

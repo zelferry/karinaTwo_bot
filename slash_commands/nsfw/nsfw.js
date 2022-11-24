@@ -1,13 +1,8 @@
+let Discord = require("discord.js");
 let comando = require("../../frameworks/commando/command.js");
 
-let data_1 = require("../../database/images/nsfw/nsfw.hentai.json");
-let data_2 = require("../../database/images/nsfw/nsfw.gay.json");
-
-let Discord = require("discord.js"); 
-
 let mathRandom = (number) => ~~(Math.random() * number);
-
-let endpoint = require("../../dist/main.js").image.api()
+//let endpoint = require("../../dist/main.js").image.api()
 
 class Command extends comando {
     constructor(...args) {
@@ -16,33 +11,6 @@ class Command extends comando {
             description: "comandos nsfw",
             category: "nsfw",
             nsfw: true,
-            usage: "<sub comando>",
-            subCommands: [
-                {
-                    name: "straight",
-                    description: "nsfw straight"
-                },
-                {
-                    name: "gay",
-                    description: "nsfw gay"
-                },
-                {
-                    name: "futa",
-                    description: "nsfw futa"
-                },
-                {
-                    name: "femboy",
-                    description: "nsfw femboy"
-                },
-                {
-                    name: "boobs",
-                    description: "nsfw boobs"
-                },
-                {
-                    name: "pussy",
-                    description: "nsfw pussy"
-                }
-            ],
             commandOptions: [
                 {
                     type: 1,
@@ -77,7 +45,7 @@ class Command extends comando {
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "straight"){
@@ -85,38 +53,52 @@ class Command extends comando {
                 ephemeral: this.deferReply
             }).catch(() => {});
             
-            let number1 = mathRandom(data_1.length);
-            let data1 = data_1[number1];
-            
-            let embed1 = new Discord.MessageEmbed().setImage(data1).setColor("#7B68EE").setFooter({text: `${number1 + 1} / ${data_1.length}`});
-
-            interaction.editReply({
-                embeds: [embed1]
-            });
+            let url = await this.client.private_api.nekos.straight();
+            if(url.success === false){
+                interaction.followUp({
+                    content: t("commands:global.error.api_error")
+                })
+                return {}
+            } else {
+                let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
+                let row1 = new Discord.MessageActionRow().addComponents(button_1);
+                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
+                interaction.editReply({
+                    embeds: [embed3],
+                    components: [row1]
+                });
+            }
             return {}
         } else if(subCOMMAND === "gay"){
             await interaction.deferReply({
                 ephemeral: this.deferReply
             }).catch(() => {});
             
-            let number2 = mathRandom(data_2.length);
-            let data2 = data_2[number2];
-
-            let embed2 = new Discord.MessageEmbed().setImage(data2).setColor("#7B68EE").setFooter({text:`${number2 + 1} / ${data_2.length}`});
-
-            interaction.editReply({
-                embeds: [embed2]
-            });
+            let url = await this.client.private_api.nekos.gay();
+            if(url.success === false){
+                interaction.followUp({
+                    content: t("commands:global.error.api_error")
+                })
+                return {}
+            } else {
+                let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
+                let row1 = new Discord.MessageActionRow().addComponents(button_1);
+                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
+                interaction.editReply({
+                    embeds: [embed3],
+                    components: [row1]
+                });
+            }
             return {}
         } else if(subCOMMAND === "futa"){
             await interaction.deferReply({
                 ephemeral: this.deferReply
             }).catch(() => {});
             
-            let url = await endpoint.nekos.danbooru(["rating:explict", "futanari", "-video"])
+            let url = await this.client.private_api.nekos.futa();
             if(url.success === false){
                 interaction.followUp({
-                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c"
+                    content: t("commands:global.error.api_error")
                 })
                 return {}
             } else {
@@ -134,10 +116,10 @@ class Command extends comando {
                 ephemeral: this.deferReply
             }).catch(() => {});
             
-            let url = await endpoint.nekos.danbooru(["rating:explict", "otoko_no_ko", "-video"])
+            let url = await this.client.private_api.nekos.femboy();
             if(url.success === false){
                 interaction.followUp({
-                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
+                    content: t("commands:global.error.api_error"),
                     ephemeral: true
                 })
                 return {}
@@ -156,10 +138,10 @@ class Command extends comando {
                 ephemeral: this.deferReply
             }).catch(() => {});
             
-            let url = await endpoint.nekos.boobs();
+            let url = await this.client.private_api.nekos.boobs();
             if(url.success === false){
                 interaction.followUp({
-                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
+                    content: t("commands:global.error.api_error"),
                     ephemeral: true
                 })
                 return {}
@@ -178,10 +160,10 @@ class Command extends comando {
                 ephemeral: this.deferReply
             }).catch(() => {});
             
-            let url = await endpoint.nekos.pussy()
+            let url = await this.client.private_api.nekos.pussy();
             if(url.success === false){
                 interaction.followUp({
-                    content: "😭**|** desculpe, mas parece que a RERIMBOCADAPARAFUZETA do servidor estourou :c",
+                    content: t("commands:global.error.api_error"),
                     ephemeral: true
                 })
                 return {}
@@ -197,5 +179,84 @@ class Command extends comando {
             return {}
         }
     }
-} 
-module.exports = Command 
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "nsfw",
+                description: "comandos *Not Safe For Work* se é que você me entende...",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "nsfw",
+                usage: "<sub comando>",
+                subCommands: [
+                    {
+                        name: "straight",
+                        description: "nsfw straight"
+                    },
+                    {
+                        name: "gay",
+                        description: "nsfw gay"
+                    },
+                    {
+                        name: "futa",
+                        description: "nsfw futa"
+                    },
+                    {
+                        name: "femboy",
+                        description: "nsfw femboy"
+                    },
+                    {
+                        name: "boobs",
+                        description: "nsfw boobs"
+                    },
+                    {
+                        name: "pussy",
+                        description: "nsfw pussy"
+                    }
+                ]
+            },
+            en: {
+                name: "nsfw",
+                description: "*Not Safe For Work* commands if you know what I mean...",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "nsfw",
+                usage: "<sub command>",
+                subCommands: [
+                    {
+                        name: "straight",
+                        description: "nsfw straight"
+                    },
+                    {
+                        name: "gay",
+                        description: "nsfw gay"
+                    },
+                    {
+                        name: "futa",
+                        description: "nsfw futa"
+                    },
+                    {
+                        name: "femboy",
+                        description: "nsfw femboy"
+                    },
+                    {
+                        name: "boobs",
+                        description: "nsfw boobs"
+                    },
+                    {
+                        name: "pussy",
+                        description: "nsfw pussy"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+module.exports = Command

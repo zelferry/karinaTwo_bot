@@ -1,8 +1,8 @@
 *.replit
+*.bashrc
 
 node
 npm
 npx
 
-database/client/config.json
 database/giveaway/data.json

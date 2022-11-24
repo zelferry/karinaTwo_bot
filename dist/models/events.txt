@@ -1,0 +1,13 @@
+let Event = require("../../frameworks/event/event.js");
+
+class event extends Event {
+    constructor(...args){
+        super(...args, {
+            name: ""
+        })
+    }
+    
+    async run(){}
+}
+
+module.exports = event

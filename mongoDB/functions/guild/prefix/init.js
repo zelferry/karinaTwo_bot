@@ -1,5 +1,4 @@
-let guildModel = require("../../../models/guild.js")
-let config = require("../../../../database/client/config.json");
+let guildModel = require("../../../models/guild.js");
 
 class guildPREFIX {
 	static async newGuild(guild){

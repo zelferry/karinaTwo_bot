@@ -2,7 +2,7 @@
     {
         "type": 3,
         "name": "text",
-        "description": "qual será o texto?",
+        "description": "what will the text be?",
         "required": true
     }
 ]

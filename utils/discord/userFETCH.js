@@ -1,11 +1,12 @@
 const fetch_ = require('node-fetch');
 let Discord = require('discord.js');
+let config = require(`${process.cwd()}/dist/primary_configuration.js`);
 
 class _fetch {
 	constructor(
 		opts = {
 			token: process.env.PROTECTION_BOT_TOKEN,
-			version: 'v9'
+			version: 'v10'
 		}
 	) {
 		this.fetchAPI = fetch_;

@@ -1,18 +1,23 @@
 let baseClient = require("./baseClient.js");
-let commandsSructure = require("../../frameworks/commando/index.js")
+let commandsSructure = require("../../frameworks/commando/client.js")
 let Discord = require('discord.js');
-
 let imagesStructure = require("./structures/Images.js");
 let webhookStructure_ = require("./structures/Webhooks.js");
 let actviesStructure = require("./structures/DiscordActivies.js");
 let databaseStructure = require("./structures/database.js");
 let intervalStructure = require("./structures/interval.js");
+let apiStructure = require("../../dist/libs/images_server/index.js");
 
 let utils_ = require('../../utils/main.js');
-let clientConfig = require('../../database/client/config.json');
 let AntiSpam = require('discord-anti-spam');
+let events = require("../../frameworks/event/client.js");
 
 let fetch = require('node-fetch');
+let i18next = require('i18next');
+let Backend = require('i18next-fs-backend');
+let fs = require("fs");
+let { exec } = require('child_process');
+
 
 class clientBot extends baseClient {
     constructor(opitions){
@@ -32,17 +37,21 @@ class clientBot extends baseClient {
             let result = await fetch(url, ops88);
             return result.json() ?? { send: false }
         };
+        //his.commands_utils = new commandsSructure(this, clientConfig);
+        this.pre_load = {
+            events: new events(this),
+            commands: new commandsSructure(this)
+        };
+        
         client.shard = process.env.CLUSTER_MANAGER ? Discord.ShardClientUtil.singleton(client, process.env.CLUSTER_MANAGER_MODE) : null;
-        this.commands_utils = new commandsSructure.client(this, clientConfig)
         client.cooldown = new Discord.Collection();
         client.images = new imagesStructure(client);
         client.discordTogether = new actviesStructure(client);
         client.db = new databaseStructure(this);
         client.extra = {
-            utils: utils_,
-            makeCommandsCategory: new utils_.makeCommandsCategory(client)
+            utils: utils_
         };
-        client.config = clientConfig;
+        //client.config = clientConfig;
         client.commands2 = new Discord.Collection();
         client.commands = new Discord.Collection();
         client.commands.array = [];
@@ -65,7 +74,8 @@ class clientBot extends baseClient {
         ];
         client.dist = require("../../dist/main.js");
         client.contents = require("../../database/client/content.json");
-        client.interval = intervalStructure
+        client.interval = intervalStructure;
+        client.private_api = new apiStructure(client);
     }
     displaySpecialTHIS(client){
         let channels_1 = client.channels.cache.filter(channel => channel.name.includes('spam')).map(x => x.id);
@@ -106,9 +116,41 @@ class clientBot extends baseClient {
         });
         client.webhooks = new webhookStructure_(client);
     }
+    async loadLocates(){
+        let path = `${process.cwd()}/locates`
+        try {
+            await i18next.use(Backend).init({
+                ns: ["commands", "events", "permissions"],
+                defaultNS: "commands",
+                preload: fs.readdirSync(path),
+                fallbackLng: "pt-BR",
+                backend: {
+                    loadPath: `${path}/{{lng}}/{{ns}}.json`
+                },
+                interpolation: {
+                    escapeValue: false,
+                    useRawValueToEscape: true
+                },
+                returnEmptyString: false,
+                returnObjects: true
+            });
+            
+            return console.info(`[LOCALES] - carregados um total de ${i18next.languages.length} locales!`.green);
+        } catch (error) {
+            return console.error("[LOCATES] - erro".red, error)
+        }
+    }
     async connect(){
-        await this.db.load()
-        this.login(process.env.TOKEN);
+
+        //onsole.log(this.pre_load)
+        await this.db.load();
+        await this.loadLocates();
+        await this.pre_load.events.load();
+        await this.pre_load.commands.loadSlash();
+        await this.pre_load.commands.loadPrefix();
+        this.login(process.env.TOKEN).then(setTimeout(() => {
+            if (!this.isReady()) exec('kill 1');
+        }, 5 * 1000));
     }
     disconect(reason){
         console.info(reason);

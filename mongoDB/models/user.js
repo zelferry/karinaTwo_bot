@@ -5,13 +5,9 @@ let profileSchema = mongoose.Schema({
     userCreationTimestamp: Date,
     coins: { type: Number, default: 0 },
     daily: { type: String, default: "0000" },
-    usertext: { type: String, default:"karina e minha amiga :)\ne você sabia que você pode mudar esse texto usando o **f/usertext**?!" },
+    usertext: { type: String, default: "karinaTwo and my friend, and did you know that you can change this text using **/user aboutme**?" },
     vipUser: { type: Boolean, default: false },
     topggVotes: { type: Number, default: 0 },
-    randon: {
-        qi: { type: Number, default: 0 },
-        idiot: { type: Number, default: 0 }
-    },
     afk: {
         reason: { type: String, default: "fora no momento"},
         ready: { type: Boolean, default: false }
@@ -21,13 +17,18 @@ let profileSchema = mongoose.Schema({
         ready: { type: Boolean, default: false }
     },
     config: {
-        /*user: {
-            username: String,
-            tag: String,
-            discriminator: String,
-            banner: String,
-            avatar: String,
-        },*/
+        lang: { type: String, default: "pt-BR" },
+        lang_simple: { type: String, default: "pt" },
+        background: {
+            setted: {
+                type: String,
+                default: "default"
+            },
+            collection: {
+                type: Array,
+                default: ["default"]
+            }
+        },
         e6: {
             blacklist: []
         }

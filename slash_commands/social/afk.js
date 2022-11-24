@@ -7,20 +7,20 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "afk",
-            description: "[ 👤social ] ative o modo afk para os usuários saberem que você deu um tempo no teclado",
+            description: "[ 👤social ] turn on afk mode for users to know that you've taken a break from the keyboard",
             category: "social",
             usage: "<motivo>",
             commandOptions: [
                 {
                     type: 3,
                     name: "reason",
-                    description: "motivo do seu afk",
-                    required: true 
+                    description: "reason for your afk",
+                    required: true
                 }
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let reason = interaction.options.getString('reason');
 
@@ -28,17 +28,47 @@ class Command extends comando {
 
         if(value.afk.ready == false){
             interaction.editReply({
-                content: "💤**|** afk ativado! \nos usuários irão saber que você esta `"+reason+"`\n\npara sua conivência, eu irei desativar o seu afk quando você falar algo no chat! 😉"
+                content: t("commands:afk.activated", { reasonn: (reason).toString() })
             });
+
             await afk.setAFK(interaction.user, reason);
             return {}
         } else if(value.afk.ready == true){
             interaction.editReply({
-                content: `:x:**|** você ja esta com o afk ativo!`,
+                content: t("commands:afk.error"),
                 ephemeral: true
             });
             return {}
         }
     }
-} 
-module.exports = Command 
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "afk",
+                description: "ativar o modo afk para os usuários saberem que você fez uma pausa do teclado",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "social",
+                usage: "<motivo>",
+                subCommands: []
+            },
+            en: {
+                name: "afk",
+                description: "turn on afk mode for users to know that you've taken a break from the keyboard",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "social",
+                usage: "<reason>",
+                subCommands: []
+            }
+        }
+    }
+}
+
+module.exports = Command

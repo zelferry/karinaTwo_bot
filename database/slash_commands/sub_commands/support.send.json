@@ -2,7 +2,7 @@
     {
         "name": "support_args",
         "type": 3,
-        "description": "seu suporte (de 1 a 1000 caracteres)",
+        "description": "your support (from 1 to 1000 characters)",
         "required": true
     }
 ]

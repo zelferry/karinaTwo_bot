@@ -5,6 +5,9 @@ module.exports = {
 		afk: require("./functions/user/afk/init.js"),
 		profile: require("./functions/user/profile/init.js"),
 		topgg: require("./functions/user/topGG/init.js"),
+        translations: require("./functions/user/translations/init.js"),
+        
+        bgdb: require("./functions/user/background/init.js"),
 		bansUsers: require("./functions/user/bannerds/init.js")
 	},
 	guild:{

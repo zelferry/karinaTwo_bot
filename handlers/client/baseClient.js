@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const Cluster = require('discord-hybrid-sharding');
 const { RequestManager } = require("discord-cross-ratelimit");
-let clientConfig = require('../../database/client/config.json');
+let clientConfig = require('../../database/client/client_config.json');
 
 class baseClient extends Discord.Client {
     constructor(opts){

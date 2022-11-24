@@ -7,7 +7,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "nuke",
-            description: "[ 👩‍⚖️administração ] limpar por completo um canal de texto",
+            description: "[ 👩‍⚖️management ] completely clear a text channel",
             category: "management",
             usage: "[canal]",
             permissions: {
@@ -17,7 +17,7 @@ class Command extends comando {
             commandOptions: [
                 {
                     name: "channel",
-                    description: "canal de texto a levar um NUKE",
+                    description: "text channel to take a NUKE",
                     type: 7,
                     required: false
                 }
@@ -26,16 +26,17 @@ class Command extends comando {
             buttonCommands: ["submit","cancel"]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let old_channel = interaction.options.getChannel('channel') || interaction.channel;
 
-        let subbutton = new Discord.MessageButton().setStyle("SUCCESS").setLabel("sim, executar").setCustomId("submit");
-        let cancelbutton = new Discord.MessageButton().setStyle("DANGER").setLabel("cancelar").setCustomId("cancel");
+        let subbutton = new Discord.MessageButton().setStyle("SUCCESS").setLabel(t("commands:global.button.execute")).setCustomId("submit");
+        
+        let cancelbutton = new Discord.MessageButton().setStyle("DANGER").setLabel(t("commands:global.button.cancel")).setCustomId("cancel");
         let row = new Discord.MessageActionRow().addComponents(subbutton,cancelbutton);
 
         await interaction.followUp({
-            content: "🚫**|** espera ai!\ndeseja mesmo que eu faça isso?\n\neu estarei fazendo o seguinte:\n`1 - clonar o canal "+old_channel.name+"`\n`2 - deletar o canal "+old_channel.name+"`\n\ndeseja que eu faça isso?",
+            content: t("commands:nuke.warn", { oldchannel: old_channel.name }),
             ephemeral: true,
             components: [row]
         });
@@ -52,7 +53,7 @@ class Command extends comando {
             
             if(i.customId === "submit"){
                 await interaction.editReply({
-                    content: "🔥**|** NUKE iniciado",
+                    content: t("commands:nuke.wait"),
                     ephemeral: true,
                     components: []
                 });
@@ -64,7 +65,7 @@ class Command extends comando {
 
                 if(new_channel.isText()){
                     new_channel.send({
-                        content: "🗿🤙**|** canal ***100***% limpo pelo ***"+interaction.user.tag+"***"
+                        content: t("commands:nuke.success", { userTag: interaction.user.tag })
                     });
                 }
                 collector.stop(80);
@@ -72,13 +73,54 @@ class Command extends comando {
             
             if(i.customId === "cancel"){
                 await interaction.editReply({
-                    content: "👍**|** cancelado",
+                    content: t("commands:global.canceled"),
                     ephemeral: true,
                     components: []
                 });
                 collector.stop(82);
             }
         })
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "nuke",
+                description: "limpar por completo um canal de texto",
+                permissions: {
+                    bot: ["MANAGE_CHANNELS","ADMINISTRATOR"],
+                    user: ["MANAGE_CHANNELS"]
+                },
+                category: "administração",
+                usage: "[canal]",
+                subCommands: []
+            },
+            en: {
+                name: "nuke",
+                description: "completely clear a text channel",
+                permissions: {
+                    bot: ["MANAGE_CHANNELS","ADMINISTRATOR"],
+                    user: ["MANAGE_CHANNELS"]
+                },
+                category: "management",
+                usage: "[channel]",
+                subCommands: []
+            }
+        }
+    }
+
+    _permissions(){
+        return {
+            "pt-BR": {
+                bot: "🚫**|** eu não tenho permissões o suficiente para isso!\n💡**|** eu preciso das seguintes permissões: `gerenciar canais` e `administrador`",
+                user: "🚫**|** você não tem permissões o suficiente para isso!\n💡**|** você precisa das seguintes permissões: `gerenciar canais`"
+            },
+            "en-US": {
+                bot: "🚫**|** I don't have enough permissions for that!\n💡**|** i need the following permissions: `manage channels` and `admin`",
+                user: "🚫**|** you don't have enough permissions for that!\n💡**|** you need the following permissions: `manage channels`"
+            }
+        }
     }
 } 
 module.exports = Command 

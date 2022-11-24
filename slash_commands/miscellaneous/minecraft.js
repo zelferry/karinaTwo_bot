@@ -11,68 +11,54 @@ class Command extends comando {
             name: "minecraft",
             description: "comandos de minecraft!",
             category: "miscellaneous",
-            usage: "<sub comando>",
-            subCommands: [
-                {
-                    name: "creeper",
-                    description: "\"AHHW MEN!\""
-                },
-                {
-                    name: "mcc",
-                    description: "criar uma placa de conquista!"
-                }
-            ],
             commandOptions: [
                 {
                     type: 1,
                     name: "creeper",
-                    description: "[ 🤪miscelânea ] você viu um creeper, e qual foi a sua reação",
+                    description: "[ 🤪miscellaneou ] did you see a creeper, and what was your reaction?",
                 },
                 {
                     type: 1,
                     name: "mcc",
-                    description: "[ 🤪miscelânea ] criar uma placa de conquista!",
+                    description: "[ 🤪miscellaneous ] create an achievement board!",
                     options: [...subCOMMAND_opition1_1]
                 },
                 {
                     type: 1,
                     name: "server_status",
-                    description: "[ 🤪miscelânea ] veja informações de um servidor de minecraft",
+                    description: "[ 🤪miscellaneous ] see information of a minecraft server",
                     options: [...subCOMMAND_opition2_1]
                 }
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "creeper"){
-            let data = this.client.contents.minecraft.crepeer[Math.floor(Math.random() * this.client.contents.minecraft.crepeer.length)];
+            //let data = this.client.contents.minecraft.crepeer[Math.floor(Math.random() * this.client.contents.minecraft.crepeer.length)];
 
             interaction.editReply({
-                content: `🏔**|** ${data}`
+                content: `🏔**|** "${t("commands:minecraft.crepeer.label_"+(Math.floor(Math.random() * 10) + 1)+"")}"`
             });
             return {}
         } else if(subCOMMAND === "mcc"){
-            let title1 =  interaction.options.getString("title") ? (interaction.options.getString("title") + " | ") : "Conquista desbloqueada! | "
+            let title1 =  interaction.options.getString("title") ? (interaction.options.getString("title") + " | ") : ""+t("commands:minecraft.mcc.defaut_title")+" | "
             let args = `${title1}${interaction.options.getString("description")}`
             //console.log(args)
             let [title, contents] = args.split("|"); 
 
-            let rnd = Math.floor((Math.random() * 39) + 1);
-            if (args.toLowerCase().includes("burn")) rnd = 38;
-            if (args.toLowerCase().includes("cookie")) rnd = 21;
-            if (args.toLowerCase().includes("cake")) rnd = 10;
+            let rnd = Math.floor((Math.random() * 28) + 1);
 
             if (title.length > 24 || contents.length > 22){
                 interaction.followUp({
-                    content: "❌**|** a descrição precisa ter no maximo **22 letras**!",
+                    content: t("commands:minecraft.mcc.error"),
                     ephemeral: true
                 })
                 return {}
             } else {
-                const url = `https://www.minecraftskinstealer.com/achievement/a.php?i=${rnd}&h=${encodeURIComponent(title)}&t=${encodeURIComponent(contents)}`;
+                const url = `https://skinmc.net/en/achievement/${rnd}/${encodeURIComponent(title)}/${encodeURIComponent(contents)}`;
 
                 interaction.editReply({
                     files:[
@@ -92,19 +78,73 @@ class Command extends comando {
 
             if(body.status === "error"){
                 interaction.followUp({
-                    content: "❌**|** aconteceu um pequeno erro\n🌐**|** insira um IP válido",
+                    content: t("commands:minecraft.server.error"),
                     ephemeral: true
                 });
                 return {}
             } else {
                 let attachment = new Discord.MessageAttachment(Buffer.from(body.favicon.substr('data:image/png;base64,'.length), 'base64'), "icon.png");
-                 let embed = new Discord.MessageEmbed().setThumbnail("attachment://icon.png").addField("versão", body.server.name).addField("conectados", `${body.players.now} players`).addField("maximo", `${body.players.max} players`).addField("status", (body.online ? "online" : "offline")).addField("motd:", `\`\`\`\n${body.motd}\n\`\`\``).setColor("#FF0000");
+                 let embed = new Discord.MessageEmbed().setThumbnail("attachment://icon.png").addField(t("commands:minecraft.server.label.version"), body.server.name).addField(t("commands:minecraft.server.label.connected"), `${body.players.now} players`).addField(t("commands:minecraft.server.label.max"), `${body.players.max} players`).addField("status", (body.online ? "online" : "offline")).addField("motd:", `\`\`\`\n${body.motd}\n\`\`\``).setColor("#FF0000");
 
                 interaction.editReply({
                     files: [attachment],
                     embeds: [embed]
                 })
                 return {}
+            }
+        }
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "minecraft",
+                description: "blocos e bixo verde",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "micelanea",
+                usage: "<sub comando>",
+                subCommands: [
+                    {
+                        name: "creeper",
+                        description: "um **bixo verde** apareceu no seu mundo!"
+                    },
+                    {
+                        name: "mcc",
+                        description: "criar uma plac de conquista"
+                    },
+                    {
+                        name: "server",
+                        description: "ver informações de um servidor de minecraft!"
+                    }
+                ]
+            },
+            en: {
+                name: "minecraft",
+                description: "blocks and green bug",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "miscellaneous",
+                usage: "<sub command>",
+                subCommands: [
+                    {
+                        name: "creeper",
+                        description: "a **green bug** has appeared in your world!"
+                    },
+                    {
+                        name: "mcc",
+                        description: "create an achievement board"
+                    },
+                    {
+                        name: "server",
+                        description: "see information of a minecraft server!"
+                    }
+                ]
             }
         }
     }

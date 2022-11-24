@@ -7,16 +7,26 @@ class bans {
 		
 		let new_ = new usermodel({
 			UserId: author.id,
+            config: {
+                background: {
+                    collection: ["default"]//.push(code)
+                }
+            },
             userCreationTimestamp: Date.now()
 		})
 		await new_.save().catch(e => console.log(e));
 		return new_
 	}
-	static async addban(author,reason= "não encontrado! [`404`]"){
+	static async addban(author,reason= "???"){
 		const user = await usermodel.findOne({ UserId: author.id });
 		if(!user){
 			let new_= new usermodel({
 				UserId: author.id,
+                config: {
+                    background: {
+                        collection: ["default"]//.push(code)
+                    }
+                },
                 userCreationTimestamp: null,
 				banned:{
 					reason: reason,

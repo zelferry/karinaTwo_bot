@@ -40,15 +40,3 @@ class configs_ {
 	}
 }
 module.exports = configs_
-/*
-function tea() {
-	for (let i in comfog.config) {
-		//console.log(i)
-		for (let i_ in entrada) {
-			if (i_ == i) {
-				comfog.config[i] = entrada[i_];
-			}
-		}
-	}
-	return comfog;
-}*/

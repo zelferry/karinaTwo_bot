@@ -8,25 +8,25 @@ class Command extends comando {
         super(...args, {
             name: "vip",
             deferReply: true,
-            description: "[ 💸economia ] compre vip!",
+            description: "[ 💸economy ] buy vip!",
             category: "economy"
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let user = interaction.user;
         let value = await economydb.fech(user);
 
         if(value.coins <= 2500){
             return interaction.followUp({
-                content: "🚫**|** você não tem *panther-coins* o suficiente!\n💸**|** e necessário ter ***2.500*** panther-coins ou mais para comprar o *vip user*"
+                content: t("commands:buy.vip.error.insufficient")
             })
         } else if(value.vipUser == true){
             return interaction.followUp({
-                content: "🚫**|** você ja e um usuário vip!"
+                content: t("commands:buy.vip.error.vip_activated")
             })
         } else {
-            const embed = new Discord.MessageEmbed().setTitle("**Vip User Comprado**").setDescription(`você comprou: **vip user** por **2.500 Panther-coins**`).setColor("#fd9058");
+            const embed = new Discord.MessageEmbed().setTitle(t("commands:buy.vip.success.title")).setDescription(t("commands:buy.vip.success.description")).setColor("#fd9058");
             
             await interaction.editReply({ embeds: [embed] });
             
@@ -34,6 +34,32 @@ class Command extends comando {
             await economydb.removemoney(user, 2500);
 
             return {}
+        }
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "vip",
+                description: "compre vip!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "economia",
+                subCommands: []
+            },
+            en: {
+                name: "vip",
+                description: "buy vip!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "economy",
+                subCommands: []
+            }
         }
     }
 } 

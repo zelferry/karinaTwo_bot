@@ -1,3 +1,0 @@
-date="g"
-title="h"
-info="y"

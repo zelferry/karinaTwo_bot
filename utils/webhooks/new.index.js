@@ -1,26 +1,21 @@
 let Discord = require('discord.js');
-let { webhooks } = require('../../database/client/config.json');
-
+let config = require(`${process.cwd()}/dist/primary_configuration.js`).webhook();
 
 class webhooks1 {
     constructor(){
         this.hook = {
             commands: new Discord.WebhookClient({
-                url: webhooks.commands
+                url: config.commands
             }),
             topgg: new Discord.WebhookClient({
-                url: webhooks.topgg
+                url: config.topgg
             }),
             suport: new Discord.WebhookClient({
-                url: webhooks.suport
+                url: config.support
             }),
             exit_: new Discord.WebhookClient({
-                url: webhooks._exit
+                url: config.manager
             })
-        }
-
-        this.payload = function(object1, object2){
-            
         }
     }
     commands(c, objetc = {}){

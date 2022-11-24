@@ -1,9 +1,20 @@
 [
     {
-        "id":"17204",
-        "db_id":"defaut",
-        "name":"padrão",
-        "description":"o fundo padrão",
-        "locate":"./assets/profile/images/backgrounds/background.jpg"
+        "id": "default",
+        "name": "background padrão",
+        "description": "background padrão, sempre existiu",
+        "panther_coins": 0,
+        "only_vip_users": false,
+        "concept": "zelferry",
+        "locate": "background.jpg"
+    },
+    {
+        "id": "city_afternoon",
+        "name": "cidade ao sol da tarde",
+        "description": "\"glorious~\"",
+        "panther_coins": 190,
+        "only_vip_users": false,
+        "concept": "zelferry",
+        "locate": "city_at_afternoon_sun.png"
     }
 ]

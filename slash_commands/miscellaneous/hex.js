@@ -21,20 +21,20 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "hex",
-            description: "[ 🤪miscelânea ] veja uma pequena informação sobre uma cor HEX",
+            description: "[ 🤪miscellaneou ] see a little information about a HEX color",
             category: "miscellaneous",
             usage: "<cor em HEX>",
             commandOptions: [
                 {
                     type: 3,
                     name: "color",
-                    description: "cor em hexadecimal (ex: FF0000, #FF0000)",
+                    description: "color in hexadecimal (ex: FF0000, #FF0000)",
                     required: true
                 }
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let hex = interaction.options.getString('color');
 
@@ -44,12 +44,40 @@ class Command extends comando {
 
         if(!validate(hex)){
             interaction.editReply({
-                content: "❌**|** isto não e uma cor HEX válida!"
+                content: t("commands:hex.error")
             })
             return {}
         } else {
             interaction.editReply({embeds:[new Discord.MessageEmbed().setColor(hex).setThumbnail(`http://placehold.it/500/${hex}/${hex}`).addField(`**HEX**: #${hex}`, `**RGB**: rgb(${r},${g},${b})`).setTimestamp()]});
             return {}
+        }
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "hex",
+                description: "exibir informações de uma cor em HEXADECIMAL",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "miscelânea",
+                usage: "<cor em HEX>",
+                subCommands: []
+            },
+            en: {
+                name: "hex",
+                description: "display color information in HEXADECIMAL",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "miscellaneous",
+                usage: "<gex color>",
+                subCommands: []
+            }
         }
     }
 } 

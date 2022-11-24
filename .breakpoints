@@ -1,11 +1,35 @@
 {
   "files": {
+    "dist/primary_configuration.js": [
+      {
+        "id": "b0227ca4-71d5-425d-b341-03bc38af3ef0",
+        "line": 21,
+        "version": 897,
+        "index": 470
+      }
+    ],
     "handlers/client/client.js": [
       {
         "id": "83073131-7c0b-4f73-98bb-6b6f6f4b0d4f",
         "line": 2,
-        "version": 957,
-        "index": 49
+        "version": 320,
+        "index": 45
+      }
+    ],
+    "index.test.js": [
+      {
+        "id": "e920f26c-dee8-4f52-8914-10fc70cb4927",
+        "line": 1,
+        "version": 469,
+        "index": 0
+      }
+    ],
+    "new_events/guild/command_prefix.js": [
+      {
+        "id": "978183a6-ec75-4249-9332-69065c6cd0c8",
+        "line": 20,
+        "version": 420,
+        "index": 639
       }
     ]
   }

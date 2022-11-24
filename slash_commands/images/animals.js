@@ -6,14 +6,14 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "animals",
-            description: "[ 🖨imagem ] IMAGENS de animais fofos!",
+            description: "[ 🖨Image ] PICTURES of cute animals!",
             category: "images",
             usage: "<categoria>",
             commandOptions: [
                 {
                     type: 3,
                     name: "type",
-                    description: "qual será o tipo?",
+                    description: "what will be the type?",
                     required: true,
                     choices: [
                         {
@@ -45,7 +45,7 @@ class Command extends comando {
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         
         let data = interaction.options.getString('type');
@@ -72,11 +72,39 @@ class Command extends comando {
         }
         //console.log(url1); eu amo javascript
         
-        let embed = new Discord.MessageEmbed().setImage(url1).setColor("#FF69B4").setAuthor({ name: "clique aqui se não estiver aparecendo", url: url1})
+        let embed = new Discord.MessageEmbed().setImage(url1).setColor("#FF69B4").setAuthor({ name: t("commands:animals") , url: url1})
         
         interaction.editReply({
             embeds: [embed]
         });
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "animals",
+                description: "animais fofinhos!!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "imagem",
+                usage: "<categoria>",
+                subCommands: []
+            },
+            en: {
+                name: "animals",
+                description: "cute animals!!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "image",
+                usage: "<category>",
+                subCommands: []
+            }
+        }
     }
 } 
 

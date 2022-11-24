@@ -8,6 +8,11 @@ class eco {
 		
 		let new_ = new usermodel({
 			UserId: author.id,
+            config: {
+                background: {
+                    collection: ["default"]//.push(code)
+                }
+            },
             userCreationTimestamp: Date.now()
 		})
 		await new_.save().catch(e => console.log(e));

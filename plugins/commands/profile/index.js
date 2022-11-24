@@ -2,10 +2,7 @@
 const jimp = require("jimp");
 const Discord = require("discord.js");
 
-module.exports = async (interaction, options) => {
-    //await interaction.deferReply()
-	//message.channel.startTyping();
-
+module.exports = async (interaction, options, t, function_) => {
 	let avatar = await jimp.read(options.avatarURL);
 	let background = await jimp.read(options.background);
 	let model = await jimp.read("./assets/profile/images/profile_model.png");
@@ -31,16 +28,17 @@ module.exports = async (interaction, options) => {
 
 	background.composite(model, 0, 0);
 	background.getBuffer(jimp.MIME_PNG, async(err, buffer) => {
+        //wait function_(err, buffer)
     	if (err) {
     		//message.channel.stopTyping(true);
     		return interaction.editReply({
-                content:`🚫**|** ouve um erro ao resgatar as informações :(\nnotifique os meus devs sobre o ocorrido.`
+                content: t("commands:global.error.commands", { error: err })
             });
     	} else {
     	//	message.channel.stopTyping(true);
             let card = new Discord.MessageAttachment(buffer, "Profile.png")
     		return interaction.editReply({
-                content:`📱 **|** perfil`,
+                content: t("commands:profile"),
                 files: [card]
             })
     	};

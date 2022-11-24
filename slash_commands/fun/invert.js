@@ -2,43 +2,31 @@ let comando = require("../../frameworks/commando/command.js");
 let subCOMMAND_opition1_1 = require("../../database/slash_commands/sub_commands/invert.text.json");
 let subCOMMAND_opition1_2 = require("../../database/slash_commands/sub_commands/invert.image.json");
 
-let Discord = require("discord.js"); 
-let canvacord = require("canvacord");
+let Discord = require("discord.js");
 
 class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "invert",
-            description: "inverter tudo do avesso, pera... que?",
+            description: "reverse everything inside out, wait... what?",
             category: "fun",
-            usage: "<sub comando>",
-            subCommands: [
-                {
-                    name: "text",
-                    description: "inverter um texto"
-                },
-                {
-                    nane: "image",
-                    description: "inverter as cores de uma imagem(so avatares de usuários)"
-                }
-            ],
             commandOptions: [
                 {
                     type: 1,
                     name: "text",
-                    description: "[ 😂diversão ] inverter um texto",
+                    description: "[ 😂fun ] invert a text!",
                     options: [...subCOMMAND_opition1_1]
-                },
+                }/*,
                 {
                     type: 1,
                     name: "image",
-                    description: "[ 😂diversão + 📷photoshop ] inverter aa cores de uma imagem!",
+                    description: "[ 😂fun + 📷photoshop ] inverter aa cores de uma imagem!",
                     options: [...subCOMMAND_opition1_2]
-                }
+                }*/
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
@@ -49,7 +37,7 @@ class Command extends comando {
                 content: `🔄**|** ${(str.split('').reverse().join('')).toString()}`
             })
             return {}
-        } else if(subCOMMAND === "image"){
+        }/* else if(subCOMMAND === "image"){
             let user = interaction.options.getUser('user') || interaction.user;
             let avatar = user.avatarURL({
                 dynamic: true,
@@ -64,7 +52,46 @@ class Command extends comando {
                 files: [attachment]
             })
             return {}
+        }*/
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "invert",
+                description: "inverter tudo do avesso, pera... que?",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "diversão",
+                usage: "<sub comando>",
+                subCommands: [
+                    {
+                        name: "text",
+                        description: "inverter um texto!"
+                    }
+                ]
+            },
+            en: {
+                name: "invert",
+                description: "reverse everything inside out, wait... what?",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "fun",
+                usage: "<sub command>",
+                subCommands: [
+                    {
+                        name: "text",
+                        description: "invert a text!"
+                    }
+                ]
+            }
         }
     }
 } 
+
 module.exports = Command 

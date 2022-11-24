@@ -8,6 +8,11 @@ class afkDATA {
 		
 		let new_ = new usermodel({
 			UserId: author.id,
+            config: {
+                background: {
+                    collection: ["default"]//.push(code)
+                }
+            },
             userCreationTimestamp: Date.now()
 		})
 		await new_.save().catch(e => console.log(e));
@@ -24,7 +29,7 @@ class afkDATA {
 	}
 	static async find(author,chequer){
 		const user = await usermodel.findOne({ UserId: author.id });
-		if(chequer == true) if(!user) return this.newUser(author)
+		if(!user) return this.newUser(author)
 		
 		return user ? user : {"error":"404"}
 	}

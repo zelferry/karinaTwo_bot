@@ -1,14 +1,14 @@
 [
     {
-        "name": "pedra",
+        "name": "rock",
         "value": "pedra"
     },
     {
-        "name": "papel",
+        "name": "paper",
         "value": "papel"
     },
     {
-        "name":"tesoura",
+        "name": "scissor",
         "value":"tesoura"
     }
 ]

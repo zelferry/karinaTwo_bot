@@ -9,7 +9,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "furry",
-            description: "[ 🖨imagem ] imagens de furries!",
+            description: "[ 🖨Image ] furry pictures!",
             category: "image"
         })
     }
@@ -23,6 +23,32 @@ class Command extends comando {
         interaction.editReply({
             embeds: [embed]
         })
+    }
+    
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "furry",
+                description: "imagens de furries!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "imagem",
+                subCommands: []
+            },
+            en: {
+                name: "furry",
+                description: "furry pictures!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "imagem",
+                subCommands: []
+            }
+        }
     }
 } 
 module.exports = Command 

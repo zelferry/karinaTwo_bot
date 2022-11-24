@@ -6,42 +6,31 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "server",
-            description: "[ 📲discord ] coisas de servidores pra você!",
+            description: "[ 📲discord ] servers stuff for you!",
             category: "discord",
-            usage: "<sub comando>",
-            subCommands: [
-                {
-                    name: "info",
-                    description: "ver informações do servidor!",
-                },
-                {
-                    name: "icon",
-                    description: "ver o ícone do servidor"
-                }
-            ],
             commandOptions: [
                 {
                     name: "info",
-                    description: "[ 📲discord ] ver informações do servidor!",
+                    description: "[ 📲discord ] see server information!",
                     type: 1
                 },
                 {
                     name: "icon",
-                    description: "[ 📲discord ] ver o ícone do servidor!",
+                    description: "[ 📲discord ] see the server icon!",
                     type: 1
                 }
             ],
             buttonCommands: ["data"]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "info"){
-            const embed = new Discord.MessageEmbed().setColor('#fd9058').setTitle('Informações do servidor').setThumbnail(interaction.guild.iconURL()).addField('ID', interaction.guild.id.toString()).addField('Nome', interaction.guild.name).addField('Dono', `<@${interaction.guild.ownerId}>`).addField('Membros', interaction.guild.memberCount.toString()).addField('Data de Criação', `<t:${~~(interaction.guild.createdTimestamp / 1000)}>`).addField('Você entrou em', `<t:${~~(interaction.member.joinedTimestamp / 1000)}>`).setTimestamp();
+            const embed = new Discord.MessageEmbed().setColor('#fd9058').setTitle(t("commands:server.info.title")).setThumbnail(interaction.guild.iconURL()).addField(t("commands:server.info.id"), interaction.guild.id.toString()).addField(t("commands:server.info.name"), interaction.guild.name).addField(t("commands:server.info.owner"), `<@${interaction.guild.ownerId}>`).addField(t("commands:server.info.members"), interaction.guild.memberCount.toString()).addField(t("commands:server.info.date_create"), `<t:${~~(interaction.guild.createdTimestamp / 1000)}>`).addField(t("commands:server.info.date_join"), `<t:${~~(interaction.member.joinedTimestamp / 1000)}>`).setTimestamp();
 
-            let databutton = new Discord.MessageButton().setStyle("SUCCESS").setLabel("ver dados do servidor").setCustomId("data");
+            let databutton = new Discord.MessageButton().setStyle("SUCCESS").setLabel(t("commands:server.info.button.name")).setCustomId("data");
 
             if(!interaction.member.permissions.has("ADMINISTRATOR")) databutton.setDisabled();
             
@@ -68,8 +57,8 @@ class Command extends comando {
                     });
 
                     let data_ = await guild_model.findOne({ guildId: interaction.guild.id });
-                    const embed = new Discord.MessageEmbed().setColor('#fd9058').setTitle('dados do servidor').setDescription("essas informações de seu servidor em minha database:\n```json\n"+data_+"\n```");
-
+                    const embed = new Discord.MessageEmbed().setColor('#fd9058').setTitle(t("commands:server.info.button.embed.title")).setDescription(""+t("commands:server.info.button.embed.description")+"\n```json\n"+data_+"\n```");
+                    
                     await interaction.followUp({
                         embeds: [embed],
                         ephemeral: true
@@ -81,14 +70,60 @@ class Command extends comando {
         } else if(subCOMMAND === "icon"){
             let avatar = interaction.guild.iconURL({ dynamic: true, format: 'png', size: 1024 });
 
-            let button_ = new Discord.MessageButton().setStyle('LINK').setURL(`${avatar}`).setLabel('ver na web');
+            let button_ = new Discord.MessageButton().setStyle('LINK').setURL(`${avatar}`).setLabel(t("commands:global.button.web"));
             let row2 = new Discord.MessageActionRow().addComponents(button_);
-            let embed = new Discord.MessageEmbed().setColor(`#fd9058`).setTitle(`ícone do servidor`).setImage(avatar);
+            let embed = new Discord.MessageEmbed().setColor(`#fd9058`).setTitle(t("commands:server.icon")).setImage(avatar);
 
             await interaction.editReply({
                 embeds: [embed],
                 components: [row2]
             })
+        }
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "server",
+                description: "comandos sobre servidor",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "discord",
+                usage: "<sub comando>",
+                subCommands: [
+                    {
+                        name: "info",
+                        description: "retornar informações sobre seu servidor"
+                    },
+                    {
+                        name: "icon",
+                        description: "retorna o ícone do servidor"
+                    }
+                ]
+            },
+            en: {
+                name: "server",
+                description: "server commands",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "discord",
+                usage: "<sub command>",
+                subCommands: [
+                    {
+                        name: "info",
+                        description: "return information about your server"
+                    },
+                    {
+                        name: "icon",
+                        description: "return server icon"
+                    }
+                ]
+            }
         }
     }
 } 

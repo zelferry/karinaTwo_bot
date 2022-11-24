@@ -2,7 +2,7 @@
     {
         "type": 3,
         "name": "emoji_name",
-        "description": "nome do emoji",
+        "description": "emoji name",
         "required": true
     }
 ]

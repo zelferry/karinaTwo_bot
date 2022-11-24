@@ -2,10 +2,7 @@ let express = require('express');
 let colors = require("colors");
 let fetch = require('node-fetch');
 
-let Config = require('../../../database/client/config.json');
-
 let app = express();
-let urls = Config.host.links;
 
 app.use("/topgg", require("./routers/top_gg.js"));
 app.use("/api", require("./routers/api.js"));

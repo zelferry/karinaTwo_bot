@@ -2,7 +2,7 @@
     {
         "name": "emoji",
         "type": 3,
-        "description": "nome do emoji ou o emoji em si",
+        "description": "emoji name or the emoji itself",
         "required": true
     }
 ]

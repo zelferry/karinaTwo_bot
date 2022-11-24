@@ -2,13 +2,13 @@
     {
         "type": 3,
         "name": "description",
-        "description": "descrição da conquista",
+        "description": "achievement description",
         "required": true
     },
     {
         "type": 3,
         "name": "title",
-        "description": "título da conquista",
+        "description": "achievement title",
         "required": false
     }
 ]

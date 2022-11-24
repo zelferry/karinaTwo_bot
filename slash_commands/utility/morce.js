@@ -5,20 +5,20 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "morse",
-            description: "[ ❓utilitários ] traduzir um texto para o código morse e virce-versa",
+            description: "[ ❓utilities ] translate a text into morse code, and you can also do the opposite!",
             category: "utility",
             usage: "<texto>",
             commandOptions: [
                 {
                     type: 3,
                     name: "text",
-                    description: "texto a ser traduzido do seu idiota para o código morse e virce-versa",
+                    description: "text to be translated from your language to morse code or from morse code to your language",
                     required: true
                 }
             ]
         })
     }
-    async interactionRun(interaction){
+    async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let args = interaction.options.getString("text");
         let alpha = " ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
@@ -39,7 +39,7 @@ class Command extends comando {
             }
             
             text = text.join("");
-            title1 = "morse => TEXTO" 
+            title1 = t("commands:morse.morse_text") 
         } else {
             text = text.split("");
             let length = text.length;
@@ -49,7 +49,7 @@ class Command extends comando {
             }
 
             text = text.join(" ");
-            title1 = "texto => MORSE" 
+            title1 = t("commands:morse.text_morse") 
         }
 
         return interaction.editReply({
@@ -61,6 +61,34 @@ class Command extends comando {
                 }
             ]
         })
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "morse",
+                description: "traduzir um texto para o código morse e virce-versa",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "utilitários",
+                usage: "<texto>",
+                subCommands: []
+            },
+            en: {
+                name: "morse",
+                description: "translate a text into morse code, and you can also do the opposite!",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "utilities",
+                usage: "<text>",
+                subCommands: []
+            }
+        }
     }
 } 
 module.exports = Command 
