@@ -21,7 +21,7 @@ new RatelimitManager(manager);
 if(condittion_databotslist){
     let bot_lists = teste.autoTopGgPost(manager);
 
-    ara.on("posted", (data) => {
+    bot_lists.on("posted", (data) => {
         console.log(`[${new Date().toString().split(' ', 5).join(' ')}] Status Postado na top.gg!`);
     })
 }

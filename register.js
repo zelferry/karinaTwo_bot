@@ -38,7 +38,7 @@ let rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
     });
     
     try {
-        console.log("[SLASH MANAGER] registrando os comandos");
+        console.log("[SLASH MANAGER] registrando os comandos1");
 
         if(public_cmds){
             await rest.put(Routes.applicationCommands(config.client().id), {
