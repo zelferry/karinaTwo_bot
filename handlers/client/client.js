@@ -1,4 +1,5 @@
 let baseClient = require("./baseClient.js");
+
 let commandsSructure = require("../../frameworks/commando/client.js")
 let Discord = require('discord.js');
 let imagesStructure = require("./structures/Images.js");
@@ -9,13 +10,14 @@ let intervalStructure = require("./structures/interval.js");
 let apiStructure = require("../../dist/libs/images_server/index.js");
 
 let utils_ = require('../../utils/main.js');
-let AntiSpam = require('discord-anti-spam');
 let events = require("../../frameworks/event/client.js");
+let dbconnect = require("../../mongoDB/connect.js");
 
 let fetch = require('node-fetch');
 let i18next = require('i18next');
 let Backend = require('i18next-fs-backend');
 let fs = require("fs");
+let AntiSpam = require('discord-anti-spam');
 let { exec } = require('child_process');
 
 
@@ -141,9 +143,7 @@ class clientBot extends baseClient {
         }
     }
     async connect(){
-
-        //onsole.log(this.pre_load)
-        await this.db.load();
+        dbconnect("client");
         await this.loadLocates();
         await this.pre_load.events.load();
         await this.pre_load.commands.loadSlash();

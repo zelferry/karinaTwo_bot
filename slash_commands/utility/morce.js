@@ -1,5 +1,5 @@
 let comando = require("../../frameworks/commando/command.js");
-let Discord = require("discord.js"); 
+let Discord = require("discord.js");
 
 class Command extends comando {
     constructor(...args) {

@@ -6,6 +6,7 @@
         },
         "button": {
             "web": "see on the web",
+            "report": "report content",
             "execute": "execute",
             "cancel": "cancel"
         },
@@ -13,6 +14,7 @@
         "error": {
             "commands": "🚫**|** There was a strange error in the command, please try again later\n```md\n{{error}}\n```",
             "api_error": "🚫**|** the **external information deliveries service** did not send anything, please try again later.",
+            "no_url": "🚫**|** it looks like the requested url has disappeared!\n🤔**|** try again",
             "user": {
                 "isBot": "🚫**|** this user is a bot!"
             },
@@ -258,6 +260,11 @@
         "error": "❌**|** this is not a valid HEX color!"
     },
     "meme": {
+        "generate": {
+            "label": "> title: {{post_title}}\n> score: {{post_votes}}\n> subreddit: {{post_subreddit}}\n> origin: [original here]({{post_url}})",
+            "nsfw": "🚫**|** looks like the meme is an nsfw meme!",
+            "no_img": "🚫**|** looks like the meme is not an image"
+        },
         "knuckles": "did Knuckles approve of your meme?"
     },
     "minecraft": {
@@ -364,7 +371,7 @@
         "text_morse": "text 》morse"
     },
     "donate": {
-        "description": "do you want me to stay online?\nso how about making a little donation?\neveryone is welcome and, of course, you will be helping me a lot, nowadays hosts are costing around **R$45.00** (Brazilian currency, this one costing **8.89 US dollars**), and you can help me stay online by donating, it's worth remembering that it's optional, if you can't donate, no problem :)\n\npix key: `{{pix}}`",
+        "description": "do you want me to stay online?\nso how about making a little donation?\neveryone is welcome and, of course, you will be helping me a lot, nowadays hosts are costing around **R$45.00** (Brazilian currency, this one costing **8.89 US dollars**), and you can help me stay online by donating, it's worth remembering that it's optional, if you can't donate, no problem :)\n\npix key(donate via **tipa.ai**): `{{pix}}`",
         "footer": "warning: sharing any of my dev's personal information will result in a permanent ban"
     },
     "status": {

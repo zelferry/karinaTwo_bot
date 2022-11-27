@@ -8,17 +8,17 @@ class Command extends comando {
         super(...args, {
             name: "meme",
             description: "memes, memes, memes and memes...",
-            category: "miscellaneous",
+            category: "fun",
             commandOptions: [
                 {
                     type: 1,
                     name: "generate",
-                    description: "[ 🤪miscellaneous ] generate a random meme!"
+                    description: "[ 😂fun ] generate a random meme!"
                 },
                 {
                     type: 1,
                     name: "knuckles",
-                    description: "[ 🤪miscellaneous ] \"meme?\""
+                    description: "[ 😂fun ] \"meme?\""
                 }
             ]
         })
@@ -28,11 +28,19 @@ class Command extends comando {
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "generate"){
-            let data1 = require("../../database/images/sfw/memes.json").all
-            let number1 = mathRandom(data1.length);
-            let output1 = data1[number1]
+            let json = await this.client.private_api.meme.find_meme(t.lng);
 
-            let embed = new Discord.MessageEmbed().setImage(output1).setColor("#7B68EE").setFooter({ text:`${number1+1} / ${data1.length}` });
+            let description = `${t("commands:meme.generate.label", { post_title: json.title, post_votes: (json.ups).toString(), post_subreddit: json.subreddit, post_url: json.postLink })}`;
+            let file = json.url
+            
+            if(json.nsfw && !interaction.channel.nsfw){
+                description = `${t("commands:meme.generate.label", { post_title: json.title, post_votes: (json.ups).toString(), post_subreddit: json.subreddit, post_url: json.postLink })}\n${t("commands:meme.generate.nsfw")}`;
+                file = null 
+            } else if(file.endsWith('.webm') || file.endsWith('.mp4')){
+                description = `${t("commands:meme.generate.label", { post_title: json.title, post_votes: (json.ups).toString(), post_subreddit: json.subreddit, post_url: json.postLink })}\n${t("commands:meme.generate.no_img")}`;
+            }
+
+            let embed = new Discord.MessageEmbed().setImage(file).setColor("#7B68EE").setDescription(description)
             
             interaction.editReply({
                 embeds: [embed]
@@ -72,7 +80,7 @@ class Command extends comando {
                     bot: [],
                     user: []
                 },
-                category: "micelanea",
+                category: "diversão",
                 usage: "<sub comando>",
                 subCommands: [
                     {
@@ -92,7 +100,7 @@ class Command extends comando {
                     bot: [],
                     user: []
                 },
-                category: "miscellaneous",
+                category: "fun",
                 usage: "<sub command>",
                 subCommands: [
                     {

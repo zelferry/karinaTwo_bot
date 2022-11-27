@@ -33,7 +33,7 @@ class Command extends comando {
         super(...args, {
             name: "nekos",
             description: "[ 🖨Image ] nekos commands!",
-            category: "images",
+            category: "image",
             usage: "<sub comando>",
             commandOptions: [
                 {

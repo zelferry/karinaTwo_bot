@@ -1,6 +1,6 @@
 {
   "name": "karinaTwo",
-  "version": "4.0.1",
+  "version": "4.0.2-beta",
   "description": "a multipurpose bot made with love and javascript",
   "main": "Cluster.js",
   "engines": {
@@ -21,7 +21,6 @@
     "i18next": "^21.8.10",
     "i18next-fs-backend": "^1.1.4",
     "jimp": "^0.16.1",
-    "millify": "^4.0.0",
     "mongoose": "^5.13.6",
     "ms": "^2.1.3",
     "node-fetch": "^2.6.1",

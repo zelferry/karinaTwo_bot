@@ -46,137 +46,31 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction, t){
+        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
-        if(subCOMMAND === "straight"){
-            await interaction.deferReply({
-                ephemeral: this.deferReply
-            }).catch(() => {});
-            
-            let url = await this.client.private_api.nekos.straight();
-            if(url.success === false){
-                interaction.followUp({
-                    content: t("commands:global.error.api_error")
-                })
-                return {}
-            } else {
-                let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
-                let row1 = new Discord.MessageActionRow().addComponents(button_1);
-                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
-                interaction.editReply({
-                    embeds: [embed3],
-                    components: [row1]
-                });
-            }
+        let url = await this.client.private_api.nekos[subCOMMAND]();
+        
+        if(url.success === false){
+            interaction.followUp({
+                content: t("commands:global.error.api_error")
+            });
             return {}
-        } else if(subCOMMAND === "gay"){
-            await interaction.deferReply({
-                ephemeral: this.deferReply
-            }).catch(() => {});
-            
-            let url = await this.client.private_api.nekos.gay();
-            if(url.success === false){
-                interaction.followUp({
-                    content: t("commands:global.error.api_error")
-                })
-                return {}
-            } else {
-                let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
-                let row1 = new Discord.MessageActionRow().addComponents(button_1);
-                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
-                interaction.editReply({
-                    embeds: [embed3],
-                    components: [row1]
-                });
-            }
+        } else if(!url.url){
+            interaction.followUp({
+                content: t("commands:global.error.no_url")
+            });
             return {}
-        } else if(subCOMMAND === "futa"){
-            await interaction.deferReply({
-                ephemeral: this.deferReply
-            }).catch(() => {});
+        } else {
+            let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel(t("commands:global.button.web"));
+            let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(`https://danbooru.donmai.us/post_flags/new?post_flag%5Bpost_id%5D=${url.data.id}`).setLabel(t("commands:global.button.report"));
             
-            let url = await this.client.private_api.nekos.futa();
-            if(url.success === false){
-                interaction.followUp({
-                    content: t("commands:global.error.api_error")
-                })
-                return {}
-            } else {
-                let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
-                let row1 = new Discord.MessageActionRow().addComponents(button_1);
-                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
-                interaction.editReply({
-                    embeds: [embed3],
-                    components: [row1]
-                });
-            }
-            return {}
-        } else if(subCOMMAND === "femboy"){
-            await interaction.deferReply({
-                ephemeral: this.deferReply
-            }).catch(() => {});
-            
-            let url = await this.client.private_api.nekos.femboy();
-            if(url.success === false){
-                interaction.followUp({
-                    content: t("commands:global.error.api_error"),
-                    ephemeral: true
-                })
-                return {}
-            } else {
-                let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
-                let row1 = new Discord.MessageActionRow().addComponents(button_2);
-                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
-                interaction.editReply({
-                    embeds: [embed3],
-                    components: [row1]
-                });
-            }
-            return {}
-        } else if(subCOMMAND === "boobs") {
-            await interaction.deferReply({
-                ephemeral: this.deferReply
-            }).catch(() => {});
-            
-            let url = await this.client.private_api.nekos.boobs();
-            if(url.success === false){
-                interaction.followUp({
-                    content: t("commands:global.error.api_error"),
-                    ephemeral: true
-                })
-                return {}
-            } else {
-                let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
-                let row1 = new Discord.MessageActionRow().addComponents(button_2);
-                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
-                interaction.editReply({
-                    embeds: [embed3],
-                    components: [row1]
-                });
-            }
-            return {}
-        } else if(subCOMMAND === "pussy") {
-            await interaction.deferReply({
-                ephemeral: this.deferReply
-            }).catch(() => {});
-            
-            let url = await this.client.private_api.nekos.pussy();
-            if(url.success === false){
-                interaction.followUp({
-                    content: t("commands:global.error.api_error"),
-                    ephemeral: true
-                })
-                return {}
-            } else {
-                let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel('ver imagem na web');
-                let row1 = new Discord.MessageActionRow().addComponents(button_2);
-                let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE").setURL(url.url);
-                interaction.editReply({
-                    embeds: [embed3],
-                    components: [row1]
-                });
-            }
-            return {}
+            let row1 = new Discord.MessageActionRow().addComponents(button_1, button_2);
+            let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
+            interaction.editReply({
+                embeds: [embed3],
+                components: [row1]
+            });
         }
     }
 

@@ -7,17 +7,17 @@ class Command extends comando {
         super(...args, {
             name: "translate",
             description: "translate karinaTwo!",
-            category: "miscellaneous",
+            category: "utility",
             commandOptions: [
                 {
                     type: 1,
                     name: "pt",
-                    description: "[ 🤪miscelânea ] traduzir a karinaTwo para o português(Brasil)"
+                    description: "[ ❓utilitários ] traduzir a karinaTwo para o português(Brasil)"
                 },
                 {
                     type: 1,
                     name: "en",
-                    description: "[ 🤪miscellaneous ] translate karinaTwo into english"
+                    description: "[ ❓utilities ] translate karinaTwo into english"
                 }
             ]
         })
@@ -45,7 +45,7 @@ class Command extends comando {
                     bot: [],
                     user: []
                 },
-                category: "micelanea",
+                category: "utilitários",
                 usage: "<linguagem>",
                 subCommands: []
             },
@@ -56,7 +56,7 @@ class Command extends comando {
                     bot: [],
                     user: []
                 },
-                category: "miscellaneous",
+                category: "utilities",
                 usage: "<language>",
                 subCommands: []
             }

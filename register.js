@@ -5,9 +5,7 @@ let config = require(`${process.cwd()}/dist/primary_configuration.js`);
 let fs = require('fs');
 
 let client_bot = new Client({
-    intents: [
-        Intents.FLAGS.GUILDS
-    ]
+    intents: [ Intents.FLAGS.GUILDS ]
 })
 
 let public_cmds = (process.env.CONDITION_PRIVATE_COMMANDS === "true");
@@ -38,13 +36,17 @@ let rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
     });
     
     try {
-        console.log("[SLASH MANAGER] registrando os comandos1");
+        console.log("[SLASH MANAGER] registrando os comandos");
 
         if(public_cmds){
+            console.log("[SLASH MANAGER => CONFIRM] comandos selecionados: públicos");
+            
             await rest.put(Routes.applicationCommands(config.client().id), {
                 body: commands_slash
             });
         } else {
+            console.log("[SLASH MANAGER => CONFIRM] comandos selecionados: privados");
+            
             await rest.put(Routes.applicationGuildCommands(config.client().id, config.guild().test), {
                 body: commands_slash
             })

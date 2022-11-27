@@ -7,7 +7,7 @@ class Command extends comando {
         super(...args, {
             name: "animals",
             description: "[ 🖨Image ] PICTURES of cute animals!",
-            category: "images",
+            category: "image",
             usage: "<categoria>",
             commandOptions: [
                 {

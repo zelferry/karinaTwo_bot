@@ -1,6 +1,5 @@
 let comando = require("../../frameworks/commando/command.js");
 let { profile } = require('../../mongoDB/ini.js').user;
-let { millify } = require("millify");
 
 let Discord = require("discord.js"); 
 let bgdata = require("../../database/background/ids.json");
@@ -35,15 +34,30 @@ class Command extends comando {
             let Manager = require("../../plugins/commands/profile/index.js");
             let background = bgdata.find(bg => bg.id === value.config.background.setted);
 
+            function abbreviateNumber(value) {
+                var newValue = value;
+                if (value >= 1000) {
+                    var suffixes = ['', 'K', 'Mi', 'Bi', 'Tri', 'Qua', 'Qui'];
+                    var suffixNum = Math.floor( (""+value).length/3 );
+                    var shortValue = '';
+                    
+                    for (var precision = 2; precision >= 1; precision--) {
+                        shortValue = parseFloat( (suffixNum != 0 ? (value / Math.pow(1000,suffixNum) ) : value).toPrecision(precision));
+                        var dotLessShortValue = (shortValue + '').replace(/[^a-zA-Z 0-9]+/g,'');
+                        if (dotLessShortValue.length <= 2) { break; }
+                    }
+                    if (shortValue % 1 != 0)  shortValue = shortValue.toFixed(1);
+                    newValue = shortValue+suffixes[suffixNum];
+                }
+                return newValue;
+            }
+            
             let options = {
                 avatarURL: user.displayAvatarURL({ format: "png", size: 512 }),
                 background: `./assets/profile/images/backgrounds/${background.locate}`,
                 username: user.username,
                 discriminator: user.discriminator,
-                money: millify(value.coins,{
-                    units:['', 'K', 'Mi', 'Bi', 'Tri', 'Qua', 'Qui'],
-                    space: true
-                }),
+                money: abbreviateNumber(value.coins),
                 aboutme: value.usertext,
                 vip: value.vipUser ? t("commands:global.label.yes") : t("commands:global.label.no")
             };

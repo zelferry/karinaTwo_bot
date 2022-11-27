@@ -1,16 +1,7 @@
 let Discord = require('discord.js');
 let client_bot = require("./handlers/index.js")
 let Cluster = require("discord-hybrid-sharding");
-let mongoose = require("mongoose");
 let dist = require("./dist/main.js");
-/*
-const i18next = require('i18next')
-const Backend = require('i18next-fs-backend')*/
-
-const dbOptions = {
-	useUnifiedTopology: true,
-	useNewUrlParser: true
-};
 
 let { Intents } = Discord
 let client = (global.client = new client_bot.client({
@@ -41,5 +32,4 @@ let client = (global.client = new client_bot.client({
 
 dist.extends();
 require("./dist/anti_crash.js").client(client);
-//mongoose.connect(process.env.MONGOOSE, dbOptions);
 client.connectBOT(process.env.TOKEN);

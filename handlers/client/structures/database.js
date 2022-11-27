@@ -13,13 +13,6 @@ class database {
         let time = process.hrtime(cNano);
         return (time[0] * 1e9 + time[1]) * 1e-6;
     }
-    async load(){
-        //console.log(":)")
-        return await connect(process.env.MONGOOSE, {
-            useUnifiedTopology: true,
-            useNewUrlParser: true
-        })
-    }
 }
 
 module.exports = database
