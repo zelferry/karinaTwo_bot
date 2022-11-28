@@ -371,7 +371,9 @@
         "text_morse": "text 》morse"
     },
     "donate": {
-        "description": "do you want me to stay online?\nso how about making a little donation?\neveryone is welcome and, of course, you will be helping me a lot, nowadays hosts are costing around **R$45.00** (Brazilian currency, this one costing **8.89 US dollars**), and you can help me stay online by donating, it's worth remembering that it's optional, if you can't donate, no problem :)\n\npix key(donate via **tipa.ai**): `{{pix}}`",
+        "description": "do you want me to stay online?\nso how about making a little donation?\neveryone is welcome and, of course, you will be helping me a lot, nowadays hosts are costing around **R$45.00** (Brazilian currency, this one costing **8.89 US dollars**), and you can help me stay online by donating, it's worth remembering that it's optional, if you can't donate, no problem :)",
+        "button": "donate and help karinaTwo",
+        "author": "click here if the url button is not showing",
         "footer": "warning: sharing any of my dev's personal information will result in a permanent ban"
     },
     "status": {

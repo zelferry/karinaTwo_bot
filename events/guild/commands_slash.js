@@ -7,6 +7,8 @@ let { bansUsers, translations } = require("../../mongoDB/ini.js").user;
 
 let { configs } = require("../../mongoDB/ini.js").guild;
 
+let suport_db = new Discord.Collection();
+
 function interactionresolva(int){
     let subCOMMANDs = int._subcommand ? int._subcommand : '';
     let optionsCOMMAND = int._hoistedOptions.length > 0 ? int._hoistedOptions.map((x) => `${x.name}: ${x.value}`).join(" ") : ''
@@ -33,6 +35,17 @@ class event extends Event {
             function KariHandler() {
                 new Promise(async (res, rej) => {
                     try {
+                        
+                        if(!suport_db.has(interaction.user.id)){
+                            interaction.channel.send({
+                                embeds: [{
+                                    description: t("events:slash.extra", { url: process.env.DONATE_PIX }),
+                                    color: "#836FFF"
+                                }]
+                            });
+                            suport_db.set(interaction.user.id, interaction.user.id);
+                        }
+                        
                         await command.interactionRun(interaction, locale);
                     } catch(err) {
                         if(interaction.replied) {

@@ -6,6 +6,7 @@
         "fields_description": "se os meus slash commands não estão aparecendo no seu servidor, [me autorize a criar slash commands no seu servidor]({{bot_url}}), verifique se o seu cargo possui permissão para \"Usar comandos de aplicativo\", verifique se a opção \"Use comandos de barra\" está ativada nas suas configurações e verifique se o seu Discord está atualizado!\ncaso você precise de ajuda, [entre no meu servidor de suporte]({{server_url}})!\n\ne não se esqueça, os comandos de barra são àqueles que usam a **`/`**!"
     },
     "slash": {
+        "extra": "do you like me and my commands?\ndo you want me to stay online?\nso how about making a little donation?\n\neveryone is welcome and, of course, you will be helping me a lot, nowadays hosts are costing around **R$45.00** (Brazilian currency, this one costing **8.89 US dollars**), and you can help me stay online by donating!\nit's worth remembering that it's optional, if you can't donate, no problem :)\n\nurl to the donate: {{url}}",
         "error": {
             "embed": {
                 "title": "error when executing command:"

@@ -14,11 +14,20 @@ class Command extends comando {
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
+        //config.pix
+
+        let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(config.pix).setLabel(t("commands:donate.button")).setEmoji("😊");
+        let row1 = new Discord.MessageActionRow().addComponents(button_1);
         
         await interaction.editReply({
+            components: [row1],
             embeds: [
                 {
-                    description: t("commands:donate.description", { pix: config.pix }),
+                    description: t("commands:donate.description"),
+                    author: {
+                        name: t("commands:donate.author"),
+                        url: config.pix
+                    },
                     footer: {
                         text: t("commands:donate.footer")
                     },

@@ -381,7 +381,9 @@
         "text_morse": "texto 》morse"
     },
     "donate": {
-        "description": "você quer que eu continue online?\nentão que tal fazer uma doaçãozinha?\ntoda é bem-vinda e, é claro, você estará me ajudando muito, hoje em dia as hosts estão custando cerca de R$ 45,00 reais, e você pode me ajudar a ficar online doando, vale lembar que é opcional, se você não tem condições de doar, não tem problema :)\n\nchave pix(donate via **tipa.ai**): `{{pix}}`",
+        "description": "você quer que eu continue online?\nentão que tal fazer uma doaçãozinha?\ntoda é bem-vinda e, é claro, você estará me ajudando muito, hoje em dia as hosts estão custando cerca de R$ 45,00 reais, e você pode me ajudar a ficar online doando, vale lembar que é opcional, se você não tem condições de doar, não tem problema :)",
+        "button": "doar e ajudar a karinaTwo",
+        "author": "clique aqui se o botão com a url não estiver aparecendo",
         "footer": "aviso: compartilhar qualquer informação pessoal do meu dev irá resultar em banimento permanente"
     },
     "status": {
