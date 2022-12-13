@@ -300,6 +300,8 @@
     "e621": {
         "error": "😭**|** A small error occurred while retrieving information from the site!",
         "no_post": "🚫**|** no results for __*{{tags}}*__\n📛**|** try later",
+        "original_description": "post description",
+        "no_description": "__has no description__",
         "label": {
             "one": "> **score**: {{postScore}} | **origin**: [original here](https://e621.net/post/show/{{postId}})",
             "two": "tag(s) blacklisted!\ntag: {{tags}} | [**Link**](https://e621.net/posts/{{postId}})\n> if you want to define your blacklist, you can go to karina's editing option here (the site is not in english): [karinatwo.repl.co/dashboard/user/edit](https://karinatwo.repl.co/dashboard/user/edit)",

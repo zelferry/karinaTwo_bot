@@ -67,15 +67,15 @@ class Command extends comando {
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
-        let url = await this.client.private_api.GET(`api/e6?tags=${encodeURI(`${this.img_data[subCOMMAND]}+-animated+-webm+-flash+-humanoid+-feral+-sonic_the_hedgehog_(series)+-league_of_legends+score:>500`)}`);
+        let url = await this.client.private_api.POST(`api/e621/posts`, { tags: [`${this.img_data[subCOMMAND]}`, `-animated`, `-webm`, `-flash`, `-humanoid`, `-feral`, `-sonic_the_hedgehog_(series)`, `-league_of_legends`, `score:>500`] });
 
-        if(url.send === false){
+        if(!url.ok){
             interaction.editReply({
                 content: t("commands:global.error.api_error")
             });
             return {}
         } else {
-            let posts = (url.posts).map((x) => `https://e621.net/posts/${x.id}`);
+            let posts = (url.data.posts).map((x) => `https://e621.net/posts/${x.id}`);
             let results = await this.spam(posts, interaction.options.getNumber("size"));
 
             await interaction.editReply({

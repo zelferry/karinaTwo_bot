@@ -39,16 +39,16 @@ class Command extends comando {
 
         if (tags1 && !Array.isArray(tags1)) tags1 = tags1.split(' ');
 
-        let url = await this.client.private_api.GET(`api/e6?tags=${encodeURI(tags1.join("+"))}`);
+        let url = await this.client.private_api.POST(`api/e621/posts`, { tags: tags1 });
 
-        if(url.send === false){
+        if(url.ok === false){
             interaction.editReply({
                 content: t("commands:e621.error"),
                 ephemeral: true
             })
             return {}
         } else {
-            let posts = url.posts;
+            let posts = url.data.posts;
             
             if(!posts.length){
                 interaction.editReply({
@@ -63,13 +63,16 @@ class Command extends comando {
                 let file = post.file.url;
                 let score = post.score.total;
                 let tags = post.tags.general.concat(post.tags.species, post.tags.character, post.tags.copyright, post.tags.artist, post.tags.invalid, post.tags.lore, post.tags.meta);
+                let original_description = post.description || t("commands:e621.no_description")
+                if(original_description.length > 150) {
+                    original_description = original_description.substring(0, 149) + '...';
+                }
                 
                 let user = await profile.find(interaction.user);
                 let blacklist = user.config.e6.blacklist || [];
                 
                 let __description = t("commands:e621.label.one", { postScore: (score).toString(), postId: (id).toString() });
-                let avatar = interaction.user.avatarURL({ dynamic: true, format: 'png', size: 1024 });
-
+                
                 if(tags){
                     if(this.findOne(blacklist, tags)){
                         file = "https://static1.e621.net/data/a8/5e/a85ef1bf5f272c44cbcdd4405b5b94b6";
@@ -93,15 +96,21 @@ class Command extends comando {
                             color: '#C0C0C0',
                             description: __description,
                             author: {
-                                name: `${tags1.join(" ")}`,
-                                icon_url: avatar
+                                name: post.tags.artist.join(' '),
+                                icon_url: "http://i.imgur.com/RrHrSOi.png"
                             },
                             image: {
                                 url: file
                             },
+                            fields: [
+                                {
+                                    name: t("commands:e621.original_description"),
+                                    value: original_description
+                                }
+                            ],
+                            timestamp: new Date(post.created_at),
                             footer: {
-                                icon_url: 'http://i.imgur.com/RrHrSOi.png',
-                                text: `e621 · ${id}`
+                                text: `ID: ${id}\n`
                             }
                         }
                     ]

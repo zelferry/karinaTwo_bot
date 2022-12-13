@@ -310,6 +310,8 @@
     "e621": {
         "error": "😭**|** aconteceu um pequeno erro ao recuperar as informações do site!",
         "no_post": "🚫**|** nenhum resultado para __*{{tags}}*__\n📛**|** tente mais tarde",
+        "original_description": "descrição do post",
+        "no_description": "__não tem descrição__",
         "label": {
             "one": "> **votos**: {{postScore}} | **origem**: [original aqui](https://e621.net/post/show/{{postId}})",
             "two": "tag(s) na blacklist!\ntag: {{tags}} | [**Link**](https://e621.net/posts/{{postId}})\n> caso você queira definir a sua blacklist, você pode ir na opção de edição da karina aqui: [karinatwo.repl.co/dashboard/user/edit](https://karinatwo.repl.co/dashboard/user/edit)",
