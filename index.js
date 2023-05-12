@@ -23,11 +23,11 @@ let client = (global.client = new client_bot.client({
             messages: {
                 interval: 3600,
                 lifetime: 1800,
-            },
+            }/*,
             users: {
                 interval: 3600,
                 filter: user => user.bot && user.id !== client.user.id,
-            }
+            }*/
         },
         intents: [
             GatewayIntentBits.Guilds,
