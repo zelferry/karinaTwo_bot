@@ -9,47 +9,58 @@ var Discord = require("discord.js")
 
 
 class Command extends comando {
+    command_data = {
+        name: "yiff",
+        description: "(nsfw) get images of a certain category in e621/furaffinity",
+        descriptionLocalizations: {
+            "pt-BR": "(nsfw) obter imagens de uma determinada categoria na e621/furaffinity"
+        },
+        dmPermission: false,
+        nsfw: true,
+        options: [
+            {
+                type: 3,
+                required: true,
+                name: "type_image",
+                description: "choose the type of image for me to send",
+                descriptionLocalizations: {
+                    "pt-BR": "escolha o tipo de imagem para eu enviar"
+                },
+                choices: [
+                    {
+                        name: "straight",
+                        value: "straight",
+                    },
+                    {
+                        name: "gay",
+                        value: "gay",
+                    },
+                    {
+                        name: "lesbian",
+                        value: "lesbian",
+                    },
+                    {
+                        name: "gynomorph",
+                        value: "synormorph",
+                    },
+                    {
+                        name: "bulge",
+                        value: "bulge",
+                    },
+                    {
+                        name: "andromorph",
+                        value: "andromorph",
+                    }
+                ]
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "yiff",
-            description: "[ 😈 nsfw ] get images of a certain category",
             nsfw: true,
-            category: "nsfw",
-            usage: "<gay | straight | lesbian | gynomorph | bulge | andromorph>",
-            commandOptions: [
-                {
-                    type: 3,
-                    name: "type_image",
-                    description: "choose the type of image for me to send",
-                    required: true,
-                    choices: [
-                        {
-                            name: "gay",
-                            value: "gay"
-                        },
-                        {
-                            name: "straight",
-                            value: "straight"
-                        },
-                        {
-                            name: "lesbian",
-                            value: "lesbian"
-                        },
-                        {
-                            name: "gynomorph",
-                            value: "synormorph"
-                        },
-                        {
-                            name: "bulge",
-                            value: "bulge"
-                        },
-                        {
-                            name: "andromorph",
-                            value: "andromorph"
-                        }
-                    ]
-                }
-            ]
+            category: "nsfw"
         })
     }
     async interactionRun(interaction, t){
@@ -57,7 +68,7 @@ class Command extends comando {
         let data = interaction.options.getString('type_image');
         let json = await this.client.private_api.yiff[data]();
         
-        let embed = new Discord.MessageEmbed().setImage(json.yiffMediaURL).setColor("#7B68EE").setDescription(`${t("commands:yiff.label.artist")}: ${json.artists.length > 0 ? json.artists.map((c) => `\`${c}\``).join(", ") : t("commands:yiff.label.no_foud")}`);
+        let embed = new Discord.EmbedBuilder().setImage(json.post.url).setColor("#7B68EE").setDescription(`${t("commands:yiff.label.artist")}: ${json.post.author}`);
         interaction.editReply({ embeds: [embed] })
     }
 

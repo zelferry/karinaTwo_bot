@@ -1,1 +1,4 @@
-console.log("never gona give up.");
+const Discord = require('discord.js');
+
+
+console.log(Discord.Constants)

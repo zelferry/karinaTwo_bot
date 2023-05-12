@@ -2,20 +2,34 @@ let comando = require("../../frameworks/commando/command.js");
 let Discord = require("discord.js");
 
 class Command extends comando {
+    command_data = {
+        name: "morse",
+        description: "(utilities) translate a text into morse code, and you can also do the opposite!",
+        descriptionLocalizations: {
+            "pt-BR": "(utilitários) traduzir um texto em código morse, e você também pode fazer o contrário!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 3,
+                required: true,
+                name: "text",
+                description: "text to be translated from your language to morse code (or the other way around)",
+                nameLocalizations: {
+                    "pt-BR": "texto"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "texto a ser traduzido do seu idioma para o código morse(ou ao contrário)"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "morse",
-            description: "[ ❓utilities ] translate a text into morse code, and you can also do the opposite!",
-            category: "utility",
-            usage: "<texto>",
-            commandOptions: [
-                {
-                    type: 3,
-                    name: "text",
-                    description: "text to be translated from your language to morse code or from morse code to your language",
-                    required: true
-                }
-            ]
+            category: "utility"
         })
     }
     async interactionRun(interaction, t){

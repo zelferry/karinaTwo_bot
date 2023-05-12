@@ -2,6 +2,45 @@ let comando = require("../../frameworks/commando/command.js");
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "slowmode",
+        description: "(administration) set the slow mode of a text channel",
+        descriptionLocalizations: {
+            "pt-BR": "(administração) definir o modo lento de um canal de texto"
+        },
+        dmPermission: false,
+        //defaultMemberPermissions: Discord.PermissionFlagsBits.ManageChannels,
+        nsfw: false,
+        options: [
+            {
+                type: 4,
+                minValue: 1,
+                maxValue: 21600,
+                required: true,
+                name: "time",
+                description: "time for slow mode",
+                nameLocalizations: {
+                    "pt-BR": "tempo"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "tempo para o modo lento"
+                }
+            },
+            {
+                type: 7,
+                required: false,
+                name: "channel",
+                description: "text channel to activate slow mode",
+                nameLocalizations: {
+                    "pt-BR": "canal"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "canal de texto para ativar o modo lento"
+                }
+            }
+        ]
+    }
+    
     #emoji = [
         "🕛",
         "🕧",
@@ -23,30 +62,12 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "slowmode",
-            description: "[ 👩‍⚖️management ] set the slow mode of a text channel",
             category: "management",
             permissions: {
-                user: ["MANAGE_CHANNELS"],
-                bot: ["MANAGE_CHANNELS"]
+                user: ["ManageChannels"],
+                bot: ["ManageChannels"]
             },
-            deferReply: true,
-            usage: "<tempo> [canal]",
-            commandOptions: [
-                {
-                    type: 10,
-                    name: "time",
-                    description: "time for slow mode",
-                    minValue: 1,
-                    maxValue: 21600,
-                    required: true
-                },
-                {
-                    type: 7,
-                    name: "channel",
-                    description: "text channel to activate slow mode",
-                    required: false
-                }
-            ]
+            deferReply: true
         })
     }
     async interactionRun(interaction, t){

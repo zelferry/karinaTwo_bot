@@ -5,36 +5,48 @@ let Discord = require("discord.js");
 let timeout = 86400000
 
 class Command extends comando {
+    command_data = {
+        name: "daily",
+        description: "(economy) get your daily Panther-coins!",
+        descriptionLocalizations: {
+            "pt-BR": "(economia) obtenha seus Panther-coins diários!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: []
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "daily",
-            description: "[ 💸economy ] get your daily Panther-coins!",
             category: "economy"
         })
     }
     async interactionRun(interaction, t){
-        //await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let value = await economydb.fech(interaction.user);
 
         let pescaresult = Math.floor(Math.random() * 49) + 1;
 
-        if(value.daily !== null && timeout - (Date.now() - value.daily) > 0){
-            var time = this.client.dist.modules.parse_ms(timeout - (Date.now() - value.daily));
-           // console.log(time)
-            await interaction.deferReply({ ephemeral:  true }).catch(() => {});
+        if(value.config.cooldow.daily !== null && timeout - (Date.now() - value.config.cooldow.daily) > 0){
+            var time = this.client.dist.modules.parse_ms(timeout - (Date.now() - value.config.cooldow.daily));
+            
+            await interaction.deferReply({ ephemeral: true }).catch(() => {});
             interaction.followUp({
-                content: t("commands:daily.no_time", { hours: (time.hours).toString(), minutes: (time.minutes).toString(), seconds: (time.seconds).toString()}),
+                content: t("commands:daily.no_time", {
+                    hours: (time.hours).toString(),
+                    minutes: (time.minutes).toString(),
+                    seconds: (time.seconds).toString()}),
                 ephemeral: true
             });
             return {}
         } else {
-            let answer = 9 
+            let answer = 10
             
             try {
-                if(value.vipUser == true) {
-                    answer = pescaresult * pescaresult * 2 + 100
+                if(value.config.vip.active == true) {
+                    answer = pescaresult * pescaresult * (Math.floor(Math.random() * 10) + 1) * 2
                 } else {
-                    answer = pescaresult * pescaresult + 10
+                    answer = pescaresult * pescaresult + (Math.floor(Math.random() * 10) + 1)
                 }
             } catch (err) {
                 await interaction.deferReply({ ephemeral: true }).catch(() => {});
@@ -51,9 +63,9 @@ class Command extends comando {
                     ]
                 })
             }
-            let perf = new Discord.MessageEmbed().setColor("be41f4").setThumbnail(interaction.user.avatarURL()).setDescription(t("commands:daily.success", { userTag: interaction.user.tag, fishing: pescaresult.toString(), result: answer.toString() })).setTimestamp();
+            let perf = new Discord.EmbedBuilder().setColor("be41f4").setThumbnail(interaction.user.displayAvatarURL({ extension: 'jpg' })).setDescription(t("commands:daily.success", { result: answer.toString() })).setTimestamp();
 
-            await interaction.deferReply({ ephemeral:  false }).catch(() => {});
+            await interaction.deferReply({ ephemeral: false }).catch(() => {});
             interaction.editReply({
                 embeds: [perf]
             });

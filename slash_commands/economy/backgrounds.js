@@ -1,48 +1,77 @@
 let comando = require("../../frameworks/commando/command.js");
 let jimp = require("jimp");
 let Discord = require("discord.js");
+let i18next = require('i18next');
 
-let { bgdb, profile } = require("../../mongoDB/ini.js").user;
+let { bgdb, profile, translations } = require("../../mongoDB/ini.js").user;
 let bgdata = require("../../database/background/ids.json");
+let Manager = require("../../plugins/commands/profile/index.js");
 
 class Command extends comando {
+    command_data = {
+        name: "background",
+        description: "(economy) background setup commands!",
+        descriptionLocalizations: {
+            "pt-BR": "(economia) comandos de configuração de fundo!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 1,
+                name: "buy",
+                description: "(economy) buy new background!",
+                nameLocalizations: {
+                    "pt-BR": "comprar"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(economia) compre um novo fundo!"
+                },
+                options: [
+                    {
+                        type: 3,
+                        name: "background",
+                        description: "select a background to buy",
+                        required: true,
+                        autocomplete: true,
+                        descriptionLocalizations: {
+                            "pt-BR": "selecione um plano de fundo para comprar"
+                        }
+                    }
+                ]
+            },
+            {
+                type: 1,
+                name: "set",
+                description: "(economy) change your background in /profile!",
+                nameLocalizations: {
+                    "pt-BR": "definir"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(economia) mude seu plano de fundo do /profile!"
+                },
+                options: [
+                    {
+                        type: 3,
+                        name: "background",
+                        description: "select a background to set",
+                        required: true,
+                        autocomplete: true,
+                        descriptionLocalizations: {
+                            "pt-BR": "selecione um plano de fundo para defini-lo"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "background",
-            description: "background setup commands!",
             category: "economy",
             deferReply: true,
-            buttonCommands: ["yes"],
-            commandOptions: [
-                {
-                    type: 1,
-                    name: "buy",
-                    description: "[ 💸economy ] buy new funds!",
-                    options: [
-                        {
-                            type: 3,
-                            name: "background",
-                            description: "select a background to buy",
-                            required: true,
-                            autocomplete: true
-                        }
-                    ]
-                },
-                {
-                    type: 1,
-                    name: "set",
-                    description: "[ 💸economy ] change your background in /profile!",
-                    options: [
-                        {
-                            type: 3,
-                            name: "background",
-                            description: "select a background to set",
-                            required: true,
-                            autocomplete: true
-                        }
-                    ]
-                }
-            ]
+            buttonCommands: ["yes"]
         })
     }
     async interactionRun(interaction, t){
@@ -81,57 +110,32 @@ class Command extends comando {
                 } else {
                     let value = await profile.find(interaction.user);
                     let options = {
-                        avatarURL: interaction.user.displayAvatarURL({ format: "png", size: 512 }),
+                        avatarURL: interaction.user.displayAvatarURL({ extension: "png", size: 512 }),
                         background: `./assets/profile/images/backgrounds/${background.locate}`,
                         username: interaction.user.username,
                         discriminator: interaction.user.discriminator,
                         money: abbreviateNumber(value.coins),
                         aboutme: value.usertext,
-                        vip: value.vipUser ? t("commands:global.label.yes") : t("commands:global.label.no")
+                        reps: value.reps,
+                        vip: value.config.vip.active ? t("commands:global.label.yes") : t("commands:global.label.no")
                     };
-
-                    let avatar = await jimp.read(options.avatarURL);
-                    let background1 = await jimp.read(options.background);
-                    let model = await jimp.read("./assets/profile/images/profile_model.png");
-                    let mascara = await jimp.read("./assets/profile/images/mascara.png");
-
-                    let font70 = await jimp.loadFont("./assets/profile/fonts/benasneue_70.fnt");
-                    let font36 = await jimp.loadFont("./assets/profile/fonts/benasneue_36.fnt");
-                    let font36_2 = await jimp.loadFont("./assets/profile/fonts/benasneue_36_2.fnt");
-                    let font20 = await jimp.loadFont("./assets/profile/fonts/benasneue_20.fnt");
-                    avatar.resize(145.50, 145.50);
-                    mascara.resize(145.50, 145.50);
-                    background1.resize(700, 500);
-                    model.resize(700, 500);
-
-                    avatar.mask(mascara);
-                    model.composite(avatar, 16.50, 15.50);
-                    model.print(font70, 178, 9, options.username);
-                    model.print(font36, 337, 91, options.money);
-                    model.print(font20, 267, 124, options.vip, 690);
-                    model.print(font20, 9, 405, options.aboutme, 690);
-                    background1.composite(model, 0, 0);
                     
-                    const bgInfo = new Discord.MessageEmbed().setTitle(background.name).setDescription(background.description).setColor("BLURPLE").addField(t('commands:background.buy.price'), `${background.panther_coins} panther-coins`, true).addField(t('commands:background.buy.concept'), `${background.concept}`, true).setImage('attachment://Profile.png');
+                    Manager(interaction, options, t, (buffer) => {
+                        let bg_locale = background.localizations[t.lng];
+                        
+                        let bgInfo = new Discord.EmbedBuilder().setTitle(bg_locale.name).setDescription(bg_locale.description).setImage('attachment://Profile.png').addFields({ name: t('commands:background.buy.price'), value: `${background.panther_coins} panther-coins`, inline: true }).setColor("#FA8072");
+                        if(!background.concept == "none") bgInfo.addFields({ name: t('commands:background.buy.concept'), value: `${background.concept}`, inline: true });
+                        
+                        let row = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("yes").setLabel(t('commands:background.buy.purchase')).setStyle(Discord.ButtonStyle.Success).setEmoji("💳"));
+                        
+                        let card = new Discord.AttachmentBuilder(buffer, { name: "Profile.png" });
 
-                    let row = new Discord.MessageActionRow().addComponents(new Discord.MessageButton().setCustomId("yes").setLabel(t('commands:background.buy.purchase')).setStyle("SUCCESS").setEmoji("💳"));
-                    
-                    background1.getBuffer(jimp.MIME_PNG, async(err, buffer) => {
-                        if (err) {
-                            return interaction.editReply({ content: t("commands:global.error.commands", { error: err }) });
-                        } else {
-                            let card = new Discord.MessageAttachment(buffer, "Profile.png");
-
-                            interaction.editReply({ embeds: [bgInfo], files: [card], components: [row] })
-                        };
+                        interaction.editReply({ embeds: [bgInfo], files: [card], components: [row] });
                     });
-                    let buttonFilter = (button) => this.buttonCommands.includes(button.customId) && button.user.id === interaction.user.id;
                     
-                    let collector = interaction.channel.createMessageComponentCollector(buttonFilter, {
-                        componentType: 'BUTTON',
-                        time: 15_000,
-                        max: 1
-                    });
+                    let filter = (button) => this.buttonCommands.includes(button.customId) && button.user.id === interaction.user.id;
+                    
+                    let collector = interaction.channel.createMessageComponentCollector({ filter, time: 15_000 });
 
                     collector.on('collect', async i => {
                         i.deferUpdate();
@@ -139,15 +143,23 @@ class Command extends comando {
                         if (i.customId === 'yes'){
                             if (value.coins < background.panther_coins){
                                 interaction.followUp({ content: t('commands:background.buy.noMoney'), ephemeral: true });
+                            } else if(background.only_vip_users && !value.config.vip.active){
+                                interaction.followUp({
+                                    content: t("commands:background.buy.noVip")
+                                });
                             } else {
                                 await bgdb.buyAndSet(interaction.user, code, background.panther_coins);
-
+                                
                                 interaction.editReply({
                                     content: t('commands:background.buy.success', { name: background.name, price: background.panther_coins.toString() }), ephemeral: true, components: [], embeds: [] });
                             }
-                            collector.stop();
                         }
                     });
+
+                    collector.on('end', async i => {
+                        let row = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("yes").setLabel(t('commands:background.buy.purchase_expired')).setStyle(Discord.ButtonStyle.Danger).setDisabled(true));
+                        interaction.editReply({ components: [row] })
+                    })
                 }
                 break;
             }
@@ -177,10 +189,14 @@ class Command extends comando {
     
     async autocompleteRun(interaction, t){
         let command = interaction.options.getSubcommand();
+        let user_translation = await translations.get_lang(interaction.user);
         let user = await bgdb.find(interaction.user);
-
-        if (command === "buy") interaction.respond(bgdata.map(data => Object({ name: data.name, value: data.id })));
-        else if (command === "set") interaction.respond(bgdata.filter(b => user.config.background.collection.includes(b.id)).map(b => Object({ name: b.name, value: b.id })));
+        
+        let locale = i18next.getFixedT(user_translation || 'pt-BR').lng;
+        //t bg_locale_ = 
+        
+        if (command === "buy") interaction.respond(bgdata.map(data => Object({ name: data.localizations[locale].name, value: data.id })));
+        else if (command === "set") interaction.respond(bgdata.filter(b => user.config.background.collection.includes(b.id)).map(b => Object({ name: b.localizations[locale].name, value: b.id })));
     }
 
     command_info(){

@@ -1,37 +1,34 @@
 let comando = require("../../frameworks/commando/command.js");
 
-/*var fortunes = [
-    "Sim",
-    "Não",
-    "Talvez",
-    "Eu não sei, tente de novo",
-    "Quem sabe?",
-    "Isso é um mistério",
-    "Não posso te contar",
-    "Meu informante disse que não",
-    "Provavelmente",
-    "Me pergunte mais tarde!",
-    "Claro que não!",
-    "Não conte comigo para isso",
-    "Dúvido muito",
-    "CLARO QUE NÃO, ISSO SERIA LOUCURA HAHA!! :D"
-  ];*/
-
 class Command extends comando {
+    command_data = {
+        name: "fleur",
+        description: "(fun) fleufurr has the answer to your question!",
+        descriptionLocalizations: {
+            "pt-BR": "(diversão) fleufurr tem a resposta para sua pergunta!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 3,
+                name: "question",
+                description: "what's the question?",
+                required: true,
+                nameLocalizations: {
+                    "pt-BR": "questão"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "qual é a questão?"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "fleur",
-            description: "[ 😂fun ] fleufurr has the answer to your question!",
-            category: "fun",
-            usage: "<pergunta>",
-            commandOptions: [
-                {
-                    type: 3,
-                    name: "question",
-                    description: "what's the question?",
-                    required: true
-                }
-            ]
+            category: "fun"
         })
     }
     async interactionRun(interaction, t){
@@ -50,7 +47,7 @@ class Command extends comando {
                         title: "fleur",
                         description: `${t("commands:eight_ball.asks.label_"+ (Math.floor(Math.random() * 13) + 1)+"")}`,
                         thumbnail:{
-                            url: "https://cdn.discordapp.com/attachments/854883006787747853/865644234593009694/JPEG_20210715_020637.jpg"
+                            url: "https://cdn.discordapp.com/attachments/834607934633541653/865096939627872298/E6TDAiRX0AI9.png"
                         }
                     }
                 ]

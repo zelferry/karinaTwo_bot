@@ -1,5 +1,4 @@
 let comando = require("../../frameworks/commando/command.js");
-let subCommand1 = require("../../database/slash_commands/sub_commands/support.send.json");
 
 let util = require("../../utils/main.js")
 let KariWebhooks = new util.webhooks1()
@@ -7,35 +6,47 @@ let KariWebhooks = new util.webhooks1()
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "support",
+        description: "(discord) technical support the karinaTwo",
+        nameLocalizations: {
+            "pt-BR": "suporte"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "(discord) suporte técnico a karinaTwo"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 1,
+                name: "server",
+                description: "(discord) support server of karinaTwo!",
+                nameLocalizations: {
+                    "pt-BR": "servidor"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(discord) servidor de suporte de karinaTwo!"
+                }
+            },
+            {
+                type: 1,
+                name: "send",
+                description: "(discord) send a private support to my developer!",
+                nameLocalizations: {
+                    "pt-BR": "enviar"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(discord) envie um suporte privado para o meu desenvolvedor!"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "support",
-            description: "[ 📲discord ] technical support the karinaTwo",
-            category: "discord",
-            usage: "<sub command>",
-            subCommands: [
-                {
-                    name: "server",
-                    description: "support server of karinaTwo!"
-                },
-                {
-                    name: "send",
-                    description: "send a private support to my developer!"
-                }
-            ],
-            commandOptions: [
-                {
-                    name: "server",
-                    description: "[ 📲discord ] support server of karinaTwo!",
-                    type: 1
-                },
-                {
-                    name: "send",
-                    description: "[ 📲discord ] send a private support to my developer!",
-                    type: 1,
-                    options: [...subCommand1]
-                }
-            ]
+            category: "discord"
         })
     }
     async interactionRun(interaction, t){
@@ -48,31 +59,15 @@ class Command extends comando {
                 content: `${t("commands:support.server")}\nhttps://discord.gg/Xmu7HrH3yy`
             })
         } else if(subCOMMAND === "send"){
-            await interaction.deferReply({ ephemeral:  true }).catch(() => {});
-            let support1 = interaction.options.getString('support_args');
+            let modal = new Discord.ModalBuilder().setCustomId("modal_support").setTitle(t("components:modal.support.title"));
+            let support_input1 = new Discord.TextInputBuilder().setCustomId("modal_support_input").setLabel(t("components:modal.support.label")).setStyle(Discord.TextInputStyle.Paragraph).setMaxLength(1000).setMinLength(10).setRequired(true);
 
-            if(support1.length >= 1001){
-                return await interaction.followUp({
-                    content: t("commands:support.send.error")
-                })
-            } else {
-                let suport_ = new Discord.MessageEmbed();
-
-                suport_.setColor("#FFFFF1");
-                suport_.addField("autor:",`tag: \`${interaction.user.tag}\`\nid: \`${interaction.user.id}\``);
-                suport_.addField("suporte:", `${support1}`);
-                
-                KariWebhooks.suport({
-                    embeds: [suport_]
-                });
-
-                return await interaction.editReply({
-                    content: t("commands:support.send.success")
-                })
-            }
+            let support_input2 = new Discord.ActionRowBuilder().addComponents(support_input1);
+            modal.addComponents(support_input2);
+            await interaction.showModal(modal);
         }
     }
-
+    
     command_info(){
         return {
             activated: true,
@@ -108,11 +103,11 @@ class Command extends comando {
                 subCommands: [
                     {
                         name: "server",
-                        description: "retornar o servidor de suporte"
+                        description: "return support server"
                     },
                     {
                         name: "send",
-                        description: "enviar um suporte privado para meu desenvolvedor"
+                        description: "send a private support to my developer"
                     }
                 ]
             }

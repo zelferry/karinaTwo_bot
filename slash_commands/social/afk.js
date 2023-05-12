@@ -4,20 +4,34 @@ let { afk } = require("../../mongoDB/ini.js").user;
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "afk",
+        description: "(social) turn on afk mode for users to know that you've taken a break from the keyboard",
+        descriptionLocalizations: {
+            "pt-BR": "(social) ative o modo afk para os usuários saberem que você deu uma pausa no teclado"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 3,
+                required: true,
+                name: "reason",
+                description: "reason for your afk",
+                nameLocalizations: {
+                    "pt-BR": "reação"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "motivo do seu afk"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "afk",
-            description: "[ 👤social ] turn on afk mode for users to know that you've taken a break from the keyboard",
-            category: "social",
-            usage: "<motivo>",
-            commandOptions: [
-                {
-                    type: 3,
-                    name: "reason",
-                    description: "reason for your afk",
-                    required: true
-                }
-            ]
+            category: "social"
         })
     }
     async interactionRun(interaction, t){

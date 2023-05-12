@@ -1,8 +1,0 @@
-[
-    {
-        "type": 3,
-        "name": "text",
-        "description": "what will the text be?",
-        "required": true
-    }
-]

@@ -2,61 +2,95 @@ let comando = require("../../frameworks/commando/command.js");
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "ban",
+        description: "(administration) ban members who are breaking the rules!",
+        descriptionLocalizations: {
+            "pt-BR": "(administração) banir membros que estão quebrando as regras!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        //defaultMemberPermissions: Discord.PermissionFlagsBits.BanMembers,
+        options: [
+            {
+                type: 6,
+                required: true,
+                name: "user",
+                description: "user (@user/id) to be punished",
+                nameLocalizations: {
+                    "pt-BR": "usuário"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "usuário (@usuário/id) a ser punido"
+                }
+            },
+            {
+                type: 3,
+                required: false,
+                name: "reason",
+                description: "reason for punishment",
+                nameLocalizations: {
+                    "pt-BR": "razão"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "motivo da punição"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "ban",
-            description: "[ 👩‍⚖️managemen ] ban members who are breaking the rules!",
             category: "management",
             permissions: {
-                user: ["BAN_MEMBERS"],
-                bot: ["BAN_MEMBERS"]
+                user: ["BanMembers"],
+                bot: ["BanMembers"]
             },
-            deferReply: true,
-            commandOptions: [
-                {
-                    type: 6,
-                    name: "user",
-                    description: "user (@user/id) to be punished",
-                    required: true
-                },
-                {
-                    type: 3,
-                    name: "reason",
-                    description: "punishment reaction",
-                    required: false
-                }
-            ]
+            deferReply: true
         })
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let user = interaction.guild.members.cache.get(interaction.options.getUser('user').id)
-        let reason = interaction.options.getString('reason') || "punição não especificada";
+        let reason = interaction.options.getString('reason') ?? "punição não especificada";
 
         if(user.id === interaction.user.id){
             interaction.followUp({
                 content: t("commands:ban.error.is_me")
             });
+            
             return {}
         } else if(user.id === this.client.user.id){
             interaction.followUp({
                 content: t("commands:ban.error.is_bot")
-            })
+            });
+            
             return {}
-        } else if(!user.bannable){
+        } else if(user.id === interaction.guild.ownerId){
             interaction.followUp({
-                content: t("commands:ban.error.no_bannable"),
-            })
+                content: t("commands:ban.error.is_owner"),
+            });
+            
+            return {}
+        } else if(user.roles.highest.position >= interaction.member.roles.highest.position){
+            interaction.followUp({
+                content: t("commands:ban.error.is_role1")
+            });
+
+            return {}
+        } else if(user.roles.highest.position >= this.client.guilds.cache.get(interaction.guild.id).members.cache.get(this.client.user.id).roles.highest.position){
+            interaction.followUp({
+                content: t("commands:ban.error.is_role2")
+            });
+
             return {}
         } else {
             interaction.editReply({
                 content: t("commands:ban.success", { userTag: interaction.options.getUser('user').tag, reason_: reason })
             });
             
-            user.ban({
-                days: 7,
-                reason
-            });
+            user.ban({ deleteMessageSeconds: 604800, reason });
             return {}
         }
     }

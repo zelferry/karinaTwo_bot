@@ -3,24 +3,38 @@ let Discord = require("discord.js");
 let guild_model = require("../../mongoDB/models/guild.js")
 
 class Command extends comando {
+    command_data = {
+        name: "server",
+        description: "(discord) servers stuff for you!",
+        descriptionLocalizations: {
+            "pt-BR": "(discord) coisas de servidores para você!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 1,
+                name: "info",
+                description: "(discord) see server information",
+                descriptionLocalizations: {
+                    "pt-BR": "(discord) veja as informações do servidor"
+                }
+            },
+            {
+                type: 1,
+                name: "icon",
+                description: "(discord) see the server icon",
+                descriptionLocalizations: {
+                    "pt-BR": "(discord) veja o ícone do servidor"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "server",
-            description: "[ 📲discord ] servers stuff for you!",
-            category: "discord",
-            commandOptions: [
-                {
-                    name: "info",
-                    description: "[ 📲discord ] see server information!",
-                    type: 1
-                },
-                {
-                    name: "icon",
-                    description: "[ 📲discord ] see the server icon!",
-                    type: 1
-                }
-            ],
-            buttonCommands: ["data"]
+            category: "discord"
         })
     }
     async interactionRun(interaction, t){
@@ -28,56 +42,53 @@ class Command extends comando {
         let subCOMMAND = interaction.options.getSubcommand();
 
         if(subCOMMAND === "info"){
-            const embed = new Discord.MessageEmbed().setColor('#fd9058').setTitle(t("commands:server.info.title")).setThumbnail(interaction.guild.iconURL()).addField(t("commands:server.info.id"), interaction.guild.id.toString()).addField(t("commands:server.info.name"), interaction.guild.name).addField(t("commands:server.info.owner"), `<@${interaction.guild.ownerId}>`).addField(t("commands:server.info.members"), interaction.guild.memberCount.toString()).addField(t("commands:server.info.date_create"), `<t:${~~(interaction.guild.createdTimestamp / 1000)}>`).addField(t("commands:server.info.date_join"), `<t:${~~(interaction.member.joinedTimestamp / 1000)}>`).setTimestamp();
-
-            let databutton = new Discord.MessageButton().setStyle("SUCCESS").setLabel(t("commands:server.info.button.name")).setCustomId("data");
-
-            if(!interaction.member.permissions.has("ADMINISTRATOR")) databutton.setDisabled();
+            let fields = [
+                {
+                    name: t("commands:server.info.id"),
+                    value: (interaction.guild.id).toString()
+                },
+                {
+                    name: t("commands:server.info.name"),
+                    value: interaction.guild.name
+                },
+                {
+                    name: t("commands:server.info.owner"),
+                    value: `<@${interaction.guild.ownerId}>`
+                },
+                {
+                    name: t("commands:server.info.members"),
+                    value: (interaction.guild.memberCount).toString()
+                },
+                {
+                    name: t("commands:server.info.date_create"),
+                    value: `<t:${~~(interaction.guild.createdTimestamp / 1000)}>`
+                },
+                {
+                    name: t("commands:server.info.date_join"),
+                    value: `<t:${~~(interaction.member.joinedTimestamp / 1000)}>`
+                }
+            ]
             
-            let row1 = new Discord.MessageActionRow().addComponents(databutton);
+            let embed = new Discord.EmbedBuilder().setColor("#fd9058").setTitle(t("commands:server.info.title")).setThumbnail(interaction.guild.iconURL()).addFields(...fields);
             
             await interaction.editReply({
-                embeds: [embed],
-                components: [row1]
+                embeds: [embed]
             });
-
-            let buttonFilter = (button) => this.buttonCommands.includes(button.customId) && button.user.id === interaction.user.id;
-            let collector = interaction.channel.createMessageComponentCollector(buttonFilter, {
-                componentType: 'BUTTON',
-                time: 900000
-            });
-
-            collector.on("collect", async(i) => {
-                i.deferUpdate();
-
-                if(i.customId === "data"){
-                    //await interaction.deferReply({ ephemeral: true}).catch(() => {});
-                    await interaction.editReply({
-                        components: []
-                    });
-
-                    let data_ = await guild_model.findOne({ guildId: interaction.guild.id });
-                    const embed = new Discord.MessageEmbed().setColor('#fd9058').setTitle(t("commands:server.info.button.embed.title")).setDescription(""+t("commands:server.info.button.embed.description")+"\n```json\n"+data_+"\n```");
-                    
-                    await interaction.followUp({
-                        embeds: [embed],
-                        ephemeral: true
-                    });
-                    
-                    collector.stop(80)
-                }
-            })
+            
+            return {}
         } else if(subCOMMAND === "icon"){
             let avatar = interaction.guild.iconURL({ dynamic: true, format: 'png', size: 1024 });
 
-            let button_ = new Discord.MessageButton().setStyle('LINK').setURL(`${avatar}`).setLabel(t("commands:global.button.web"));
-            let row2 = new Discord.MessageActionRow().addComponents(button_);
-            let embed = new Discord.MessageEmbed().setColor(`#fd9058`).setTitle(t("commands:server.icon")).setImage(avatar);
+            let button_ = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(`${avatar}`).setLabel(t("commands:global.button.web"));
+            let row = new Discord.ActionRowBuilder().addComponents(button_);
+            let embed = new Discord.EmbedBuilder().setColor(`#fd9058`).setTitle(t("commands:server.icon")).setImage(avatar);
 
             await interaction.editReply({
                 embeds: [embed],
-                components: [row2]
-            })
+                components: [row]
+            });
+
+            return {}
         }
     }
 

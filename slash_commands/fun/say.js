@@ -2,27 +2,41 @@ let comando = require("../../frameworks/commando/command.js");
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "say",
+        description: "(fun) make me say something on your server!",
+        descriptionLocalizations: {
+            "pt-BR": "(diversão) me faça dizer algo no seu servidor!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 3,
+                name: "args",
+                description: "what will i say?",
+                descriptionLocalizations: {
+                    "pt-BR": "o que eu vou dizer?"
+                },
+                required: true
+            },
+            {
+                type: 7,
+                name: "channel",
+                description: "send on a specific text channel",
+                descriptionLocalizations: {
+                    "pt-BR": "enviar em um canal de texto específico"
+                },
+                required: false
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "say",
-            description: "[ 😂fun ] make me say something on your server!",
             category: "fun",
-            deferReply: true,
-            usage: "<texto> [canal]",
-            commandOptions: [
-                {
-                    type: 3,
-                    name: "args",
-                    description: "what will i say?",
-                    required: true
-                },
-                {
-                    type: 7,
-                    name: "channel",
-                    description: "send on a specific text channel",
-                    required: false
-                }
-            ]
+            deferReply: true
         })
     }
     async interactionRun(interaction, t){

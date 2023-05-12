@@ -1,10 +1,20 @@
 let comando = require("../../frameworks/commando/command.js");
 
 class Command extends comando {
+    command_data = {
+        name: "owo",
+        description: "(fun) cat faces!",
+        descriptionLocalizations: {
+            "pt-BR": "(diversão) owo"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: []
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "owo",
-            description: "[ 😂fun ] cat faces!",
             category: "fun"
         })
     }

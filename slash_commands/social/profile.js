@@ -5,20 +5,37 @@ let Discord = require("discord.js");
 let bgdata = require("../../database/background/ids.json");
 
 class Command extends comando {
+    command_data = {
+        name: "profile",
+        description: "(social) see your profile on karinaTwo!",
+        nameLocalizations: {
+            "pt-BR": "perfil"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "(social) veja seu perfil na karinaTwo!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 6,
+                required: false,
+                name: "user",
+                description: "user (@user/id)",
+                nameLocalizations: {
+                    "pt-BR": "usuário"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "usuário (@usuário/id)"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "profile",
-            description: "[ 👤social ] see your profile on karinaTwo!",
-            category: "social",
-            usage: "[usuário]",
-            commandOptions: [
-                {
-                    name: "user",
-                    description: "username (@user/id) so you can see their profile",
-                    type: 6,
-                    required: false
-                }
-            ]
+            category: "social"
         })
     }
     async interactionRun(interaction, t){
@@ -53,16 +70,24 @@ class Command extends comando {
             }
             
             let options = {
-                avatarURL: user.displayAvatarURL({ format: "png", size: 512 }),
+                avatarURL: user.avatarURL({ dynamic: true, extension: "png", size: 512 }),
                 background: `./assets/profile/images/backgrounds/${background.locate}`,
                 username: user.username,
                 discriminator: user.discriminator,
                 money: abbreviateNumber(value.coins),
                 aboutme: value.usertext,
-                vip: value.vipUser ? t("commands:global.label.yes") : t("commands:global.label.no")
+                reps: value.reps,
+                vip: value.config.vip.active ? t("commands:global.label.yes") : t("commands:global.label.no")
             };
-
-            Manager(interaction, options, t)
+            
+            Manager(interaction, options, t, (buffer) => {
+                let card = new Discord.AttachmentBuilder(buffer, "profile.png");
+                interaction.editReply({
+                    content: t("commands:profile.name"),
+                    files: [card]
+                });
+            })
+            //Manager(interaction, options, t)
         }
     }
 

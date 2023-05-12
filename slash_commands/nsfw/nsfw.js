@@ -5,44 +5,61 @@ let mathRandom = (number) => ~~(Math.random() * number);
 //let endpoint = require("../../dist/main.js").image.api()
 
 class Command extends comando {
+    command_data = {
+        name: "nsfw",
+        description: "(nsfw) nsfw commands",
+        descriptionLocalizations: {
+            "pt-BR": "(nsfw) comandos nsfw"
+        },
+        dmPermission: false,
+        nsfw: true,
+        options: [
+            {
+                type: 1,
+                name: "straight",
+                description: "(nsfw) nsfw straight"
+            },
+            {
+                type: 1,
+                name: "yaoi",
+                description: "(nsfw) nsfw yaoi"
+            },
+            {
+                type: 1,
+                name: "futa",
+                description: "(nsfw) nsfw futa"
+            },
+            {
+                type: 1,
+                name: "femboy",
+                description: "(nsfw) nsfw femboy"
+            },
+            {
+                type: 1,
+                name: "bara",
+                description: "(nsfw) nsfw bara (may contain extraneous content)",
+                descriptionLocalizations: {
+                    "pt-BR": "(nsfw) nsfw bara (pode conter conteúdo estranho)"
+                }
+            },
+            {
+                type: 1,
+                name: "boobs",
+                description: "(nsfw) nsfw boobs"
+            },
+            {
+                type: 1,
+                name: "pussy",
+                description: "(nsfw) nsfw pussy"
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "nsfw",
-            description: "comandos nsfw",
             category: "nsfw",
-            nsfw: true,
-            commandOptions: [
-                {
-                    type: 1,
-                    name: "straight",
-                    description: "[ 😈nsfw ] nsfw straight"
-                },
-                {
-                    type: 1,
-                    name: "gay",
-                    description: "[ 😈nsfw ] nsfw gay"
-                },
-                {
-                    type: 1,
-                    name: "futa",
-                    description: "[ 😈nsfw ] nsfw futa"
-                },
-                {
-                    type: 1,
-                    name: "femboy",
-                    description: "[ 😈nsfw ] nsfw femboy"
-                },
-                {
-                    type: 1,
-                    name: "boobs",
-                    description: "[ 😈nsfw ] nsfw boobs"
-                },
-                {
-                    type: 1,
-                    name: "pussy",
-                    description: "[ 😈nsfw ] nsfw pussy"
-                }
-            ]
+            nsfw: true
         })
     }
     async interactionRun(interaction, t){
@@ -62,11 +79,11 @@ class Command extends comando {
             });
             return {}
         } else {
-            let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(url.url).setLabel(t("commands:global.button.web"));
-            let button_2 = new Discord.MessageButton().setStyle('LINK').setURL(`https://danbooru.donmai.us/post_flags/new?post_flag%5Bpost_id%5D=${url.data.id}`).setLabel(t("commands:global.button.report"));
+            let button_1 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(url.url).setLabel(t("commands:global.button.web"));
+            let button_2 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(`https://danbooru.donmai.us/post_flags/new?post_flag%5Bpost_id%5D=${url.data.id}`).setLabel(t("commands:global.button.report"));
             
-            let row1 = new Discord.MessageActionRow().addComponents(button_1, button_2);
-            let embed3 = new Discord.MessageEmbed().setImage(url.url).setColor("#7B68EE");
+            let row1 = new Discord.ActionRowBuilder().addComponents(button_1, button_2);
+            let embed3 = new Discord.EmbedBuilder().setImage(url.url).setColor("#7B68EE");
             interaction.editReply({
                 embeds: [embed3],
                 components: [row1]

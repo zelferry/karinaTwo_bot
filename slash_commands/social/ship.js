@@ -1,24 +1,35 @@
 let comando = require("../../frameworks/commando/command.js");
 let Discord = require("discord.js"); 
 
-/*let Canvas = require('canvas');
-let { createCanvas, loadImage } = require('canvas')*/
-
 class Command extends comando {
+    command_data = {
+        name: "ship",
+        description: "(social) ship a user with you and find out if he/she is your soul mate!",
+        descriptionLocalizations: {
+            "pt-BR": "(social) ship um usuário com você e descubra se ele/ela é sua alma gêmea!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 6,
+                required: true,
+                name: "user",
+                description: "user (@user/id)",
+                nameLocalizations: {
+                    "pt-BR": "usuário"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "usuário (@usuário/id)"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "ship",
-            description: "[ 👤social ] ship a user with you and find out if he or she has your crush!",
-            category: "social",
-            usage: "<usuário>",
-            commandOptions: [
-                {
-                    type: 6,
-                    name: "user",
-                    description: "user (@user/id)",
-                    required: true
-                }
-            ]
+            category: "social"
         })
     }
     async interactionRun(interaction, t){
@@ -28,7 +39,7 @@ class Command extends comando {
 
         if(membro1.id === membro2.id){
             let avatar = interaction.user.avatarURL({ dynamic: true, format: "png", size: 1024 });
-            let amorEmbed = new Discord.MessageEmbed().setColor('#ffffff').setDescription(`:sparkling_heart: ${t("commands:ship.primary")} :sparkling_heart:\n\`${membro2.username}\` + \`${membro2.username}\` = \`${membro2.username}\`\n:heart: ${t("commands:ship.label.me")} :heart:\n\n**104%** [🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪]`).setImage(avatar);
+            let amorEmbed = new Discord.EmbedBuilder().setColor('#ffffff').setDescription(`:sparkling_heart: ${t("commands:ship.primary")} :sparkling_heart:\n\`${membro2.username}\` + \`${membro2.username}\` = \`${membro2.username}\`\n:heart: ${t("commands:ship.label.me")} :heart:\n\n**104%** [🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪]`).setImage(avatar);
             
             interaction.followUp({
                 embeds: [amorEmbed]
@@ -86,7 +97,7 @@ class Command extends comando {
                 desc = (`:sparkling_heart: ${t("commands:ship.primary")} :sparkling_heart:\n\`${membro1.username}\` + \`${membro2.username}\` = \`${nomeship}\`\n:cry: ${t("commands:ship.label.cry")} :cry:`); //cry
             }
             
-            let amorEmbed = new Discord.MessageEmbed().setColor('#ffffff').setDescription(""+desc+"\n\n**"+amor+"%** ["+loveLevel+"]")//setImage('attachment://chances-image.png');
+            let amorEmbed = new Discord.EmbedBuilder().setColor('#ffffff').setDescription(""+desc+"\n\n**"+amor+"%** ["+loveLevel+"]")//setImage('attachment://chances-image.png');
 
             interaction.editReply({
                 embeds: [amorEmbed]/*,

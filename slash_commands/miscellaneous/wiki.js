@@ -1,53 +1,72 @@
-let comando = require("../../frameworks/commando/command.js");
-let choices1 = require("../../database/slash_commands/choices/miscellaneous/wiki.json") 
+let comando = require("../../frameworks/commando/command.js"); 
 
-const Discord = require('discord.js')
-const fetch = require('node-fetch')
+let Discord = require('discord.js');
+let fetch = require('node-fetch');
+let lang = (language) => {
+    switch (language){
+        case "pt-BR":
+            return "pt"
+        case "en-US":
+            return "en"
+        default:
+            return "en"
+    }
+}
 
 class Command extends comando {
+    command_data = {
+        name: "wikipedia",
+        description: "(miscellaneous) search for something on wikipedia without leaving discord!",
+        descriptionLocalizations: {
+            "pt-BR": "(diversos) procure algo na wikipedia sem sair do discord!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 3,
+                required: true,
+                name: "args",
+                description: "what are you going to search?",
+                nameLocalizations: {
+                    "pt-BR": "pesquisa"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "o que você vai pesquisar?"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "wikipedia",
-            description: "[ 🤪miscellaneous ] search for something on wikipedia without leaving discord!",
-            commandOptions: [
-                {
-                    type: 3,
-                    name: "args",
-                    description: "what are you going to search?",
-                    required: true
-                },
-                {
-                    type: 3,
-                    name: "language",
-                    description: "language to search",
-                    choices: [...choices1]
-                }
-            ]
+            category: "miscellaneous"
         })
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
-        const args1 = interaction.options.getString('args').split(" ");
-        const language = interaction.options.getString('language') ?? "en";
-    
-        const search = args1.join('_');
-
-        const searchword = encodeURI(search);
-        const res = await fetch("https://"+language+".wikipedia.org/api/rest_v1/page/summary/" + searchword);
         
-        const data = await res.json();
-//onsole.log(data)
-        const title = data.title;
-        const text = data.extract || t("commands:wikipedia.error");
+        let args1 = interaction.options.getString('args').split(" ");
+        let language = lang(t.lng);
+        let search = args1.join('_');
 
-        let thumbnail = data.originalimage ? data.originalimage.source : null 
-        let url = data.content_urls ? data.content_urls.desktop.page : null
-        let button_ = new Discord.MessageButton().setStyle('LINK').setURL(url ? url:"https://pt.wikipedia.org/").setLabel(t("commands:global.button.web")) 
-        if(url == null) button_.setDisabled();
-
-        let embed = new Discord.MessageEmbed().setColor(`#00b140`).setTitle(title).setURL(url).setThumbnail(thumbnail).setDescription(text).setFooter({text:"Powered by Wikipedia", iconURL: "https://i.ibb.co/VWvCzg1/wikipedia.png"});
+        let searchword = encodeURI(search);
+        let res = await fetch("https://"+language+".wikipedia.org/api/rest_v1/page/summary/" + searchword);
         
-        let row = new Discord.MessageActionRow().addComponents(button_);
+        let data = await res.json();
+        let title = data.title;
+        let text = data.extract || t("commands:wikipedia.error");
+
+        let thumbnail = data.originalimage ? data.originalimage.source : null;
+        let url = data.content_urls ? data.content_urls.desktop.page : null;
+        let button_ = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(url ? url:"https://pt.wikipedia.org/").setLabel(t("commands:global.button.web"));
+        
+        if(url == null) button_.setDisabled(true);
+
+        let embed = new Discord.EmbedBuilder().setColor(`#00b140`).setTitle(title).setURL(url).setThumbnail(thumbnail).setDescription(text).setFooter({text:"Powered by Wikipedia", iconURL: "https://i.ibb.co/VWvCzg1/wikipedia.png"});
+        
+        let row = new Discord.ActionRowBuilder().addComponents(button_);
         
         await interaction.editReply({
             embeds: [embed],

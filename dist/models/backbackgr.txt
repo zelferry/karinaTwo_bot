@@ -1,0 +1,19 @@
+[
+    {
+        "id": "",
+        "panther_coins": 0,
+        "only_vip_users": false,
+        "concept": "none",
+        "locate": ".png",
+        "localizations": {
+            "pt-BR": {
+                "name": "",
+                "description": ""
+            },
+            "en-US": {
+                "name": "",
+                "description": ""
+            }
+        }
+    }
+]

@@ -1,17 +1,17 @@
-//require("../../../")
-const jimp = require("jimp");
-const Discord = require("discord.js");
+let jimp = require("jimp");
+let Discord = require("discord.js");
 
-module.exports = async (interaction, options, t, function_) => {
+module.exports = async(interaction, options, t, function_) => {
 	let avatar = await jimp.read(options.avatarURL);
 	let background = await jimp.read(options.background);
-	let model = await jimp.read("./assets/profile/images/profile_model.png");
+	let model = await jimp.read(`./assets/profile/images/profile_model.png`);
 	let mascara = await jimp.read("./assets/profile/images/mascara.png");
+    
+	let font13 = await jimp.loadFont("./assets/profile/fonts/lemon_13.fnt");
+    let font19 = await jimp.loadFont("./assets/profile/fonts/lemo_19.fnt");
+    let font32 = await jimp.loadFont("./assets/profile/fonts/lemo_32.fnt");
+    let font32_2 = await jimp.loadFont("./assets/profile/fonts/lemo_32_2.fnt");
 
-	let font70 = await jimp.loadFont("./assets/profile/fonts/benasneue_70.fnt");
-	let font36 = await jimp.loadFont("./assets/profile/fonts/benasneue_36.fnt");
-	let font36_2 = await jimp.loadFont("./assets/profile/fonts/benasneue_36_2.fnt");
-	let font20 = await jimp.loadFont("./assets/profile/fonts/benasneue_20.fnt");
 
 	avatar.resize(145.50, 145.50);
 	mascara.resize(145.50, 145.50);
@@ -19,28 +19,26 @@ module.exports = async (interaction, options, t, function_) => {
 	model.resize(700, 500);
 
 	avatar.mask(mascara);
-	model.composite(avatar, 16.50, 15.50);
+	model.composite(avatar, 16.50, 13.50);
 
-	model.print(font70, 178, 9, options.username);
-	model.print(font36, 337, 91, options.money);
-	model.print(font20, 267, 124, options.vip, 690);
-	model.print(font20, 9, 405, options.aboutme, 690);
-
+	model.print(font32, 180, 8.5, options.username, (err, i1, i2) => {
+        model.print(font32_2, i2.x, 8.5, `#${options.discriminator}`);
+    });
+	model.print(font19, 374.5, 63.9, options.money);
+	model.print(font19, 298.5, 88.9, options.vip, 690);
+    model.print(font19, 253.5, 113.9, options.reps, 690);
+	model.print(font13, 9, 405, options.aboutme, 693);
+	model.print(font13, 8.3, 374.9, t("commands:profile.about_me"), 693);
+    
 	background.composite(model, 0, 0);
 	background.getBuffer(jimp.MIME_PNG, async(err, buffer) => {
-        //wait function_(err, buffer)
+        
     	if (err) {
-    		//message.channel.stopTyping(true);
     		return interaction.editReply({
                 content: t("commands:global.error.commands", { error: err })
             });
     	} else {
-    	//	message.channel.stopTyping(true);
-            let card = new Discord.MessageAttachment(buffer, "Profile.png")
-    		return interaction.editReply({
-                content: t("commands:profile"),
-                files: [card]
-            })
+            return function_(buffer);
     	};
     });
 };

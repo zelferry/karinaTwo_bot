@@ -1,40 +1,80 @@
 let comando = require("../../frameworks/commando/command.js");
-let subCommand1 = require("../../database/slash_commands/sub_commands/commands.info.json");
 
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "command",
+        description: "(discord) about commands!",
+        nameLocalizations: {
+            "pt-BR": "comando"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "(discord) sobre comandos!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 1,
+                name: "info",
+                description: "(discord) get information about a specific command!",
+                nameLocalizations: {
+                    "pt-BR": "sobre"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(discord) obter informações sobre um comando específico!"
+                },
+                options: [
+                    {
+                        type: 3,
+                        name: "cmd",
+                        description: "command name",
+                        nameLocalizations: {
+                            "pt-BR": "nome"
+                        },
+                        descriptionLocalizations: {
+                            "pt-BR": "nome do comando"
+                        },
+                        required: true
+                    },
+                    {
+                        type: 3,
+                        name: "lang",
+                        description: "command language",
+                        nameLocalizations: {
+                            "pt-BR": "linguagem"
+                        },
+                        descriptionLocalizations: {
+                            "pt-BR": "linguagem do comando"
+                        },
+                        required: true,
+                        choices: [
+                            {
+                                name: "Portuguese (br)",
+                                nameLocalizations: {
+                                    "pt-BR": "português (br)"
+                                },
+                                value: "pt"
+                            },
+                            {
+                                name: "English",
+                                nameLocalizations: {
+                                    "pt-BR": "inglês"
+                                },
+                                value: "en"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "command",
-            description: "[ 📲discord ] about COMMANDS!",
-            category: "discord",
-            commandOptions: [
-                {
-                    name: "info",
-                    description: "[ 📲discord ] get information about a specific command!",
-                    type: 1,
-                    options: [
-                        ...subCommand1,
-                        {
-                            type: 3,
-                            name: "lang",
-                            description: "command language",
-                            required: true,
-                            choices: [
-                                {
-                                    name: "Portuguese (br)",
-                                    value: "pt"
-                                },
-                                {
-                                    name: "English",
-                                    value: "en"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+            category: "discord"
         })
     }
     async interactionRun(interaction, t){
@@ -44,7 +84,7 @@ class Command extends comando {
         if(subCOMMAND === "info"){
             let commandNAME = interaction.options.getString('cmd');
             let command1 = this.client.commands2.get(commandNAME)
-            let embed = new Discord.MessageEmbed() 
+            let embed = new Discord.EmbedBuilder() 
 
             if(!command1){
                 return await interaction.followUp({
@@ -61,13 +101,34 @@ class Command extends comando {
                 let category1 = command2.category || "???";
                 let usage1 = `/${name1} ${command2.usage ?? ""}`;
                 let permissions1 = await this.client.extra.utils.permissions.maked(command2.permissions);
-                //console.log(permissions1)
-                embed.addField(t("commands:command.info.success.name"),`${name1}`);
-                embed.addField(t("commands:command.info.success.description"),`${description1}`);
-                embed.addField(t("commands:command.info.success.category"),`${category1}`);
-                embed.addField(t("commands:command.info.success.howToUse"),`\`${usage1}\``);
-                embed.addField(t("commands:command.info.success.permissions"),`${permissions1}`);
-                embed.addField(t("commands:command.info.success.subCommands.title"), `${subCommands1}`)
+                
+                embed.addFields(
+                    {
+                        name: t("commands:command.info.success.name"),
+                        value: `${name1}`
+                    },
+                    {
+                        name: t("commands:command.info.success.description"),
+                        value: `${description1}`
+                    },
+                    {
+                        name: t("commands:command.info.success.category"),
+                        value: `${category1}`
+                    },
+                    {
+                        name: t("commands:command.info.success.howToUse"),
+                        value: `\`${usage1}\``
+                    },
+                    {
+                        name: t("commands:command.info.success.permissions"),
+                        value: `${permissions1}`
+                    },
+                    {
+                        name: t("commands:command.info.success.subCommands.title"),
+                        value: `${subCommands1}`
+                    }
+                );
+                
                 return await interaction.editReply({
                     embeds: [embed]
                 })

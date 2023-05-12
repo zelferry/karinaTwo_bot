@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
         
         if (typeof código !== 'string') código = require('util').inspect(código, { depth: 0 });
         
-        let embed = new Discord.MessageEmbed().setColor('RANDOM').addField('Entrada', `\`\`\`js\n${argumentos}\`\`\``).addField('Saída', `\`\`\`js\n${(código.toString().split("").length >= 1069 ? "muitos caracteres!" : código) == client.token ? "NÃO POSSO MOSTRAR MEU TOKEN!" : (código.toString().split("").length >= 1069 ? "muitos caracteres!" : código)}\n\`\`\``);
+        let embed = new Discord.EmbedBuilder().setColor("#ff2050").addFields({ name: "entrada", value: `\`\`\`js\n${argumentos}\`\`\``}, { name: "saida", value: `\`\`\`js\n${(código.toString().split("").length >= 1069 ? "muitos caracteres!" : código) == client.token ? "NÃO POSSO MOSTRAR MEU TOKEN!" : (código.toString().split("").length >= 1069 ? "muitos caracteres!" : código)}\n\`\`\`` })
 
         message.channel.send({ embeds: [embed] })
     } catch(e) {

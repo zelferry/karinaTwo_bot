@@ -1,8 +1,0 @@
-[
-    {
-        "name": "support_args",
-        "type": 3,
-        "description": "your support (from 1 to 1000 characters)",
-        "required": true
-    }
-]

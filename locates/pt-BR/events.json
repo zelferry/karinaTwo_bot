@@ -6,7 +6,6 @@
         "fields_description": "se os meus slash commands não estão aparecendo no seu servidor, [me autorize a criar slash commands no seu servidor]({{bot_url}}), verifique se o seu cargo possui permissão para \"Usar comandos de aplicativo\", verifique se a opção \"Use comandos de barra\" está ativada nas suas configurações e verifique se o seu Discord está atualizado!\ncaso você precise de ajuda, [entre no meu servidor de suporte]({{server_url}})!\n\ne não se esqueça, os comandos de barra são àqueles que usam a **`/`**!"
     },
     "slash": {
-        "extra": "você gosta de mim e dos meus comandos?\nvocê quer que eu continue online?\nentão que tal fazer uma doaçãozinha?\n\ntoda é bem-vinda e, é claro, você estará me ajudando muito, hoje em dia as hosts estão custando cerca de R$ 45,00 reais, e você pode me ajudar a ficar online doando!\nvale lembar que é opcional, se você não tem condições de doar, não tem problema :)\n\nurl para fazerbo donate: {{url}}",
         "error": {
             "embed": {
                 "title": "erro ao executar comando:"
@@ -18,5 +17,8 @@
             "fields_name": "com o motivo:"
         }
     },
-    "afk": "o <@{{mentioned}}> esta `{{afk_reason}}`.\nem breve ele(a) volte para o servidor"
+    "afk": "o <@{{mentioned}}> esta `{{afk_reason}}`.\nem breve ele(a) volte para o servidor",
+    "vip_user": {
+        "expirate": ":x:**|** seu **vip user** expirou!\n🕔**|** você pode comprar o plano de 30 ou de 60 dias aqui: https://ko-fi.com/karinatwo/shop"
+    }
 }

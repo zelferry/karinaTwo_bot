@@ -1,12 +1,24 @@
 let comando = require("../../frameworks/commando/command.js");
 
 class Command extends comando {
+    command_data = {
+        name: "invite",
+        description: "(discord) invite karinaTwo to your server!",
+        nameLocalizations: {
+            "pt-BR": "convidar"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "(discord) convide karinaTwo para o seu servidor!"
+        },
+        dmPermission: true,
+        nsfw: false,
+        options: []
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "invite",
-            description: "[ 📲discord ] invite karinaTwo to your server!",
-            category: "discord",
-            commandOptions: []
+            category: "discord"
         })
     }
     async interactionRun(interaction, t){
@@ -14,7 +26,7 @@ class Command extends comando {
         
         let link = this.client.generateInvite({
             permissions: [...this.client.defautPermissions],
-            scopes: ['bot','applications.commands']
+            scopes: [Discord.OAuth2Scopes.Bot, Discord.OAuth2Scopes.ApplicationsCommands]
         });
         await interaction.editReply({
             content: `${t("commands:invite")}\n${link}`

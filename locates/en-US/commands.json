@@ -40,15 +40,6 @@
             }
         }
     },
-    "emoji": {
-        "big": {
-            "error": "🚫**|** the emoji `{{emojiName}}` is not a valid emoji"
-        },
-        "send": {
-            "noEmoji": "`{{emojiName}}` is **not** an emoji from this server!",
-            "success": "✅**|** sent with success!"
-        }
-    },
     "invite": "add me to your server!",
     "server": {
         "info": {
@@ -78,19 +69,7 @@
     },
     "user": {
         "avatar": "🖼**|** {{userName}}'s avatar",
-        "banner": {
-            "error": {
-                "noUser": "the user with the id **{{userId}}** does not exist!",
-                "noBanner": "🚫**|** the user {{userName}} does not have a banner!"
-            },
-            "success": "🖼**|** {{userName}}'s banner",
-            "description": "banner color: **{{color}}**"
-        },
         "about_me": {
-            "error": {
-                "noVipUser": ":x:**|** only **vips** users can change the \"about me\"",
-                "manyCharacters": "texts longer than 603 characters are not allowed, so I will avoid future bugs."
-            },
             "success": "new **about me**"
         }
     },
@@ -99,9 +78,9 @@
         "user": "***{{userTag}}*** has **{{coins}}** panther-coins!"
     },
     "daily": {
-        "no_time": "you already collected today! \nremaining time for you to collect again: **{{hours}}h {{minutes}}m {{seconds}}s**!",
+        "no_time": "🚫**|** you already collected today! \n🕔**|** remaining time for you to collect again: **{{hours}}h {{minutes}}m {{seconds}}s**!",
         "error": "an error has occurred!",
-        "success": "{{userTag}}**|** congratulations, you caught **{{fishing}} water pokémon(s)**! \n🪙**|** amount received for selling pokemons: `{{result}} Panther-coins`"
+        "success": "🤩**|** mr.beast gave you **{{result}} panther-coins**!!!\n🕔**|** __come back tomorrow__ for another mr.beast video"
     },
     "pay": {
         "error": {
@@ -124,16 +103,7 @@
         }
     },
     "buy": {
-        "vip": {
-            "error": {
-                "insufficient": "🚫**|** you don't have enough *panther-coins*!\n💸**|** ***2,500*** panther-coins or more are required to purchase *vip user*",
-                "vip_activated": "🚫**|** you are already a VIP user!"
-            },
-            "success": {
-                "title": "**vip user** purchased!",
-                "description": "you bought: **vip user** for **2,500 panther-coins**"
-            }
-        }
+        "vip": "🪙**|** now for you to buy the *vip user* you must enter my shop! https://ko-fi.com/karinatwo/shop\n🤩**|** in addition to being able to buy panther-coins in the shop, you'll also be helping me stay online!"
     },
     "eight_ball": {
         "error": "🚫**|** enter a valid question!",
@@ -178,22 +148,13 @@
             "reply": "Message sent successfully!"
         }
     },
-    "animals": "click here if it is not showing",
-    "antiraid": {
-        "error": {
-            "activated": "❌**|** the module is already turned on.",
-            "disabled": "❌**|** the module is already turned off."
-        },
-        "success": {
-            "activated": "✔️**|** the module has been activated!\n❓**|** your server is secure against raids",
-            "disabled": "⚠️**|** the module has been disabled\n❓**|** your server is unprotected against raids!"
-        }
-    },
     "ban": {
         "error": {
             "is_me": "❌**|** you can't banish yourself",
             "is_bot": "❌**|** you can't ban me\n😭**|** you hate me? :(",
-            "no_bannable": "❌**|** you cannot punish the member as this member is not **Banable**"
+            "is_owner": "❌**|** you cannot ban the server owner!",
+            "is_role1": "❌**|** you cannot ban someone who has higher or same role as you!",
+            "is_role2": "❌**|** i cannot ban someone who has higher or same role as me!"
         },
         "success": "😡| **{{userTag}}** was successfully banned because of: **{{reason_}}**"
     },
@@ -207,36 +168,19 @@
             "two": "\u200B"
         }
     },
-    "giveaway": {
-        "start": {
-            "error": {
-                "no_channel": ":x:**|** the selected channel is not text-based."
-            },
-            "success": "🔆**|** giveaway started in <#{{giveawayChannel_}}>!"
-        },
-        "end": {
-            "success": "✅**|** success, draw finished!"
-        },
-        "reroll": {
-            "success": "✅**|** success, draw restarted!"
-        }
-    },
     "kick": {
         "error": {
             "is_me": "❌**|** you can't kick yourself out",
             "is_bot": "❌**|** you can't kick me out\n😭**|** you hate me? :(",
-            "no_kickable": "❌**|** you cannot punish the member, as that member is not \"**kickable**\""
+            "is_owner": "❌**|** you cannot kick the server owner!",
+            "is_role1": "❌**|** you cannot expel someone who has a higher or equal position than you!",
+            "is_role2": "❌**|** I cannot expel someone who has a higher or equal position than mine!"
         },
         "success": "😡| **{{userTag}}** was successfully kicked because of: **{{reason_}}**"
     },
-    "news": {
-        "wait": "⏺**|** one moment...",
-        "success": "🔔**|** successfully set ad channels! "
-    },
     "nuke": {
         "warn": "🚫**|** wait a second!\ndo you really want me to do this?\n\nI will be doing the following:\n  1 - clone `{{oldchannel}}` channel\n  2 - delete `{{oldchannel}}` channel\n\nwant me to do this?",
-        "wait": "⏺**|** hold up...",
-        "success": "🗿🍷**|** channel **100**% cleaned by **{{userTag}}**"
+        "success": "🍷**|** channel **100**% cleaned by **{{userTag}}**"
     },
     "slowmode": "{{emoji}}**|** slow mode set to **{{timer}} seconds** on __{{channelName}}__!",
     "help": {
@@ -246,7 +190,6 @@
                 "discord": "📱 discord",
                 "economy": "🪙 economy",
                 "fun": "🤣 fun",
-                "image": "📷 images",
                 "management": "👩‍⚖️ management",
                 "miscellaneous": "♾ random",
                 "social": "🫂 Social",
@@ -256,8 +199,38 @@
             "footer": "some commands are not appearing because they are SubCommands"
         }
     },
-    "hex": {
-        "error": "❌**|** this is not a valid HEX color!"
+    "colors": {
+        "error": {
+            "color": "❌**|** invalid color!\n❓**|** try again with a valid **hexadecimal** color",
+            "api": "❌**|** something wrong happened!\n✋**|** try again later"
+        },
+        "embed": {
+            "description": "color name: **{{cname}}**\nexact name: **{{exactly}}**"
+        },
+        "hex": {
+            "title": "hexadecimal",
+            "field": "color valve: `{{value}}`"
+        },
+        "rgb": {
+            "title": "red, green, blue (rbg)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        },
+        "hsl": {
+            "title": "hue, saturation, lightness (hsl)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        },
+        "hsv": {
+            "title": "hue, saturation, value (hsv)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        },
+        "cmyk": {
+            "title": "cyan, magenta, yellow, black (cmyk)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        },
+        "XYZ": {
+            "title": "chromatic coordinates (XYZ)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        }
     },
     "meme": {
         "generate": {
@@ -267,38 +240,11 @@
         },
         "knuckles": "did Knuckles approve of your meme?"
     },
-    "minecraft": {
-        "crepeer": {
-            "label_1": "awww men 😎",
-            "label_2": "detour and kill him",
-            "label_3": "good... it was",
-            "label_4": "run away from him!",
-            "label_5": "vish..",
-            "label_6": "shhhhh..... 💥💥",
-            "label_7": "if he has tnt, then it's better to kill at the base ~~hot bullet~~",
-            "label_8": "bro :v",
-            "label_9": "oh no ._.",
-            "label_10": "wow, free tnt?!",
-            "label_11": "so... there's nothing to do."
-        },
-        "mcc": {
-            "defaut_title": "Achievement unlocked!",
-            "error": "❌**|** the description must have a maximum of **22 letters**!"
-        },
-        "server": {
-            "label": {
-                "connected": "connected",
-                "version": "version",
-                "max": "maximum players"
-            },
-            "error": "🚫**|** An unknown error has occurred!\n📱**|** check if the ip is without typos and try again"
-        }
-    },
     "wikipedia": {
         "error": "could not retrieve any results.\ntry searching case sensitive."
     },
     "e621": {
-        "error": "😭**|** A small error occurred while retrieving information from the site!",
+        "error": "😭**|** a small error occurred while retrieving information from the site!",
         "no_post": "🚫**|** no results for __*{{tags}}*__\n📛**|** try later",
         "original_description": "post description",
         "no_description": "__has no description__",
@@ -357,7 +303,10 @@
             }
         }
     },
-    "profile": "📱**|** profile",
+    "profile": {
+        "name": "📱**|** profile",
+        "about_me": "about me"
+    },
     "ship": {
         "primary": "HMMM, is it going to work or not?",
         "label": {
@@ -368,7 +317,7 @@
             "cry": "I really wanted to say it's possible, but..."
         }
     },
-    "morce": {
+    "morse": {
         "morse_text": "morse 》 text",
         "text_morse": "text 》morse"
     },
@@ -379,25 +328,27 @@
         "footer": "warning: sharing any of my dev's personal information will result in a permanent ban"
     },
     "status": {
-        "model": "cpu model",
-        "guilds": "servers",
-        "users": "cached users",
-        "ram": "ram usage",
-        "cpuUsage": "cpu usage",
-        "node": "system version",
-        "arch": "bits",
-        "platform": "platform"
+        "system": {
+            "title": "system",
+            "description": "cpu model: {{model}}\nram usage: {{ram}}MB\ncpu usage: {{cpu_usage}}%\nbits: {{bits}}\narchitecture: {{platform}}"
+        },
+        "info": {
+            "title": "information",
+            "description": "servers: {{guild}}\nusers: {{users}}\ncommands in total: {{cmds}}"
+        },
+        "version": "versions"
     },
     "background": {
         "buy": {
             "title": ":moneybag:**|** background shop",
             "invalid": ":x:**|** invalid code",
             "alreadyOwned": ":x:**|** you already have this background",
-            "purchase": "purchase",
+            "purchase": "buy",
+            "purchase_expired": "buy (expired)",
             "price": "price",
             "concept": "concept by:",
             "preview": "🖼**|** background preview",
-            "noVip": ":x:**|** only *vip users* can buy this background",
+            "noVip": ":x:**|** only *vip users* can buy this background\n❓**|** you can buy the vip user here: https://ko-fi.com/karinatwo/shop",
             "noMoney": ":x:**|** you don't have enough panther-coins",
             "success": ":moneybag:**|** you bought background **{{name}}** for **{{price}} panther-coins**, it has already been set automatically in your profile!"
         },
@@ -407,5 +358,54 @@
             "success": ":white_check_mark:**|** you set {{name}} background",
             "description": "📝**|** their backgrounds are: {{bgList}}"
         }
+    },
+    "actions_nsfw": {
+        "assfuck": {
+            "error": "🚫**|** mention a user other than yourself!\n🤨**|** ||autofuck?||",
+            "success": {
+                "title": "none",
+                "description": "**{{user2}}**, you are being fucked in the ass by **{{user1}}** :3"
+            }
+        },
+        "cum": {
+            "error": "🚫**|** mention a user other than yourself!",
+            "success": {
+                "title": "none",
+                "description": "**{{user2}}**, **{{user1}}** is cumming on you!"
+            }
+        },
+        "blowjob": {
+            "error": "🚫**|** mention a user other than yourself!",
+            "success": {
+                "title": "none",
+                "description": "**{{user2}}**, you are getting a blowjob from **{{user1}}**"
+            }
+        }
+    },
+    "coinflip": {
+        "bet": {
+            "error": "🚫**|** you don't have enough panther-coins!\n💸**|** **50** or more panther-coins are required to spin the coin!",
+            "win": "it gave **{{value}}**, you won this time!\n💸**|** added **50** panther-coins to your wallet!",
+            "loser": "it gave **{{value}}**, you lost this time!\n💸**|** I removed **50** panther-coins from your wallet for the defeat"
+        },
+        "normal": {
+            "win": "it gave **{{value}}**, you won this time!",
+            "loser": "it gave **{{value}}**, you lost this time!"
+        }
+    },
+    "reps": {
+        "error": {
+            "is_you": "🚫**|** you can't do reps for yourself!",
+            "no_time": "🚫**|** wait so you can use the command again\n⏱**|** wait more **{{hours}}h {{minutes}}m {{seconds}}s**!"
+        },
+        "success": "😎**|** you gave __reputation__ to **{{user}}**!"
+    },
+    "code": {
+        "error": {
+            "invalid_key": "🚫**|** vip user key not found!\n🔄**|** try again with a valid key",
+            "expired": "🚫**|** vip user key has expired!\n❓**|** if you want, you can buy a new key here: https://ko-fi.com/karinatwo/shop",
+            "type": "🚫**|** Invalid key type!\n🔄**|** try again with a valid key"
+        },
+        "success": "🤩**|** vip user activated!\n🥳**|** now you can enjoy all vip perks for {{days}} days!"
     }
 }

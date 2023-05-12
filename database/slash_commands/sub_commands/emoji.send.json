@@ -1,8 +1,0 @@
-[
-    {
-        "type": 3,
-        "name": "emoji_name",
-        "description": "emoji name",
-        "required": true
-    }
-]

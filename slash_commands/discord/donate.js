@@ -3,21 +3,32 @@ let config = require(`${process.cwd()}/dist/primary_configuration.js`).urls()
 let Discord = require("discord.js");
 
 class Command extends comando {
+    command_data = {
+        name: "donate",
+        description: "(discord) support karinaTwo so she can continue to be the best bot!",
+        nameLocalizations: {
+            "pt-BR": "doar"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "(discord) apoie karinaTwo para que ela continue sendo a melhor bot!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: []
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "donate",
-            description: "[ 📲discord ] support karinaTwo so she can continue to be the best bot!",
             category: "discord",
-            deferReply: true,
-            commandOptions: []
+            deferReply: true
         })
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
-        //config.pix
-
-        let button_1 = new Discord.MessageButton().setStyle('LINK').setURL(config.pix).setLabel(t("commands:donate.button")).setEmoji("😊");
-        let row1 = new Discord.MessageActionRow().addComponents(button_1);
+        
+        let button_1 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(config.pix).setLabel(t("commands:donate.button")).setEmoji("😊");
+        let row1 = new Discord.ActionRowBuilder().addComponents(button_1);
         
         await interaction.editReply({
             components: [row1],
@@ -31,7 +42,7 @@ class Command extends comando {
                     footer: {
                         text: t("commands:donate.footer")
                     },
-                    color: "#F975EB"
+                    color: 0x0099ff
                 }
             ]
         })

@@ -1,26 +1,46 @@
-let Discord = require('discord.js');
+process.env.TZ = "America/Sao_Paulo";
+if (process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+}
+
+let { GatewayIntentBits, Options } = require('discord.js');
 let client_bot = require("./handlers/index.js")
 let Cluster = require("discord-hybrid-sharding");
 let dist = require("./dist/main.js");
 
-let { Intents } = Discord
 let client = (global.client = new client_bot.client({
     bot: {
-       /* messageCacheLifetime: 60,
-        messageCacheMaxSiz: 10,
-        restTimeOffset: 0,
-        restWsBridgetimeout: 100,*/
+        makeCache: Options.cacheWithLimits({
+            ...Options.DefaultMakeCacheSettings,
+            ReactionManager: 0,
+            GuildMemberManager: {
+                maxSize: 200,
+                keepOverLimit: member => member.id === client.user.id,
+            },
+        }),
+        sweepers: {
+            ...Options.DefaultSweeperSettings,
+            messages: {
+                interval: 3600,
+                lifetime: 1800,
+            },
+            users: {
+                interval: 3600,
+                filter: user => user.bot && user.id !== client.user.id,
+            }
+        },
         intents: [
-            Intents.FLAGS.GUILDS,
-            Intents.FLAGS.GUILD_VOICE_STATES,
-            Intents.FLAGS.GUILD_MESSAGES,
-            Intents.FLAGS.DIRECT_MESSAGES,
-            Intents.FLAGS.GUILD_INTEGRATIONS,
-            Intents.FLAGS.GUILD_INVITES,
-            Intents.FLAGS.GUILD_WEBHOOKS,
-            Intents.FLAGS.GUILD_MESSAGE_TYPING,
-            Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-            Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS
+            GatewayIntentBits.Guilds,
+            GatewayIntentBits.GuildVoiceStates,
+            GatewayIntentBits.GuildMessages,
+            GatewayIntentBits.DirectMessages,
+            GatewayIntentBits.GuildIntegrations,
+            GatewayIntentBits.GuildInvites,
+            GatewayIntentBits.GuildWebhooks,
+            GatewayIntentBits.GuildMessageTyping,
+            GatewayIntentBits.GuildMessageReactions,
+            GatewayIntentBits.GuildEmojisAndStickers,
+            GatewayIntentBits.MessageContent
         ], 
         allowedMentions: {
             parse: ["users","roles"],

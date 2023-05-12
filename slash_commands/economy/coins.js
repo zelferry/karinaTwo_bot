@@ -4,20 +4,30 @@ let { economydb } = require("../../mongoDB/ini.js").user
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "panther_coins",
+        description: "(economy) see how many Panther-coins you have in my savings system!",
+        descriptionLocalizations: {
+            "pt-BR": "(economia) veja quantos Panther-coins você tem!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 6,
+                name: "user",
+                description: "user (@user/id) for you to see how much this user has",
+                descriptionLocalizations: {
+                    "pt-BR": "usuário (@usuário/id) para você ver quanto esse usuário tem" 
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "panther_coins",
-            description: "[ 💸economy ] see how many Panther-coins you have in my savings system!",
-            category: "economy",
-            usage: "[user]",
-            commandOptions: [
-                {
-                    name: "user",
-                    description: "user mention (@user/id)",
-                    type: 6,
-                    required: false
-                }
-            ]
+            category: "economy"
         })
     }
     async interactionRun(interaction, t){

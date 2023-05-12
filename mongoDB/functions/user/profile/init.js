@@ -21,7 +21,10 @@ class profile {
 	static async find(author){
 		const user = await usermodel.findOne({ UserId: author.id });
 		
-		if(!user) return this.newUser(author)
+		if(!user){
+            let neww = this.newUser(author)
+            return neww
+        }
 		
 		return user 
 	}

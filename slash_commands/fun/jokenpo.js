@@ -1,29 +1,64 @@
 let comando = require("../../frameworks/commando/command.js");
-let choices1 = require("../../database/slash_commands/choices/fun/jokenpo.json");
 
-let Discord = require("discord.js"); 
+let Discord = require("discord.js");
 
 class Command extends comando {
+    command_data = {
+        name: "jokenpo",
+        description: "(fun) ROCK, PAPER AND SCISSOR!",
+        descriptionLocalizations: {
+            "pt-BR": "(diversão) PEDRA, PAPEL E TESOURA!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 3,
+                name: "choice",
+                description: "rock, paper or scissors?",
+                required: true,
+                nameLocalizations: {
+                    "pt-BR": "escolha"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "pedra, papel ou tesoura?"
+                },
+                choices: [
+                    {
+                        name: "rock",
+                        nameLocalizations: {
+                            "pt-BR": "pedra"
+                        },
+                        value: "pedra"
+                    },
+                    {
+                        name: "paper",
+                        nameLocalizations: {
+                            "pt-BR": "papel"
+                        },
+                        value: "papel"
+                    },
+                    {
+                        name: "scissor",
+                        nameLocalizations: {
+                            "pt-BR": "tesoura"
+                        },
+                        value: "tesoura"
+                    }
+                ]
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "jokenpo",
-            description: "[ 😂fun ] ROCK, PAPER AND SCISSOR!",
-            category: "fun",
-            usage: "<pedra | papel | tesoura>",
-            commandOptions: [
-                {
-                    type: 3,
-                    name: "value",
-                    description: "rock, paper or scissors?",
-                    required: true,
-                    choices: [...choices1]
-                }
-            ]
+            category: "fun"
         })
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
-        let data = interaction.options.getString("value");
+        let data = interaction.options.getString("choice");
         let rng = Math.floor((Math.random() * 100) + 1);
         
         if(data === "pedra"){

@@ -1,44 +1,65 @@
 let comando = require("../../frameworks/commando/command.js");
 const packag = require("../../package.json");
 
-
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "help",
+        description: "(miscellaneous) need help?",
+        nameLocalizations: {
+            "pt-BR": "ajuda"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "(diversos) precisa de uma ajuda?"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 1,
+                name: "devs",
+                description: "(miscellaneous) about my developers",
+                nameLocalizations: {
+                    "pt-BR": "desenvolvedores"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(diversos) sobre meus desenvolvedores"
+                }
+            },
+            {
+                type: 1,
+                name: "commands",
+                description: "(miscellaneous) over existing commands",
+                nameLocalizations: {
+                    "pt-BR": "comandos"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(diversos) sobre comandos existentes"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "help",
-            description: "help commands!",
-            category: "miscellaneous",
-            commandOptions: [
-                {
-                    type: 1,
-                    name: "devs",
-                    description: "[ 🤪miscellaneous ] about my developers"
-                },
-                {
-                    type: 1,
-                    name: "commands",
-                    description: "[ 🤪miscellaneous ] over existing commands"
-                }
-            ]
+            category: "miscellaneous"
         })
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
-
-       // console.log(t)
         
         if(subCOMMAND === "devs"){
+            let embed_object = {
+                description: t("commands:help.devs"),
+                fields: this.client.dist.modules.devs_treat(t.lng)
+            };
+            let embed = Discord.EmbedBuilder.from(embed_object).setColor("#007ACC");
+            
             interaction.editReply({
-                embeds:[
-                    {
-                        description: t("commands:help.devs"),
-                        color: 65531,
-                        fields: this.client.dist.modules.devs_treat(t.lng)
-                    }
-                ]
+                embeds: [embed]
             });
             
             return {}
@@ -57,10 +78,6 @@ class Command extends comando {
                 {
                     label: `${t("commands:help.commands.categorys.fun")}(${commands1.filter((cmd) => cmd.category == "fun").size})`,
                     commands: commands1.filter((cmd) => cmd.category == "fun").map((x) => "`"+x.name+"`").join(", ")
-                },
-                {
-                    label: `${t("commands:help.commands.categorys.image")}(${commands1.filter((cmd) => cmd.category == "image").size})`,
-                    commands: commands1.filter((cmd) => cmd.category == "image").map((x) => "`"+x.name+"`").join(", ")
                 },
                 {
                     label: `${t("commands:help.commands.categorys.management")}(${commands1.filter((cmd) => cmd.category == "management").size})`,
@@ -89,7 +106,7 @@ class Command extends comando {
                     commands: commands1.filter((cmd) => cmd.category == "nsfw").map((x) => "`"+x.name+"`").join(", ")
                 })
             }
-            //photoshop
+
             for(let i in dataCMDs){
                 let data = dataCMDs[i]
                 frields.push({
@@ -97,17 +114,20 @@ class Command extends comando {
                     value: `${data.commands.toString()}`
                 })
             }
-            //console.log(frields)
-            let embed = {
+
+            let embed_object = {
                 title: t("commands:help.commands.title"),
-                color: "#7A67EE",
                 fields: frields,
                 footer: {
                     text: t("commands:help.commands.footer")
                 }
             };
             
-            interaction.editReply({embeds:[embed]})
+            let embed = Discord.EmbedBuilder.from(embed_object).setColor("#7A67EE");
+            interaction.editReply({
+                embeds: [embed]
+            });
+            
             return {}
         }
     }

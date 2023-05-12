@@ -1,5 +1,6 @@
 let comando = require("../../frameworks/commando/command.js");
-let Discord = require("discord.js"); 
+let Discord = require("discord.js");
+let fetch = require('node-fetch');
 
 let validate = (color) => {
     if (!color || typeof color !== 'string') return false;
@@ -18,38 +19,85 @@ let validate = (color) => {
 };
 
 class Command extends comando {
+    command_data = {
+        name: "color_info",
+        description: "(miscellaneous) see information about a color, such as its variations, etc",
+        descriptionLocalizations: {
+            "pt-BR": "(diversos) veja informações sobre uma cor, como suas variações e etc"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 3,
+                required: true,
+                name: "color_hex",
+                description: "color in hexadecimal (ex: FF0000, #FF0000)",
+                descriptionLocalizations: {
+                    "pt-BR": "cor em hexadecimal (ex: FF0000, #FF0000)"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
-            name: "hex",
-            description: "[ 🤪miscellaneou ] see a little information about a HEX color",
-            category: "miscellaneous",
-            usage: "<cor em HEX>",
-            commandOptions: [
-                {
-                    type: 3,
-                    name: "color",
-                    description: "color in hexadecimal (ex: FF0000, #FF0000)",
-                    required: true
-                }
-            ]
+            name: "color_info",
+            category: "miscellaneous"
         })
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
-        let hex = interaction.options.getString('color');
+        let hex_color = interaction.options.getString('color_hex');
 
-        let r = parseInt(hex.substring(0, 2), 16);
-        let g = parseInt(hex.substring(2, 4), 16);
-        let b = parseInt(hex.substring(4, 6), 16);
-
-        if(!validate(hex)){
+        if(!validate(hex_color)){
             interaction.editReply({
-                content: t("commands:hex.error")
-            })
+                content: t("commands:colors.error.color")
+            });
+            
             return {}
         } else {
-            interaction.editReply({embeds:[new Discord.MessageEmbed().setColor(hex).setThumbnail(`http://placehold.it/500/${hex}/${hex}`).addField(`**HEX**: #${hex}`, `**RGB**: rgb(${r},${g},${b})`).setTimestamp()]});
-            return {}
+            hex_color = hex_color.replace('#', '');
+            let res = await fetch(`https://www.thecolorapi.com/id?hex=${hex_color}`);
+            let body = await res.json();
+
+            if(body.code || !res || !body){
+                interaction.editReply({
+                    content: t("commands:colors.error.api")
+                });
+
+                return {}
+            } else {
+                let { rgb, hsl, hsv, cmyk, XYZ } = body;
+                let { hex, name, image } = body;
+                
+                let colors = { rgb, hsl, hsv, cmyk, XYZ };
+                let colors_array = [ "rgb", "hsl", "hsv", "cmyk", "XYZ" ];
+                let embed = new Discord.EmbedBuilder().setColor(hex.value).setDescription(t("commands:colors.embed.description", { cname: name.value, exactly: name.exact_match_name ? t("commands:global.label.yes") : t("commands:global.label.no") }))//.setThumbnail(image.named);
+
+                embed.addFields({
+                    name: t(`commands:colors.hex.title`),
+                    value: t(`commands:colors.hex.field`, {
+                        value: (hex.value).toString()
+                    })
+                });
+                for (let i = 0; i < colors_array.length; i++){
+                    let color_data = colors[colors_array[i]];
+                    
+                    embed.addFields({
+                        name: t(`commands:colors.${colors_array[i]}.title`),
+                        value: t(`commands:colors.${colors_array[i]}.field`, {
+                            value: (color_data.value).toString(),
+                            fraction: JSON.stringify(color_data.fraction)
+                        })
+                    })
+                }
+                
+                await interaction.editReply({
+                    embeds: [embed]
+                });
+                return {}
+            }
         }
     }
 

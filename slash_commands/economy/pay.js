@@ -4,32 +4,61 @@ let { economydb } = require("../../mongoDB/ini.js").user
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "pay",
+        description: "(economy) transfer panther-coins to another user",
+        nameLocalizations: {
+            "pt-BR": "pagar"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "(economia) transferir panther-coins para outro usuário"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 6,
+                name: "user",
+                description: "user (@user/id) who you want to pay",
+                required: true,
+                nameLocalizations: {
+                    "pt-BR": "usuário"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "usuário (@usuário/id) que você deseja pagar"
+                }
+            },
+            {
+                type: 10,
+                name: "amount",
+                description: "amount you want to send",
+                required: true,
+                nameLocalizations: {
+                    "pt-BR": "quantia"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "valor que deseja enviar"
+                }
+            },
+            {
+                type: 3,
+                name: "message",
+                description: "a MESSAGE to be sent to the user",
+                required: false,
+                nameLocalizations: {
+                    "pt-BR": "mensagem"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "uma MENSAGEM a ser enviada ao usuário"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "pay",
-            description: "[ 💸economy ] donate panther-coins to a user!",
             category: "economy",
-            usage: "<user> <the amount> [message]",
-            commandOptions: [
-                {
-                    name: "user",
-                    description: "user (@user/id) who you want to pay",
-                    type: 6,
-                    required: true
-                },
-                {
-                    name: "amount",
-                    description: "amount you want to spend",
-                    type: 10,
-                    required: true
-                },
-                {
-                    name: "message",
-                    description: "a MESSAGE to be sent to the user",
-                    type: 3,
-                    required: false
-                }
-            ],
             buttonCommands: ["pay","cancel"]
         })
     }
@@ -59,9 +88,9 @@ class Command extends comando {
                 ephemeral: true
             })
         } else {
-            let paybutton = new Discord.MessageButton().setStyle("SUCCESS").setLabel(t("commands:pay.button.pay")).setCustomId("pay");
-            let cancelbutton = new Discord.MessageButton().setStyle("DANGER").setLabel(t("commands:pay.button.canceled")).setCustomId("cancel");
-            let row = new Discord.MessageActionRow().addComponents(paybutton,cancelbutton);
+            let paybutton = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Success).setLabel(t("commands:pay.button.pay")).setCustomId("pay");
+            let cancelbutton = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Danger).setLabel(t("commands:pay.button.canceled")).setCustomId("cancel");
+            let row = new Discord.ActionRowBuilder().addComponents(paybutton,cancelbutton);
 
             await interaction.followUp({
                 content: t("commands:pay.success.warn", { amount: amount.toString(), userName: user.username }),
@@ -69,12 +98,9 @@ class Command extends comando {
                 components: [row]
             });
 
-            const buttonFilter = (button) => this.buttonCommands.includes(button.customId) && button.user.id === interaction.user.id;
+            const filter = (button) => this.buttonCommands.includes(button.customId) && button.user.id === interaction.user.id;
 
-            const collector = interaction.channel.createMessageComponentCollector(buttonFilter, {
-                componentType: 'BUTTON',
-                time: 900000
-            });
+            const collector = interaction.channel.createMessageComponentCollector({ filter, time: 900000 });
 
             collector.on("collect", async(i) => {
                 i.deferUpdate();
@@ -91,10 +117,10 @@ class Command extends comando {
                             ephemeral: true
                         })
                         user.send({
-                            embeds: [new Discord.MessageEmbed().setDescription(t("commands:pay.success.sendMessage.label1", { authorTag: interaction.user.tag, amount: amount.toString() })).setColor("#fd9058").addField(t("commands:pay.success.sendMessage.label2"),`${message1}`)]
+                            embeds: [new Discord.EmbedBuilder().setDescription(t("commands:pay.success.sendMessage.label1", { authorTag: interaction.user.tag, amount: amount.toString() })).setColor("#fd9058").addFields({ name: t("commands:pay.success.sendMessage.label2"), value: `${message1}` })]
                         })
                     }
-                    await economydb.pay(interaction.user,user,amount);
+                    await economydb.pay(interaction.user, user, amount);
                     collector.stop(80);
                 }
                 if(i.customId === "cancel"){

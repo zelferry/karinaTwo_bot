@@ -1,29 +1,51 @@
 let comando = require("../../frameworks/commando/command.js");
-let subCOMMAND_opition1_1 = require("../../database/slash_commands/sub_commands/invert.text.json");
-let subCOMMAND_opition1_2 = require("../../database/slash_commands/sub_commands/invert.image.json");
-
 let Discord = require("discord.js");
 
 class Command extends comando {
+    command_data = {
+        name: "invert",
+        description: "(fun) reverse everything inside out, wait... what?",
+        nameLocalizations: {
+            "pt-BR": "inverter"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "(divertido) inverter tudo do avesso, espera... o quê?"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 1,
+                name: "text",
+                description: "(fun) invert a text!",
+                nameLocalizations: {
+                    "pt-BR": "texto"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(divertido) inverter um texto!",
+                    options: [
+                        {
+                            type: 3,
+                            name: "text",
+                            description: "what will the text be?",
+                            nameLocalizations: {
+                                "pt-BR": "texto"
+                            },
+                            descriptionLocalizations: {
+                                "pt-BR": "qual será o texto?"
+                            },
+                            required: true
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "invert",
-            description: "reverse everything inside out, wait... what?",
-            category: "fun",
-            commandOptions: [
-                {
-                    type: 1,
-                    name: "text",
-                    description: "[ 😂fun ] invert a text!",
-                    options: [...subCOMMAND_opition1_1]
-                }/*,
-                {
-                    type: 1,
-                    name: "image",
-                    description: "[ 😂fun + 📷photoshop ] inverter aa cores de uma imagem!",
-                    options: [...subCOMMAND_opition1_2]
-                }*/
-            ]
+            category: "fun"
         })
     }
     async interactionRun(interaction, t){
@@ -37,22 +59,7 @@ class Command extends comando {
                 content: `🔄**|** ${(str.split('').reverse().join('')).toString()}`
             })
             return {}
-        }/* else if(subCOMMAND === "image"){
-            let user = interaction.options.getUser('user') || interaction.user;
-            let avatar = user.avatarURL({
-                dynamic: true,
-                format: "png",
-                size: 1024
-            }); 
-
-            let image = await canvacord.Canvas.invert(avatar);
-            let attachment = new Discord.MessageAttachment(image, "invert.png");
-
-            interaction.editReply({
-                files: [attachment]
-            })
-            return {}
-        }*/
+        }
     }
 
     command_info(){

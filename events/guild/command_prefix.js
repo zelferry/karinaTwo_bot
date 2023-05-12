@@ -37,13 +37,13 @@ class event extends Event {
             } else {
                 let link = this.client.generateInvite({
                     permissions: [...this.client.defautPermissions],
-                    scopes: ['bot','applications.commands']
+                    scopes: [Discord.OAuth2Scopes.Bot, Discord.OAuth2Scopes.ApplicationsCommands]
                 });
                 
                 message.reply({
                     embeds: [
                         {
-                            color: "blue",
+                            color: 389301,
                             title: locate("events:prefix.title"),
                             description: locate("events:prefix.description"),
                             fields: [

@@ -1,4 +1,17 @@
 let fetch = require('node-fetch');
+function auth(user, pass) {
+    let buff = new Buffer.from(`${user}:${pass}`);
+    let b64 = buff.toString('base64');
+    return `Basic ${b64}`;
+}
+
+let header = {
+    method: "GET",
+    headers: {
+        "User-Agent": "karinaTwo/4.0.2 (by jonny9075549t2)",
+        Authorization: auth("omags", "F9fAk1fX2dnx3iRLAGo8s6oE")
+    }
+}
 
 let endpoint1 = [
     "tickle",
@@ -57,7 +70,7 @@ class nekos_ {
                 "-video"
             ])
         },
-        gay: async function(){
+        yaoi: async function(){
             return this.#danbooru([
                 "rating:explict",
                 "yaoi",
@@ -68,6 +81,13 @@ class nekos_ {
             return this.#danbooru([
                 "rating:explict",
                 "large_breasts",
+                "-video"
+            ])
+        },
+        bara: async function(){
+            return this.#danbooru([
+                "rating:explict",
+                "bara",
                 "-video"
             ])
         },
@@ -97,8 +117,8 @@ class nekos_ {
     #danbooru = async function(pos){
         if (pos && !Array.isArray(pos)) pos = pos.split(' ');
 
-        let res = await fetch(`${this.config.api.external.danbooru}${pos.join('+')}`);
-        let ret = await res.json()
+        let res = await fetch(`${this.config.api.external.danbooru}${pos.join('+')}`, header);
+        let ret = await res.json();
 
         return {
             success: ret.success == false ? false : true,

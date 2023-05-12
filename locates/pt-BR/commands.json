@@ -40,15 +40,6 @@
             }
         }
     },
-    "emoji": {
-        "big": {
-            "error": "🚫**|** o emoji `{{emojiName}}` não e um emoji válido"
-        },
-        "send": {
-            "noEmoji": "`{{emojiName}}` **não** e um emoji deste servidor!",
-            "success": "✅**|** enviado com sucesso!"
-        }
-    },
     "invite": "me adiciona em seu servidor!",
     "server": {
         "info": {
@@ -78,19 +69,7 @@
     },
     "user": {
         "avatar": "🖼**|** avatar de {{userName}}",
-        "banner": {
-            "error": {
-                "noUser": "o usuário com o id **{{userId}}** não existe!",
-                "noBanner": "🚫**|** o usuário {{userName}} não tem uma banner!"
-            },
-            "success": "🖼**|** banner de {{userName}}",
-            "description": "cor da banner: **{{color}}**"
-        },
         "about_me": {
-            "error": {
-                "noVipUser": ":x:**|** apenas usuários **vips** podem alterar o \"sobre mim\"",
-                "manyCharacters": "textos com mais de 603 caracteres não são permitidos, assim, evitarei bugs."
-            },
             "success": "novo **sobre mim**"
         }
     },
@@ -99,9 +78,9 @@
         "user": "***{{userTag}}*** tem **{{coins}}** panther-coins!"
     },
     "daily": {
-        "no_time": "você já coletou hoje! \naguarde mais **{{hours}}h {{minutes}}m {{seconds}}s**!",
+        "no_time": "🚫**|** você já coletou hoje! \n🕔**|** aguarde mais **{{hours}}h {{minutes}}m {{seconds}}s**!",
         "error": "aconteceu um erro!",
-        "success": "{{userTag}}**|** parabéns, você pescou **{{fishing}} pokémon(s) aquático(s)**! \n🪙**|** quantia recebida pela venda dos pokémons: `{{result}} Panther-coins`"
+        "success": "🤩**|** mr.beast te deu **{{result}} panther-coins**!!!\n🕔**|** __volte amanhã__ para mais um vídeo do mr.beast"
     },
     "pay": {
         "error": {
@@ -124,16 +103,7 @@
         }
     },
     "buy": {
-        "vip": {
-            "error": {
-                "insufficient": "🚫**|** você não tem *panther-coins* o suficiente!\n💸**|** e necessário ter ***2.500*** panther-coins ou mais para comprar o *vip user*",
-                "vip_activated": "🚫**|** você ja e um usuário vip!"
-            },
-            "success": {
-                "title": "**vip user** comprado!",
-                "description": "você comprou: **vip user** por **2.500 Panther-coins**"
-            }
-        }
+        "vip": "🪙**|** agora pra você comprar o *vip user* você deve entrar em minha lojinha! https://ko-fi.com/karinatwo/shop\n🤩**|** além de você poder também conseguir comprar panther-coins na lojinha, você também estará me ajudando a ficar online!"
     },
     "eight_ball": {
         "error": "🚫**|** insira uma pergunta valida!",
@@ -178,32 +148,13 @@
             "reply": "enviado com sucesso!"
         }
     },
-    "animals": "clique aqui se não estiver aparecendo",
-    "antinsfw": {
-        "error": {
-            "activated": "❌**|** o módulo já está ligado.",
-            "disabled": "❌**|** o módulo já está desligado."
-        },
-        "success": {
-            "activated": "✔️**|** o modulo foi ativado!\n❓**|** o seu servidor esta seguro contra conteúdo nsfw",
-            "disabled": "⚠️**|** o módulo foi desativado\n❓**|** o seu servidor esta desprotegido contra conteúdo nsfw!"
-        }
-    },
-    "antiraid": {
-        "error": {
-            "activated": "❌**|** o módulo já está ligado.",
-            "disabled": "❌**|** o módulo já está desligado."
-        },
-        "success": {
-            "activated": "✔️**|** o modulo foi ativado!\n❓**|** o seu servidor esta seguro contra raids",
-            "disabled": "⚠️**|** o módulo foi desativado\n❓**|** o seu servidor esta desprotegido contra raids!"
-        }
-    },
     "ban": {
         "error": {
             "is_me": "❌**|** você não pode se banir",
             "is_bot": "❌**|** você não pode me banir\n😭**|** você me odeia? :(",
-            "no_bannable": "❌**|** você não pode punir o membro, pois esse membro não é **Banivel**"
+            "is_owner": "❌**|** você não pode banir o dono do servidor!",
+            "is_role1": "❌**|** você não pode banir alguém que tenha um cargo superior ou igual ao seu!",
+            "is_role2": "❌**|** não posso banir alguém que tenha um cargo superior ou igual ao meu!"
         },
         "success": "😡| o usuário **{{userTag}}** foi banido com sucesso por causa de: **{{reason_}}**"
     },
@@ -217,35 +168,18 @@
             "two": "\u200B"
         }
     },
-    "giveaway": {
-        "start": {
-            "error": {
-                "no_channel": ":x:**|** o canal selecionado não é baseado em texto."
-            },
-            "success": "🔆**|** sorteio iniciado em <#{{giveawayChannel_}}>!"
-        },
-        "end": {
-            "success": "✅**|** sucesso, sorteio finalizado!"
-        },
-        "reroll": {
-            "success": "✅**|** sucesso, sorteio reiniciado!"
-        }
-    },
     "kick": {
         "error": {
-            "is_me": "❌**|** você não pode expulsar a si mesmo",
-            "is_bot": "❌**|** você não pode me expulsar \n😭**|** você me odeia? :(",
-            "no_kickable": "❌**|** você não pode punir o membro, pois esse membro não é \"**expulsavel**\""
+            "is_me": "❌**|** você não pode se expulsar",
+            "is_bot": "❌**|** você não pode me expulsar\n😭**|** você me odeia? :(",
+            "is_owner": "❌**|** você não pode expulsar o dono do servidor!",
+            "is_role1": "❌**|** você não pode expulsar alguém que tenha um cargo superior ou igual ao seu!",
+            "is_role2": "❌**|** não posso expulsar alguém que tenha um cargo superior ou igual ao meu!"
         },
         "success": "😡| o usuário **{{userTag}}** foi expulso sucesso por causa de: **{{reason_}}**"
     },
-    "news": {
-        "wait": "⏺**|** um momento...",
-        "success": "🔔**|** canais de anúncios setados com sucesso!"
-    },
     "nuke": {
         "warn": "🚫**|** espera ai!\ndeseja mesmo que eu faça isso?\n\neu estarei fazendo o seguinte:\n  1 - clonar o canal `{{oldchannel}}`\n  2 - deletar o canal `{{oldchannel}}`\n\ndeseja que eu faça isso?",
-        "wait": "⏺**|** aguarde...",
         "success": "🗿🍷**|** canal **100**% limpo pelo(a) **{{userTag}}**"
     },
     "slowmode": "{{emoji}}**|** modo lento definido para **{{timer}} segundos** em __{{channelName}}__!",
@@ -256,7 +190,6 @@
                 "discord": "📱 discord",
                 "economy": "🪙 economia",
                 "fun": "🤣 diversão",
-                "image": "📷 imagens",
                 "management": "👩‍⚖️ administração",
                 "miscellaneous": "♾ micelanea",
                 "social": "🫂 social",
@@ -266,8 +199,38 @@
             "footer": "alguns comandos não estão aparecendo por serem SubComandos"
         }
     },
-    "hex": {
-        "error": "❌**|** isto não e uma cor HEX válida!"
+    "colors": {
+        "error": {
+            "color": "❌**|** cor inválida!\n❓**|** tente novamente com uma cor em **hexadecimal** válido",
+            "api": "❌**|** algo de errado aconteceu!\n✋**|** tente novamente mais tarde"
+        },
+        "embed": {
+            "description": "nome da cor: **{{cname}}**\nnome exato: **{{exactly}}**"
+        },
+        "hex": {
+            "title": "hexadecimal",
+            "field": "valvula: `{{value}}`"
+        },
+        "rgb": {
+            "title": "vermelho, verde, azul (rbg)",
+            "field": "valvula: `{{value}}`\nfração: `{{fraction}}`"
+        },
+        "hsl": {
+            "title": "tom, saturação, luminosidade (hsl)",
+            "field": "valvula: `{{value}}`\nfração: `{{fraction}}`"
+        },
+        "hsv": {
+            "title": "matiz, saturação, valor (hsv)",
+            "field": "valvula: `{{value}}`\nfração: `{{fraction}}`"
+        },
+        "cmyk": {
+            "title": "ciano, magenta, amarelo, preto (cmyk)",
+            "field": "valvula: `{{value}}`\nfração: `{{fraction}}`"
+        },
+        "XYZ": {
+            "title": "coordenadas cromáticas (XYZ)",
+            "field": "valvula: `{{value}}`\nfração: `{{fraction}}`"
+        }
     },
     "meme": {
         "generate": {
@@ -276,33 +239,6 @@
             "no_img": "🚫**|** parece que o meme não e uma imagem"
         },
         "knuckles": "será que o Knuckles aprovou seu meme?"
-    },
-    "minecraft": {
-        "crepeer": {
-            "label_1": "awww men 😎",
-            "label_2": "desvio e mato ele",
-            "label_3": "bom... ja era",
-            "label_4": "corre pra longe dele!",
-            "label_5": "vish..",
-            "label_6": "shhhhh..... 💥💥",
-            "label_7": "se ele tem tnt, então e melhor matar na base ~~da bala quente~~",
-            "label_8": "man :v",
-            "label_9": "catapinbas ._.",
-            "label_10": "wow, free tnt?!",
-            "label_11": "assim... não tem o que fazer."
-        },
-        "mcc": {
-            "defaut_title": "Conquista desbloqueada!",
-            "error": "❌**|** a descrição precisa ter no maximo **22 letras**!"
-        },
-        "server": {
-            "label": {
-                "connected": "conectados",
-                "version": "versão",
-                "max": "maximo de jogadores"
-            },
-            "error": "🚫**|** aconteceu um erro desconhecido!\n📱**|** cheque se o ip esta sem erros de digitação e tente novamente"
-        }
     },
     "wikipedia": {
         "error": "não foi possível recuperar nenhum resultado.\ntente pesquisar com distinção entre maiúsculas e minúsculas."
@@ -367,7 +303,10 @@
             }
         }
     },
-    "profile": "📱**|** perfil",
+    "profile": {
+        "name": "📱**|** perfil",
+        "about_me": "sobre mim"
+    },
     "ship": {
         "primary": "HMMM, vai rolar ou não vai?",
         "label": {
@@ -378,7 +317,7 @@
             "cry": "queria muito dizer que é possível, mas..."
         }
     },
-    "morce": {
+    "morse": {
         "morse_text": "morse 》texto",
         "text_morse": "texto 》morse"
     },
@@ -389,27 +328,29 @@
         "footer": "aviso: compartilhar qualquer informação pessoal do meu dev irá resultar em banimento permanente"
     },
     "status": {
-        "model": "modelo da cpu",
-        "guilds": "servidores",
-        "users": "usuários em cache",
-        "ram": "usso de ram",
-        "cpuUsage": "usso da cpu",
-        "node": "versão do sistema",
-        "arch": "bits",
-        "platform": "plataforma"
+        "system": {
+            "title": "sistema",
+            "description": "modelo da cpu: {{model}}\nuso de ram: {{ram}}MB\nuso de cpu: {{cpu_usage}}%\nbits: {{bits}}\narquitetura: {{platform}}"
+        },
+        "info": {
+            "title": "informações",
+            "description": "servidores: {{guild}}\nusuários: {{users}}\ncomandos no total: {{cmds}}"
+        },
+        "version": "versões"
     },
     "background": {
         "buy": {
-            "title": ":moneybag:**|** LOLja de background",
+            "title": ":moneybag:**|** __LOL__ja de background",
             "invalid": ":x:**|** código inválido",
             "alreadyOwned": ":x:**|** você já possui esse background",
             "purchase": "comprar",
+            "purchase_expired": "comprar (expirado)",
             "price": "preço",
             "concept": "conceito por:",
             "preview": "🖼**|** pré-visualização do background",
-            "noVip": ":x:**|** apenas *vip users* podem comprar esse background",
-            "noMoney": ":x:**|** você não tem panther-coins suficiente",
-            "success": ":moneybag:**|** você comprou o background **{{name}}** por **{{price}} panther-coins**, ele já foi definido automaticamente no seu perfil!"
+            "noVip": ":x:**|** apenas *vip users* podem comprar esse background\n❓**|** você pode comprar o vip user aqui: https://ko-fi.com/karinatwo/shop",
+            "noMoney": ":x:**|** você não tem panther-coins suficiente!",
+            "success": ":moneybag:**|** você comprou o background **{{name}}** por **{{price}} panther-coins**\n😊**|** ele já foi definido automaticamente no seu perfil!"
         },
         "set": {
             "title": "🖼**|** definir background",
@@ -417,5 +358,54 @@
             "success": ":white_check_mark:**|** você definiu o background {{name}}",
             "description": "📝**|** seus backgrounds são: {{bgList}}"
         }
+    },
+    "actions_nsfw": {
+        "assfuck": {
+            "error": "🚫**|** mencione um usuário que não seja você mesmo!\n🤨**|** ||autofuck?||",
+            "success": {
+                "title": "none",
+                "description": "**{{user2}}**, você está sendo fodido na bunda por **{{user1}}** :3"
+            }
+        },
+        "cum": {
+            "error": "🚫**|** mencione um usuário que não seja você mesmo!",
+            "success": {
+                "title": "none",
+                "description": "**{{user2}}**, **{{user1}}** está gozando em você!"
+            }
+        },
+        "blowjob": {
+            "error": "🚫**|** mencione um usuário que não seja você mesmo!",
+            "success": {
+                "title": "none",
+                "description": "**{{user2}}**, você está recebendo um boquete de **{{user1}}**"
+            }
+        }
+    },
+    "coinflip": {
+        "bet": {
+            "error": "🚫**|** você não tem panther-coins suficientes!\n💸**|** e necessário ter **20** ou mais panther-coins para girar a moeda!",
+            "win": "deu **{{value}}**, você ganhou dessa vez!\n💸**|** adiconei **50** panther-coins na sua carteira!",
+            "loser": "deu **{{value}}**, você perdeu dessa vez!\n💸**|** retirei **50** panther-coins da sua carteira pela derrota"
+        },
+        "normal": {
+            "win": "deu **{{value}}**, você ganhou dessa vez!",
+            "loser": "deu **{{value}}**, você perdeu dessa vez!"
+        }
+    },
+    "reps": {
+        "error": {
+            "is_you": "🚫**|** você não pode dar reps pra você mesmo!",
+            "no_time": "🚫**|** aguarde para você poder usar novamente o comando\n⏱**|** aguarde mais **{{hours}}h {{minutes}}m {{seconds}}s**!"
+        },
+        "success": "😎**|** você deu __reputação__ para o(a) **{{user}}**!"
+    },
+    "code": {
+        "error": {
+            "invalid_key": "🚫**|** a chave de vip user não foi encontrada!\n🔄**|** tente novamente com uma chave válida",
+            "expired": "🚫**|** a chave de vip user expirou!\n❓**|** caso queira, você pode comprar uma nova chave aqui: https://ko-fi.com/karinatwo/shop",
+            "type": "🚫**|** tipo de chave inválida!\n🔄**|** tente novamente com uma chave válida"
+        },
+        "success": "🤩**|** vip user ativado!\n🥳**|** agora você pode aproveitar todas as vantagens vip por {{days}} dias!"
     }
 }

@@ -1,26 +1,22 @@
 class Command {
     constructor(client, options = {}){
         this.client = client;
-        this.name = options.name
-        this.description = options.description ?? 'sem descrição';
+        this.name = options.name;
         this.category = options.category;
-        this.usage = options.usage;
-        this.nsfw =  options.nsfw ?? false;
+        this.nsfw = options.nsfw ?? false;
+        this.vip = options.vip ?? false;
         this.deferReply = options.deferReply ?? false
         this.permissions = {
             bot: options.permissions?.bot ?? [],
             user: options.permissions?.user ?? []
-        } 
-        this.commandOptions = options.commandOptions || null;
-        this.subCommands = options.subCommands || []
+        }
         this.buttonCommands = options.buttonCommands || [];
-
-        this.dscordPermissions = options.dscordPermissions/* ?? undefined*/
     }
     async interactionRun(interaction, t) {
         throw new Error(`O comando ${this.name} não tem um metodo de interação válido!`)
     }
     async autocompleteRun(interaction, t){}
+    async modalRun(interaction, t){}
     
     command_info(){
         return {

@@ -6,7 +6,7 @@ module.exports = {
 		profile: require("./functions/user/profile/init.js"),
 		topgg: require("./functions/user/topGG/init.js"),
         translations: require("./functions/user/translations/init.js"),
-        
+        vip: require("./functions/user/vip/init.js"),
         bgdb: require("./functions/user/background/init.js"),
 		bansUsers: require("./functions/user/bannerds/init.js")
 	},

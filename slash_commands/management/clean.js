@@ -4,55 +4,79 @@ let wait = require('node:timers/promises').setTimeout;
 let Discord = require("discord.js"); 
 
 class Command extends comando {
+    command_data = {
+        name: "clean",
+        description: "(administration) clear a text channel!",
+        descriptionLocalizations: {
+            "pt-BR": "(administração) limpar um canal de texto!"
+        },
+        dmPermission: false,
+        //defaultMemberPermissions: Discord.PermissionFlagsBits.ManageMessages,
+        nsfw: false,
+        options: [
+            {
+                type: 10,
+                minValue: 1,
+                maxValue: 100,
+                required: true,
+                name: "size",
+                description: "number of messages to be deleted",
+                nameLocalizations: {
+                    "pt-BR": "tamanho"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "número de mensagens a serem excluídas"
+                }
+            },
+            {
+                type: 7,
+                required: false,
+                name: "channel",
+                description: "text channel where i will clean",
+                nameLocalizations: {
+                    "pt-BR": "canal"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "canal de texto onde irei limpar"
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "clean",
-            description: "[ 👩‍⚖️managemen ] clear a text channel!",
             deferReply: true,
             category: "management",
             permissions: {
-                user: ["MANAGE_MESSAGES"],
-                bot: ["MANAGE_MESSAGES"]
-            },
-            usage: "<quantia> [canal]",
-            commandOptions: [
-                {
-                    type: 10,
-                    name: "size",
-                    description: "number of messages to be deleted",
-                    minValue: 1,
-                    maxValue: 100,
-                    required: true
-                },
-                {
-                    type: 7,
-                    name: "channel",
-                    description: "text channel where i will clean",
-                    required: false
-                }
-            ]
+                user: ["ManageMessages"],
+                bot: ["ManageMessages"]
+            }
         })
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let number = interaction.options.getNumber("size");
-        let channel = interaction.options.getChannel('channel') || interaction.channel;
+        let channel = interaction.options.getChannel('channel') ?? interaction.channel;
 
-        if(!channel.isText()){
-            return interaction.editReply({
+        if(!channel.isTextBased()){
+            interaction.editReply({
                 content: t("commands:clean.error.no_channel", { channelName: channel.name })
-            })
-        }
+            });
+            
+            return {}
+        } else {
         channel.bulkDelete(number, true).then(async(x) => {
             let cout_result = (number - x.size);
             let STRING = t("commands:clean.success.two")
-            if(cout_result > 0) STRING = t("commands:clean.success.one", { coutResult: cout_result });
+            if(cout_result > 0) STRING = t("commands:clean.success.one", { coutResult: (cout_result).toString() });
             
             await wait(1500);
             interaction.editReply({
                 content: t("commands:clean.success.main", { subError: STRING, size: (x.size).toString(), channelName: channel.name })
             })
         })
+    }
     }
 
     command_info(){

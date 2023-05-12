@@ -1,4 +1,3 @@
-
 let usermodel = require("../../../models/user.js")
 
 class eco {
@@ -29,7 +28,7 @@ class eco {
 			return new_
 		}*/
 		user.coins += money
-		if(timer == true) user.daily = Date.now()
+		if(timer == true) user.config.cooldow.daily = Date.now()
 		
 		await user.save().catch(e => console.log(e))
 		return user
@@ -44,36 +43,39 @@ class eco {
 		return user
 	}
 	static async pay(author,user,money){
-		const user_ = await usermodel.findOne({ UserId: author.id });
-		
-		const user_2 = await usermodel.findOne({ UserId: user.id });
+		let user_ = await usermodel.findOne({ UserId: author.id });
+		let user_2 = await usermodel.findOne({ UserId: user.id });
 		
 		user_.coins -= Math.floor(parseInt(money))
 		user_2.coins += Math.floor(parseInt(money))
 		
-		user_.save().catch(e => console.log(e))
-		user_2.save().catch(e => console.log(e))
+		user_.save().catch(e => console.log(e));
+		user_2.save().catch(e => console.log(e));
 		
 		return {
 			user1: user_,
 			user2: user_2
 		}
 	}
-	static async setVip(author){
-		const user = await usermodel.findOne({ UserId: author.id });
-		
-		if(!user) return false
-		
-		user.vipUser = true
-		
-		user.save().catch(e => console.log(e))
-		
-		return user 
-	}
 	static async fech(author){
 		const user = await usermodel.findOne({ UserId: author.id });
 		if(!user) return this.newUser(author)
 		return user 
 	}
+    static async add_reps(membro1, membro2){
+        let user_1 = await usermodel.findOne({ UserId: membro1.id });
+		let user_2 = await usermodel.findOne({ UserId: membro2.id });
+
+        user_1.config.cooldow.reps = Date.now();
+        user_2.reps += 1;
+
+        user_1.save().catch(e => console.log(e));
+        user_2.save().catch(e => console.log(e));
+
+        return {
+			user1: user_1,
+			user2: user_2
+		}
+    }
 }
 module.exports = eco

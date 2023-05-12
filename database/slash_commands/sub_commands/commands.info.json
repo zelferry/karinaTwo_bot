@@ -1,8 +1,0 @@
-[
-    {
-        "name": "cmd",
-        "type": 3,
-        "description": "command name",
-        "required": true
-    }
-]

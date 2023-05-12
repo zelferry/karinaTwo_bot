@@ -27,9 +27,13 @@ class translations {
     static async get_lang(author){
         const user = await usermodel.findOne({ UserId: author.id });
 
-        if(!user) return this.newUser(author);
+        if(!user){
+            let user_new = await this.newUser(author);
+
+            return user_new.config.lang
+        }
         
-        return user.config?.lang
+        return user.config.lang
     }
     static async set_lang(author, lang_){
         const user = await usermodel.findOne({ UserId: author.id });

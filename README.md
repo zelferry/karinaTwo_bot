@@ -36,14 +36,14 @@
 
 ## 💜 introdução
 
-😊| a karinaTwo e uma bot multiuso feita com muito carinho, amor e javascript, espero que todos respeitem esse repositório, e não usem para ganhar fama em seu bot, use apenas para aprender as funções que a **karinaTwo** Possui!
-Não quero saber de usuários que estão usando essa Source para criar outros bots e ganhando dinheiro com isso!(`se não serão banidos de usar a karinaTwo!`)
+a karinaTwo e uma bot multiuso feita com muito carinho, amor e javascript, espero que todos respeitem esse repositório, e não usem para ganhar fama em seu bot, use apenas para aprender as funções que a **karinaTwo** possui!
 
 ## 🔋 estrutura
 
- ⚠️| a karinaTwo usa o **node v16** ou a **node v18** para poder fazer.... quase que tudo!
+> a karinaTwo usa o **node v16** ou a **node v18** para poder funcionar corretamente. 
 
- 💻| karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **Discord**  a **Discord.js**, para o Banco de Dados, eu usei a **moongoose**
+karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **discord**  a **[Discord.js](https://discord.js.org
+)**, para o banco de dados, eu usei a **[moongoose](https://mongoosejs.com)**
  
 
 #### 📄 **- arquivo** `.env`
@@ -77,35 +77,31 @@ CONDITION_PRIVATE_COMMANDS="" #condição para ativar/desativar os comandos priv
 CONDITION_WEBCLIENT="" #condição para ativar/desativar o cliente da express(apenas true ou false)
 CONDITION_BOTLISTPOSTDATA="" #condição para ativar/desativar o sistema de botlist (apenas true ou false)
 ```
-⚠ALERTA!
 
+⚠ALERTA!
 > `o token de bot adicional o *PROTECTION_BOT_TOKEN* e necessário para o repositório fazer requisições EXTERNAS/EXTRAS na API do discord sem fazer que o bot principal "*TOKEN*" não pege RATELIMIT`
 
 #### :electric_plug: **- script de Inicialização**
 ```npm
 npm start
 ```
-ou...
-```node
-node Cluster.js
-```
 
 ## 🔗 links
 
+> - [🙏 doações](https://tipa.ai/zelferry)
+> - [🔗 linktree do zelferry](https://linktr.ee/zelferry)
 > - [:bird: twitter da karinaTwo](https://twitter.com/karinaTwo_bot?s=09)
 > - [🐱 servidor de suporte da karina](https://discord.gg/Xmu7HrH3yy)
-> - [🔗 linktree do zelferry](https://linktr.ee/zelferry)
-> - [🙏 doações](https://picpay.me/joao.kaholo)
 > - [😁 adicione a karinaTwo!](https://discord.com/api/oauth2/authorize?client_id=793530706319114261&scope=bot+applications.commands&permissions=550360165470)
 
-# Menções Incriveis:
+# menções Incriveis:
 
-## criador(es) da karinaTwo:
+## criador da karinaTwo:
 
 | [<img src="https://media.discordapp.net/attachments/954016374806700093/959103601324736612/20220329_013411.jpg" width=115><br><sub>@zelferry bunny</sub>](https://linktr.ee/zelferry) |
-| :---: |  
-
-## desenhista do avatar da karinaTwo
-
-| [<img src="https://media.discordapp.net/attachments/954016374806700093/959104376092381274/Screenshot_20220331-115749_Discord.jpg" width=115><br><sub>@M&M</sub>](https://twitter.com/Miguel94244829) |
 | :---: |
+
+## desenhistas da foto de perfil da karinaTwo
+
+| [<img src="https://media.discordapp.net/attachments/954016374806700093/959104376092381274/Screenshot_20220331-115749_Discord.jpg" width=115><br><sub>@M&M<br/>(desenhista da<br/>primeira versão)</sub>](https://twitter.com/Miguel94244829) | [<img src="https://cdn.discordapp.com/attachments/1079178994383065189/1079179019515342939/awesomeness.png" width=115><br><sub>Awesomeness#0659<br/>(desenhista da<br/> versão atual)</sub>](https://twitter.com/Miguel94244829) |
+| :---: | :---: |

@@ -5,8 +5,9 @@ let toml = require('toml');
 
 let nekos = require("./routes/nekos.js");
 let yiff = require("./routes/yiff.js");
-let roleplay = require("./routes/roleplay.js");
-let memes = require("./routes/memes.js")
+let memes = require("./routes/memes.js");
+let rp_sfw = require("./routes/roleplay/rp_sfw.js");
+let rp_nsfw = require("./routes/roleplay/rp_nsfw.js")
 
 class Api {
     constructor(client){
@@ -23,11 +24,14 @@ class Api {
     get yiff(){
         return (new yiff(this))
     }
-    get roleplay(){
-        return (new roleplay(this))
-    }
     get meme(){
         return (new memes(this))
+    }
+    get roleplay(){
+        return {
+            sfw: (new rp_sfw(this)),
+            nsfw: (new rp_nsfw(this))
+        }
     }
     
     async GET(endpoint_mother){

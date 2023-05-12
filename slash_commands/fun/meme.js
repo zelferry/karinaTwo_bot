@@ -4,23 +4,35 @@ let Discord = require("discord.js");
 let mathRandom = (number) => ~~(Math.random() * number);
 
 class Command extends comando {
+    command_data = {
+        name: "meme",
+        description: "(fun) memes",
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 1,
+                name: "generate",
+                description: "(fun) generate a random meme!",
+                descriptionLocalizations: {
+                    "pt-BR": "(diversão) gere um meme aleatório!"
+                }
+            },
+            {
+                type: 1,
+                name: "knuckles",
+                description: "(fun) \"meme?\"",
+                descriptionLocalizations: {
+                    "pt-BR": "(diversão) \"meme?\""
+                }
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "meme",
-            description: "memes, memes, memes and memes...",
-            category: "fun",
-            commandOptions: [
-                {
-                    type: 1,
-                    name: "generate",
-                    description: "[ 😂fun ] generate a random meme!"
-                },
-                {
-                    type: 1,
-                    name: "knuckles",
-                    description: "[ 😂fun ] \"meme?\""
-                }
-            ]
+            category: "fun"
         })
     }
     async interactionRun(interaction, t){
@@ -40,7 +52,7 @@ class Command extends comando {
                 description = `${t("commands:meme.generate.label", { post_title: json.title, post_votes: (json.ups).toString(), post_subreddit: json.subreddit, post_url: json.postLink })}\n${t("commands:meme.generate.no_img")}`;
             }
 
-            let embed = new Discord.MessageEmbed().setImage(file).setColor("#7B68EE").setDescription(description)
+            let embed = new Discord.EmbedBuilder().setImage(file).setColor("#7B68EE").setDescription(description)
             
             interaction.editReply({
                 embeds: [embed]
@@ -52,10 +64,10 @@ class Command extends comando {
                 "illegal",
                 "paralyzed"
             ];
-            let attachment = new Discord.MessageAttachment(`./assets/knuckles/${t.lng}/knuckles_${data[mathRandom(data.length)]}.png`, "knuckles.png");
+            let attachment = new Discord.AttachmentBuilder(`./assets/knuckles/${t.lng}/knuckles_${data[mathRandom(data.length)]}.png`, { name: "knuckles.png" });
 
             interaction.editReply({
-                embeds:[
+                embeds: [
                     {
                         title: t("commands:meme.knuckles"),
                         color: 1639005,

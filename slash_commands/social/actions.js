@@ -1,79 +1,98 @@
 let comando = require("../../frameworks/commando/command.js");
 let Discord = require("discord.js"); 
+let user_data = {
+    type: 6,
+    required: true,
+    name: "user",
+    description: "user (@user/id)",
+    nameLocalizations: {
+        "pt-BR": "usuário"
+    },
+    descriptionLocalizations: {
+        "pt-BR": "usuário (@usuário/id)"
+    }
+}
 
 class Command extends comando {
+    command_data = {
+        name: "actions",
+        description: "(social) do some kind of action with some user!",
+        nameLocalizations: {
+            "pt-BR": "ações"
+        },
+        descriptionLocalizations: {
+            "pt-BR": "(social) fazer algum tipo de ação com algum usuário!"
+        },
+        dmPermission: false,
+        nsfw: false,
+        options: [
+            {
+                type: 1,
+                name: "attack",
+                description: "(social) attack a user!",
+                nameLocalizations: {
+                    "pt-BR": "atacar"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(social) um usuário esqueceu de pagar os panther-coins da paçoca? tire um x1 com ele!"
+                },
+                options: [user_data]
+            },
+            {
+                type: 1,
+                name: "hug",
+                description: "(social) give someone a hug!",
+                nameLocalizations: {
+                    "pt-BR": "abraço"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(social) dê um abraço em alguém!"
+                },
+                options: [user_data]
+            },
+            {
+                type: 1,
+                name: "dance",
+                description: "(social) dance with some user!",
+                nameLocalizations: {
+                    "pt-BR": "dança"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(social) dance com algum usuário!"
+                },
+                options: [user_data]
+            },
+            {
+                type: 1,
+                name: "kiss",
+                description: "(social) kiss some user :)",
+                nameLocalizations: {
+                    "pt-BR": "beijo"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(social) beijar algum usuário :)"
+                },
+                options: [user_data]
+            },
+            {
+                type: 1,
+                name: "slap",
+                description: "(social) of a slap on a user!",
+                nameLocalizations: {
+                    "pt-BR": "tapa"
+                },
+                descriptionLocalizations: {
+                    "pt-BR": "(social) de um tapa em um usuário!"
+                },
+                options: [user_data]
+            }
+        ]
+    }
+    
     constructor(...args) {
         super(...args, {
             name: "actions",
-            description: "[ 👤social ] do some kind of action with some user!",
-            category: "social",
-            commandOptions: [
-                {
-                    type: 1,
-                    name: "attack",
-                    description: "[ 👤social ] a user forgot to pay paçoca panther-coins? shoot at x1 with him!",
-                    options: [
-                        {
-                            type: 6,
-                            name: "user",
-                            description: "user (@user/id) to be attacked",
-                            required: true
-                        }
-                    ]
-                },
-                {
-                    type: 1,
-                    name: "hug",
-                    description: "[ 👤social ] give someone a hug!",
-                    options: [
-                        {
-                            type: 6,
-                            name: "user",
-                            description: "user (@user/id) to be hugged",
-                            required: true
-                        }
-                    ]
-                },
-                {
-                    type: 1,
-                    name: "dance",
-                    description: "[ 👤social ] dance with some user!",
-                    options: [
-                        {
-                            type: 6,
-                            name: "user",
-                            description: "user (@user/id) to dance with you",
-                            required: true
-                        }
-                    ]
-                },
-                {
-                    type: 1,
-                    name: "kiss",
-                    description: "[ 👤social ] kiss some user :)",
-                    options: [
-                        {
-                            type: 6,
-                            name: "user",
-                            description: "user (@user/id) to be kissed",
-                            required: true
-                        }
-                    ]
-                },
-                {
-                    type: 1,
-                    name: "slap",
-                    description: "[ 👤social ] of a slap on a user!",
-                    options: [
-                        {
-                            type: 6,
-                            name: "user",
-                            description: "user (@user/id) to be slapped",
-                            required: true
-                        }
-                    ]
-                }
-            ]
+            category: "social"
         })
     }
 
@@ -93,12 +112,12 @@ class Command extends comando {
                 description: t(`commands:actions.${interaction.options.getSubcommand()}.success.description`, {
                     user1: interaction.user.tag,
                     user2: user.tag
-                })/*,
-                url: social[interaction.options.getSubcommand()]()*/
+                }),
+                url: this.client.private_api.roleplay.sfw[interaction.options.getSubcommand()]()
             });
 
             interaction.editReply({
-                embeds: [embed]
+                embeds: [Discord.EmbedBuilder.from(embed).setColor("#836FFF")]
             });
 
             return {}
@@ -109,10 +128,9 @@ class Command extends comando {
         return {
             title: data.title,
             description: data.description,
-            color: "#836FFF"/*,
             image: {
                 url: data.url
-            }*/
+            }
         }
     }
     

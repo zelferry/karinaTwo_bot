@@ -1,17 +1,16 @@
-const Discord = require('discord.js');
-const Cluster = require('discord-hybrid-sharding');
-const { RequestManager } = require("discord-cross-ratelimit");
+let Discord = require('discord.js');
+let { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 let clientConfig = require('../../database/client/client_config.json');
 
 class baseClient extends Discord.Client {
     constructor(opts){
         super({
-            shards: Cluster.data.SHARD_LIST,
-            shardCount: Cluster.data.TOTAL_SHARDS,
+            shards: getInfo().SHARD_LIST,
+            shardCount: getInfo().TOTAL_SHARDS,
             ...opts
-        })
-        this.cluster = new Cluster.Client(this);
-        this.rest = new RequestManager(this, this.cluster);
+        });
+        
+        this.cluster = new ClusterClient(this);
     }
     /**
      * @private
@@ -22,7 +21,6 @@ class baseClient extends Discord.Client {
     }
     connectBOT(){
         this.on("ready", async() => {
-            this.binder.displaySpecialTHIS(this);
             this.guilds.cache.forEach(async (g) => {
                 if(!g.available){
                     await g.fetch();
@@ -34,14 +32,13 @@ class baseClient extends Discord.Client {
             
             this.interval.start(async() => {
                 this.user.setActivity(`${status} | cluster[${this.cluster.id}]`, {
-                    type: "WATCHING"
+                    type: Discord.ActivityType.Watching
                 })
             }, 5600, "status");
         });
         
         try {
             (async () => await this.binder.connect())();
-            //this.binder.connect();
         } catch(err) {
             this.binder.disconect(err);
         }

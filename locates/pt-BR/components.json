@@ -1,0 +1,12 @@
+{
+    "modal": {
+        "support": {
+            "title": "formulário de suporte",
+            "label": "escreva seu suporte"
+        },
+        "aboutme": {
+            "title": "novo \"sobre mim\"",
+            "label": "escreva seu novo \"sobre mim\""
+        }
+    }
+}

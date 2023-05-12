@@ -1,15 +1,13 @@
-let { Client, Intents } = require('discord.js');
-let { REST } = require('@discordjs/rest');
-let { Routes } = require('discord-api-types/v9');
+let { Client, Intents, REST, Routes, GatewayIntentBits } = require('discord.js');
 let config = require(`${process.cwd()}/dist/primary_configuration.js`);
 let fs = require('fs');
 
 let client_bot = new Client({
-    intents: [ Intents.FLAGS.GUILDS ]
-})
+    intents: [ GatewayIntentBits.Guilds ]
+});
 
 let public_cmds = (process.env.CONDITION_PRIVATE_COMMANDS === "true");
-let rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+let rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 (async () => {
     console.log("[SLASH MANAGER] carregando os comandos");
@@ -21,23 +19,14 @@ let rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
         for (const file of commands){
             let File = require(`${process.cwd()}/slash_commands/${dirs}/${file}`);
             let COMMAND = new File(client_bot);
-            let data = {
-                name: COMMAND.name,
-                description: COMMAND.description,
-                options: COMMAND.commandOptions
-            }
             
-            if(COMMAND.dscordPermissions){
-                data.default_member_permissions = COMMAND.dscordPermissions
-            }
-            
-            commands_slash.push(data)
+            commands_slash.push(COMMAND.command_data)
         }
     });
     
     try {
         console.log("[SLASH MANAGER] registrando os comandos");
-
+        console.log(commands_slash.map((x,y) => `${y} ${x.name}`))
         if(public_cmds){
             console.log("[SLASH MANAGER => CONFIRM] comandos selecionados: públicos");
             

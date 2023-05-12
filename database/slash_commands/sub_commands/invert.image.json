@@ -1,8 +1,0 @@
-[
-    {
-        "type": 6,
-        "name": "user",
-        "description": "usuário (@user/id) para o inverter",
-        "required": false
-    }
-]
