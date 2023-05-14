@@ -1,5 +1,5 @@
 <p align="center">
-<img width="97%" src="https://cdn.discordapp.com/attachments/922623181334908939/1045460919972532244/karinaTwo.png">
+<img width="69%" src="./assets/content/logo.png">
 <br>
 
 
@@ -21,6 +21,9 @@
 <a href="https://top.gg/bot/793530706319114261">
   <img src="https://top.gg/api/widget/owner/793530706319114261.svg" alt="KarinaTwo" />
   </a>
+<a href="https://ko-fi.com/W7W7CNU5W">
+ <img src="https://ko-fi.com/img/githubbutton_sm.svg" width="35%" />
+</a>
 </p>
 
 
@@ -40,15 +43,15 @@ a karinaTwo e uma bot multiuso feita com muito carinho, amor e javascript, esper
 
 ## 🔋 estrutura
 
-> a karinaTwo usa o **node v16** ou a **node v18** para poder funcionar corretamente. 
+> a karinaTwo usa o **node v16** ou a **node v18`(recomendado)`** para poder funcionar corretamente. 
 
-karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **discord**  a **[Discord.js](https://discord.js.org
-)**, para o banco de dados, eu usei a **[moongoose](https://mongoosejs.com)**
+karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **discord**  a **[discord.js](https://discord.js.org
+)**, para o banco de dados, eu usei a **[moongoose](https://mongoosejs.com)**`(mas em breve se possível irei mudar o banco de dados para a FerretDB)`
  
 
 #### 📄 **- arquivo** `.env`
 
-```
+```env
 MONGOOSE="" #database da moongoose
 PORT="" #porta para a express(opcional se CONDITION_WEBCLIENT estiver com a válvula "false")
 
@@ -88,7 +91,7 @@ npm start
 
 ## 🔗 links
 
-> - [🙏 doações](https://tipa.ai/zelferry)
+> - [🙏 doações](https://ko-fi.com/karinatwo)
 > - [🔗 linktree do zelferry](https://linktr.ee/zelferry)
 > - [:bird: twitter da karinaTwo](https://twitter.com/karinaTwo_bot?s=09)
 > - [🐱 servidor de suporte da karina](https://discord.gg/Xmu7HrH3yy)
@@ -103,5 +106,5 @@ npm start
 
 ## desenhistas da foto de perfil da karinaTwo
 
-| [<img src="https://media.discordapp.net/attachments/954016374806700093/959104376092381274/Screenshot_20220331-115749_Discord.jpg" width=115><br><sub>@M&M<br/>(desenhista da<br/>primeira versão)</sub>](https://twitter.com/Miguel94244829) | [<img src="https://cdn.discordapp.com/attachments/1079178994383065189/1079179019515342939/awesomeness.png" width=115><br><sub>Awesomeness#0659<br/>(desenhista da<br/> versão atual)</sub>](https://twitter.com/Miguel94244829) |
+| [<img src="./assets/content/special_thanks/m&m.png" width=115><br><sub>@M&M<br/>(desenhista da<br/>primeira versão)</sub>](https://twitter.com/Miguel94244829) | <img src="./assets/content/special_thanks/twickymccross.png" width=115><br><sub>TwickyMcCross#0659<br/>(desenhista da<br/> versão atual)</sub> |
 | :---: | :---: |

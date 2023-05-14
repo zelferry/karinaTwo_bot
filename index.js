@@ -13,6 +13,9 @@ let client = (global.client = new client_bot.client({
         makeCache: Options.cacheWithLimits({
             ...Options.DefaultMakeCacheSettings,
             ReactionManager: 0,
+            PresenceManager: 0,
+            GuildStickerManager: 0,
+            GuildScheduledEventManager: 0,
             GuildMemberManager: {
                 maxSize: 200,
                 keepOverLimit: member => member.id === client.user.id,
@@ -23,11 +26,7 @@ let client = (global.client = new client_bot.client({
             messages: {
                 interval: 3600,
                 lifetime: 1800,
-            }/*,
-            users: {
-                interval: 3600,
-                filter: user => user.bot && user.id !== client.user.id,
-            }*/
+            }
         },
         intents: [
             GatewayIntentBits.Guilds,
