@@ -11,10 +11,7 @@ class DJSSharderPoster extends BasePoster {
 		});
 	}
 	clientReady() {
-       // console.log({e:this.client.clusters.size > 0 ,a:this.client.clusters})
-		return (
-			this.client.clusters.size > 0 
-		);
+		return (this.client.clusters.size > 0);
 	}
 	waitForReady(fn) {
 		const listener = shard => {

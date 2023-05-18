@@ -97,7 +97,10 @@ class event extends Event {
                 } else if(command.vip && !user_data.config.vip.active){
                     await interaction.deferReply({ ephemeral: true }).catch(() => {});
 
-                    interaction.editReply({ content: "texte" });
+                    interaction.editReply({
+                        content: locale("commands:global.vip_user")
+                    });
+                    
                     return {}
                 } else {
                     KariHandler();

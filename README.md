@@ -22,7 +22,7 @@
   <img src="https://top.gg/api/widget/owner/793530706319114261.svg" alt="KarinaTwo" />
   </a>
 <a href="https://ko-fi.com/W7W7CNU5W">
- <img src="https://ko-fi.com/img/githubbutton_sm.svg" width="35%" />
+ <img src="https://ko-fi.com/img/githubbutton_sm.svg" width="39%" />
 </a>
 </p>
 

@@ -159,7 +159,8 @@ class Command extends comando {
 
             await interaction.editReply({
                 content: `${t("commands:spam", { number_all: (interaction.options.getNumber("size")).toString() })}\n\n${results.map((x,y) => `[${(y + 1)}] ${x}`).join("\n")}`
-            })
+            });
+            
             return {}
         }
     }

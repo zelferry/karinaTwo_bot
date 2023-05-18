@@ -1,10 +1,8 @@
 let comando = require("../../frameworks/commando/command.js");
+let { profile } = require('../../mongoDB/ini.js').user;
 
 var data_2 = ["gay","straight","lesbian","synormorph","bulge","andromorph"]
-
-//var yiff = require("yiff_api")
-
-var Discord = require("discord.js")
+let Discord = require("discord.js");
 //var yiff_ = new yiff.yiff()
 
 
@@ -66,10 +64,24 @@ class Command extends comando {
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let data = interaction.options.getString('type_image');
+        let value = await profile.find(interaction.user);
         let json = await this.client.private_api.yiff[data]();
         
         let embed = new Discord.EmbedBuilder().setImage(json.post.url).setColor("#7B68EE").setDescription(`${t("commands:yiff.label.artist")}: ${json.post.author}`);
-        interaction.editReply({ embeds: [embed] })
+        
+        if((data == "gay" || data == "bulge" || data == "andromorph") && !value.config.vip.active){
+            interaction.editReply({
+                content: t("commands:global.vip_user")
+            });
+            
+            return {}
+        } else {
+            interaction.editReply({
+                embeds: [embed]
+            });
+            
+            return {}
+        }   
     }
 
     command_info(){
