@@ -1,16 +1,16 @@
-let jimp = require("jimp");
-let Discord = require("discord.js");
+const jimp = require("jimp");
+const Discord = require("discord.js");
 
 module.exports = async(interaction, options, t, function_) => {
-	let avatar = await jimp.read(options.avatarURL);
-	let background = await jimp.read(options.background);
-	let model = await jimp.read(`./assets/profile/images/profile_model.png`);
-	let mascara = await jimp.read("./assets/profile/images/mascara.png");
+	const avatar = await jimp.read(options.avatarURL);
+	const background = await jimp.read(options.background);
+	const model = await jimp.read(`./assets/profile/images/profile_model.png`);
+	const mascara = await jimp.read("./assets/profile/images/mascara.png");
     
-	let font13 = await jimp.loadFont("./assets/profile/fonts/lemon_13.fnt");
-    let font19 = await jimp.loadFont("./assets/profile/fonts/lemo_19.fnt");
-    let font32 = await jimp.loadFont("./assets/profile/fonts/lemo_32.fnt");
-    let font32_2 = await jimp.loadFont("./assets/profile/fonts/lemo_32_2.fnt");
+	const font13 = await jimp.loadFont("./assets/profile/fonts/lemon_13.fnt");
+    const font19 = await jimp.loadFont("./assets/profile/fonts/lemo_19.fnt");
+    const font32 = await jimp.loadFont("./assets/profile/fonts/lemo_32.fnt");
+    const font32_2 = await jimp.loadFont("./assets/profile/fonts/lemo_32_2.fnt");
 
 
 	avatar.resize(145.50, 145.50);

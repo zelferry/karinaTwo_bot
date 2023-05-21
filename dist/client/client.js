@@ -1,20 +1,20 @@
-let baseClient = require("./baseClient.js");
+const baseClient = require("./base_client.js");
 
-let commandsSructure = require("../../frameworks/commando/client.js")
-let Discord = require('discord.js');
-let databaseStructure = require("./structures/database.js");
-let intervalStructure = require("./structures/interval.js");
-let apiStructure = require("../../dist/libs/images_server/index.js");
+const commandsSructure = require("../../frameworks/commando/client.js")
+const Discord = require('discord.js');
+const databaseStructure = require("./structures/database.js");
+const intervalStructure = require("./structures/interval.js");
+const apiStructure = require("../../dist/libs/images_server/index.js");
 
-let utils_ = require('../../utils/main.js');
-let events = require("../../frameworks/event/client.js");
-let dbconnect = require("../../mongoDB/connect.js");
+const utils_ = require('../../utils/main.js');
+const events = require("../../frameworks/event/client.js");
+const dbconnect = require("../../mongoDB/connect.js");
 
-let fetch = require('node-fetch');
-let i18next = require('i18next');
-let Backend = require('i18next-fs-backend');
-let fs = require("fs");
-let { exec } = require('child_process');
+const fetch = require('node-fetch');
+const i18next = require('i18next');
+const Backend = require('i18next-fs-backend');
+const fs = require("fs");
+const { exec } = require('child_process');
 
 
 class clientBot extends baseClient {
@@ -30,9 +30,9 @@ class clientBot extends baseClient {
     }
     displayTHIS(client){
         client.getContainer = async function(endpoit){
-            let ops88 = { method: 'GET', headers: { 'User-Agent': 'crosdid/1.0' } };
-            let url = `${client.contents.links.api}/${endpoit??"api"}`;
-            let result = await fetch(url, ops88);
+            const ops88 = { method: 'GET', headers: { 'User-Agent': 'crosdid/1.0' } };
+            const url = `${client.contents.links.api}/${endpoit??"api"}`;
+            const result = await fetch(url, ops88);
             return result.json() ?? { send: false }
         };
         //his.commands_utils = new commandsSructure(this, clientConfig);
@@ -74,7 +74,7 @@ class clientBot extends baseClient {
         client.private_api = new apiStructure(client);
     }
     async loadLocates(){
-        let path = `${process.cwd()}/locates`
+        const path = `${process.cwd()}/locates`
         try {
             await i18next.use(Backend).init({
                 ns: ["commands", "events", "permissions", "components"],
@@ -112,4 +112,5 @@ class clientBot extends baseClient {
         this.destroy();
     }
 }
+
 module.exports = clientBot 

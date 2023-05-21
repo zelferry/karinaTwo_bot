@@ -3,7 +3,6 @@ let Event = require("../../frameworks/event/event.js");
 let util = require('../../utils/main.js');
 let { GiveawaysManager } = require('discord-giveaways');
 let i18next = require('i18next');
-let plugins = require("../../plugins/index.js");
 let { vip, translations } = require("../../mongoDB/ini.js").user;
 
 class event extends Event {
@@ -63,23 +62,3 @@ class event extends Event {
 }
 
 module.exports = event
-
-/*
-function checkExpiration() {
-  // get the current date
-  const today = new Date();
-
-  // calculate the difference between today and subscription expiration date
-  const diff = subscriptionExpiration.getTime() - today.getTime();
-
-  // calculate the difference in days
-  const diffDays = diff / (1000 * 3600 * 24);
-
-  // if difference is 7 or less, alert the user
-  if (diffDays <= 7) {
-    alert('Your subscription is expiring soon! Please renew your subscription.')
-  }
-}
-
-// set an interval to check for expiration every day
-setInterval(checkExpiration, 24 * 60 * 60 * 1000); */

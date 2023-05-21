@@ -1,20 +1,13 @@
-let parse_ms = require("./libs/parse_ms/index.js");
-let devs_treat = require("./libs/treat_devs/index.js");
-let webclient = require("./libs/web_client/index.js");
-let cat_faces = require("./libs/smileys/cat_faces.js")
-
-let code = require("./extends/code.js");
-
 module.exports = {
     modules: {
-        parse_ms: parse_ms,
+        parse_ms: require("./libs/parse_ms/index.js"),
         smileys: {
-            cat: cat_faces
+            cat: require("./libs/smileys/cat_faces.js")
         },
-        devs_treat: devs_treat,
-        webclient: webclient
+        devs_treat: require("./libs/treat_devs/index.js"),
+        webclient: require("./libs/web_client/index.js")
     },
     extends: function(){
-        code();
+        require("./extends/code.js")();
     }
 }

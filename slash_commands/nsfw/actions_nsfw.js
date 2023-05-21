@@ -16,9 +16,9 @@ let user_data = {
 class Command extends comando {
     command_data = {
         name: "actions_nsfw",
-        description: "(social + nsfw) do some kind of action with some user! (nsfw version)",
+        description: "(social + nsfw + ⭐vip) do some kind of action with some user! (nsfw version)",
         descriptionLocalizations: {
-            "pt-BR": "(social + nsfw) fazer algum tipo de ação com algum usuário! (versão nsfw)"
+            "pt-BR": "(social + nsfw + ⭐vip) fazer algum tipo de ação com algum usuário! (versão nsfw)"
         },
         dmPermission: false,
         nsfw: true,
@@ -26,27 +26,27 @@ class Command extends comando {
             {
                 type: 1,
                 name: "assfuck",
-                description: "(social + nsfw) well... we already know where this is going...",
+                description: "(social + nsfw + ⭐vip) well... we already know where this is going...",
                 descriptionLocalizations: {
-                    "pt-BR": "(social + nsfw) bem... já sabemos aonde isso vai dar..."
+                    "pt-BR": "(social + nsfw + ⭐vip) bem... já sabemos aonde isso vai dar..."
                 },
                 options: [user_data]
             },
             {
                 type: 1,
                 name: "cum",
-                description: "(social + nsfw) well, milk is very good for health, isn't it?",
+                description: "(social + nsfw + ⭐vip) well, milk is very good for health, isn't it?",
                 descriptionLocalizations: {
-                    "pt-BR": "(social + nsfw) bom, leite faz muito bem pra saúde, né?"
+                    "pt-BR": "(social + nsfw + ⭐vip) bom, leite faz muito bem pra saúde, né?"
                 },
                 options: [user_data]
             },
             {
                 type: 1,
                 name: "blowjob",
-                description: "(social + nsfw) \"be careful licking your friend's popsicle, if you know what I mean hehe\"",
+                description: "(social + nsfw + ⭐vip) \"be careful licking your friend's popsicle, if you know what I mean hehe\"",
                 descriptionLocalizations: {
-                    "pt-BR": "(social + nsfw) \"cuidado ao lamber o picolé do seu amigo, se é que você me entende hehe\""
+                    "pt-BR": "(social + nsfw + ⭐vip) \"cuidado ao lamber o picolé do seu amigo, se é que você me entende hehe\""
                 },
                 options: [user_data]
             }

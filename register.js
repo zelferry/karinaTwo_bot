@@ -1,13 +1,15 @@
-let { Client, Intents, REST, Routes, GatewayIntentBits } = require('discord.js');
-let config = require(`${process.cwd()}/dist/primary_configuration.js`);
-let fs = require('fs');
+const config = require(`${process.cwd()}/dist/primary_configuration.js`);
+const fs = require('fs');
 
-let client_bot = new Client({
+const { Client, Intents, REST, Routes, GatewayIntentBits } = require('discord.js');
+const client_bot = new Client({
     intents: [ GatewayIntentBits.Guilds ]
 });
+const rest = new REST({
+    version: '10' 
+}).setToken(process.env.TOKEN);
 
-let public_cmds = (process.env.CONDITION_PRIVATE_COMMANDS === "true");
-let rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+const public_cmds = (process.env.CONDITION_PRIVATE_COMMANDS === "true");
 
 (async () => {
     console.log("[SLASH MANAGER] carregando os comandos");

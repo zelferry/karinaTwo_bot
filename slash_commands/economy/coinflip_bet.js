@@ -6,9 +6,9 @@ let Discord = require("discord.js");
 class Command extends comando {
     command_data = {
         name: "coinflip_bet",
-        description: "(economy) play heads or tails with me! (panther-coins betting version)",
+        description: "(economy + ⭐vip) play heads or tails with me! (panther-coins betting version)",
         descriptionLocalizations: {
-            "pt-BR": "(economia) jogue cara ou coroa comigo! (versão de aposta de panther-coins)"
+            "pt-BR": "(economia + ⭐vip) jogue cara ou coroa comigo! (versão de aposta de panther-coins)"
         },
         dmPermission: false,
         nsfw: false,

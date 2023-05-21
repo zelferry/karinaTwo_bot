@@ -5,7 +5,7 @@ let i18next = require('i18next');
 
 let { bgdb, profile, translations } = require("../../mongoDB/ini.js").user;
 let bgdata = require("../../database/background/ids.json");
-let Manager = require("../../plugins/commands/profile/index.js");
+let Manager = require("../../dist/client/commands/profile.js");
 
 class Command extends comando {
     command_data = {

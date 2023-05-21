@@ -1,5 +1,5 @@
-const EventEmitter = require('events');
-const Topgg = require(`@top-gg/sdk`);
+const EventEmitter = require("events");
+const Topgg = require("@top-gg/sdk");
 
 class BasePoster extends EventEmitter {
     constructor(options,client) {

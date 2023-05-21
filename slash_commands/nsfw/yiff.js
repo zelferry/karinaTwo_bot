@@ -30,7 +30,7 @@ class Command extends comando {
                         value: "straight",
                     },
                     {
-                        name: "gay",
+                        name: "⭐ gay",
                         value: "gay",
                     },
                     {
@@ -42,11 +42,11 @@ class Command extends comando {
                         value: "synormorph",
                     },
                     {
-                        name: "bulge",
+                        name: "⭐ bulge",
                         value: "bulge",
                     },
                     {
-                        name: "andromorph",
+                        name: "⭐ andromorph",
                         value: "andromorph",
                     }
                 ]
@@ -71,7 +71,9 @@ class Command extends comando {
         
         if((data == "gay" || data == "bulge" || data == "andromorph") && !value.config.vip.active){
             interaction.editReply({
-                content: t("commands:global.vip_user")
+                content: t("commands:global.vip_user_arg", {
+                    arg: (data).toString()
+                })
             });
             
             return {}

@@ -3,12 +3,12 @@ if (process.env.NODE_ENV !== 'production'){
     require('dotenv').config();
 }
 
-let { GatewayIntentBits, Options } = require('discord.js');
-let client_bot = require("./handlers/index.js")
-let Cluster = require("discord-hybrid-sharding");
-let dist = require("./dist/main.js");
+const { GatewayIntentBits, Options } = require('discord.js');
+const client_bot = require("./dist/client/client.js")
+const Cluster = require("discord-hybrid-sharding");
+const dist = require("./dist/main.js");
 
-let client = (global.client = new client_bot.client({
+const client = (global.client = new client_bot({
     bot: {
         makeCache: Options.cacheWithLimits({
             ...Options.DefaultMakeCacheSettings,

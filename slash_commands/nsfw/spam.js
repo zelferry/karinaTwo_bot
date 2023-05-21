@@ -23,9 +23,9 @@ let defaut_options = [
 class Command extends comando {
     command_data = {
         name: "spam",
-        description: "(nsfw) get from 1 to 15 URLs from some nsfw command",
+        description: "(nsfw + ⭐vip) get from 1 to 15 URLs from some nsfw command",
         descriptionLocalizations: {
-            "pt-BR": "(nsfw) obtenha de 1 a 15 URLs de algum comando nsfw"
+            "pt-BR": "(nsfw + ⭐vip) obtenha de 1 a 15 URLs de algum comando nsfw"
         },
         dmPermission: false,
         nsfw: true,

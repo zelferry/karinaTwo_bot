@@ -1,6 +1,6 @@
-let BasePoster = require('./base.js');
+const BasePoster = require("./base.js");
 
-class DJSSharderPoster extends BasePoster {
+class Poster extends BasePoster {
 	constructor(client, opinions = {}) {
 		super(opinions, client);
 		this.client = client;
@@ -10,9 +10,11 @@ class DJSSharderPoster extends BasePoster {
 			getStats: () => this.allStatus()
 		});
 	}
+    
 	clientReady() {
 		return (this.client.clusters.size > 0);
 	}
+    
 	waitForReady(fn) {
 		const listener = shard => {
 			if (shard.id !== this.client.totalClusters - 1) return;
@@ -21,16 +23,19 @@ class DJSSharderPoster extends BasePoster {
 				fn();
 			});
 		};
+        
 		this.client.on('clusterCreate', listener);
 	}
+    
 	async getStats() {
         return this.client.fetchClientValues('guilds.cache.size').then(results => {
             return {
                 serverCount: results.reduce((prev, val) => prev + val, 0),
                 shardCount: results.length
             };
-        })
+        });
     }
+    
     async allStatus(){
         let guild = await this.getStats()
         return {
@@ -40,4 +45,4 @@ class DJSSharderPoster extends BasePoster {
     }
 }
 
-module.exports = DJSSharderPoster;
+module.exports = Poster;

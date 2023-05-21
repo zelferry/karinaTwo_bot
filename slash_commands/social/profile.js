@@ -48,7 +48,7 @@ class Command extends comando {
             })
         } else {
             let value = await profile.find(user);
-            let Manager = require("../../plugins/commands/profile/index.js");
+            let Manager = require("../../dist/client/commands/profile.js");
             let background = bgdata.find(bg => bg.id === value.config.background.setted);
 
             function abbreviateNumber(value) {

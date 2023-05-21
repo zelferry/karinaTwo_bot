@@ -3,28 +3,20 @@ if (process.env.NODE_ENV !== 'production'){
     require('dotenv').config();
 }
 
-let Cluster = require("discord-hybrid-sharding");
-let dbconnect = require("./mongoDB/connect.js");
-let dist = require("./dist/main.js");
-let teste = require("./plugins/index.js");
+const Cluster = require("discord-hybrid-sharding");
+const dbconnect = require("./mongoDB/connect.js");
+const dist = require("./dist/main.js");
+const bot_list_client = require("./dist/cluster/bot_lists/index.js");
 
-let condittion_web = process.env.CONDITION_WEBCLIENT === "true";
-let condittion_databotslist = process.env.CONDITION_BOTLISTPOSTDATA === "true";
+const condittion_web = process.env.CONDITION_WEBCLIENT === "true";
+const condittion_databotslist = process.env.CONDITION_BOTLISTPOSTDATA === "true";
 
-let manager = new Cluster.ClusterManager("./index.js", {
+const manager = new Cluster.ClusterManager("./index.js", {
 	totalClusters: "auto",
 	totalShards: "auto",
 	token: process.env.TOKEN,
 	mode: "process"
 });
-
-if (condittion_databotslist) {
-	let bot_lists = teste.autoTopGgPost(manager);
-
-	bot_lists.on("posted", data => {
-		console.log(`[${new Date().toString().split(' ', 5).join(' ')}] status Postado na top.gg!`);
-	});
-}
 
 manager.on("clusterCreate", cluster => {
 	console.log(`[${new Date().toString().split(' ', 5).join(' ')}] cluster[${cluster.id}] iniciado!`);
@@ -32,6 +24,14 @@ manager.on("clusterCreate", cluster => {
 manager.on("debug", data => {
 	console.log(data);
 });
+
+if (condittion_databotslist) {
+	const bot_lists = new bot_list_client(manager, {});
+
+	bot_lists.on("posted", data => {
+		console.log(`[${new Date().toString().split(' ', 5).join(' ')}] status postado na top.gg!`);
+	});
+}
 
 require("./dist/anti_crash.js").cluster();
 manager.spawn({ timeout: -1 }).catch(console.error);

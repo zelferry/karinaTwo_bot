@@ -19,6 +19,7 @@ class baseClient extends Discord.Client {
         this.binder = binder
         this.binder.displayTHIS(this);
     }
+    
     connectBOT(){
         this.on("ready", async() => {
             this.guilds.cache.forEach(async (g) => {
@@ -27,6 +28,7 @@ class baseClient extends Discord.Client {
                     console.log(`[error] o servidor \`${g.name} (${g.id})\`e um servidor inválido!`);
                 }
             });
+            
             let status = clientConfig.status;
             status = status.replace("!!{version}!!", `v${require('../../package.json').version}`);
             
@@ -44,4 +46,5 @@ class baseClient extends Discord.Client {
         }
     }
 }
+
 module.exports = baseClient 
