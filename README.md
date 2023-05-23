@@ -36,6 +36,7 @@
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/zelferry/karinaTwo_bot">
 </p>
 
+> aviso: todo o código está sendo movido para a pasta **src/** para eu melhorar a base de código da karinaTwo
 
 ## 💜 introdução
 

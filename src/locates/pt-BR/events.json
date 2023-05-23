@@ -1,0 +1,24 @@
+{
+    "prefix": {
+        "title": "que tal experimentar os **slash commands**?",
+        "description": "este comando está disponível via **Slash Commands** (comandos com `/`)\ncomandos que não usam slash desapareceram por completo, então é melhor ir se acostumando com eles!\n\nas versões dos comandos em **slash Commands são *superiores* as versões originais**, então você não terá nada a perder usando meus **slash commands** em vez das versões originais!",
+        "fields_name": "os comandos de barra não estão aparecendo?",
+        "fields_description": "se os meus slash commands não estão aparecendo no seu servidor, [me autorize a criar slash commands no seu servidor]({{bot_url}}), verifique se o seu cargo possui permissão para \"Usar comandos de aplicativo\", verifique se a opção \"Use comandos de barra\" está ativada nas suas configurações e verifique se o seu Discord está atualizado!\ncaso você precise de ajuda, [entre no meu servidor de suporte]({{server_url}})!\n\ne não se esqueça, os comandos de barra são àqueles que usam a **`/`**!"
+    },
+    "slash": {
+        "error": {
+            "embed": {
+                "title": "erro ao executar comando:"
+            },
+            "interaction": "um erro de interação aconteceu!\ntente novamente\n\nse continua por favor entrar em suporte com meus desenvolvedores"
+        },
+        "banned": {
+            "description": "🚫 você foi banido de usar meus comandos!",
+            "fields_name": "com o motivo:"
+        }
+    },
+    "afk": "o <@{{mentioned}}> esta `{{afk_reason}}`.\nem breve ele(a) volte para o servidor",
+    "vip_user": {
+        "expirate": ":x:**|** seu **vip user** expirou!\n🕔**|** você pode comprar o plano de 30 ou de 60 dias aqui: https://ko-fi.com/karinatwo/shop"
+    }
+}

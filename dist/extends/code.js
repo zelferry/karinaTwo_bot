@@ -7,5 +7,9 @@ module.exports = function(){
         return function(lang){
             return "```"+lang+"\n"+this+"\n```"
         }
-    })
+    });
+
+    global.require_global = (pach) => {
+        return require(`${process.cwd()}/${pach}`)
+    }
 }

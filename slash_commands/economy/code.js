@@ -1,7 +1,7 @@
 let comando = require("../../frameworks/commando/command.js");
 let { vip } = require("../../mongoDB/ini.js").user; 
 
-let Discord = require("discord.js"); 
+let Discord = require("discord.js");
 
 class Command extends comando {
     command_data = {

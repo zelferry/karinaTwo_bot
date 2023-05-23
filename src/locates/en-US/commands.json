@@ -1,0 +1,413 @@
+{
+    "global": {
+        "vip_user": "🚫**|** this command is for vip-users only!\n🦊**|** you can buy a vip-user key here: <https://ko-fi.com/karinatwo/shop>\nand remembering, buying the vip-user you help me to stay online!",
+        "vip_user_arg": "🚫**|** the `{{arg}}` argument is for vip-users only!\n🦊**|** you can buy a vip-user key here: <https://ko-fi.com/karinatwo/shop>\nand remembering, buying the vip-user you help me to stay online!",
+        "label": {
+            "yes": "yes",
+            "no": "no"
+        },
+        "button": {
+            "web": "see on the web",
+            "report": "report content",
+            "execute": "execute",
+            "cancel": "cancel"
+        },
+        "canceled": "👍**|** canceled",
+        "error": {
+            "commands": "🚫**|** There was a strange error in the command, please try again later\n```md\n{{error}}\n```",
+            "api_error": "🚫**|** the **external information deliveries service** did not send anything, please try again later.",
+            "no_url": "🚫**|** it looks like the requested url has disappeared!\n🤔**|** try again",
+            "user": {
+                "isBot": "🚫**|** this user is a bot!"
+            },
+            "channel": {
+                "text": ":x:**|** `{{channelName}}` is not a text channel"
+            }
+        }
+    },
+    "command": {
+        "info": {
+            "noCommand": "🚫**|** the command {{commandName}} does not exist or is faulty :p",
+            "success": {
+                "name": "command name:",
+                "description": "description:",
+                "category": "category:",
+                "permissions": "required permissions:",
+                "howToUse": "how to use?",
+                "subCommands": {
+                    "title": "sub commands",
+                    "labelOne": "name: **{{nameTwo}}**\ndescription: **{{description}}**\nhow to use: `/{{nameOne}} {{nameTwo}}`",
+                    "labelTwo": "there is not :/"
+                } 
+            }
+        }
+    },
+    "invite": "add me to your server!",
+    "server": {
+        "info": {
+            "title": "server information",
+            "id": "id:",
+            "name": "name:",
+            "owner": "owner:",
+            "members": "members:",
+            "date_create": "creation date:",
+            "date_join": "you joined the server on:",
+            "button": {
+                "name": "see server data",
+                "embed": {
+                    "title": "server data",
+                    "description": "this information from your server in my database:"
+                }
+            }
+        },
+        "icon": "server icon"
+    },
+    "support": {
+        "server": "😁**|** my support server!\n(remembering, my current support server is in portuguese, soon there will be one in english)",
+        "send": {
+            "error": "🚫**|** provide a report of a maximum of 1000 characters.",
+            "success": "✅**|** sent with success!" 
+        }
+    },
+    "user": {
+        "avatar": "🖼**|** {{userName}}'s avatar",
+        "about_me": {
+            "success": "new **about me**"
+        }
+    },
+    "panther_coins": {
+        "me": "you have **{{coins}}** panther-coins!",
+        "user": "***{{userTag}}*** has **{{coins}}** panther-coins!"
+    },
+    "daily": {
+        "no_time": "🚫**|** you already collected today! \n🕔**|** remaining time for you to collect again: **{{hours}}h {{minutes}}m {{seconds}}s**!",
+        "error": "an error has occurred!",
+        "success": "🤩**|** mr.beast gave you **{{result}} panther-coins**!!!\n🕔**|** __come back tomorrow__ for another mr.beast video"
+    },
+    "pay": {
+        "error": {
+            "isThatYou": "🚫**|** you can't pay yourself!",
+            "insufficient": "🚫**|** you don't have enough PANTHER-COINS!",
+            "noNegative": "🚫**|** Negative numbers don't count!"
+        },
+        "button": {
+            "pay": "pay",
+            "canceled": "cancel payment"
+        },
+        "success": {
+            "warn": "💸**|** do you really want to transfer {{amount}} panther-coins to **{{userName}}**? \nkarinaTwo's team is **not responsible** for lost panther-coins, so make sure you're transferring them to a trusted person! \ntrading NSFW(+18) content in exchange for panther-coins is prohibited!",
+            "transferred": "✅**|** vou transferred **{{amount}}** ***panther-coins*** to user ***{{userTag}}***",
+            "sendMessage": {
+                "success": "👍**|** and the MESSAGE was successfully sent!",
+                "label1": "***{{authorTag}}*** gave you **{{amount}}** panther-coins!",
+                "label2": "a message from him:"
+            }
+        }
+    },
+    "buy": {
+        "vip": "🪙**|** now for you to buy the *vip user* you must enter my shop! https://ko-fi.com/karinatwo/shop\n🤩**|** in addition to being able to buy panther-coins in the shop, you'll also be helping me stay online!"
+    },
+    "eight_ball": {
+        "error": "🚫**|** enter a valid question!",
+        "asks": {
+            "label_1": "yea",
+            "label_2": "no",
+            "label_3": "perhaps",
+            "label_4": "I don't know, try again",
+            "label_5": "Who knows?",
+            "label_6": "I can't tell you",
+            "label_7": "my informant said no",
+            "label_8": "my informant said yes",
+            "label_9": "probably yes",
+            "label_10": "probably not",
+            "label_11": "ask me later!",
+            "label_12": "of course!",
+            "label_13": "don't count on me for that",
+            "label_14": "I doubt it very much"
+        }
+    },
+    "jokenpo": {
+        "rock": {
+            "win": "✂️**|** scissors!\n🔹️**|**I lost :c",
+            "we_tie": ":rock:**|** rock!\n🔹️**|** we tied!",
+            "loser": ":newspaper:**|** paper!\n🔹️**|** you lost!"
+        },
+        "paper": {
+            "win": ":rock:**|** rock!\n🔹️**|** I lost :c",
+            "we_tie": ":newspaper:**|** paper!\n🔹️**|** we tied!",
+            "loser": "✂️**|** scissor!\n🔹️**|** you lost!"
+        },
+        "scissor": {
+            "win": ":newspaper:**|** paper!\n🔹️**|** I lost :c",
+            "we_tie": "✂️**|** scissor!\n🔹️**|** we tied!",
+            "loser": ":rock:**|** rock!\n🔹️**|** you lost!"
+        }
+    },
+    "say": {
+        "error": "❌**|** LOTS OF CHARACTERS!\n⭕**|** the maximum number of characters is `1400` CHARACTERS!",
+        "success": {
+            "return": "{{args_}}\n\n🦊 message sent by <@{{userId}}>",
+            "reply": "Message sent successfully!"
+        }
+    },
+    "ban": {
+        "error": {
+            "is_me": "❌**|** you can't banish yourself",
+            "is_bot": "❌**|** you can't ban me\n😭**|** you hate me? :(",
+            "is_owner": "❌**|** you cannot ban the server owner!",
+            "is_role1": "❌**|** you cannot ban someone who has higher or same role as you!",
+            "is_role2": "❌**|** i cannot ban someone who has higher or same role as me!"
+        },
+        "success": "😡| **{{userTag}}** was successfully banned because of: **{{reason_}}**"
+    },
+    "clean": {
+        "error": {
+            "no_channel": ":x:**|** **{{channelName}}** is not a text channel "
+        },
+        "success": {
+            "main": "**{{size}}** clean posts on *{{channelName}}*!\n{{subError}}",
+            "one": "however, **{{coutResult}}** massages were not deleted because they were older than 2 weeks or because they were __*unknown*__",
+            "two": "\u200B"
+        }
+    },
+    "kick": {
+        "error": {
+            "is_me": "❌**|** you can't kick yourself out",
+            "is_bot": "❌**|** you can't kick me out\n😭**|** you hate me? :(",
+            "is_owner": "❌**|** you cannot kick the server owner!",
+            "is_role1": "❌**|** you cannot expel someone who has a higher or equal position than you!",
+            "is_role2": "❌**|** I cannot expel someone who has a higher or equal position than mine!"
+        },
+        "success": "😡| **{{userTag}}** was successfully kicked because of: **{{reason_}}**"
+    },
+    "nuke": {
+        "warn": "🚫**|** wait a second!\ndo you really want me to do this?\n\nI will be doing the following:\n  1 - clone `{{oldchannel}}` channel\n  2 - delete `{{oldchannel}}` channel\n\nwant me to do this?",
+        "success": "🍷**|** channel **100**% cleaned by **{{userTag}}**"
+    },
+    "slowmode": "{{emoji}}**|** slow mode set to **{{timer}} seconds** on __{{channelName}}__!",
+    "help": {
+        "devs": "thanks to my developers I can continue to exist on discord!",
+        "commands": {
+            "categorys": {
+                "discord": "📱 discord",
+                "economy": "🪙 economy",
+                "fun": "🤣 fun",
+                "management": "👩‍⚖️ management",
+                "miscellaneous": "♾ random",
+                "social": "🫂 Social",
+                "utility": "🛠 utilities"
+            },
+            "title": "my list of commands!",
+            "footer": "some commands are not appearing because they are SubCommands"
+        }
+    },
+    "colors": {
+        "error": {
+            "color": "❌**|** invalid color!\n❓**|** try again with a valid **hexadecimal** color",
+            "api": "❌**|** something wrong happened!\n✋**|** try again later"
+        },
+        "embed": {
+            "description": "color name: **{{cname}}**\nexact name: **{{exactly}}**"
+        },
+        "hex": {
+            "title": "hexadecimal",
+            "field": "color valve: `{{value}}`"
+        },
+        "rgb": {
+            "title": "red, green, blue (rbg)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        },
+        "hsl": {
+            "title": "hue, saturation, lightness (hsl)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        },
+        "hsv": {
+            "title": "hue, saturation, value (hsv)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        },
+        "cmyk": {
+            "title": "cyan, magenta, yellow, black (cmyk)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        },
+        "XYZ": {
+            "title": "chromatic coordinates (XYZ)",
+            "field": "valve: `{{value}}`\nfraction: `{{fraction}}`"
+        }
+    },
+    "meme": {
+        "generate": {
+            "label": "> title: {{post_title}}\n> score: {{post_votes}}\n> subreddit: {{post_subreddit}}\n> origin: [original here]({{post_url}})",
+            "nsfw": "🚫**|** looks like the meme is an nsfw meme!",
+            "no_img": "🚫**|** looks like the meme is not an image"
+        },
+        "knuckles": "did Knuckles approve of your meme?"
+    },
+    "wikipedia": {
+        "error": "could not retrieve any results.\ntry searching case sensitive."
+    },
+    "e621": {
+        "error": "😭**|** a small error occurred while retrieving information from the site!",
+        "no_post": "🚫**|** no results for __*{{tags}}*__\n📛**|** try later",
+        "original_description": "post description",
+        "no_description": "__has no description__",
+        "label": {
+            "one": "> **score**: {{postScore}} | **origin**: [original here](https://e621.net/post/show/{{postId}})",
+            "two": "tag(s) blacklisted!\ntag: {{tags}} | [**Link**](https://e621.net/posts/{{postId}})\n> if you want to define your blacklist, you can go to karina's editing option here (the site is not in english): [karinatwo.repl.co/dashboard/user/edit](https://karinatwo.repl.co/dashboard/user/edit)",
+            "three": "> **score:** {{postScore}} | **[Link](https://e621.net/post/show/{{postId}})**\n> *files in (webm/swf/mp3/mp4) are not supported by embeds.*",
+            "four": "> **score**: {{postScore}} | **[link](https://e621.net/posts/show/{{postId}})*\n\n> **erro 500**\nYou can only view the image with a [logged in](https://e621.net/users/new) account on **e621**"
+        }
+    },
+    "spam": "🔼**|** More than {{number_all}} URLs were retrieved from the global database",
+    "yiff": {
+        "label": {
+            "artist": "artist/artists",
+            "no_foud": "there is not"
+        }
+    },
+    "afk": {
+        "activated": "💤**|** afk enabled!\nusers will know you are:`{{reasonn}}`\n\nfor your connivance, i will deactivate your afk when you say something in chat! 😉",
+        "error": ":x:**|** you already have the afk active!"
+    },
+    "actions": {
+        "attack": {
+            "error": "🚫**|** you cannot attack yourself!",
+            "success": {
+                "title": "attack!",
+                "description": "**{{user1}}** just attacked **{{user2}}**"
+            }
+        },
+        "dance": {
+            "error": "🚫**|** mention someone other than you!",
+            "success": {
+                "title": "dance! 💃",
+                "description": "**{{user1}}** and **{{user2}}** are dancing!"
+            }
+        },
+        "hug": {
+            "error": "🚫**|** you can't hug yourself!",
+            "success": {
+                "title": "hugs!! :3",
+                "description": "**{{user1}}** gave **{{user2}}** a hug"
+            }
+        },
+        "kiss": {
+            "error": "🚫**|** you can't kiss yourself!",
+            "success": {
+                "title": "kisses!",
+                "description": "**{{user1}}** kissed **{{user2}}**"
+            }
+        },
+        "slap": {
+            "error": "🚫**|** you can't hit yourself!",
+            "success": {
+                "title": "slap?!",
+                "description": "**{{user1}}** slapped **{{user2}}**"
+            }
+        }
+    },
+    "profile": {
+        "name": "📱**|** profile",
+        "about_me": "about me"
+    },
+    "ship": {
+        "primary": "HMMM, is it going to work or not?",
+        "label": {
+            "me": "love yourself always!",
+            "perfect": "this is the perfect couple!",
+            "making_out": "these here are already dating and didn't tell anyone!",
+            "want": "maybe he just needs {{userName}} to want a serious relationship",
+            "cry": "I really wanted to say it's possible, but..."
+        }
+    },
+    "morse": {
+        "morse_text": "morse 》 text",
+        "text_morse": "text 》morse"
+    },
+    "donate": {
+        "description": "do you want me to stay online?\nso how about making a little donation?\neveryone is welcome and, of course, you will be helping me a lot, nowadays hosts are costing around **R$45.00** (Brazilian currency, this one costing **8.89 US dollars**), and you can help me stay online by donating, it's worth remembering that it's optional, if you can't donate, no problem :)",
+        "button": "donate and help karinaTwo",
+        "author": "click here if the url button is not showing",
+        "footer": "warning: sharing any of my dev's personal information will result in a permanent ban"
+    },
+    "status": {
+        "system": {
+            "title": "system",
+            "description": "cpu model: {{model}}\nram usage: {{ram}}MB\ncpu usage: {{cpu_usage}}%\nbits: {{bits}}\narchitecture: {{platform}}"
+        },
+        "info": {
+            "title": "information",
+            "description": "servers: {{guild}}\nusers: {{users}}\ncommands in total: {{cmds}}"
+        },
+        "version": "versions"
+    },
+    "background": {
+        "buy": {
+            "title": ":moneybag:**|** background shop",
+            "invalid": ":x:**|** invalid code",
+            "alreadyOwned": ":x:**|** you already have this background",
+            "purchase": "buy",
+            "purchase_expired": "buy (expired)",
+            "price": "price",
+            "concept": "concept by:",
+            "preview": "🖼**|** background preview",
+            "noVip": ":x:**|** only *vip users* can buy this background\n❓**|** you can buy the vip user here: https://ko-fi.com/karinatwo/shop",
+            "noMoney": ":x:**|** you don't have enough panther-coins",
+            "success": ":moneybag:**|** you bought background **{{name}}** for **{{price}} panther-coins**, it has already been set automatically in your profile!"
+        },
+        "set": {
+            "title": "🖼**|** set background",
+            "notOwned": ":x:**|** you do not have this background",
+            "success": ":white_check_mark:**|** you set {{name}} background",
+            "description": "📝**|** their backgrounds are: {{bgList}}"
+        }
+    },
+    "actions_nsfw": {
+        "assfuck": {
+            "error": "🚫**|** mention a user other than yourself!\n🤨**|** ||autofuck?||",
+            "success": {
+                "title": "none",
+                "description": "**{{user2}}**, you are being fucked in the ass by **{{user1}}** :3"
+            }
+        },
+        "cum": {
+            "error": "🚫**|** mention a user other than yourself!",
+            "success": {
+                "title": "none",
+                "description": "**{{user2}}**, **{{user1}}** is cumming on you!"
+            }
+        },
+        "blowjob": {
+            "error": "🚫**|** mention a user other than yourself!",
+            "success": {
+                "title": "none",
+                "description": "**{{user2}}**, you are getting a blowjob from **{{user1}}**"
+            }
+        }
+    },
+    "coinflip": {
+        "bet": {
+            "error": "🚫**|** you don't have enough panther-coins!\n💸**|** **50** or more panther-coins are required to spin the coin!",
+            "win": "it gave **{{value}}**, you won this time!\n💸**|** added **50** panther-coins to your wallet!",
+            "loser": "it gave **{{value}}**, you lost this time!\n💸**|** I removed **50** panther-coins from your wallet for the defeat"
+        },
+        "normal": {
+            "win": "it gave **{{value}}**, you won this time!",
+            "loser": "it gave **{{value}}**, you lost this time!"
+        }
+    },
+    "reps": {
+        "error": {
+            "is_you": "🚫**|** you can't do reps for yourself!",
+            "no_time": "🚫**|** wait so you can use the command again\n⏱**|** wait more **{{hours}}h {{minutes}}m {{seconds}}s**!"
+        },
+        "success": "😎**|** you gave __reputation__ to **{{user}}**!"
+    },
+    "code": {
+        "error": {
+            "invalid_key": "🚫**|** vip user key not found!\n🔄**|** try again with a valid key",
+            "expired": "🚫**|** vip user key has expired!\n❓**|** if you want, you can buy a new key here: https://ko-fi.com/karinatwo/shop",
+            "type": "🚫**|** Invalid key type!\n🔄**|** try again with a valid key"
+        },
+        "success": "🤩**|** vip user activated!\n🥳**|** now you can enjoy all vip perks for {{days}} days!"
+    }
+}
