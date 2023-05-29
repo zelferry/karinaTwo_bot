@@ -1,5 +1,5 @@
 let Discord = require("discord.js");
-let { vip } = require("../../mongoDB/ini.js").user 
+let { vip } = require("../../../data/ini.js").user 
 
 exports.run = async (client, message, args) => {
     if(!args.length > 0) {

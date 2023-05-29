@@ -1,14 +1,17 @@
-let Event = require("../../frameworks/event/event.js");
-let Discord = require('discord.js');
-let ms = require('ms');
-let ids = require(`${process.cwd()}/dist/primary_configuration.js`).user().owners;
-let support_server = require(`${process.cwd()}/dist/primary_configuration.js`).urls().support
-let util = require('../../utils/main.js');
-let KariWebhooks = new util.webhooks1();
+const Event = require("../../structures/events/event.js");
+const Discord = require('discord.js');
+const ms = require('ms');
+
+const ids = (process.env.USER_OWNERS).split(',')
+const support_server = process.env.URLS_SUPPORT
+    
+const util_webhook = require('../../utils/webhooks.js');
+const webhooks = new util_webhook();
+
 let prefix_  = "f/"
 
-let i18next = require('i18next');
-let { translations } = require("../../mongoDB/ini.js").user;
+const i18next = require('i18next');
+const { translations } = require("../../data/ini.js").user;
 
 class event extends Event {
     constructor(...args){

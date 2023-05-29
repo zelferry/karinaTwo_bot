@@ -4,9 +4,9 @@ if (process.env.NODE_ENV !== 'production'){
 }
 
 const { GatewayIntentBits, Options } = require('discord.js');
-const client_bot = require("./dist/client/client.js")
+const client_bot = require("./structures/client/client.js")
 const Cluster = require("discord-hybrid-sharding");
-const dist = require("./dist/main.js");
+const extend = require("./utils/extend.js");
 
 const client = (global.client = new client_bot({
     bot: {
@@ -49,6 +49,6 @@ const client = (global.client = new client_bot({
     }
 }));
 
-dist.extends();
-require("./dist/anti_crash.js").client(client);
+extend();
+//require("./dist/anti_crash.js").client(client);
 client.connectBOT(process.env.TOKEN);

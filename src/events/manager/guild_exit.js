@@ -1,8 +1,7 @@
-let Event = require("../../frameworks/event/event.js");
-let util = require('../../utils/main.js');
-
-let KariWebhooks = new util.webhooks1();
-let Discord = require('discord.js');
+const Event = require("../../structures/events/event.js");
+const util_webhook = require('../../utils/webhooks.js');
+const Discord = require('discord.js');
+const webhooks = new util_webhook();
 
 class event extends Event {
     constructor(...args){
@@ -18,7 +17,7 @@ class event extends Event {
         await require('../../mongoDB/ini.js').guild.deleteGuild(guild);
         client.giveawaysManager.giveaways.filter(g => g.guildID === guild.id).forEach(g => client.giveawaysManager.delete(g.messageID));
         
-        KariWebhooks.exit({
+        webhooks.exit({
             embeds: [new Discord.MessageEmbed().setColor('#FFFFF1').setTitle(`karina saiu de um servidor!`).addField('nome do server:', `${guild.name}`).addField('id do server:', `${guild.id}`)]
         });
     }

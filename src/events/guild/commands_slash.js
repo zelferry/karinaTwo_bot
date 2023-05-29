@@ -1,11 +1,12 @@
-let Event = require("../../frameworks/event/event.js");
-let util = require('../../utils/main.js');
-let KariWebhooks = new util.webhooks1();
+let Event = require("../../structures/events/event.js");
+
+const util_webhook = require('../../utils/webhooks.js');
+const webhooks1 = new util_webhook();
+
 let Discord = require('discord.js');
 let i18next = require('i18next');
-let  data_warn = require("../../database/client/client_config.json")
-let { bansUsers, translations, profile } = require("../../mongoDB/ini.js").user;
-let { configs } = require("../../mongoDB/ini.js").guild;
+let { bansUsers, translations, profile } = require("../../data/ini.js").user;
+let { configs } = require("../../data/ini.js").guild;
 
 let suport_db = new Discord.Collection();
 
@@ -105,7 +106,7 @@ class event extends Event {
                 } else {
                     KariHandler();
 
-                    KariWebhooks.commands({
+                    webhooks1.commands({
                         embeds: [{
                             title: "comando executado",
                             description: `o comando ***/${interaction.commandName.toLowerCase()}*** foi executado pelo ${interaction.user.tag} com sucesso!`,
@@ -128,7 +129,7 @@ class event extends Event {
             if(interaction.customId === "modal_support"){
                 let support_input = interaction.fields.getTextInputValue("modal_support_input");
                 
-                KariWebhooks.suport({
+                webhooks1.suport({
                     embeds: [{
                         color: 16777200,
                         fields: [{

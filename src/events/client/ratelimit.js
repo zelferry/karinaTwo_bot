@@ -1,4 +1,4 @@
-let Event = require("../../frameworks/event/event.js");
+let Event = require("../../structures/events/event.js");
 let ms = require("ms")
 
 class event extends Event {

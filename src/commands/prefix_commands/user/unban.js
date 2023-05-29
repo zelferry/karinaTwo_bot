@@ -1,6 +1,6 @@
 let Discord = require("discord.js")
 
-let { bansUsers } = require("../../mongoDB/ini.js").user 
+let { bansUsers } = require("../../../data/ini.js").user 
 
 exports.run = async (client, message, args) => {
     if(!args.length > 0) return message.reply({

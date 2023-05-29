@@ -1,7 +1,7 @@
-let Event = require("../../frameworks/event/event.js");
-let Discord = require("discord.js");
-let { afk, translations } = require("../../mongoDB/ini.js").user
-let i18next = require('i18next');
+const Event = require("../../structures/events/event.js");
+const Discord = require("discord.js");
+const { afk, translations } = require("../../data/ini.js").user
+const i18next = require('i18next');
 
 class event extends Event {
     constructor(...args){

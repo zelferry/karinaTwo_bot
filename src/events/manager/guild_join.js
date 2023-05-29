@@ -1,8 +1,7 @@
-let Event = require("../../frameworks/event/event.js");
-let util = require('../../utils/main.js');
-
-let KariWebhooks = new util.webhooks1();
+const Event = require("../../structures/events/event.js");
+const util_webhook = require('../../utils/webhooks.js');
 const Discord = require('discord.js');
+const webhooks = new util_webhook();
 
 class event extends Event {
     constructor(...args){
@@ -12,7 +11,7 @@ class event extends Event {
     }
     
     async run(guild){
-        KariWebhooks.exit({
+        webhooks.exit({
             embeds: [new Discord.MessageEmbed().setColor('#FFFFF1').setTitle(`karina entrou em um servidor!`).addField('nome do server:', `${guild.name}`).addField('id do server:', `${guild.id}`)]
         });
     }
