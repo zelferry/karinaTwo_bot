@@ -1,12 +1,10 @@
-let Event = require("../../structures/events/event.js");
-
+const Event = require("../../structures/events/event.js");
+const Discord = require('discord.js');
+const i18next = require('i18next');
+const { bansUsers, translations, profile } = require("../../data/ini.js").user;
+const { configs } = require("../../data/ini.js").guild;
 const util_webhook = require('../../utils/webhooks.js');
 const webhooks1 = new util_webhook();
-
-let Discord = require('discord.js');
-let i18next = require('i18next');
-let { bansUsers, translations, profile } = require("../../data/ini.js").user;
-let { configs } = require("../../data/ini.js").guild;
 
 let suport_db = new Discord.Collection();
 
@@ -78,7 +76,24 @@ class event extends Event {
 
                     return {}
                 } else if (command.nsfw && !interaction.channel.nsfw){
-                    return client.extra.utils.message.noNsfw(client, interaction);
+                    await interaction.deferReply({ ephemeral: true });
+                    
+                    let channels_ = interaction.guild.channels.cache.filter((channel) => channel.nsfw).map(x => "<#"+x.id+">");
+                    let embed_2 = new Discord.EmbedBuilder().setColor("#FF7F50").setDescription(`:x:|o canal não tem a função **NSFW** ativada!`).setTimestamp();
+                    let text = channels_.map(x => `${x}`).slice(0, -1).length > 1 ? channels_.map(x => `${x}`).slice(0, -1).join(", ") + ` ou em ${channels_[channels_.length -1]}` : channels_.map(x => `${x}`).join(", ");
+
+                    if(channels_.length > 0){
+                        embed_2.addFields({
+                            name: `tente novamente em:`,
+                            value: `${text}.`
+                        });
+                    }
+                    
+                    interaction.editReply({
+                        embeds: [embed_2]
+                    });
+                    
+                    return {}
                 } else if(ban_user.ready) {
                     await interaction.deferReply({
                         ephemeral: true

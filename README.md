@@ -21,11 +21,7 @@
 <a href="https://top.gg/bot/793530706319114261">
   <img src="https://top.gg/api/widget/owner/793530706319114261.svg" alt="KarinaTwo" />
   </a>
-<a href="https://ko-fi.com/W7W7CNU5W">
- <img src="https://ko-fi.com/img/githubbutton_sm.svg" width="39%" />
-</a>
 </p>
-
 
 <p align="center">
 <a href="https://karinaTwo.repl.co">
@@ -36,7 +32,11 @@
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/zelferry/karinaTwo_bot">
 </p>
 
-> aviso: todo o código está sendo movido para a pasta **src/** para eu melhorar a base de código da karinaTwo
+<p align="center">
+<a href="https://ko-fi.com/W7W7CNU5W">
+ <img src="https://ko-fi.com/img/githubbutton_sm.svg" width="39%" />
+</a>
+</p>
 
 ## 💜 introdução
 

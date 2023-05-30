@@ -99,7 +99,7 @@ class clientBot extends baseClient {
         dbconnect("client");
         await this.loadLocates();
         await this.pre_load.events.load();
-        //await this.pre_load.commands.loadSlash();
+        await this.pre_load.commands.loadSlash();
         await this.pre_load.commands.loadPrefix();
         this.login(process.env.TOKEN).then(setTimeout(() => {
             if (!this.isReady()) exec('kill 1');

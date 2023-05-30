@@ -33,7 +33,7 @@
     "start": "node Cluster.js",
     "start:traceWarnings": "node --trace-warnings Cluster.js",
     "test": "node index.test.js",
-    "register": "node register.js",
+    "register": "node src/deploy-commands.js",
     "debug": "node --inspect Cluster.js"
   },
   "keywords": [

@@ -4,14 +4,13 @@ if (process.env.NODE_ENV !== 'production'){
 }
 
 const Cluster = require("discord-hybrid-sharding");
-const dbconnect = require("./mongoDB/connect.js");
-const dist = require("./dist/main.js");
-const bot_list_client = require("./dist/cluster/bot_lists/index.js");
+const dbconnect = require("./src/data/connect.js");
+const bot_list_client = require("./src/utils/bot_lists/index.js");
 
 const condittion_web = process.env.CONDITION_WEBCLIENT === "true";
 const condittion_databotslist = process.env.CONDITION_BOTLISTPOSTDATA === "true";
 
-const manager = new Cluster.ClusterManager("./index.js", {
+const manager = new Cluster.ClusterManager("./src/index.js", {
 	totalClusters: "auto",
 	totalShards: "auto",
 	token: process.env.TOKEN,
@@ -33,8 +32,8 @@ if (condittion_databotslist) {
 	});
 }
 
-require("./dist/anti_crash.js").cluster();
+require("./src/utils/anti_crash.js").cluster();
 manager.spawn({ timeout: -1 }).catch(console.error);
 dbconnect("cluster");
 
-if (condittion_web) dist.modules.webclient();
+if (condittion_web) require("./src/utils/web_client/index.js")();

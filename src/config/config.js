@@ -22,7 +22,8 @@ module.exports = {
             website: "https://karinaTwo.repl.co"
         },
         blacklist: {
-            e621: ["vore","oral_vore","loli","gore","cum_vore","cum_gore","luca_(pixar)","child","feral"]
+            e621: ["vore","oral_vore","loli","gore","cum_vore","cum_gore","luca_(pixar)","child","feral"],
+            e926: ["loli", "child", "feral"]
         }
     }
 }
