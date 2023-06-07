@@ -105,7 +105,7 @@ class event extends Event {
                             color: 389301,
                             fields: [{
                                 name: locale("events:slash.banned.fields_name"),
-                                value: `\`\`\`txt\n${vailar.reason}\n\`\`\``
+                                value: `\`\`\`txt\n${ban_user.reason}\n\`\`\``
                             }]
                         }]
                     });
@@ -124,7 +124,7 @@ class event extends Event {
                     webhooks1.commands({
                         embeds: [{
                             title: "comando executado",
-                            description: `o comando ***/${interaction.commandName.toLowerCase()}*** foi executado pelo ${interaction.user.tag} com sucesso!`,
+                            description: `o comando ***/${interaction.commandName.toLowerCase()}*** foi executado pelo ${interaction.user.username} com sucesso!`,
                             color: 16777200,
                             fields: [{
                                 name: "comando inteiro",
@@ -149,7 +149,7 @@ class event extends Event {
                         color: 16777200,
                         fields: [{
                             name: "autor:",
-                            value: `tag: \`${interaction.user.tag}\`\nid: \`${interaction.user.id}\``
+                            value: `tag: \`${interaction.user.username}\`\nid: \`${interaction.user.id}\``
                         },
                         {
                             name: "suporte:",
@@ -167,7 +167,7 @@ class event extends Event {
                 
                 let embed = new Discord.EmbedBuilder().addFields({ name: locale("commands:user.about_me.success"), value: '```txt\n' + aboutme_input + '```'}).setColor("#e0000f");
 
-                await interaction.deferReply({ ephemeral:  true }).catch(() => {});
+                await interaction.deferReply({ ephemeral: true }).catch(() => {});
                 interaction.editReply({
                     embeds: [embed]
                 });

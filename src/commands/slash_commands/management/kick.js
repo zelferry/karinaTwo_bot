@@ -89,7 +89,7 @@ class Command extends comando {
             return {}
         } else {
             interaction.editReply({
-                content: t("commands:kick.success", { userTag: interaction.options.getUser('user').tag, reason_: reason })
+                content: t("commands:kick.success", { userTag: interaction.options.getUser('user').username, reason_: reason })
             });
             
             user.kick(reason)

@@ -73,7 +73,6 @@ class Command extends comando {
                 avatarURL: user.avatarURL({ dynamic: true, extension: "png", size: 512 }),
                 background: `./assets/profile/images/backgrounds/${background.locate}`,
                 username: user.username,
-                discriminator: user.discriminator,
                 money: abbreviateNumber(value.coins),
                 aboutme: value.usertext,
                 reps: value.reps,

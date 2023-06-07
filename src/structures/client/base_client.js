@@ -25,7 +25,7 @@ class baseClient extends Discord.Client {
             this.guilds.cache.forEach(async (g) => {
                 if(!g.available){
                     await g.fetch();
-                    console.log(`[error] o servidor \`${g.name} (${g.id})\`e um servidor inválido!`);
+                    console.log(`[error] o servidor \`${g.name} (${g.id})\`e um servidor inválido! ele sera ignorado`);
                 }
             });
             

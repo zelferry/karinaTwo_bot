@@ -1,4 +1,5 @@
 const comando = require("../../../structures/commands/command.js");
+const { profile } = require('../../../data/ini.js').user;
 
 const Discord = require("discord.js");
 const mathRandom = (number) => ~~(Math.random() * number);
@@ -22,7 +23,7 @@ class Command extends comando {
             {
                 type: 1,
                 name: "yaoi",
-                description: "(nsfw) nsfw yaoi"
+                description: "(nsfw + ⭐vip) nsfw yaoi"
             },
             {
                 type: 1,
@@ -32,25 +33,35 @@ class Command extends comando {
             {
                 type: 1,
                 name: "femboy",
-                description: "(nsfw) nsfw femboy"
+                description: "(nsfw + ⭐vip) nsfw femboy"
             },
             {
                 type: 1,
                 name: "bara",
-                description: "(nsfw) nsfw bara (may contain extraneous content)",
+                description: "(nsfw + ⭐vip) nsfw bara (may contain extraneous content)",
                 descriptionLocalizations: {
-                    "pt-BR": "(nsfw) nsfw bara (pode conter conteúdo estranho)"
+                    "pt-BR": "(nsfw + ⭐vip) nsfw bara (pode conter conteúdo estranho)"
                 }
             },
             {
                 type: 1,
                 name: "boobs",
-                description: "(nsfw) nsfw boobs"
+                description: "(nsfw + ⭐vip) nsfw boobs"
             },
             {
                 type: 1,
                 name: "pussy",
                 description: "(nsfw) nsfw pussy"
+            },
+            {
+                type: 1,
+                name: "maid",
+                description: "(nsfw + ⭐vip) nsfw maid"
+            },
+            {
+                type: 1,
+                name: "succubus",
+                description: "(nsfw + ⭐vip) succubus nsfw"
             }
         ]
     }
@@ -61,6 +72,8 @@ class Command extends comando {
             category: "nsfw",
             nsfw: true
         })
+
+        this.vip_args = ["yaoi", "femboy", "bara", "boobs", "maid", "succubus"]
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
@@ -79,15 +92,26 @@ class Command extends comando {
             });
             return {}
         } else {
-            let button_1 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(url.url).setLabel(t("commands:global.button.web"));
-            let button_2 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(`https://danbooru.donmai.us/post_flags/new?post_flag%5Bpost_id%5D=${url.data.id}`).setLabel(t("commands:global.button.report"));
-            
-            let row1 = new Discord.ActionRowBuilder().addComponents(button_1, button_2);
-            let embed3 = new Discord.EmbedBuilder().setImage(url.url).setColor("#7B68EE");
-            interaction.editReply({
-                embeds: [embed3],
-                components: [row1]
-            });
+            if(this.vip_args.includes(subCOMMAND)){
+                interaction.editReply({
+                    content: t("commands:global.vip_user_arg", {
+                        arg: (subCOMMAND).toString()
+                    })
+                });
+
+                return {}
+            } else {
+                let button_1 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(url.url).setLabel(t("commands:global.button.web"));
+                let button_2 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(`https://danbooru.donmai.us/post_flags/new?post_flag%5Bpost_id%5D=${url.data.id}`).setLabel(t("commands:global.button.report"));
+                let row1 = new Discord.ActionRowBuilder().addComponents(button_1, button_2);
+
+                let embed3 = new Discord.EmbedBuilder().setImage(url.url).setColor("#7B68EE");
+
+                interaction.editReply({
+                    embeds: [embed3],
+                    components: [row1]
+                });
+            }
         }
     }
 

@@ -111,8 +111,8 @@ class Command extends comando {
             let embed = this.embed_maker_({
                 title: t(`commands:actions.${interaction.options.getSubcommand()}.success.title`),
                 description: t(`commands:actions.${interaction.options.getSubcommand()}.success.description`, {
-                    user1: interaction.user.tag,
-                    user2: user.tag
+                    user1: interaction.user.username,
+                    user2: user.username
                 }),
                 url: this.client.private_api.roleplay.sfw[interaction.options.getSubcommand()]()
             });

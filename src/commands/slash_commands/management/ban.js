@@ -88,7 +88,7 @@ class Command extends comando {
             return {}
         } else {
             interaction.editReply({
-                content: t("commands:ban.success", { userTag: interaction.options.getUser('user').tag, reason_: reason })
+                content: t("commands:ban.success", { userTag: interaction.options.getUser('user').username, reason_: reason })
             });
             
             user.ban({ deleteMessageSeconds: 604800, reason });
@@ -137,4 +137,5 @@ class Command extends comando {
         }
     }
 } 
-module.exports = Command 
+
+module.exports = Command

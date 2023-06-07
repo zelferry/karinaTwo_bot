@@ -112,6 +112,20 @@ class nekos_ {
                 "-video"
             ])
         },
+        maid: async function() {
+            return this.#danbooru([
+                "rating:explict",
+                "maid",
+                "-video"
+            ])
+        },
+        succubus: async function() {
+            return this.#danbooru([
+                "rating:explict",
+                "succubus",
+                "-video"
+            ])
+        },
         ...this.#create_endpoints(this)
     }
     #danbooru = async function(pos){

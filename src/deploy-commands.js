@@ -20,13 +20,14 @@ const rest = new REST({
             let File = require(`${process.cwd()}/src/commands/slash_commands/${dirs}/${file}`);
             let COMMAND = new File(client_bot);
             
-            commands_slash.push(COMMAND.command_data)
+            commands_slash.push(COMMAND.command_data);
         }
     });
     
     try {
         console.log("[SLASH MANAGER] registrando os comandos");
-        console.log(commands_slash.map((x,y) => `${y} ${x.name}`))
+        //console.log(commands_slash.map((x,y) => `${y} ${x.name}`))
+        
         if(public_cmds){
             console.log("[SLASH MANAGER => CONFIRM] comandos selecionados: públicos");
             
@@ -38,10 +39,10 @@ const rest = new REST({
             
             await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_TEST), {
                 body: commands_slash
-            })
+            });
         }
         console.log("[SLASH MANAGER] comandos registrados com sucesso!");
     } catch(err) {
-        console.error(err)
+        console.error(err);
     }
 })()

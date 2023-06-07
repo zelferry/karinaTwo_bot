@@ -73,7 +73,7 @@ class Command extends comando {
 
             interaction.editReply({
                 content: t("commands:reps.success", {
-                    user: membro1.tag
+                    user: membro1.username
                 })
             });
             await economydb.add_reps(membro2, membro1);

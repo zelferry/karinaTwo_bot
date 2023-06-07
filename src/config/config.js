@@ -25,5 +25,8 @@ module.exports = {
             e621: ["vore","oral_vore","loli","gore","cum_vore","cum_gore","luca_(pixar)","child","feral"],
             e926: ["loli", "child", "feral"]
         }
+    },
+    system: {
+        debug_all_data: true
     }
 }

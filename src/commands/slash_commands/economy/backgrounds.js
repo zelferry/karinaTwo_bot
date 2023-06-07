@@ -113,7 +113,6 @@ class Command extends comando {
                         avatarURL: interaction.user.displayAvatarURL({ extension: "png", size: 512 }),
                         background: `./assets/profile/images/backgrounds/${background.locate}`,
                         username: interaction.user.username,
-                        discriminator: interaction.user.discriminator,
                         money: abbreviateNumber(value.coins),
                         aboutme: value.usertext,
                         reps: value.reps,
@@ -134,7 +133,6 @@ class Command extends comando {
                     });
                     
                     let filter = (button) => this.buttonCommands.includes(button.customId) && button.user.id === interaction.user.id;
-                    
                     let collector = interaction.channel.createMessageComponentCollector({ filter, time: 15_000 });
 
                     collector.on('collect', async i => {

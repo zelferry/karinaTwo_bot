@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production'){
 const Cluster = require("discord-hybrid-sharding");
 const dbconnect = require("./src/data/connect.js");
 const bot_list_client = require("./src/utils/bot_lists/index.js");
+const config = require("./src/config/config.js");
 
 const condittion_web = process.env.CONDITION_WEBCLIENT === "true";
 const condittion_databotslist = process.env.CONDITION_BOTLISTPOSTDATA === "true";
@@ -20,6 +21,7 @@ const manager = new Cluster.ClusterManager("./src/index.js", {
 manager.on("clusterCreate", cluster => {
 	console.log(`[${new Date().toString().split(' ', 5).join(' ')}] cluster[${cluster.id}] iniciado!`);
 });
+
 manager.on("debug", data => {
 	console.log(data);
 });
@@ -29,6 +31,10 @@ if (condittion_databotslist) {
 
 	bot_lists.on("posted", data => {
 		console.log(`[${new Date().toString().split(' ', 5).join(' ')}] status postado na top.gg!`);
+        
+        if(config.system.debug_all_data){
+            console.log(`[DEBUG] ${data}`);
+        }
 	});
 }
 

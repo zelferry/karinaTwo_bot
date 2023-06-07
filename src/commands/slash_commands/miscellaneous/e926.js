@@ -113,7 +113,7 @@ class Command extends comando {
         }
     }
     async interactionRun(interaction, t){
-        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
+        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
         
         let tags1 = interaction.options.getString('tags').trim().split(/ +/g);
         let defaut_blacklist = interaction.options.getBoolean("defaut_blacklist") ?? false;

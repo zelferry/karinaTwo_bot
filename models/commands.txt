@@ -1,0 +1,75 @@
+const comando = require("../../../structures/commands/command.js");
+
+const Discord = require("discord.js"); 
+
+class Command extends comando {
+    command_data = {
+        name: "",
+        description: "() ",
+        descriptionLocalizations: {
+            "pt-BR": "() "
+        },
+        dmPermission: false,
+        nsfw: false,
+        //defaultMemberPermissions: Discord.PermissionFlagsBits.BanMembers,
+        options: []
+    }
+    
+    constructor(...args) {
+        super(...args, {
+            name: "",
+            category: "",
+            permissions: {
+                user: [],
+                bot: []
+            },
+            deferReply: false
+        })
+    }
+    async interactionRun(interaction, t){
+        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
+    }
+
+    command_info(){
+        return {
+            activated: true,
+            pt: {
+                name: "",
+                description: "",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "",
+                usage: "",
+                subCommands: []
+            },
+            en: {
+                name: "",
+                description: "",
+                permissions: {
+                    bot: [],
+                    user: []
+                },
+                category: "",
+                usage: "",
+                subCommands: []
+            }
+        }
+    }
+
+    _permissions(){
+        return {
+            "pt-BR": {
+                bot: "🚫**|** eu não tenho permissões o suficiente para isso!\n💡**|** eu preciso das seguintes permissões: ",
+                user: "🚫**|** você não tem permissões o suficiente para isso!\n💡**|** você precisa das seguintes permissões: "
+            },
+            "en-US": {
+                bot: "🚫**|** I don't have enough permissions for that!\n💡**|** i need the following permissions: ",
+                user: "🚫**|** you don't have enough permissions for that!\n💡**|** you need the following permissions: "
+            }
+        }
+    }
+}
+
+module.exports = Command

@@ -63,7 +63,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction, t){
-        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
+        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
         let user = interaction.options.getUser('user');
         let message1 = interaction.options.getString("message");
         let amount = interaction.options.getNumber("amount"); 
@@ -107,7 +107,7 @@ class Command extends comando {
 
                 if(i.customId === "pay"){
                     await interaction.editReply({
-                        content: t("commands:pay.success.transferred", { amount: amount.toString(), userTag: user.tag }),
+                        content: t("commands:pay.success.transferred", { amount: amount.toString(), userTag: user.username }),
                         ephemeral: true,
                         components: []
                     });
@@ -117,7 +117,7 @@ class Command extends comando {
                             ephemeral: true
                         })
                         user.send({
-                            embeds: [new Discord.EmbedBuilder().setDescription(t("commands:pay.success.sendMessage.label1", { authorTag: interaction.user.tag, amount: amount.toString() })).setColor("#fd9058").addFields({ name: t("commands:pay.success.sendMessage.label2"), value: `${message1}` })]
+                            embeds: [new Discord.EmbedBuilder().setDescription(t("commands:pay.success.sendMessage.label1", { authorTag: interaction.user.username, amount: amount.toString() })).setColor("#fd9058").addFields({ name: t("commands:pay.success.sendMessage.label2"), value: `${message1}` })]
                         })
                     }
                     await economydb.pay(interaction.user, user, amount);

@@ -21,9 +21,7 @@ module.exports = async(interaction, options, t, function_) => {
 	avatar.mask(mascara);
 	model.composite(avatar, 16.50, 13.50);
 
-	model.print(font32, 180, 8.5, options.username, (err, i1, i2) => {
-        model.print(font32_2, i2.x, 8.5, `#${options.discriminator}`);
-    });
+	model.print(font32, 180, 8.5, options.username);
 	model.print(font19, 374.5, 63.9, options.money);
 	model.print(font19, 298.5, 88.9, options.vip, 690);
     model.print(font19, 253.5, 113.9, options.reps, 690);

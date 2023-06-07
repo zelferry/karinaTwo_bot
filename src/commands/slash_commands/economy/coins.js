@@ -43,7 +43,7 @@ class Command extends comando {
         } else {
             await interaction.deferReply({ ephemeral: false }).catch(() => {});
             return interaction.editReply({
-                content: t("commands:panther_coins.user", { userTag: user.tag, coins: (value.coins).toString() })
+                content: t("commands:panther_coins.user", { userTag: user.username, coins: (value.coins).toString() })
             })
         }
     }
