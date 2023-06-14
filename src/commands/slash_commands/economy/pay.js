@@ -7,10 +7,10 @@ class Command extends comando {
     command_data = {
         name: "pay",
         description: "(economy) transfer panther-coins to another user",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "pagar"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(economia) transferir panther-coins para outro usuário"
         },
         dmPermission: false,
@@ -21,10 +21,10 @@ class Command extends comando {
                 name: "user",
                 description: "user (@user/id) who you want to pay",
                 required: true,
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "usuário"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "usuário (@usuário/id) que você deseja pagar"
                 }
             },
@@ -33,10 +33,10 @@ class Command extends comando {
                 name: "amount",
                 description: "amount you want to send",
                 required: true,
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "quantia"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "valor que deseja enviar"
                 }
             },
@@ -45,10 +45,10 @@ class Command extends comando {
                 name: "message",
                 description: "a MESSAGE to be sent to the user",
                 required: false,
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "mensagem"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "uma MENSAGEM a ser enviada ao usuário"
                 }
             }

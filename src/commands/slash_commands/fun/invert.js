@@ -6,10 +6,10 @@ class Command extends comando {
     command_data = {
         name: "invert",
         description: "(fun) reverse everything inside out, wait... what?",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "inverter"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(divertido) inverter tudo do avesso, espera... o quê?"
         },
         dmPermission: false,
@@ -19,26 +19,26 @@ class Command extends comando {
                 type: 1,
                 name: "text",
                 description: "(fun) invert a text!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "texto"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(divertido) inverter um texto!",
-                    options: [
-                        {
-                            type: 3,
-                            name: "text",
-                            description: "what will the text be?",
-                            nameLocalizations: {
-                                "pt-BR": "texto"
-                            },
-                            descriptionLocalizations: {
-                                "pt-BR": "qual será o texto?"
-                            },
-                            required: true
-                        }
-                    ]
-                }
+                },
+                options: [
+                    {
+                        type: 3,
+                        name: "text",
+                        description: "what will the text be?",
+                        name_localizations: {
+                            "pt-BR": "texto"
+                        },
+                        description_localizations: {
+                            "pt-BR": "qual será o texto?"
+                        },
+                        required: true
+                    }
+                ]
             }
         ]
     }

@@ -6,7 +6,7 @@ class Command extends comando {
     command_data = {
         name: "coinflip",
         description: "(fun) play heads or tails with me!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversão) jogue cara ou coroa comigo!"
         },
         dmPermission: false,
@@ -17,23 +17,23 @@ class Command extends comando {
                 required: true,
                 name: "side",
                 description: "which side will you choose?",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "lado"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "qual será o lado que você ira escolher?"
                 },
                 choices: [
                     {
                         name: "face",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "cara"
                         },
                         value: "cara"
                     },
                     {
                         name: "crown",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "coroa"
                         },
                         value: "coroa"

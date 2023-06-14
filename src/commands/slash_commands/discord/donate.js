@@ -5,10 +5,10 @@ class Command extends comando {
     command_data = {
         name: "donate",
         description: "(discord) support karinaTwo so she can continue to be the best bot!",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "doar"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(discord) apoie karinaTwo para que ela continue sendo a melhor bot!"
         },
         dmPermission: false,

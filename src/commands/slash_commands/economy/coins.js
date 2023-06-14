@@ -7,7 +7,7 @@ class Command extends comando {
     command_data = {
         name: "panther_coins",
         description: "(economy) see how many Panther-coins you have in my savings system!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(economia) veja quantos Panther-coins você tem!"
         },
         dmPermission: false,
@@ -17,7 +17,7 @@ class Command extends comando {
                 type: 6,
                 name: "user",
                 description: "user (@user/id) for you to see how much this user has",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "usuário (@usuário/id) para você ver quanto esse usuário tem" 
                 }
             }

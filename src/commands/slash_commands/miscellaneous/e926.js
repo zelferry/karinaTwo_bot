@@ -9,7 +9,7 @@ class Command extends comando {
     command_data = {
         name: "e926",
         description: "(miscellaneous) look for something on e926.net (safe)",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversos) procure algo na e926.net (seguro)"
         },
         dmPermission: false,
@@ -20,7 +20,7 @@ class Command extends comando {
                 required: true,
                 name: "tags",
                 description: "single tag or space-separated tags",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "tag única ou tags separadas por espaço"
                 }
             },
@@ -29,7 +29,7 @@ class Command extends comando {
                 required: false,
                 name: "defaut_blacklist",
                 description: "when enabled (in \"true\") it will use the default system blacklist",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "quando habilitado (em \"true\") usará a lista negra padrão do sistema"
                 }
             },
@@ -38,7 +38,7 @@ class Command extends comando {
                 required: false,
                 name: "auto_ignore_webm_swf",
                 description: "when enabled (in \"true\") I will ignore posts with videos and swf",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "quando habilitado (em \"true\") irei ignorar postagens com videos e swf"
                 }
             },
@@ -47,48 +47,48 @@ class Command extends comando {
                 required: false,
                 name: "ignore_irrelevant_posts",
                 description: "ignore posts with low votes and leave only those with high votes",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "ignore posts com votos baixos e deixe apenas aqueles com votos altos"
                 },
                 choices: [
                     {
                         name: "20 votes or more",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "20 votos ou mais"
                         },
                         value: "score:>20"
                     },
                     {
                         name: "50 votes or more",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "50 votos ou mais"
                         },
                         value: "score:>50"
                     },
                     {
                         name: "100 votes or more",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "100 votos ou mais"
                         },
                         value: "score:>100"
                     },
                     {
                         name: "200 votes or more",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "200 votos ou mais"
                         },
                         value: "score:>200"
                     },
                     {
                         name: "500 votes or more",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "500 votos ou mais"
                         },
                         value: "score:>500"
                     },
                     {
                         name: "1000 votes or more",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "1000 votos ou mais"
                         },
                         value: "score:>1000"
@@ -200,24 +200,11 @@ class Command extends comando {
                         }
                     ]
                 });
+                
                 return {}
             }
         }
     }
-
-    /*async autocompleteRun(interaction, t){
-        let tags1 = interaction.options.getString('tags');
-        let chunks = tags1.split(' ');
-        let search = chunks.pop();
-        
-        let url = await this.client.private_api.POST(`api/e621/autocomplete`, { tags: tags1 });
-
-        if(url.ok === false){
-            interaction.respond([]);
-        } else {
-            interaction.respond(url.data);
-        }
-    }*/
     
     command_info(){
         return {

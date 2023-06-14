@@ -4,7 +4,7 @@ class Command extends comando {
     command_data = {
         name: "fleur",
         description: "(fun) fleufurr has the answer to your question!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversão) fleufurr tem a resposta para sua pergunta!"
         },
         dmPermission: false,
@@ -15,10 +15,10 @@ class Command extends comando {
                 name: "question",
                 description: "what's the question?",
                 required: true,
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "questão"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "qual é a questão?"
                 }
             }

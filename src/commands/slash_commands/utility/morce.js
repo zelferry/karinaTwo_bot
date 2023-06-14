@@ -6,7 +6,7 @@ class Command extends comando {
     command_data = {
         name: "morse",
         description: "(utilities) translate a text into morse code, and you can also do the opposite!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(utilitários) traduzir um texto em código morse, e você também pode fazer o contrário!"
         },
         dmPermission: false,
@@ -17,10 +17,10 @@ class Command extends comando {
                 required: true,
                 name: "text",
                 description: "text to be translated from your language to morse code (or the other way around)",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "texto"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "texto a ser traduzido do seu idioma para o código morse(ou ao contrário)"
                 }
             }
@@ -34,7 +34,7 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction, t){
-        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
+        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
         let args = interaction.options.getString("text");
         let alpha = " ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
         let morse = "/,.-,-...,-.-.,-..,.,..-.,--.,....,..,.---,-.-,.-..,--,-.,---,.--.,--.-,.-.,...,-,..-,...-,.--,-..-,-.--,--..,.----,..---,...--,....-,.....,-....,--...,---..,----.,-----".split(",");

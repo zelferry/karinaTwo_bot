@@ -9,7 +9,7 @@ class Command extends comando {
     command_data = {
         name: "daily",
         description: "(economy) get your daily Panther-coins!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(economia) obtenha seus Panther-coins diários!"
         },
         dmPermission: false,

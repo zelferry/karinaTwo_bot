@@ -8,10 +8,10 @@ class Command extends comando {
     command_data = {
         name: "help",
         description: "(miscellaneous) need help?",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "ajuda"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversos) precisa de uma ajuda?"
         },
         dmPermission: false,
@@ -21,10 +21,10 @@ class Command extends comando {
                 type: 1,
                 name: "devs",
                 description: "(miscellaneous) about my developers",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "desenvolvedores"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(diversos) sobre meus desenvolvedores"
                 }
             },
@@ -32,10 +32,10 @@ class Command extends comando {
                 type: 1,
                 name: "commands",
                 description: "(miscellaneous) over existing commands",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "comandos"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(diversos) sobre comandos existentes"
                 }
             }

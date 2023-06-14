@@ -6,7 +6,7 @@ class Command extends comando {
     command_data = {
         name: "status",
         description: "(discord) status and ping from karinaTwo",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(discord) status e ping da karinaTwo"
         },
         dmPermission: false,

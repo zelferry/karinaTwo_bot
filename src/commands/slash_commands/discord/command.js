@@ -5,10 +5,10 @@ class Command extends comando {
     command_data = {
         name: "command",
         description: "(discord) about commands!",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "comando"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(discord) sobre comandos!"
         },
         dmPermission: false,
@@ -18,10 +18,10 @@ class Command extends comando {
                 type: 1,
                 name: "info",
                 description: "(discord) get information about a specific command!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "sobre"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(discord) obter informações sobre um comando específico!"
                 },
                 options: [
@@ -29,10 +29,10 @@ class Command extends comando {
                         type: 3,
                         name: "cmd",
                         description: "command name",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "nome"
                         },
-                        descriptionLocalizations: {
+                        description_localizations: {
                             "pt-BR": "nome do comando"
                         },
                         required: true
@@ -41,24 +41,24 @@ class Command extends comando {
                         type: 3,
                         name: "lang",
                         description: "command language",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "linguagem"
                         },
-                        descriptionLocalizations: {
+                        description_localizations: {
                             "pt-BR": "linguagem do comando"
                         },
                         required: true,
                         choices: [
                             {
                                 name: "Portuguese (br)",
-                                nameLocalizations: {
+                                name_localizations: {
                                     "pt-BR": "português (br)"
                                 },
                                 value: "pt"
                             },
                             {
                                 name: "English",
-                                nameLocalizations: {
+                                name_localizations: {
                                     "pt-BR": "inglês"
                                 },
                                 value: "en"

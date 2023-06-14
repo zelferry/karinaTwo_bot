@@ -11,7 +11,7 @@ class Command extends comando {
     command_data = {
         name: "background",
         description: "(economy) background setup commands!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(economia) comandos de configuração de fundo!"
         },
         dmPermission: false,
@@ -21,10 +21,10 @@ class Command extends comando {
                 type: 1,
                 name: "buy",
                 description: "(economy) buy new background!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "comprar"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(economia) compre um novo fundo!"
                 },
                 options: [
@@ -34,7 +34,7 @@ class Command extends comando {
                         description: "select a background to buy",
                         required: true,
                         autocomplete: true,
-                        descriptionLocalizations: {
+                        description_localizations: {
                             "pt-BR": "selecione um plano de fundo para comprar"
                         }
                     }
@@ -44,10 +44,10 @@ class Command extends comando {
                 type: 1,
                 name: "set",
                 description: "(economy) change your background in /profile!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "definir"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(economia) mude seu plano de fundo do /profile!"
                 },
                 options: [
@@ -57,7 +57,7 @@ class Command extends comando {
                         description: "select a background to set",
                         required: true,
                         autocomplete: true,
-                        descriptionLocalizations: {
+                        description_localizations: {
                             "pt-BR": "selecione um plano de fundo para defini-lo"
                         }
                     }

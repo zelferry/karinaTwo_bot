@@ -6,10 +6,10 @@ const user_data = {
     required: true,
     name: "user",
     description: "user (@user/id)",
-    nameLocalizations: {
+    name_localizations: {
         "pt-BR": "usuário"
     },
-    descriptionLocalizations: {
+    description_localizations: {
         "pt-BR": "usuário (@usuário/id)"
     }
 }
@@ -18,10 +18,10 @@ class Command extends comando {
     command_data = {
         name: "actions",
         description: "(social) do some kind of action with some user!",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "ações"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(social) fazer algum tipo de ação com algum usuário!"
         },
         dmPermission: false,
@@ -31,10 +31,10 @@ class Command extends comando {
                 type: 1,
                 name: "attack",
                 description: "(social) attack a user!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "atacar"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(social) um usuário esqueceu de pagar os panther-coins da paçoca? tire um x1 com ele!"
                 },
                 options: [user_data]
@@ -43,10 +43,10 @@ class Command extends comando {
                 type: 1,
                 name: "hug",
                 description: "(social) give someone a hug!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "abraço"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(social) dê um abraço em alguém!"
                 },
                 options: [user_data]
@@ -55,10 +55,10 @@ class Command extends comando {
                 type: 1,
                 name: "dance",
                 description: "(social) dance with some user!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "dança"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(social) dance com algum usuário!"
                 },
                 options: [user_data]
@@ -67,10 +67,10 @@ class Command extends comando {
                 type: 1,
                 name: "kiss",
                 description: "(social) kiss some user :)",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "beijo"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(social) beijar algum usuário :)"
                 },
                 options: [user_data]
@@ -79,10 +79,10 @@ class Command extends comando {
                 type: 1,
                 name: "slap",
                 description: "(social) of a slap on a user!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "tapa"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(social) de um tapa em um usuário!"
                 },
                 options: [user_data]

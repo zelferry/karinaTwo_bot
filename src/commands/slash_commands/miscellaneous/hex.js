@@ -23,7 +23,7 @@ class Command extends comando {
     command_data = {
         name: "color_info",
         description: "(miscellaneous) see information about a color, such as its variations, etc",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversos) veja informações sobre uma cor, como suas variações e etc"
         },
         dmPermission: false,
@@ -34,7 +34,7 @@ class Command extends comando {
                 required: true,
                 name: "color_hex",
                 description: "color in hexadecimal (ex: FF0000, #FF0000)",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "cor em hexadecimal (ex: FF0000, #FF0000)"
                 }
             }

@@ -5,10 +5,10 @@ const user_data = {
     type: 6,
     name: "user",
     description: "user (@user/id)",
-    nameLocalizations: {
+    name_localizations: {
         "pt-BR": "usuário"
     },
-    descriptionLocalizations: {
+    description_localizations: {
         "pt-BR": "usuário (@usuário/id)"
     },
     required: true
@@ -18,7 +18,7 @@ class Command extends comando {
     command_data = {
         name: "actions_nsfw",
         description: "(social + nsfw + ⭐vip) do some kind of action with some user! (nsfw version)",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(social + nsfw + ⭐vip) fazer algum tipo de ação com algum usuário! (versão nsfw)"
         },
         dmPermission: false,
@@ -28,7 +28,7 @@ class Command extends comando {
                 type: 1,
                 name: "assfuck",
                 description: "(social + nsfw + ⭐vip) well... we already know where this is going...",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(social + nsfw + ⭐vip) bem... já sabemos aonde isso vai dar..."
                 },
                 options: [user_data]
@@ -37,7 +37,7 @@ class Command extends comando {
                 type: 1,
                 name: "cum",
                 description: "(social + nsfw + ⭐vip) well, milk is very good for health, isn't it?",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(social + nsfw + ⭐vip) bom, leite faz muito bem pra saúde, né?"
                 },
                 options: [user_data]
@@ -46,7 +46,7 @@ class Command extends comando {
                 type: 1,
                 name: "blowjob",
                 description: "(social + nsfw + ⭐vip) \"be careful licking your friend's popsicle, if you know what I mean hehe\"",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(social + nsfw + ⭐vip) \"cuidado ao lamber o picolé do seu amigo, se é que você me entende hehe\""
                 },
                 options: [user_data]

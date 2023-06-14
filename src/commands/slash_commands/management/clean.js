@@ -7,7 +7,10 @@ class Command extends comando {
     command_data = {
         name: "clean",
         description: "(administration) clear a text channel!",
-        descriptionLocalizations: {
+        name_localizations: {
+            "pt-BR": "limpar"
+        },
+        description_localizations: {
             "pt-BR": "(administração) limpar um canal de texto!"
         },
         dmPermission: false,
@@ -21,10 +24,10 @@ class Command extends comando {
                 required: true,
                 name: "size",
                 description: "number of messages to be deleted",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "tamanho"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "número de mensagens a serem excluídas"
                 }
             },
@@ -33,10 +36,10 @@ class Command extends comando {
                 required: false,
                 name: "channel",
                 description: "text channel where i will clean",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "canal"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "canal de texto onde irei limpar"
                 }
             }

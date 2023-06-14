@@ -6,7 +6,7 @@ class Command extends comando {
     command_data = {
         name: "jokenpo",
         description: "(fun) ROCK, PAPER AND SCISSOR!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversão) PEDRA, PAPEL E TESOURA!"
         },
         dmPermission: false,
@@ -17,30 +17,30 @@ class Command extends comando {
                 name: "choice",
                 description: "rock, paper or scissors?",
                 required: true,
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "escolha"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "pedra, papel ou tesoura?"
                 },
                 choices: [
                     {
                         name: "rock",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "pedra"
                         },
                         value: "pedra"
                     },
                     {
                         name: "paper",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "papel"
                         },
                         value: "papel"
                     },
                     {
                         name: "scissor",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "tesoura"
                         },
                         value: "tesoura"
@@ -110,7 +110,6 @@ class Command extends comando {
                 })
             }
         }
-        //fim
     }
 
     command_info(){

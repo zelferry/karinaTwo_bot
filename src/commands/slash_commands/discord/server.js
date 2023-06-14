@@ -5,7 +5,7 @@ class Command extends comando {
     command_data = {
         name: "server",
         description: "(discord) servers stuff for you!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(discord) coisas de servidores para você!"
         },
         dmPermission: false,
@@ -15,7 +15,7 @@ class Command extends comando {
                 type: 1,
                 name: "info",
                 description: "(discord) see server information",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(discord) veja as informações do servidor"
                 }
             },
@@ -23,7 +23,7 @@ class Command extends comando {
                 type: 1,
                 name: "icon",
                 description: "(discord) see the server icon",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(discord) veja o ícone do servidor"
                 }
             }

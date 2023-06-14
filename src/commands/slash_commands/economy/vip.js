@@ -7,7 +7,7 @@ class Command extends comando {
     command_data = {
         name: "vip",
         description: "(economy) buy vip-user and get all my benefits!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(economia) compre o vip-user e ganhe todos os meus benefícios!"
         },
         dmPermission: true,

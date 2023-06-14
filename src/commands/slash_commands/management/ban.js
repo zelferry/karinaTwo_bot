@@ -6,7 +6,7 @@ class Command extends comando {
     command_data = {
         name: "ban",
         description: "(administration) ban members who are breaking the rules!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(administração) banir membros que estão quebrando as regras!"
         },
         dmPermission: false,
@@ -18,10 +18,10 @@ class Command extends comando {
                 required: true,
                 name: "user",
                 description: "user (@user/id) to be punished",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "usuário"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "usuário (@usuário/id) a ser punido"
                 }
             },
@@ -30,10 +30,10 @@ class Command extends comando {
                 required: false,
                 name: "reason",
                 description: "reason for punishment",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "razão"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "motivo da punição"
                 }
             }

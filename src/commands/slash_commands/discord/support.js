@@ -5,10 +5,10 @@ class Command extends comando {
     command_data = {
         name: "support",
         description: "(discord) technical support the karinaTwo",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "suporte"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(discord) suporte técnico a karinaTwo"
         },
         dmPermission: false,
@@ -18,10 +18,10 @@ class Command extends comando {
                 type: 1,
                 name: "server",
                 description: "(discord) support server of karinaTwo!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "servidor"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(discord) servidor de suporte de karinaTwo!"
                 }
             },
@@ -29,10 +29,10 @@ class Command extends comando {
                 type: 1,
                 name: "send",
                 description: "(discord) send a private support to my developer!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "enviar"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(discord) envie um suporte privado para o meu desenvolvedor!"
                 }
             }

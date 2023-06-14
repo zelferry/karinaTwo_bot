@@ -6,7 +6,7 @@ class Command extends comando {
     command_data = {
         name: "nuke",
         description: "(administration) completely clear a text channel",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(administração) limpar completamente um canal de texto"
         },
         dmPermission: false,
@@ -18,10 +18,10 @@ class Command extends comando {
                 required: false,
                 name: "channel",
                 description: "text channel to take a NUKE",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "canal"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "canal de texto para tomar um NUKE"
                 }
             }

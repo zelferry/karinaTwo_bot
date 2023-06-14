@@ -5,7 +5,7 @@ class Command extends comando {
     command_data = {
         name: "owo",
         description: "(fun) cat faces!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversão) owo"
         },
         dmPermission: false,

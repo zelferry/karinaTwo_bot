@@ -6,10 +6,10 @@ class Command extends comando {
     command_data = {
         name: "user",
         description: "(discord) commands that have to do with users",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "usuário"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(discord) comandos que têm a ver com usuários"
         },
         dmPermission: false,
@@ -19,7 +19,7 @@ class Command extends comando {
                 type: 1,
                 name: "avatar",
                 description: "(utilities) you know that beautiful avatar you saw? see him clearly",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(utilitários) sabe aquele avatar lindo que você viu? você pode vê-lo claramente"
                 },
                 options: [{
@@ -27,10 +27,10 @@ class Command extends comando {
                     name: "user",
                     description: "user (@user/id) so you can see their avatar",
                     required: false,
-                    nameLocalizations: {
+                    name_localizations: {
                         "pt-BR": "usuário"
                     },
-                    descriptionLocalizations: {
+                    description_localizations: {
                         "pt-BR": "usuário (@usuário/id) para que você possa ver seu avatar"
                     }
                 }]
@@ -39,10 +39,10 @@ class Command extends comando {
                 type: 1,
                 name: "aboutme", 
                 description: "(social) change your \"about me\" from \"/profile\"",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "sobremim"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(social) mude seu \"sobre mim\" do \"/profile\""
                 }
             }

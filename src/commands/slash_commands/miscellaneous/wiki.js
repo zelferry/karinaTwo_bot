@@ -18,7 +18,7 @@ class Command extends comando {
     command_data = {
         name: "wikipedia",
         description: "(miscellaneous) search for something on wikipedia without leaving discord!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversos) procure algo na wikipedia sem sair do discord!"
         },
         dmPermission: false,
@@ -29,10 +29,10 @@ class Command extends comando {
                 required: true,
                 name: "args",
                 description: "what are you going to search?",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "pesquisa"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "o que você vai pesquisar?"
                 }
             }

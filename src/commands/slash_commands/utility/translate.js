@@ -7,7 +7,7 @@ class Command extends comando {
     command_data = {
         name: "translate_bot",
         description: "(utilities) translate karinaTwo!",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "traduzir_bot"
         },
         dmPermission: false,
@@ -29,20 +29,7 @@ class Command extends comando {
     constructor(...args) {
         super(...args, {
             name: "translate_bot",
-            description: "translate karinaTwo!",
-            category: "utility",
-            commandOptions: [
-                {
-                    type: 1,
-                    name: "pt",
-                    description: "[ ❓utilitários ] traduzir a karinaTwo para o português(Brasil)"
-                },
-                {
-                    type: 1,
-                    name: "en",
-                    description: "[ ❓utilities ] translate karinaTwo into english"
-                }
-            ]
+            category: "utility"
         })
     }
     async interactionRun(interaction, t){

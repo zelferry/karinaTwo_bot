@@ -7,7 +7,7 @@ class Command extends comando {
     command_data = {
         name: "coinflip_bet",
         description: "(economy + ⭐vip) play heads or tails with me! (panther-coins betting version)",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(economia + ⭐vip) jogue cara ou coroa comigo! (versão de aposta de panther-coins)"
         },
         dmPermission: false,
@@ -18,23 +18,23 @@ class Command extends comando {
                 required: true,
                 name: "side",
                 description: "which side will you choose?",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "lado"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "qual será o lado que você ira escolher?"
                 },
                 choices: [
                     {
                         name: "face",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "cara"
                         },
                         value: "cara"
                     },
                     {
                         name: "crown",
-                        nameLocalizations: {
+                        name_localizations: {
                             "pt-BR": "coroa"
                         },
                         value: "coroa"

@@ -6,7 +6,10 @@ class Command extends comando {
     command_data = {
         name: "slowmode",
         description: "(administration) set the slow mode of a text channel",
-        descriptionLocalizations: {
+        name_localizations: {
+            "pt-BR": "modo_lento"
+        },
+        description_localizations: {
             "pt-BR": "(administração) definir o modo lento de um canal de texto"
         },
         dmPermission: false,
@@ -20,10 +23,10 @@ class Command extends comando {
                 required: true,
                 name: "time",
                 description: "time for slow mode",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "tempo"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "tempo para o modo lento"
                 }
             },
@@ -32,10 +35,10 @@ class Command extends comando {
                 required: false,
                 name: "channel",
                 description: "text channel to activate slow mode",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "canal"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "canal de texto para ativar o modo lento"
                 }
             }

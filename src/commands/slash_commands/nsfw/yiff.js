@@ -10,7 +10,7 @@ class Command extends comando {
     command_data = {
         name: "yiff",
         description: "(nsfw) get images of a certain category in e621/furaffinity",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(nsfw) obter imagens de uma determinada categoria na e621/furaffinity"
         },
         dmPermission: false,
@@ -19,9 +19,12 @@ class Command extends comando {
             {
                 type: 3,
                 required: true,
-                name: "type_image",
+                name: "type",
                 description: "choose the type of image for me to send",
-                descriptionLocalizations: {
+                name_localizations: {
+                    "pt-BR": "tipo"
+                },
+                description_localizations: {
                     "pt-BR": "escolha o tipo de imagem para eu enviar"
                 },
                 choices: [
@@ -63,7 +66,7 @@ class Command extends comando {
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
-        let data = interaction.options.getString('type_image');
+        let data = interaction.options.getString('type');
         let value = await profile.find(interaction.user);
         let json = await this.client.private_api.yiff[data]();
         

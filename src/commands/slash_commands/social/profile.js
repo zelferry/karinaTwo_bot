@@ -9,10 +9,10 @@ class Command extends comando {
     command_data = {
         name: "profile",
         description: "(social) see your profile on karinaTwo!",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "perfil"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(social) veja seu perfil na karinaTwo!"
         },
         dmPermission: false,
@@ -23,10 +23,10 @@ class Command extends comando {
                 required: false,
                 name: "user",
                 description: "user (@user/id)",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "usuário"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "usuário (@usuário/id)"
                 }
             }

@@ -6,7 +6,7 @@ class Command extends comando {
     command_data = {
         name: "say",
         description: "(fun) make me say something on your server!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversão) me faça dizer algo no seu servidor!"
         },
         dmPermission: false,
@@ -16,7 +16,7 @@ class Command extends comando {
                 type: 3,
                 name: "args",
                 description: "what will i say?",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "o que eu vou dizer?"
                 },
                 required: true
@@ -25,7 +25,7 @@ class Command extends comando {
                 type: 7,
                 name: "channel",
                 description: "send on a specific text channel",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "enviar em um canal de texto específico"
                 },
                 required: false

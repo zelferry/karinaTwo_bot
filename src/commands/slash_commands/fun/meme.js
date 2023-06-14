@@ -14,7 +14,7 @@ class Command extends comando {
                 type: 1,
                 name: "generate",
                 description: "(fun) generate a random meme!",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(diversão) gere um meme aleatório!"
                 }
             },
@@ -22,7 +22,7 @@ class Command extends comando {
                 type: 1,
                 name: "knuckles",
                 description: "(fun) \"meme?\"",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(diversão) \"meme?\""
                 }
             }

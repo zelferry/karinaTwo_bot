@@ -4,10 +4,10 @@ class Command extends comando {
     command_data = {
         name: "invite",
         description: "(discord) invite karinaTwo to your server!",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "convidar"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(discord) convide karinaTwo para o seu servidor!"
         },
         dmPermission: true,

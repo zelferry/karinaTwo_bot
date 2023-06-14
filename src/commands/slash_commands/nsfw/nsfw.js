@@ -9,7 +9,7 @@ class Command extends comando {
     command_data = {
         name: "nsfw",
         description: "(nsfw) nsfw commands",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(nsfw) comandos nsfw"
         },
         dmPermission: false,
@@ -39,7 +39,7 @@ class Command extends comando {
                 type: 1,
                 name: "bara",
                 description: "(nsfw + ⭐vip) nsfw bara (may contain extraneous content)",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(nsfw + ⭐vip) nsfw bara (pode conter conteúdo estranho)"
                 }
             },

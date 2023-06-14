@@ -7,7 +7,7 @@ class Command extends comando {
     command_data = {
         name: "afk",
         description: "(social) turn on afk mode for users to know that you've taken a break from the keyboard",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(social) ative o modo afk para os usuários saberem que você deu uma pausa no teclado"
         },
         dmPermission: false,
@@ -18,10 +18,10 @@ class Command extends comando {
                 required: true,
                 name: "reason",
                 description: "reason for your afk",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "reação"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "motivo do seu afk"
                 }
             }

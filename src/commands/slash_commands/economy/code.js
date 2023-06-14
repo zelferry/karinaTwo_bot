@@ -7,7 +7,7 @@ class Command extends comando {
     command_data = {
         name: "code",
         description: "(economy) use a purchased key and redeem your vip user!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(economia) use uma chave comprada e resgate seu vip user!"
         },
         nsfw: false,
@@ -17,7 +17,7 @@ class Command extends comando {
                 required: true,
                 name: "key",
                 description: "vip user key (if you don't have one, you can buy it at ko-fi.com/karinatwo/shop)",
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "chave de vip user(se você não tiver uma, pode comprá-la em ko-fi.com/karinatwo/shop)"
                 }
             }

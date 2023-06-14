@@ -10,7 +10,7 @@ class Command extends comando {
     command_data = {
         name: "reps",
         description: "(social) give REPS(reputation) to a user",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(social) dar REPS(reputação) para um usuário"
         },
         dmPermission: false,
@@ -21,10 +21,10 @@ class Command extends comando {
                 required: true,
                 name: "user",
                 description: "user (@user/id)",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "usuário"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "usuário (@usuário/id)"
                 }
             }

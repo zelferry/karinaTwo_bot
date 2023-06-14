@@ -6,7 +6,7 @@ class Command extends comando {
     command_data = {
         name: "ship",
         description: "(social) ship a user with you and find out if he/she is your soul mate!",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(social) ship um usuário com você e descubra se ele/ela é sua alma gêmea!"
         },
         dmPermission: false,
@@ -17,10 +17,10 @@ class Command extends comando {
                 required: true,
                 name: "user",
                 description: "user (@user/id)",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "usuário"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "usuário (@usuário/id)"
                 }
             }
