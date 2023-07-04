@@ -12,7 +12,6 @@ module.exports = async(interaction, options, t, function_) => {
     const font32 = await jimp.loadFont("./assets/profile/fonts/lemo_32.fnt");
     const font32_2 = await jimp.loadFont("./assets/profile/fonts/lemo_32_2.fnt");
 
-
 	avatar.resize(145.50, 145.50);
 	mascara.resize(145.50, 145.50);
 	background.resize(700, 500);
@@ -29,8 +28,7 @@ module.exports = async(interaction, options, t, function_) => {
 	model.print(font13, 8.3, 374.9, t("commands:profile.about_me"), 693);
     
 	background.composite(model, 0, 0);
-	background.getBuffer(jimp.MIME_PNG, async(err, buffer) => {
-        
+	background.getBuffer(jimp.MIME_PNG, async(err, buffer) => {  
     	if (err) {
     		return interaction.editReply({
                 content: t("commands:global.error.commands", { error: err })

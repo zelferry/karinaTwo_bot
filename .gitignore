@@ -1,5 +1,6 @@
 *.replit
 *.bashrc
+.env
 
 node
 npm

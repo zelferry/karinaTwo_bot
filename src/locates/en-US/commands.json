@@ -409,5 +409,18 @@
             "type": "🚫**|** Invalid key type!\n🔄**|** try again with a valid key"
         },
         "success": "🤩**|** vip user activated!\n🥳**|** now you can enjoy all vip perks for {{days}} days!"
+    },
+    "e621_autopost": {
+        "create": {
+            "error": "😭**|** a small error happened while retrieving the information from the site!",
+            "error_guild": ":x:**|** you can only have 1 webhook!",
+            "no_post": "🚫**|** No results for __*{{tags}}*__\n📛**|** try later",
+            "no_nsfw": ":x:**|** the mentioned channel does not have the **NSFW** function enabled",
+            "success": "✅**|** webhook created!\n❓️**|** Every **1 hour** a random post will be sent, use `/e621_autopost delete` if you want to delete the webhook"
+        },
+        "delete": {
+            "error": ":x:**|** this server does not have a webhook!",
+            "success": "✅**|** webhook deleted!"
+        }
     }
 }

@@ -409,5 +409,18 @@
             "type": "🚫**|** tipo de chave inválida!\n🔄**|** tente novamente com uma chave válida"
         },
         "success": "🤩**|** vip user ativado!\n🥳**|** agora você pode aproveitar todas as vantagens vip por {{days}} dias!"
+    },
+    "e621_autopost": {
+        "create": {
+            "error": "😭**|** aconteceu um pequeno erro ao recuperar as informações do site!",
+            "error_guild": ":x:**|** você so pode ter 1 webhook!",
+            "no_post": "🚫**|** nenhum resultado para __*{{tags}}*__\n📛**|** tente mais tarde",
+            "no_nsfw": ":x:|o canal mencionado não tem a função **NSFW** ativada",
+            "success": "✅**|** webhook criado!\n❓️**|** a cada **1 hora** uma postagem aleatoria será enviada, use `/e621_autopost delete` caso queira deletar o webhook"
+        },
+        "delete": {
+            "error": ":x:**|** esse servidor não tem um webhook!",
+            "success": "✅**|** webhook deletado!"
+        }
     }
 }

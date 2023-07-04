@@ -99,9 +99,9 @@ class Command extends comando {
                 type: 3,
                 required: false,
                 name: "rating",
-                description: "filter posts by their censorship level (by default and random)",
+                description: "filter posts by their censorship level (by default is random)",
                 description_localizations: {
-                    "pt-BR": "filtrar postagens por seu nível de censura (por padrão e aleatório)"
+                    "pt-BR": "filtrar postagens por seu nível de censura (por padrão é aleatório)"
                 },
                 choices: [
                     {
@@ -163,7 +163,8 @@ class Command extends comando {
             interaction.editReply({
                 content: t("commands:e621.error"),
                 ephemeral: true
-            })
+            });
+            
             return {}
         } else {
             let posts = url.data.posts;
@@ -172,6 +173,7 @@ class Command extends comando {
                 interaction.editReply({
                     content: t("commands:e621.no_post", { tags: (tags1.join(" ")).toString() })
                 });
+                
                 return {}
             } else {
                 let number = mathRandom(posts.length);

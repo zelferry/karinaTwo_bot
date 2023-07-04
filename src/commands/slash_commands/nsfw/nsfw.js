@@ -23,7 +23,7 @@ class Command extends comando {
             {
                 type: 1,
                 name: "yaoi",
-                description: "(nsfw + ⭐vip) nsfw yaoi"
+                description: "(nsfw) nsfw yaoi"
             },
             {
                 type: 1,
@@ -51,12 +51,12 @@ class Command extends comando {
             {
                 type: 1,
                 name: "pussy",
-                description: "(nsfw) nsfw pussy"
+                description: "(nsfw + ⭐vip) nsfw pussy"
             },
             {
                 type: 1,
                 name: "maid",
-                description: "(nsfw + ⭐vip) nsfw maid"
+                description: "(nsfw) nsfw maid"
             },
             {
                 type: 1,
@@ -73,7 +73,7 @@ class Command extends comando {
             nsfw: true
         })
 
-        this.vip_args = ["yaoi", "femboy", "bara", "boobs", "maid", "succubus"]
+        this.vip_args = ["femboy", "bara", "boobs", "pussy", "succubus"]
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});

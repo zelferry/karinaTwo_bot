@@ -1,8 +1,8 @@
-let Event = require("../../structures/events/event.js");
-
-const { GiveawaysManager } = require('discord-giveaways');
-const i18next = require('i18next');
+const Event = require("../../structures/events/event.js");
 const { vip, translations } = require("../../data/ini.js").user;
+
+const i18next = require('i18next');
+
 
 class event extends Event {
     constructor(...args){

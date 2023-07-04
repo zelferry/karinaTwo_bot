@@ -37,13 +37,14 @@ class Command extends comando {
             cmds: (client.commands2.toJSON().length).toString()
         });
         
-        let embed = new Discord.EmbedBuilder().setTitle("🦊 | karinaTwo status").addFields({ name: `💻 | ${t('commands:status.system.title')}`, value: `\`${internal_system_summary}\`` },
-                       {
-                           name: "🕞 | ping",
-                           value: `\`gateway Ping: ${Math.round(this.client.ws.ping)}ms\nAPI Ping: ${Date.now() - interaction.createdTimestamp}ms\ndatabase ping: ${Math.round(await this.client.db.ping())}ms\ncluster: ${Number(this.client.cluster.id) + 1}/${this.client.cluster.count}\``
-                       },
-                       { name: `💙 | ${t('commands:status.info.title')}`, value: `\`${info_summary}\``, inline: true },
-             { name: `💁‍♀️ | ${t('commands:status.version')}`, value: `\`node: ${process.version}\ndiscord.js: ${require("../../../../package.json").dependencies["discord.js"]}\nbot: ${require("../../../../package.json").version} (${require("../../../../package.json").version_name})\``, inline: true })
+        let embed = new Discord.EmbedBuilder()
+        .setTitle("🦊 | karinaTwo status")
+        .addFields(
+            { name: `💻 | ${t('commands:status.system.title')}`, value: `\`${internal_system_summary}\`` },
+            { name: "🕞 | ping", value: `\`gateway Ping: ${Math.round(this.client.ws.ping)}ms\nAPI Ping: ${Date.now() - interaction.createdTimestamp}ms\ndatabase ping: ${Math.round(await this.client.db.ping())}ms\ncluster: ${Number(this.client.cluster.id) + 1}/${this.client.cluster.count}\`` },
+            { name: `💙 | ${t('commands:status.info.title')}`, value: `\`${info_summary}\``, inline: true },
+            { name: `💁‍♀️ | ${t('commands:status.version')}`, value: `\`node: ${process.version}\ndiscord.js: ${require("../../../../package.json").dependencies["discord.js"]}\nbot: ${require("../../../../package.json").version} (${require("../../../../package.json").version_name})\``, inline: true }
+        );
         
         interaction.editReply({ embeds: [embed] });
     }

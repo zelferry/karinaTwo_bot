@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+}
+
 const fs = require('fs');
 const { Client, Intents, REST, Routes, GatewayIntentBits } = require('discord.js');
 const public_cmds = (process.env.CONDITION_PRIVATE_COMMANDS === "true");

@@ -1,6 +1,5 @@
 const comando = require("../../../structures/commands/command.js");
 const devs_treat = require("../../../utils/treat_devs.js");
-const packag = require("../../../../package.json");
 
 const Discord = require("discord.js"); 
 

@@ -1,5 +1,4 @@
 const comando = require("../../../structures/commands/command.js");
-const jimp = require("jimp");
 const Discord = require("discord.js");
 const i18next = require('i18next');
 
@@ -122,14 +121,28 @@ class Command extends comando {
                     Manager(interaction, options, t, (buffer) => {
                         let bg_locale = background.localizations[t.lng];
                         
-                        let bgInfo = new Discord.EmbedBuilder().setTitle(bg_locale.name).setDescription(bg_locale.description).setImage('attachment://Profile.png').addFields({ name: t('commands:background.buy.price'), value: `${background.panther_coins} panther-coins`, inline: true }).setColor("#FA8072");
+                        let bgInfo = new Discord.EmbedBuilder()
+                        .setTitle(bg_locale.name)
+                        .setDescription(bg_locale.description)
+                        .setImage('attachment://Profile.png')
+                        .addFields({
+                            name: t('commands:background.buy.price'),
+                            value: `${background.panther_coins} panther-coins`,
+                            inline: true })
+                        .setColor("#FA8072");
+
                         if(!background.concept == "none") bgInfo.addFields({ name: t('commands:background.buy.concept'), value: `${background.concept}`, inline: true });
                         
-                        let row = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("yes").setLabel(t('commands:background.buy.purchase')).setStyle(Discord.ButtonStyle.Success).setEmoji("💳"));
+                        let row = new Discord.ActionRowBuilder()
+                        .addComponents(new Discord.ButtonBuilder().setCustomId("yes").setLabel(t('commands:background.buy.purchase')).setStyle(Discord.ButtonStyle.Success).setEmoji("💳"));
                         
                         let card = new Discord.AttachmentBuilder(buffer, { name: "Profile.png" });
 
-                        interaction.editReply({ embeds: [bgInfo], files: [card], components: [row] });
+                        interaction.editReply({
+                            embeds: [bgInfo],
+                            files: [card],
+                            components: [row]
+                        });
                     });
                     
                     let filter = (button) => this.buttonCommands.includes(button.customId) && button.user.id === interaction.user.id;
@@ -140,7 +153,10 @@ class Command extends comando {
                         
                         if (i.customId === 'yes'){
                             if (value.coins < background.panther_coins){
-                                interaction.followUp({ content: t('commands:background.buy.noMoney'), ephemeral: true });
+                                interaction.followUp({
+                                    content: t('commands:background.buy.noMoney'),
+                                    ephemeral: true
+                                });
                             } else if(background.only_vip_users && !value.config.vip.active){
                                 interaction.followUp({
                                     content: t("commands:background.buy.noVip")
@@ -149,14 +165,34 @@ class Command extends comando {
                                 await bgdb.buyAndSet(interaction.user, code, background.panther_coins);
                                 
                                 interaction.editReply({
-                                    content: t('commands:background.buy.success', { name: background.name, price: background.panther_coins.toString() }), ephemeral: true, components: [], embeds: [] });
+                                    content: t('commands:background.buy.success', {
+                                        name: background.localizations[t.lng].name,
+                                        price: background.panther_coins.toString()
+                                    }),
+                                    ephemeral: true,
+                                    components: [],
+                                    files: [],
+                                    embeds: []
+                                });
+
+                                collector.stop("bought");
                             }
                         }
                     });
 
-                    collector.on('end', async i => {
-                        let row = new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setCustomId("yes").setLabel(t('commands:background.buy.purchase_expired')).setStyle(Discord.ButtonStyle.Danger).setDisabled(true));
-                        interaction.editReply({ components: [row] })
+                    collector.on('end', async (i, stop_id) => {
+                        if(stop_id == "bought"){
+                            return {}
+                        } else {
+                            let row = new Discord.ActionRowBuilder()
+                            .addComponents(new Discord.ButtonBuilder()
+                            .setCustomId("yes")
+                            .setLabel(t('commands:background.buy.purchase_expired'))
+                            .setStyle(Discord.ButtonStyle.Danger)
+                            .setDisabled(true));
+
+                            interaction.editReply({ components: [row] });
+                        }
                     })
                 }
                 break;
@@ -191,10 +227,20 @@ class Command extends comando {
         let user = await bgdb.find(interaction.user);
         
         let locale = i18next.getFixedT(user_translation || 'pt-BR').lng;
-        //t bg_locale_ = 
         
-        if (command === "buy") interaction.respond(bgdata.map(data => Object({ name: data.localizations[locale].name, value: data.id })));
-        else if (command === "set") interaction.respond(bgdata.filter(b => user.config.background.collection.includes(b.id)).map(b => Object({ name: b.localizations[locale].name, value: b.id })));
+        /*if (command === "buy") interaction.respond(bgdata.map(data => Object({ name: data.localizations[locale].name, value: data.id })));
+        else if (command === "set") interaction.respond(bgdata.filter(b => user.config.background.collection.includes(b.id)).map(b => Object({ name: b.localizations[locale].name, value: b.id })));*/
+        if (command === "buy"){
+            interaction.respond(bgdata.filter(b => !user.config.background.collection.includes(b.id)).map(data => Object({
+                name: data.localizations[locale].name,
+                value: data.id 
+            })));
+        } else if(command === "set") {
+            interaction.respond(bgdata.filter(b => user.config.background.collection.includes(b.id)).map(b => Object({
+                name: b.localizations[locale].name,
+                value: b.id
+            })));
+        }
     }
 
     command_info(){

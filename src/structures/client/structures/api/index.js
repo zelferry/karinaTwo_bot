@@ -44,7 +44,7 @@ class Api {
         let result = await fetch(`${this.config.api.base}/${endpoint}`, {
             method: 'post',
             body: JSON.stringify(_body),
-            headers: {'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         });
 
         return result.json() ?? { send: false }

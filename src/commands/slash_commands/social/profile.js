@@ -85,8 +85,7 @@ class Command extends comando {
                     content: t("commands:profile.name"),
                     files: [card]
                 });
-            })
-            //Manager(interaction, options, t)
+            });
         }
     }
 
