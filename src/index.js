@@ -4,8 +4,7 @@ if (process.env.NODE_ENV !== 'production'){
 }
 
 const { GatewayIntentBits, Options } = require('discord.js');
-const client_bot = require("./structures/client/client.js")
-const Cluster = require("discord-hybrid-sharding");
+const client_bot = require("./structures/client/client.js");
 const extend = require("./utils/extend.js");
 
 const client = (global.client = new client_bot({
@@ -26,6 +25,10 @@ const client = (global.client = new client_bot({
             messages: {
                 interval: 3600,
                 lifetime: 1800,
+            },
+            users: {
+                interval: 3600,
+                filter: () => user => user.bot && user.id !== client.user.id,
             }
         },
         intents: [

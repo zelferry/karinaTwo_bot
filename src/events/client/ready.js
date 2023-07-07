@@ -14,10 +14,9 @@ class event extends Event {
     
     async run(){
         let client = this.client;
-        let users_data = await vip.find_all();
 
         //obrigado chatGPT
-        async function checkExpiration(){
+        async function checkExpiration(users_data){
             for (let i = 0; i < users_data.length; i++){
                 let user_data = users_data[i];
 
@@ -43,19 +42,21 @@ class event extends Event {
             }
         }
 
-        async function daily_panther_coins(){
+        async function daily_panther_coins(users_data){
             for (let i = 0; i < users_data.length; i++){
                 let user_data = users_data[i];
 
                 await vip.daily_panther_coins(user_data.UserId);
-                //console.log("lol")
             }
         }
 
         setInterval(async() => {
-            await checkExpiration();
-            await daily_panther_coins();
+            let get_users_data = await vip.find_all();
+
+            await checkExpiration(get_users_data);
+            await daily_panther_coins(get_users_data);
         }, 24 * 60 * 60 * 1000);
+
         console.log(`${this.client.user.tag} online!!`);
     }
 }

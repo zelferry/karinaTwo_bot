@@ -179,7 +179,7 @@ class Command extends comando {
                             } else {
                                 await e621_autopost.new_data({
                                     guild: interaction.guild,
-                                    webhook: webhook,
+                                    webhook: webhook.first(),
                                     e6_tags: tags
                                 });
                             }

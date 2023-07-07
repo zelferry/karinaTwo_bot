@@ -15,10 +15,9 @@ class event extends Event {
     
     async run(){
         let client = this.client;
-        let guilds_data = await e621_autopost.find_all();
         let defaut_blacklist = defaut_blacklist_.map((x) => `-${x}`);
 
-        async function e6_execute(){
+        async function e6_execute(guilds_data){
             for (let i = 0; i < guilds_data.length; i++){
                 let guild_data = guilds_data[i];
 
@@ -76,10 +75,12 @@ class event extends Event {
                 }
             }
         }
-
+        
         setInterval(async() => {
-            await e6_execute();
-        }, 3600000);
+            let get_guilds_data = await e621_autopost.find_all();
+
+            await e6_execute(get_guilds_data);
+        }, 60 * 60 * 1000);
     }
 }
 
