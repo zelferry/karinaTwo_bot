@@ -1,6 +1,8 @@
 *.replit
 *.bashrc
 .env
+private_files
+0
 
 node
 npm

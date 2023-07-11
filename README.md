@@ -42,53 +42,8 @@
 
 a karinaTwo e uma bot multiuso feita com muito carinho, amor e javascript, espero que todos respeitem esse repositório, e não usem para ganhar fama em seu bot, use apenas para aprender as funções que a **karinaTwo** possui!
 
-## 🔋 estrutura
-
-> a karinaTwo usa o **node v16** ou a **node v18`(recomendado)`** para poder funcionar corretamente. 
-
-karinaTwo foi feita usando a linguagem **JavaScript** e tendo como livraria de conecção com a **API** do **discord**  a **[discord.js](https://discord.js.org
-)**, para o banco de dados, eu usei a **[moongoose](https://mongoosejs.com)**`(mas em breve se possível irei mudar o banco de dados para a FerretDB)`
- 
-
-#### 📄 **- arquivo** `.env`
-
-```env
-MONGOOSE="" #database da moongoose
-PORT="" #porta para a express(opcional se CONDITION_WEBCLIENT estiver com a válvula "false")
-
-WEBHOOK_COMMANDS="' #webhook de comandos
-WEBHOOK_TOPGG="" #webhook de logs da top.gg
-WEBHOOK_SUPPORT="" #webhook de suporte
-WEBHOOK_MANAGER="" #webhook do sistema
-
-CLIENT_ID="" #id do cliente do bot
-TOKEN="" #token do bot
-PROTECTION_BOT_TOKEN="" #token de um bot para requisições externas
-
-TOPGG_PASS="" #passe da top.gg(opcional se CONDITION_BOTLISTPOSTDATA estiver com a valvula "false")
-TOPGG_TOKEN="" #token da top.gg(opcional se CONDITION_BOTLISTPOSTDATA estiver com a valvula "false")
-
-USER_OWNERS="" #ids dos desenvolvedores(exemplo: id1,id2,id3...)
-USER_IGNORED="" #ids dos usuários ignorados(exemplo: id1,id2,id3...)
-
-GUILD_TEST=""#id do servidor de testes
-
-ADVERTS="" #ids dos canais de anúncios(exemplo: id1,id2,id3...)
-URLS_SUPPORT="" #servidor de suporte
-DONATE_PIX="" #chave pix para doações
-
-CONDITION_PRIVATE_COMMANDS="" #condição para ativar/desativar os comandos privados (apenas true ou false)
-CONDITION_WEBCLIENT="" #condição para ativar/desativar o cliente da express(apenas true ou false)
-CONDITION_BOTLISTPOSTDATA="" #condição para ativar/desativar o sistema de botlist (apenas true ou false)
-```
-
-⚠ALERTA!
-> `o token de bot adicional o *PROTECTION_BOT_TOKEN* e necessário para o repositório fazer requisições EXTERNAS/EXTRAS na API do discord sem fazer que o bot principal "*TOKEN*" não pege RATELIMIT`
-
-#### :electric_plug: **- script de Inicialização**
-```npm
-npm start
-```
+## 🐱 docs
+> [como copilar e executar a karinaTwo](docs/how-to-build.md)
 
 ## 🔗 links
 
