@@ -118,7 +118,6 @@ class Command extends comando {
         let subCOMMAND = interaction.options.getSubcommand();
 
         if (subCOMMAND == "create") {
-
             if(await e621_autopost.validate(interaction.guild)){
                 interaction.editReply({
                     content: t("commands:e621_autopost.create.error_guild"),
@@ -194,7 +193,6 @@ class Command extends comando {
                 return {}
             }
         } else if(subCOMMAND == "delete"){
-            
             if(!await e621_autopost.validate(interaction.guild)){
                 interaction.editReply({
                     content: t("commands:e621_autopost.delete.error")
@@ -216,24 +214,24 @@ class Command extends comando {
             activated: true,
             pt: {
                 name: "e621_autopost",
-                description: "",
+                description: "envie postagens da e621 automaticamente em um canal de texto!",
                 permissions: {
                     bot: ["MANAGE_MESSAGES", "MANAGE_CHANNELS", "ADMINISTRATOR"],
                     user: ["MANAGE_MESSAGES", "ADMINISTRATOR"]
                 },
-                category: "",
-                usage: "",
+                category: "administração",
+                usage: "<sub comando>",
                 subCommands: []
             },
             en: {
                 name: "e621_autopost",
-                description: "",
+                description: "send E621 posts automatically in a text channel!",
                 permissions: {
                     bot: ["MANAGE_MESSAGES", "MANAGE_CHANNELS", "ADMINISTRATOR"],
                     user: ["MANAGE_MESSAGES", "ADMINISTRATOR"]
                 },
-                category: "",
-                usage: "",
+                category: "management",
+                usage: "<sub command>",
                 subCommands: []
             }
         }
@@ -242,12 +240,12 @@ class Command extends comando {
     _permissions(){
         return {
             "pt-BR": {
-                bot: "🚫**|** eu não tenho permissões o suficiente para isso!\n💡**|** eu preciso das seguintes permissões: ",
-                user: "🚫**|** você não tem permissões o suficiente para isso!\n💡**|** você precisa das seguintes permissões: "
+                bot: "🚫**|** eu não tenho permissões o suficiente para isso!\n💡**|** eu preciso das seguintes permissões: `gerenciar mensagens`, `gerenciar canais` e `administrador`",
+                user: "🚫**|** você não tem permissões o suficiente para isso!\n💡**|** você precisa das seguintes permissões: `gerenciar mensagens` e `gerenciar canais`"
             },
             "en-US": {
-                bot: "🚫**|** I don't have enough permissions for that!\n💡**|** i need the following permissions: ",
-                user: "🚫**|** you don't have enough permissions for that!\n💡**|** you need the following permissions: "
+                bot: "🚫**|** I don't have enough permissions for that!\n💡**|** i need the following permissions: `MANAGE MESSAGES`, `MANAGE CHANNELS` and `ADMINISTRATOR`",
+                user: "🚫**|** you don't have enough permissions for that!\n💡**|** you need the following permissions: `MANAGE MESSAGES` and `MANAGE CHANNELS`"
             }
         }
     }

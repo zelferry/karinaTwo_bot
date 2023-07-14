@@ -77,6 +77,7 @@ class Command extends comando {
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
+        let value = await profile.find(interaction.user);
         let subCOMMAND = interaction.options.getSubcommand();
 
         let url = await this.client.private_api.nekos[subCOMMAND]();
@@ -92,7 +93,7 @@ class Command extends comando {
             });
             return {}
         } else {
-            if(this.vip_args.includes(subCOMMAND)){
+            if(this.vip_args.includes(subCOMMAND) && !value.config.vip.active){
                 interaction.editReply({
                     content: t("commands:global.vip_user_arg", {
                         arg: (subCOMMAND).toString()
