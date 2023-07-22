@@ -4,6 +4,7 @@ const defaut_blacklist_ = require("../../config/config.js").client.blacklist.e62
 
 const mathRandom = number => ~~(Math.random() * number);
 const Discord = require('discord.js');
+const fetch = require('node-fetch');
 
 
 class event extends Event {
@@ -37,38 +38,43 @@ class event extends Event {
                 }
 
                 if(!guild_data.cache.includes(id)){
-                    let hook = new Discord.WebhookClient({
-                        url: guild_data.webhook.url
-                    });
+                    let { status } = fetch(guild_data.webhook.url, { 'method': 'GET' });
 
-                    if(posts.length){
-                        if(file.endsWith('.webm') || file.endsWith('.swf')){
-                            hook.send({
-                                content: `webm/sfw: ${file}`
-                            });
-                        } else {
-                            hook.send({
-                                embeds: [
-                                    {
-                                        color: 12632256,
-                                        description: original_description,
-                                        author: {
-                                            name: post.tags.artist.join(' '),
-                                            icon_url: "http://i.imgur.com/RrHrSOi.png"
-                                        },
-                                        image: {
-                                            url: file
-                                        },
-                                        timestamp: new Date(post.created_at).toISOString(),
-                                        footer: {
-                                            text: `ID: ${id}\n`
+                    if(status === 404){
+                        console.log("webhook inexistente");
+                        await e621_autopost.delete({ id: guild_data.guild_id });
+                    } else {
+                        let hook = new Discord.WebhookClient({ url: guild_data.webhook.url });
+
+                        if (posts.length) {
+                            if (file.endsWith('.webm') || file.endsWith('.swf')) {
+                                hook.send({
+                                    content: `webm/sfw: ${file}`
+                                });
+                            } else {
+                                hook.send({
+                                    embeds: [
+                                        {
+                                            color: 12632256,
+                                            description: original_description,
+                                            author: {
+                                                name: post.tags.artist.join(' '),
+                                                icon_url: "http://i.imgur.com/RrHrSOi.png"
+                                            },
+                                            image: {
+                                                url: file
+                                            },
+                                            timestamp: new Date(post.created_at).toISOString(),
+                                            footer: {
+                                                text: `ID: ${id}\n`
+                                            }
                                         }
-                                    }
-                                ]
-                            });
-                        }
+                                    ]
+                                });
+                            }
 
-                        await e621_autopost.add_post(id, guild_data.guild_id);
+                            await e621_autopost.add_post(id, guild_data.guild_id);
+                        }
                     }
                 } else {
                     console.log("lol");

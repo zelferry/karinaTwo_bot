@@ -57,6 +57,7 @@ class Command extends comando {
             interaction.editReply({
                 embeds: [embed]
             });
+            
             return {}
         } else if(subCOMMAND === "knuckles"){
             let data = [
@@ -78,6 +79,7 @@ class Command extends comando {
                 ],
                 files: [attachment]
             });
+
             return {}
         }
     }
@@ -127,6 +129,6 @@ class Command extends comando {
             }
         }
     }
-} 
-module.exports = Command 
-//let data = this.client.contents.minecraft.crepeer[Math.floor(Math.random() * this.client.contents.minecraft.crepeer.length)];
+}
+
+module.exports = Command

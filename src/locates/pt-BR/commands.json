@@ -8,6 +8,7 @@
         },
         "button": {
             "web": "ver na web",
+            "original_1": "procurar original (saucenao.com)",
             "report": "reportar conteúdo",
             "execute": "executar",
             "cancel": "cancelar"
@@ -33,12 +34,7 @@
                 "description": "descrição:",
                 "category": "categoria:",
                 "permissions": "permissões necessárias:",
-                "howToUse": "como usar?",
-                "subCommands": {
-                    "title": "sub comandos",
-                    "labelOne": "nome: **{{nameTwo}}**\ndescrição: **{{description}}**\ncomo usar: `/{{nameOne}} {{nameTwo}}`",
-                    "labelTwo": "não tem :/"
-                }
+                "howToUse": "como usar?"
             }
         }
     },
@@ -76,8 +72,14 @@
         }
     },
     "panther_coins": {
-        "me": "você tem **{{coins}}** panther-coins!",
-        "user": "***{{userTag}}*** tem **{{coins}}** panther-coins!"
+        "view": {
+            "me": "você tem **{{coins}}** panther-coins!",
+            "user": "***{{userTag}}*** tem **{{coins}}** panther-coins!"
+        },
+        "rank": {
+            "you": "você está na posição",
+            "position": "posição"
+        }
     },
     "daily": {
         "no_time": "🚫**|** você já coletou hoje! \n🕔**|** aguarde mais **{{hours}}h {{minutes}}m {{seconds}}s**!",
@@ -105,7 +107,7 @@
         }
     },
     "buy": {
-        "vip": "🪙**|** agora pra você comprar o *vip user* você deve entrar em minha lojinha! https://ko-fi.com/karinatwo/shop\n🤩**|** além de você poder também conseguir comprar panther-coins na lojinha, você também estará me ajudando a ficar online!"
+        "vip": "🪙**|** agora pra você comprar o *vip user* você deve entrar em minha lojinha! <https://ko-fi.com/karinatwo/shop>\n🤩**|** além de você poder também conseguir comprar panther-coins na lojinha, você também estará me ajudando a ficar online!"
     },
     "eight_ball": {
         "error": "🚫**|** insira uma pergunta valida!",
@@ -413,14 +415,34 @@
     "e621_autopost": {
         "create": {
             "error": "😭**|** aconteceu um pequeno erro ao recuperar as informações do site!",
-            "error_guild": ":x:**|** você so pode ter 1 webhook!",
+            "error_guild": ":x:**|** você so pode ter 1 webhook!\n❓️**|** use `/e621_autopost delete` para excluir o atual",
             "no_post": "🚫**|** nenhum resultado para __*{{tags}}*__\n📛**|** tente mais tarde",
-            "no_nsfw": ":x:|o canal mencionado não tem a função **NSFW** ativada",
+            "no_nsfw": ":x:**|** o canal mencionado não tem a função **NSFW** ativada",
             "success": "✅**|** webhook criado!\n❓️**|** a cada **1 hora** uma postagem aleatoria será enviada, use `/e621_autopost delete` caso queira deletar o webhook"
         },
         "delete": {
             "error": ":x:**|** esse servidor não tem um webhook!",
             "success": "✅**|** webhook deletado!"
+        }
+    },
+    "mc": {
+        "achievement": {
+            "defaut": {
+                "title": "conquista desbloqueada!"
+            },
+            "error": {
+                "title": ":x:**|** o titulo não pode ter mais de 24 caracteres!",
+                "description": ":x:**|** a descrição não pode ter mais de 22 caracteres!"
+            }
+        },
+        "server": {
+            "error": {
+                "ip": ":x:**|** ip inválido!\n❓️**|** insira um ip valido"
+            },
+            "success": {
+                "version": "versão:",
+                "players": "jogadores online:"
+            }
         }
     }
 }

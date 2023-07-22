@@ -130,7 +130,8 @@ class Command extends comando {
             interaction.editReply({
                 content: t("commands:e621.error"),
                 ephemeral: true
-            })
+            });
+            
             return {}
         } else {
             let posts = url.data.posts;
@@ -233,5 +234,6 @@ class Command extends comando {
             }
         }
     }
-} 
+}
+
 module.exports = Command

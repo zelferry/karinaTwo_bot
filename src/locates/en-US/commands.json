@@ -33,12 +33,7 @@
                 "description": "description:",
                 "category": "category:",
                 "permissions": "required permissions:",
-                "howToUse": "how to use?",
-                "subCommands": {
-                    "title": "sub commands",
-                    "labelOne": "name: **{{nameTwo}}**\ndescription: **{{description}}**\nhow to use: `/{{nameOne}} {{nameTwo}}`",
-                    "labelTwo": "there is not :/"
-                } 
+                "howToUse": "how to use?"
             }
         }
     },
@@ -76,8 +71,14 @@
         }
     },
     "panther_coins": {
-        "me": "you have **{{coins}}** panther-coins!",
-        "user": "***{{userTag}}*** has **{{coins}}** panther-coins!"
+        "view": {
+            "me": "you have **{{coins}}** panther-coins!",
+            "user": "***{{userTag}}*** has **{{coins}}** panther-coins!"
+        },
+        "rank": {
+            "you": "you're in the position",
+            "position": "position"
+        }
     },
     "daily": {
         "no_time": "🚫**|** you already collected today! \n🕔**|** remaining time for you to collect again: **{{hours}}h {{minutes}}m {{seconds}}s**!",
@@ -105,7 +106,7 @@
         }
     },
     "buy": {
-        "vip": "🪙**|** now for you to buy the *vip user* you must enter my shop! https://ko-fi.com/karinatwo/shop\n🤩**|** in addition to being able to buy panther-coins in the shop, you'll also be helping me stay online!"
+        "vip": "🪙**|** now for you to buy the *vip user* you must enter my shop! <https://ko-fi.com/karinatwo/shop>\n🤩**|** in addition to being able to buy panther-coins in the shop, you'll also be helping me stay online!"
     },
     "eight_ball": {
         "error": "🚫**|** enter a valid question!",
@@ -413,7 +414,7 @@
     "e621_autopost": {
         "create": {
             "error": "😭**|** a small error happened while retrieving the information from the site!",
-            "error_guild": ":x:**|** you can only have 1 webhook!",
+            "error_guild": ":x:**|** you can only have 1 webhook!\n❓️**|** run '/e621_autopost delete' to delete the current one",
             "no_post": "🚫**|** No results for __*{{tags}}*__\n📛**|** try later",
             "no_nsfw": ":x:**|** the mentioned channel does not have the **NSFW** function enabled",
             "success": "✅**|** webhook created!\n❓️**|** Every **1 hour** a random post will be sent, use `/e621_autopost delete` if you want to delete the webhook"
@@ -421,6 +422,26 @@
         "delete": {
             "error": ":x:**|** this server does not have a webhook!",
             "success": "✅**|** webhook deleted!"
+        }
+    },
+    "mc": {
+        "achievement": {
+            "defaut": {
+                "title": "Achievement unlocked!"
+            },
+            "error": {
+                "title": ":x:**|** the title cannot be longer than 24 characters!",
+                "description": ":x:**|** The description cannot be longer than 22 characters!"
+            }
+        },
+        "server": {
+            "error": {
+                "ip": ":x:**|** invalid ip!\n❓️**|** please enter a valid IP"
+            },
+            "success": {
+                "version": "version:",
+                "players": "online players:"
+            }
         }
     }
 }

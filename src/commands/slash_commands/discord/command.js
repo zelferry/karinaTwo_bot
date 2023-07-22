@@ -76,6 +76,7 @@ class Command extends comando {
             category: "discord"
         })
     }
+
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
@@ -95,7 +96,7 @@ class Command extends comando {
             } else {
                 let command2 = command1.command_info()[interaction.options.getString("lang")]
                 let name1 = command2.name;
-                let subCommands1 = command2.subCommands.length > 0 ? command2.subCommands.map((x) => t("commands:command.info.success.subCommands.labelOne", { nameOne: name1, nameTwo: x.name, description: x.description })).join("\n\n") : t("commands:command.info.success.subCommands.labelTwo")
+                //let subCommands1 = command2.subCommands.length > 0 ? command2.subCommands.map((x) => t("commands:command.info.success.subCommands.labelOne", { nameOne: name1, nameTwo: x.name, description: x.description })).join("\n\n") : t("commands:command.info.success.subCommands.labelTwo")
                 let description1 = command2.description;
                 let category1 = command2.category || "???";
                 let usage1 = `/${name1} ${command2.usage ?? ""}`;
@@ -121,10 +122,6 @@ class Command extends comando {
                     {
                         name: t("commands:command.info.success.permissions"),
                         value: `${permissions1}`
-                    },
-                    {
-                        name: t("commands:command.info.success.subCommands.title"),
-                        value: `${subCommands1}`
                     }
                 );
                 
@@ -132,10 +129,7 @@ class Command extends comando {
                     embeds: [embed]
                 })
             }
-        } else {
-            
         }
-        //fim do COMANDO
     }
     command_info(){
         return {

@@ -36,6 +36,7 @@ class event extends Event {
                         member.send({
                             content: locale("events:vip_user.expirate")
                         });
+                        
                         await vip.delete_vip(member);
                     }
                 }

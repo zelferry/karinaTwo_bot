@@ -61,13 +61,14 @@ class Command extends comando {
 
     /* avatar */
     async avatar(interaction, t){
-        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
+        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
         let user = interaction.options.getUser('user') || interaction.user;
-        let avatar = user.avatarURL({ dynamic: true, format: "png", size: 1024 });
+        let avatar = user.avatarURL({ dynamic: true, extension: "png", size: 1024 });
 
 
-        let button_ = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(`${avatar}`).setLabel(t("commands:global.button.web"));
-        let row = new Discord.ActionRowBuilder().addComponents(button_);
+        let button_1 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(`${avatar}`).setLabel(t("commands:global.button.web"));
+        let button_2 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(`https://saucenao.com/search.php?url=${avatar}`).setLabel(t("commands:global.button.original_1"));
+        let row = new Discord.ActionRowBuilder().addComponents(button_1, button_2);
         
         let embed = new Discord.EmbedBuilder().setColor(`#4cd8b2`).setTitle(t("commands:user.avatar", { userName: user.username })).setImage(avatar);
         
@@ -134,5 +135,6 @@ class Command extends comando {
             }
         }
     }
-} 
-module.exports = Command 
+}
+
+module.exports = Command

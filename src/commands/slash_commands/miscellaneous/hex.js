@@ -97,6 +97,7 @@ class Command extends comando {
                 await interaction.editReply({
                     embeds: [embed]
                 });
+                
                 return {}
             }
         }
@@ -129,5 +130,6 @@ class Command extends comando {
             }
         }
     }
-} 
-module.exports = Command 
+}
+
+module.exports = Command

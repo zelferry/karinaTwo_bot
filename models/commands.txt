@@ -23,6 +23,8 @@ class Command extends comando {
                 user: [],
                 bot: []
             },
+            nsfw: false,
+            vip: false,
             deferReply: false
         })
     }

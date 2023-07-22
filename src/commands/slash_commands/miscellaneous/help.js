@@ -97,7 +97,6 @@ class Command extends comando {
                 }
             ];
             let frields = [];
-            //utility
             let channels_ = interaction.guild.channels.cache.filter((channel) => channel.nsfw).map(x => "<#"+x.id+">");
             
             if(channels_.length > 0){
@@ -177,5 +176,6 @@ class Command extends comando {
             }
         }
     }
-} 
-module.exports = Command 
+}
+
+module.exports = Command

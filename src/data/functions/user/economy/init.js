@@ -17,6 +17,7 @@ class eco {
 		await new_.save().catch(e => console.log(e));
 		return new_
 	}
+
 	static async addmoney(author,money,timer){
 		const user = await usermodel.findOne({ UserId: author.id });
 		if(!user) return false/*{
@@ -33,6 +34,7 @@ class eco {
 		await user.save().catch(e => console.log(e))
 		return user
 	}
+
 	static async removemoney(author,money){
 		const user = await usermodel.findOne({ UserId: author.id });
 		if(!user) return false
@@ -42,6 +44,7 @@ class eco {
 		
 		return user
 	}
+
 	static async pay(author,user,money){
 		let user_ = await usermodel.findOne({ UserId: author.id });
 		let user_2 = await usermodel.findOne({ UserId: user.id });
@@ -57,11 +60,13 @@ class eco {
 			user2: user_2
 		}
 	}
+
 	static async fech(author){
 		const user = await usermodel.findOne({ UserId: author.id });
 		if(!user) return this.newUser(author)
 		return user 
 	}
+
     static async add_reps(membro1, membro2){
         let user_1 = await usermodel.findOne({ UserId: membro1.id });
 		let user_2 = await usermodel.findOne({ UserId: membro2.id });
@@ -77,5 +82,16 @@ class eco {
 			user2: user_2
 		}
     }
+
+	static async top_(){
+		const user = await usermodel.find();
+		const data = user.sort((a, b) => b.coins - a.coins);
+
+		return {
+			partial: data.slice(0, 10),
+			all: data
+		}
+	}
 }
+
 module.exports = eco
