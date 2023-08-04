@@ -200,7 +200,7 @@ class Command extends comando {
 
                 return {}
             } else {
-                await e621_autopost.delete(interaction.guild);
+                await e621_autopost.delete1(interaction.guild);
 
                 interaction.editReply({
                     content: t("commands:e621_autopost.delete.success")

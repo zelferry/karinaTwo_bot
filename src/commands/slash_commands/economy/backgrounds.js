@@ -110,7 +110,7 @@ class Command extends comando {
                     let value = await profile.find(interaction.user);
                     let options = {
                         avatarURL: interaction.user.displayAvatarURL({ extension: "png", size: 512 }),
-                        background: `./assets/profile/images/backgrounds/${background.locate}`,
+                        background: `./assets/backgrounds/${background.locate}`,
                         username: interaction.user.username,
                         money: abbreviateNumber(value.coins),
                         aboutme: value.usertext,

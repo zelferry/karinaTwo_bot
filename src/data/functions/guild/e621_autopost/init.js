@@ -52,7 +52,7 @@ class guild_e6 {
         return [...guild_data]
     }
 
-    static async delete(guild){
+    static async delete1(guild){
         await guildModel.deleteMany({ guild_id: guild.id }).catch(e => console.log(e));
 
         return {}

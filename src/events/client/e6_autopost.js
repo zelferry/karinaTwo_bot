@@ -27,17 +27,7 @@ class event extends Event {
                 });
 
                 let posts = (url.data.posts)//.filter((x) => !x.file.url == null);
-                let number = mathRandom(posts.length);
-                let post = posts[number];
-
-                let id = post.id;
-                let file = post.file.url;
-                let original_description = post.description || null;
-                if(original_description && original_description.length > 1000) {
-                    original_description = original_description.substring(0, 997) + '...';
-                }
-
-                if(!guild_data.cache.includes(id)){
+                if(!posts.length){
                     let { status } = fetch(guild_data.webhook.url, { 'method': 'GET' });
 
                     if(status === 404){
@@ -46,38 +36,72 @@ class event extends Event {
                     } else {
                         let hook = new Discord.WebhookClient({ url: guild_data.webhook.url });
 
-                        if (posts.length) {
-                            if (file.endsWith('.webm') || file.endsWith('.swf')) {
-                                hook.send({
-                                    content: `webm/sfw: ${file}`
-                                });
-                            } else {
-                                hook.send({
-                                    embeds: [
-                                        {
-                                            color: 12632256,
-                                            description: original_description,
-                                            author: {
-                                                name: post.tags.artist.join(' '),
-                                                icon_url: "http://i.imgur.com/RrHrSOi.png"
-                                            },
-                                            image: {
-                                                url: file
-                                            },
-                                            timestamp: new Date(post.created_at).toISOString(),
-                                            footer: {
-                                                text: `ID: ${id}\n`
-                                            }
-                                        }
-                                    ]
-                                });
-                            }
-
-                            await e621_autopost.add_post(id, guild_data.guild_id);
-                        }
+                        hook.send({
+                            embeds: [
+                                {
+                                    description: ":br_flag: nenhum post encontrado.\ntente ver se a tag configurada tem posts suficientes para o sistema funcionar"
+                                },
+                                {
+                                    description: ":en_flag: no post found.\ntry to see if the configured tag has enough posts for the system to work"
+                                }
+                            ]
+                        });
                     }
+    
+                    return {}
                 } else {
-                    console.log("lol");
+                    let number = mathRandom(posts.length);
+                    let post = posts[number];
+
+                    let id = post.id;
+                    let file = post.file.url;
+                    let original_description = post.description || null;
+                    if (original_description && original_description.length > 1000) {
+                        original_description = original_description.substring(0, 997) + '...';
+                    }
+
+                    if (!guild_data.cache.includes(id)) {
+                        let { status } = fetch(guild_data.webhook.url, { 'method': 'GET' });
+
+                        if (status === 404) {
+                            console.log("webhook inexistente");
+                            await e621_autopost.delete({ id: guild_data.guild_id });
+                        } else {
+                            let hook = new Discord.WebhookClient({ url: guild_data.webhook.url });
+
+                            if (posts.length) {
+                                if (file.endsWith('.webm') || file.endsWith('.swf')) {
+                                    hook.send({
+                                        content: `webm/sfw: ${file}`
+                                    });
+                                } else {
+                                    hook.send({
+                                        embeds: [
+                                            {
+                                                color: 12632256,
+                                                description: original_description,
+                                                author: {
+                                                    name: post.tags.artist.join(' '),
+                                                    icon_url: "http://i.imgur.com/RrHrSOi.png"
+                                                },
+                                                image: {
+                                                    url: file
+                                                },
+                                                timestamp: new Date(post.created_at).toISOString(),
+                                                footer: {
+                                                    text: `ID: ${id}\n`
+                                                }
+                                            }
+                                        ]
+                                    });
+                                }
+
+                                await e621_autopost.add_post(id, guild_data.guild_id);
+                            }
+                        }
+                    } else {
+                        console.log("lol");
+                    }
                 }
             }
         }

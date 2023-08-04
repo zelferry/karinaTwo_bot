@@ -40,10 +40,10 @@ class Command extends comando {
         })
     }
     async interactionRun(interaction, t){
-        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
+        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
         let user = interaction.options.getUser('user') || interaction.user;
         
-        if(user.bot){
+        if(user.bot && user.id !== process.env.CLIENT_ID){
             return interaction.editReply({
                 content: t("commands:global.error.user.isBot")
             })
@@ -71,12 +71,12 @@ class Command extends comando {
             
             let options = {
                 avatarURL: user.avatarURL({ dynamic: true, extension: "png", size: 512 }),
-                background: `./assets/profile/images/backgrounds/${background.locate}`,
+                background: `./assets/backgrounds/${background.locate}`,
                 username: user.username,
                 money: abbreviateNumber(value.coins),
                 aboutme: value.usertext,
                 reps: value.reps,
-                vip: value.config.vip.active ? t("commands:global.label.yes") : t("commands:global.label.no")
+                vip: user.id !== process.env.CLIENT_ID ? (value.config.vip.active ? t("commands:global.label.yes") : t("commands:global.label.no")) : t("commands:global.label.yes")
             };
             
             Manager(interaction, options, t, (buffer) => {

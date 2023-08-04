@@ -4,13 +4,13 @@ const Discord = require("discord.js");
 module.exports = async(interaction, options, t, function_) => {
 	const avatar = await jimp.read(options.avatarURL);
 	const background = await jimp.read(options.background);
-	const model = await jimp.read(`./assets/profile/images/profile_model.png`);
-	const mascara = await jimp.read("./assets/profile/images/mascara.png");
+	const model = await jimp.read(`./assets/profile/black/images/profile_model.png`);
+	const mascara = await jimp.read("./assets/profile/black/images/mascara.png");
     
-	const font13 = await jimp.loadFont("./assets/profile/fonts/lemon_13.fnt");
-    const font19 = await jimp.loadFont("./assets/profile/fonts/lemo_19.fnt");
-    const font32 = await jimp.loadFont("./assets/profile/fonts/lemo_32.fnt");
-    const font32_2 = await jimp.loadFont("./assets/profile/fonts/lemo_32_2.fnt");
+	const font13 = await jimp.loadFont("./assets/profile/black/fonts/lemon_13.fnt");
+    const font19 = await jimp.loadFont("./assets/profile/black/fonts/lemo_19.fnt");
+    const font32 = await jimp.loadFont("./assets/profile/black/fonts/lemo_32.fnt");
+    const font32_2 = await jimp.loadFont("./assets/profile/black/fonts/lemo_32_2.fnt");
 
 	avatar.resize(145.50, 145.50);
 	mascara.resize(145.50, 145.50);

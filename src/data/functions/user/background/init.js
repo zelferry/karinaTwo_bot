@@ -1,6 +1,7 @@
-let usermodel = require("../../../models/user.js")
+let usermodel = require("../../../models/user.js");
+let bank = require("../../../extends/economy_extras.js");
 
-class background {
+class background extends bank {
 	static async newUser(author){
 		const isUser = await usermodel.findOne({ UserId: author.id });
 		if(isUser) return true;
@@ -30,7 +31,8 @@ class background {
         
 		user.coins -= prize;
         user.config.background.setted = code;
-        user.config.background.collection.push(code)
+        user.config.background.collection.push(code);
+		await this.add_for_bank(prize);
 		
 		user.save().catch(e => console.log(e))
 		

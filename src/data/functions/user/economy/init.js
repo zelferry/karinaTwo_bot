@@ -1,6 +1,7 @@
-let usermodel = require("../../../models/user.js")
+let usermodel = require("../../../models/user.js");
+let bank = require("../../../extends/economy_extras.js");
 
-class eco {
+class eco extends bank {
 	static async newUser(author){
 		const isUser = await usermodel.findOne({ UserId: author.id });
 		if(isUser) return false;
@@ -18,16 +19,10 @@ class eco {
 		return new_
 	}
 
-	static async addmoney(author,money,timer){
+	static async addmoney(author, money, timer){
 		const user = await usermodel.findOne({ UserId: author.id });
-		if(!user) return false/*{
-			let new_ = new usermodel({
-				UserId: author.id,
-				daily: new Date()
-			})
-			await new_.save().catch(e => console.log(e));
-			return new_
-		}*/
+		if(!user) return false
+		
 		user.coins += money
 		if(timer == true) user.config.cooldow.daily = Date.now()
 		
@@ -35,28 +30,29 @@ class eco {
 		return user
 	}
 
-	static async removemoney(author,money){
+	static async removemoney(author, money){
 		const user = await usermodel.findOne({ UserId: author.id });
 		if(!user) return false
 		user.coins -= money
-		
+
+		await this.add_for_bank(money);
 		user.save().catch(e => console.log(e))
 		
 		return user
 	}
 
-	static async pay(author,user,money){
-		let user_ = await usermodel.findOne({ UserId: author.id });
+	static async pay(author, user, money){
+		let user_1 = await usermodel.findOne({ UserId: author.id });
 		let user_2 = await usermodel.findOne({ UserId: user.id });
 		
-		user_.coins -= Math.floor(parseInt(money))
+		user_1.coins -= Math.floor(parseInt(money))
 		user_2.coins += Math.floor(parseInt(money))
 		
-		user_.save().catch(e => console.log(e));
+		user_1.save().catch(e => console.log(e));
 		user_2.save().catch(e => console.log(e));
 		
 		return {
-			user1: user_,
+			user1: user_1,
 			user2: user_2
 		}
 	}
@@ -64,7 +60,7 @@ class eco {
 	static async fech(author){
 		const user = await usermodel.findOne({ UserId: author.id });
 		if(!user) return this.newUser(author)
-		return user 
+		return user //929440325179670579
 	}
 
     static async add_reps(membro1, membro2){
