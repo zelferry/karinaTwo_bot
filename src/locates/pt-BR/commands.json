@@ -16,7 +16,7 @@
         "canceled": "👍**|** cancelado",
         "error": {
             "commands": "🚫**|** aconteceu um erro estranho no comando, tente novamente mais tarde\n```md\n{{error}}\n```",
-            "api_error": "🚫**|** o **serviço de estregras de informações externas** não enviou nada,  tente novamente mas tarde.",
+            "api_error": "🚫**|** o **serviço de estregras de informações externas** não enviou nada, tente novamente mas tarde.",
             "no_url": "🚫**|** parece que a url solicitada desapareceu!\n🤔**|** tente novamente",
             "user": {
                 "isBot": "🚫**|** esse usuário e um bot!"
@@ -254,9 +254,21 @@
         "no_description": "__não tem descrição__",
         "label": {
             "one": "> **votos**: {{postScore}} | **origem**: [original aqui](https://e621.net/post/show/{{postId}})",
-            "two": "tag(s) na blacklist!\ntag: {{tags}} | [**Link**](https://e621.net/posts/{{postId}})\n> caso você queira definir a sua blacklist, você pode ir na opção de edição da karina aqui: [karinatwo.repl.co/dashboard/user/edit](https://karinatwo.repl.co/dashboard/user/edit)",
+            "two": "tag(s) na blacklist!\ntag: {{tags}} | [**Link**](https://e621.net/posts/{{postId}})\n> caso você queira definir a sua blacklist, você pode ir na opção de edição da karina [clicando aqui](https://karinatwo.repl.co/dashboard/user/edit)",
             "three": "> **votos:** {{postScore}} | **[Link](https://e621.net/post/show/{{postId}})**\n> *arquivos em (webm/swf/mp3/mp4) não são compatíveis com embeds.*",
             "four": "> **votos**: {{postScore}} | **[link](https://e621.net/posts/show/{{postId}})*\n\n> **erro 500**\nvocê so pode ver a imagem com uma conta [logada](https://e621.net/users/new) na **e621**"
+        }
+    },
+    "e926": {
+        "error": "😭**|** aconteceu um pequeno erro ao recuperar as informações do site!",
+        "no_post": "🚫**|** nenhum resultado para __*{{tags}}*__\n📛**|** tente mais tarde",
+        "original_description": "descrição do post",
+        "no_description": "__não tem descrição__",
+        "label": {
+            "one": "> **votos**: {{postScore}} | **origem**: [original aqui](https://e926.net/post/show/{{postId}})",
+            "two": "tag(s) na blacklist!\ntag: {{tags}} | [**Link**](https://e926.net/posts/{{postId}})\n> caso você queira definir a sua blacklist, você pode ir na opção de edição da karina [clicando aqui](https://karinatwo.repl.co/dashboard/user/edit)",
+            "three": "> **votos:** {{postScore}} | **[Link](https://e926.net/post/show/{{postId}})**\n> *arquivos em (webm/swf/mp3/mp4) não são compatíveis com embeds.*",
+            "four": "> **votos**: {{postScore}} | **[link](https://e926.net/posts/show/{{postId}})*\n\n> **erro 500**\nvocê so pode ver a imagem com uma conta [logada](https://e926.net/users/new) na **e926**"
         }
     },
     "spam": "🔼**|** foram obtidos mais de {{number_all}} URLs na database global",
@@ -352,7 +364,7 @@
             "price": "preço",
             "concept": "conceito por:",
             "preview": "🖼**|** pré-visualização do background",
-            "noVip": ":x:**|** apenas *vip users* podem comprar esse background\n❓**|** você pode comprar o vip user aqui: https://ko-fi.com/karinatwo/shop",
+            "noVip": ":x:**|** apenas *vip users* podem comprar esse background\n❓**|** você pode comprar o vip user aqui: <https://ko-fi.com/karinatwo/shop>",
             "noMoney": ":x:**|** você não tem panther-coins suficiente!",
             "success": ":moneybag:**|** você comprou o background **{{name}}** por **{{price}} panther-coins**\n😊**|** ele já foi definido automaticamente no seu perfil!"
         },
@@ -407,7 +419,7 @@
     "code": {
         "error": {
             "invalid_key": "🚫**|** a chave de vip user não foi encontrada!\n🔄**|** tente novamente com uma chave válida",
-            "expired": "🚫**|** a chave de vip user expirou!\n❓**|** caso queira, você pode comprar uma nova chave aqui: https://ko-fi.com/karinatwo/shop",
+            "expired": "🚫**|** a chave de vip user expirou!\n❓**|** caso queira, você pode comprar uma nova chave aqui: <https://ko-fi.com/karinatwo/shop>",
             "type": "🚫**|** tipo de chave inválida!\n🔄**|** tente novamente com uma chave válida"
         },
         "success": "🤩**|** vip user ativado!\n🥳**|** agora você pode aproveitar todas as vantagens vip por {{days}} dias!"
@@ -443,6 +455,31 @@
                 "version": "versão:",
                 "players": "jogadores online:"
             }
+        }
+    },
+    "ia": {
+        "error": ":x:**|** desculpa, mas a IA só esta disponível em português :(\n❓️**|** ",
+        "wait": "aguarde... a IA está pensando..."
+    },
+    "layout": {
+        "buy": {
+            "title": ":moneybag:**|** __LOL__ja de layouts",
+            "invalid": ":x:**|** código inválido",
+            "alreadyOwned": ":x:**|** você já possui esse layout",
+            "purchase": "comprar",
+            "purchase_expired": "comprar (expirado)",
+            "price": "preço",
+            "concept": "conceito por:",
+            "preview": "🖼**|** pré-visualização do layout",
+            "noVip": ":x:**|** apenas *vip users* podem comprar esse layout\n❓**|** você pode comprar o vip user aqui: <https://ko-fi.com/karinatwo/shop>",
+            "noMoney": ":x:**|** você não tem panther-coins suficiente!",
+            "success": ":moneybag:**|** você comprou o layout **{{name}}** por **{{price}} panther-coins**\n😊**|** ele já foi definido automaticamente no seu perfil!"
+        },
+        "set": {
+            "title": "🖼**|** definir layout",
+            "notOwned": ":x:**|** você não possui esse layout",
+            "success": ":white_check_mark:**|** você definiu o layout {{name}}",
+            "description": "📝**|** seus layouts são: {{bgList}}"
         }
     }
 }

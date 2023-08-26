@@ -10,7 +10,7 @@ const client_bot = new Client({
     intents: [ GatewayIntentBits.Guilds ]
 });
 const rest = new REST({
-    version: '10' 
+    version: '10'
 }).setToken(process.env.TOKEN);
 
 (async () => {
@@ -30,7 +30,6 @@ const rest = new REST({
     
     try {
         console.log("[SLASH MANAGER] registrando os comandos");
-        //console.log(commands_slash.map((x,y) => `${y} ${x.name}`))
         
         if(public_cmds){
             console.log("[SLASH MANAGER => CONFIRM] comandos selecionados: públicos");
@@ -45,6 +44,7 @@ const rest = new REST({
                 body: commands_slash
             });
         }
+        
         console.log("[SLASH MANAGER] comandos registrados com sucesso!");
     } catch(err) {
         console.error(err);

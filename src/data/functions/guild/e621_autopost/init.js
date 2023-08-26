@@ -24,9 +24,9 @@ class guild_e6 {
         const isGuild = await guildModel.findOne({ guild_id: guild.id });
 
         if(!isGuild){
-            return false
-        } else {
             return true
+        } else {
+            return false
         }
     }
 
@@ -52,7 +52,7 @@ class guild_e6 {
         return [...guild_data]
     }
 
-    static async delete1(guild){
+    static async delete_webhook(guild){
         await guildModel.deleteMany({ guild_id: guild.id }).catch(e => console.log(e));
 
         return {}

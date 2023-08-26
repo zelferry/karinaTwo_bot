@@ -15,27 +15,25 @@ class event extends Event {
         
         let user_translation = await translations.get_lang(message.author);
         let locale = global.t = i18next.getFixedT(user_translation || 'pt-BR');
+
+        if (message.content.includes(message.mentions.members.size)) {
+            for (const [, member] of message.mentions.members) {
+                let mentioned1 = await afk.confirm(member);
+                let mentioned2 = await afk.find(member);
+
+                if (mentioned1 && mentioned2.afk.ready) message.channel.send({
+                    embeds: [{
+                        description: t("events:afk", { mentioned: (member.id).toString(), afk_reason: mentioned2.afk.reason })
+                    }]
+                });
+            };
+        };
         
-        let mentioned = message.mentions.members.first();
+        let mentioned1 = await afk.confirm(message.author);
+        let mentioned2 = await afk.find(message.author);
 
-        if(mentioned){
-            let stats = await afk.find(mentioned, false);
-            if(stats.error !== "404"){
-                if(stats.afk.ready){
-                    message.channel.send({
-                        embeds: [{
-                            description: t("events:afk", { mentioned: (mentioned.id).toString(), afk_reason: stats.afk.reason })
-                        }]
-                    })
-                }
-            }
-        }
-
-        let userAFK = await afk.find(message.author, false);
-        if(userAFK.error !== "404"){
-            if(userAFK.afk.ready){
-                await afk.deleteAFK(message.author);
-            }
+        if (mentioned1 && mentioned2.afk.ready) {
+            await afk.deleteAFK(message.author);
         }
     }
 }

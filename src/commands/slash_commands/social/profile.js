@@ -1,6 +1,7 @@
 const comando = require("../../../structures/commands/command.js");
 const { profile } = require('../../../data/ini.js').user;
 const bgdata = require("../../../config/background.json");
+const lydata = require("../../../config/layouts.json");
 const Manager = require("../../../utils/profile_draw.js");
 
 const Discord = require("discord.js");
@@ -50,6 +51,7 @@ class Command extends comando {
         } else {
             let value = await profile.find(user);
             let background = bgdata.find(bg => bg.id === value.config.background.setted);
+            let layout = lydata.find(bg => bg.id === value.config.layout.setted);
 
             function abbreviateNumber(value) {
                 var newValue = value;
@@ -72,6 +74,7 @@ class Command extends comando {
             let options = {
                 avatarURL: user.avatarURL({ dynamic: true, extension: "png", size: 512 }),
                 background: `./assets/backgrounds/${background.locate}`,
+                layout: layout.locate,
                 username: user.username,
                 money: abbreviateNumber(value.coins),
                 aboutme: value.usertext,

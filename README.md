@@ -2,7 +2,6 @@
 <img width="69%" src="./assets/content/logo.png">
 <br>
 
-
 <h1 align="center">✴ karinaTwo ✴</h1>
 
 <p align="center">

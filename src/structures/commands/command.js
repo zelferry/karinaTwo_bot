@@ -44,7 +44,7 @@ class Command {
                 subCommands: []
             }
         }
-    }//
+    }
 
     _permissions(){
         return {

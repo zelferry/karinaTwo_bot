@@ -19,6 +19,6 @@
     },
     "afk": "o <@{{mentioned}}> esta `{{afk_reason}}`.\nem breve ele(a) volte para o servidor",
     "vip_user": {
-        "expirate": ":x:**|** seu **vip user** expirou!\n🕔**|** você pode comprar o plano de 30 ou de 60 dias aqui: https://ko-fi.com/karinatwo/shop"
+        "expirate": ":x:**|** seu **vip user** expirou!\n🕔**|** você pode comprar o plano de 30 ou de 60 dias aqui: <https://ko-fi.com/karinatwo/shop>"
     }
 }

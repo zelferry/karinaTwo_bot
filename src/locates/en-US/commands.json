@@ -8,6 +8,7 @@
         },
         "button": {
             "web": "see on the web",
+            "original_1": "search original (saucenao.com)",
             "report": "report content",
             "execute": "execute",
             "cancel": "cancel"
@@ -258,6 +259,18 @@
             "four": "> **score**: {{postScore}} | **[link](https://e621.net/posts/show/{{postId}})*\n\n> **erro 500**\nYou can only view the image with a [logged in](https://e621.net/users/new) account on **e621**"
         }
     },
+    "e926": {
+        "error": "😭**|** a small error occurred while retrieving information from the site!",
+        "no_post": "🚫**|** no results for __*{{tags}}*__\n📛**|** try later",
+        "original_description": "post description",
+        "no_description": "__has no description__",
+        "label": {
+            "one": "> **score**: {{postScore}} | **origin**: [original here](https://e926.net/post/show/{{postId}})",
+            "two": "tag(s) blacklisted!\ntag: {{tags}} | [**Link**](https://e926.net/posts/{{postId}})\n> if you want to define your blacklist, you can go to karina's editing option here (the site is not in english): [karinatwo.repl.co/dashboard/user/edit](https://karinatwo.repl.co/dashboard/user/edit)",
+            "three": "> **score:** {{postScore}} | **[Link](https://e926.net/post/show/{{postId}})**\n> *files in (webm/swf/mp3/mp4) are not supported by embeds.*",
+            "four": "> **score**: {{postScore}} | **[link](https://e926.net/posts/show/{{postId}})*\n\n> **erro 500**\nYou can only view the image with a [logged in](https://e926.net/users/new) account on **e926**"
+        }
+    },
     "spam": "🔼**|** More than {{number_all}} URLs were retrieved from the global database",
     "yiff": {
         "label": {
@@ -442,6 +455,31 @@
                 "version": "version:",
                 "players": "online players:"
             }
+        }
+    },
+    "ia": {
+        "error": ":x:**|** sorry, but **AI** is only available in portuguese :(\n❓️**|** It will soon be available in English!",
+        "wait": "hold on... the AI is thinking..."
+    },
+    "layout": {
+        "buy": {
+            "title": ":moneybag:**|** layout shop",
+            "invalid": ":x:**|** invalid code",
+            "alreadyOwned": ":x:**|** you already have this layout",
+            "purchase": "buy",
+            "purchase_expired": "buy (expired)",
+            "price": "price",
+            "concept": "concept by:",
+            "preview": "🖼**|** layout preview",
+            "noVip": ":x:**|** only *vip users* can buy this layout\n❓**|** you can buy the vip user here: https://ko-fi.com/karinatwo/shop",
+            "noMoney": ":x:**|** you don't have enough panther-coins",
+            "success": ":moneybag:**|** you bought layout **{{name}}** for **{{price}} panther-coins**, it has already been set automatically in your profile!"
+        },
+        "set": {
+            "title": "🖼**|** set layout",
+            "notOwned": ":x:**|** you do not have this layout",
+            "success": ":white_check_mark:**|** you set {{name}} layout",
+            "description": "📝**|** their layouts are: {{bgList}}"
         }
     }
 }

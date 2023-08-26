@@ -2,16 +2,16 @@ const comando = require("../../../structures/commands/command.js");
 const Discord = require("discord.js");
 const i18next = require('i18next');
 
-const { bgdb, profile, translations } = require("../../../data/ini.js").user;
-const bgdata = require("../../../config/background.json");
+const { lydb, profile, translations } = require("../../../data/ini.js").user;
+const lydata = require("../../../config/layouts.json");
 const Manager = require("../../../utils/profile_draw.js");
 
 class Command extends comando {
     command_data = {
-        name: "background",
-        description: "(economy) background setup commands!",
+        name: "layout",
+        description: "(economy) layout setup commands!",
         description_localizations: {
-            "pt-BR": "(economia) comandos de configuração de fundo!"
+            "pt-BR": "(economia) comandos de configuração de layout!"
         },
         dmPermission: false,
         nsfw: false,
@@ -19,22 +19,22 @@ class Command extends comando {
             {
                 type: 1,
                 name: "buy",
-                description: "(economy) buy new background!",
+                description: "(economy) buy new layout!",
                 name_localizations: {
                     "pt-BR": "comprar"
                 },
                 description_localizations: {
-                    "pt-BR": "(economia) compre um novo fundo!"
+                    "pt-BR": "(economia) compre um novo layout!"
                 },
                 options: [
                     {
                         type: 3,
-                        name: "background",
-                        description: "select a background to buy",
+                        name: "layout",
+                        description: "select a layout to buy",
                         required: true,
                         autocomplete: true,
                         description_localizations: {
-                            "pt-BR": "selecione um plano de fundo para comprar"
+                            "pt-BR": "selecione um layout para comprar"
                         }
                     }
                 ]
@@ -42,22 +42,22 @@ class Command extends comando {
             {
                 type: 1,
                 name: "set",
-                description: "(economy) change your background in /profile!",
+                description: "(economy) change your layout in /profile!",
                 name_localizations: {
                     "pt-BR": "definir"
                 },
                 description_localizations: {
-                    "pt-BR": "(economia) mude seu plano de fundo do /profile!"
+                    "pt-BR": "(economia) mude seu layout do /profile!"
                 },
                 options: [
                     {
                         type: 3,
-                        name: "background",
-                        description: "select a background to set",
+                        name: "layout",
+                        description: "select a layout to set",
                         required: true,
                         autocomplete: true,
                         description_localizations: {
-                            "pt-BR": "selecione um plano de fundo para defini-lo"
+                            "pt-BR": "selecione um layout para defini-lo"
                         }
                     }
                 ]
@@ -67,7 +67,7 @@ class Command extends comando {
     
     constructor(...args) {
         super(...args, {
-            name: "background",
+            name: "layout",
             category: "economy",
             deferReply: true,
             buttonCommands: ["yes"]
@@ -75,7 +75,7 @@ class Command extends comando {
     }
     async interactionRun(interaction, t){
         let command = interaction.options.getSubcommand();
-        let user = await bgdb.find(interaction.user);
+        let user = await lydb.find(interaction.user);
 
         function abbreviateNumber(value) {
             var newValue = value;
@@ -97,45 +97,45 @@ class Command extends comando {
         
         switch (command) {
             case "buy": {
-                let code = await interaction.options.getString("background");
-                let background = await bgdata.find((b) => b.id === code?.toLowerCase());
+                let code = await interaction.options.getString("layout");
+                let layout = await lydata.find((b) => b.id === code?.toLowerCase());
 
                 await interaction.deferReply({ ephemeral: this.deferReply });
 
-                if (user.config.background.collection.includes(code)){
+                if (user.config.layout.collection.includes(code)){
                     return interaction.editReply({
-                        content: t('commands:background.buy.alreadyOwned')
+                        content: t('commands:layout.buy.alreadyOwned')
                     });
                 } else {
                     let value = await profile.find(interaction.user);
                     let options = {
-                        avatarURL: interaction.user.displayAvatarURL({ extension: "png", size: 512 }),
-                        background: `./assets/backgrounds/${background.locate}`,
-                        layout: value.config.layout.setted,
-                        username: interaction.user.username,
-                        money: abbreviateNumber(value.coins),
-                        aboutme: value.usertext,
-                        reps: value.reps,
-                        vip: value.config.vip.active ? t("commands:global.label.yes") : t("commands:global.label.no")
+                        avatarURL: "./assets/content/3.png",
+                        background: `./assets/backgrounds/1.png`,
+                        layout: layout.locate,
+                        username: "user",
+                        money: abbreviateNumber(1000),
+                        aboutme: "é assim que o layout se parece / this is what the layout looks like",
+                        reps: "100",
+                        vip: t("commands:global.label.yes")
                     };
                     
                     Manager(interaction, options, t, (buffer) => {
-                        let bg_locale = background.localizations[t.lng];
+                        let bg_locale = layout.localizations[t.lng];
                         
                         let bgInfo = new Discord.EmbedBuilder()
                         .setTitle(bg_locale.name)
                         .setDescription(bg_locale.description)
                         .setImage('attachment://Profile.png')
                         .addFields({
-                            name: t('commands:background.buy.price'),
-                            value: `${background.panther_coins} panther-coins`,
+                            name: t('commands:layout.buy.price'),
+                            value: layout.panther_coins > 0 ? `${layout.panther_coins} panther-coins` : `free`,
                             inline: true })
                         .setColor("#FA8072");
 
-                        if(!background.concept == "none") bgInfo.addFields({ name: t('commands:background.buy.concept'), value: `${background.concept}`, inline: true });
+                        if(!layout.concept == "none") bgInfo.addFields({ name: t('commands:layout.buy.concept'), value: `${layout.concept}`, inline: true });
                         
                         let row = new Discord.ActionRowBuilder()
-                        .addComponents(new Discord.ButtonBuilder().setCustomId("yes").setLabel(t('commands:background.buy.purchase')).setStyle(Discord.ButtonStyle.Success).setEmoji("💳"));
+                        .addComponents(new Discord.ButtonBuilder().setCustomId("yes").setLabel(t('commands:layout.buy.purchase')).setStyle(Discord.ButtonStyle.Success).setEmoji("💳"));
                         
                         let card = new Discord.AttachmentBuilder(buffer, { name: "Profile.png" });
 
@@ -153,22 +153,22 @@ class Command extends comando {
                         i.deferUpdate();
                         
                         if (i.customId === 'yes'){
-                            if (value.coins < background.panther_coins){
+                            if (value.coins < layout.panther_coins){
                                 interaction.followUp({
-                                    content: t('commands:background.buy.noMoney'),
+                                    content: t('commands:layout.buy.noMoney'),
                                     ephemeral: true
                                 });
-                            } else if(background.only_vip_users && !value.config.vip.active){
+                            } else if(layout.only_vip_users && !value.config.vip.active){
                                 interaction.followUp({
-                                    content: t("commands:background.buy.noVip")
+                                    content: t("commands:layout.buy.noVip")
                                 });
                             } else {
-                                await bgdb.buyAndSet(interaction.user, code, background.panther_coins);
+                                await lydb.buyAndSet(interaction.user, code, layout.panther_coins);
                                 
                                 interaction.editReply({
-                                    content: t('commands:background.buy.success', {
-                                        name: background.localizations[t.lng].name,
-                                        price: background.panther_coins.toString()
+                                    content: t('commands:layout.buy.success', {
+                                        name: layout.localizations[t.lng].name,
+                                        price: layout.panther_coins.toString()
                                     }),
                                     ephemeral: true,
                                     components: [],
@@ -188,7 +188,7 @@ class Command extends comando {
                             let row = new Discord.ActionRowBuilder()
                             .addComponents(new Discord.ButtonBuilder()
                             .setCustomId("yes")
-                            .setLabel(t('commands:background.buy.purchase_expired'))
+                            .setLabel(t('commands:layout.buy.purchase_expired'))
                             .setStyle(Discord.ButtonStyle.Danger)
                             .setDisabled(true));
 
@@ -200,22 +200,22 @@ class Command extends comando {
             }
 
             case "set": {
-                let code = await interaction.options.getString("background");
-                let background = await bgdata.find((b) => b.id === code?.toLowerCase());
+                let code = await interaction.options.getString("layout");
+                let layout = await lydata.find((b) => b.id === code?.toLowerCase());
 
                 await interaction.deferReply({ ephemeral: this.deferReply });
 
-                if (!background){
+                if (!layout){
                     return interaction.editReply({
-                        content: t('commands:background.buy.invalid')
+                        content: t('commands:layout.buy.invalid')
                     });
-                } else if(user.config.background.collection.includes(code)){
-                    bgdb.edit(interaction.user, code);
+                } else if(user.config.layout.collection.includes(code)){
+                    lydb.edit(interaction.user, code);
                     interaction.editReply({
-                        content: t('commands:background.set.success', { name: background.name })
+                        content: t('commands:layout.set.success', { name: layout.name })
                     });
                 } else interaction.editReply({
-                    content: t('commands:background.set.notOwned')
+                    content: t('commands:layout.set.notOwned')
                 });
                 break;
             }
@@ -225,19 +225,17 @@ class Command extends comando {
     async autocompleteRun(interaction, t){
         let command = interaction.options.getSubcommand();
         let user_translation = await translations.get_lang(interaction.user);
-        let user = await bgdb.find(interaction.user);
+        let user = await lydb.find(interaction.user);
         
         let locale = i18next.getFixedT(user_translation || 'pt-BR').lng;
         
-        /*if (command === "buy") interaction.respond(bgdata.map(data => Object({ name: data.localizations[locale].name, value: data.id })));
-        else if (command === "set") interaction.respond(bgdata.filter(b => user.config.background.collection.includes(b.id)).map(b => Object({ name: b.localizations[locale].name, value: b.id })));*/
         if (command === "buy"){
-            interaction.respond(bgdata.filter(b => !user.config.background.collection.includes(b.id)).map(data => Object({
+            interaction.respond(lydata.filter(b => !user.config.layout.collection.includes(b.id)).map(data => Object({
                 name: data.panther_coins > 0 ? `${data.localizations[locale].name} (${data.panther_coins} panther-coins)` : `${data.localizations[locale].name} (free)`,
                 value: data.id 
             })));
         } else if(command === "set") {
-            interaction.respond(bgdata.filter(b => user.config.background.collection.includes(b.id)).map(b => Object({
+            interaction.respond(lydata.filter(b => user.config.layout.collection.includes(b.id)).map(b => Object({
                 name: b.localizations[locale].name,
                 value: b.id
             })));
@@ -248,8 +246,8 @@ class Command extends comando {
         return {
             activated: true,
             pt: {
-                name: "backgrounds",
-                description: "comandos para gerenciar seus backgrounds do /profile!",
+                name: "layouts",
+                description: "comandos para gerenciar seus layouts do /profile!",
                 permissions: {
                     bot: [],
                     user: []
@@ -259,8 +257,8 @@ class Command extends comando {
                 subCommands: []
             },
             en: {
-                name: "backgrounds",
-                description: "commands to manage your /profile backgrounds!",
+                name: "layouts",
+                description: "commands to manage your /profile layouts!",
                 permissions: {
                     bot: [],
                     user: []

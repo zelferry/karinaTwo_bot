@@ -32,7 +32,7 @@ if (condittion_databotslist) {
 	bot_lists.on("posted", data => {
 		console.log(`[${new Date().toString().split(' ', 5).join(' ')}] status postado na top.gg!`);
         
-        if(config.system.debug_all_data){
+        if(config.system.debug_all_data) {
             console.log(`[DEBUG] ${data}`);
         }
 	});

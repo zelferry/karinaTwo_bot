@@ -128,7 +128,7 @@ class Command extends comando {
         let url = await this.client.private_api.POST(`api/e926/posts`, { tags: tags1 });
         if(url.ok === false){
             interaction.editReply({
-                content: t("commands:e621.error"),
+                content: t("commands:e926.error"),
                 ephemeral: true
             });
             
@@ -138,7 +138,7 @@ class Command extends comando {
             
             if(!posts.length){
                 interaction.editReply({
-                    content: t("commands:e621.no_post", { tags: (tags1.join(" ")).toString() })
+                    content: t("commands:e926.no_post", { tags: (tags1.join(" ")).toString() })
                 });
                 return {}
             } else {
@@ -149,7 +149,7 @@ class Command extends comando {
                 let file = post.file.url;
                 let score = post.score.total;
                 let tags = post.tags.general.concat(post.tags.species, post.tags.character, post.tags.copyright, post.tags.artist, post.tags.invalid, post.tags.lore, post.tags.meta);
-                let original_description = post.description || t("commands:e621.no_description");
+                let original_description = post.description || t("commands:e926.no_description");
                 if(original_description.length > 1000) {
                     original_description = original_description.substring(0, 997) + '...';
                 }
@@ -157,23 +157,23 @@ class Command extends comando {
                 let user = await profile.find(interaction.user);
                 let blacklist = defaut_blacklist ? defaut_blacklist_ : (user.config.e6.blacklist || []);
                 
-                let __description = t("commands:e621.label.one", { postScore: (score).toString(), postId: (id).toString() });
+                let __description = t("commands:e926.label.one", { postScore: (score).toString(), postId: (id).toString() });
                 
                 if(tags){
                     if(this.findOne(blacklist, tags)){
-                        file = "https://static1.e621.net/data/a8/5e/a85ef1bf5f272c44cbcdd4405b5b94b6";
-                        __description = t("commands:e621.label.two", { tags: (this.getOne(blacklist, tags)).toString(), postId: (id).toString() });
+                        file = "https://static1.e926.net/data/a8/5e/a85ef1bf5f272c44cbcdd4405b5b94b6";
+                        __description = t("commands:e926.label.two", { tags: (this.getOne(blacklist, tags)).toString(), postId: (id).toString() });
                     }
                 };
 
                 if(file){
                     if(file.endsWith('.webm') || file.endsWith('.swf')){
-                        __description = t("commands:e621.label.three", { postScore: (score).toString(), postId: (id).toString() });
+                        __description = t("commands:e926.label.three", { postScore: (score).toString(), postId: (id).toString() });
                     }
                 };
 
                 if(file == null){
-                    __description = t("commands:e621.label.four", { postScore: (score).toString(), postId: (id).toString() });
+                    __description = t("commands:e926.label.four", { postScore: (score).toString(), postId: (id).toString() });
                 }
                 
                 interaction.editReply({
@@ -190,7 +190,7 @@ class Command extends comando {
                             },
                             fields: [
                                 {
-                                    name: t("commands:e621.original_description"),
+                                    name: t("commands:e926.original_description"),
                                     value: original_description
                                 }
                             ],

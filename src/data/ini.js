@@ -8,6 +8,7 @@ module.exports = {
         translations: require("./functions/user/translations/init.js"),
         vip: require("./functions/user/vip/init.js"),
         bgdb: require("./functions/user/background/init.js"),
+		lydb: require("./functions/user/layout/init.js"),
 		bansUsers: require("./functions/user/bannerds/init.js")
 	},
 	guild:{
@@ -15,7 +16,7 @@ module.exports = {
 		configs: require("./functions/guild/configSyten/init.js"),
 		e621_autopost: require("./functions/guild/e621_autopost/init.js"),
 		deleteGuild: async function(guild){
-			let guilModel = require("./models/guild.js")
+			let guilModel = require("./models/guild.js");
 			const guild_ = await guilModel.findOne({ guildId: guild.id });
 			
 			if (!guild_) return false;

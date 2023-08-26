@@ -1,4 +1,5 @@
 
+const { truncate } = require("fs");
 let usermodel = require("../../../models/user.js")
 
 class afkDATA {
@@ -18,6 +19,7 @@ class afkDATA {
 		await new_.save().catch(e => console.log(e));
 		return new_
 	}
+	
 	static async setAFK(author,reason= "fora no momento"){
 		const user = await usermodel.findOne({ UserId: author.id });
 
@@ -27,12 +29,21 @@ class afkDATA {
 		await user.save().catch(e => console.log(e));
 		return user
 	}
-	static async find(author,chequer){
+
+	static async confirm(author){
 		const user = await usermodel.findOne({ UserId: author.id });
-		if(!user) return this.newUser(author)
+		if(!user) return this.newUser(author);
 		
-		return user ? user : {"error":"404"}
+		return user ? true : false
 	}
+
+	static async find(author){
+		const user = await usermodel.findOne({ UserId: author.id });
+		if(!user) return this.newUser(author);
+		
+		return user
+	}
+
 	static async deleteAFK(author){
 		const user = await usermodel.findOne({ UserId: author.id });
 		
@@ -43,4 +54,5 @@ class afkDATA {
 		return user
 	}
 }
+
 module.exports = afkDATA

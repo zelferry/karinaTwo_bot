@@ -1,0 +1,36 @@
+[
+    {
+        "id": "default_black",
+        "panther_coins": 0,
+        "only_vip_users": false,
+        "concept": "zelferry",
+        "locate": "simple/black",
+        "localizations": {
+            "pt-BR": {
+                "name": "padrão só que preto",
+                "description": "layout padrão, sempre existiu"
+            },
+            "en-US": {
+                "name": "standard only black",
+                "description": "standard layout, always existed"
+            }
+        }
+    },
+    {
+        "id": "default_white",
+        "panther_coins": 0,
+        "only_vip_users": false,
+        "concept": "zelferry",
+        "locate": "simple/white",
+        "localizations": {
+            "pt-BR": {
+                "name": "padrão só que branco",
+                "description": "layout padrão mas... invertido?"
+            },
+            "en-US": {
+                "name": "standard only white",
+                "description": "standard layout but... upside down?"
+            }
+        }
+    }
+]

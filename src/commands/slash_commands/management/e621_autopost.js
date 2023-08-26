@@ -118,7 +118,7 @@ class Command extends comando {
         let subCOMMAND = interaction.options.getSubcommand();
 
         if (subCOMMAND == "create") {
-            if(await e621_autopost.validate(interaction.guild)){
+            if(!await e621_autopost.validate(interaction.guild)){
                 interaction.editReply({
                     content: t("commands:e621_autopost.create.error_guild"),
                     ephemeral: true
@@ -193,14 +193,14 @@ class Command extends comando {
                 return {}
             }
         } else if(subCOMMAND == "delete"){
-            if(!await e621_autopost.validate(interaction.guild)){
+            if(await e621_autopost.validate(interaction.guild)){
                 interaction.editReply({
                     content: t("commands:e621_autopost.delete.error")
                 });
 
                 return {}
             } else {
-                await e621_autopost.delete1(interaction.guild);
+                await e621_autopost.delete_webhook(interaction.guild);
 
                 interaction.editReply({
                     content: t("commands:e621_autopost.delete.success")

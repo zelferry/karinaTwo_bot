@@ -32,7 +32,7 @@ class event extends Event {
 
                     if(status === 404){
                         console.log("webhook inexistente");
-                        await e621_autopost.delete({ id: guild_data.guild_id });
+                        await e621_autopost.delete_webhook({ id: guild_data.guild_id });
                     } else {
                         let hook = new Discord.WebhookClient({ url: guild_data.webhook.url });
 
@@ -65,7 +65,7 @@ class event extends Event {
 
                         if (status === 404) {
                             console.log("webhook inexistente");
-                            await e621_autopost.delete({ id: guild_data.guild_id });
+                            await e621_autopost.delete_webhook({ id: guild_data.guild_id });
                         } else {
                             let hook = new Discord.WebhookClient({ url: guild_data.webhook.url });
 
@@ -100,7 +100,31 @@ class event extends Event {
                             }
                         }
                     } else {
-                        console.log("lol");
+                        hook.send({
+                            embeds: [
+                                {
+                                    fields: [
+                                        {
+                                            name: ":br_flag: post duplicado",
+                                            value: "esse post já foi enviado",
+                                            inline: true
+                                        },
+                                        {
+                                            name: ":en_flag: duplicate post",
+                                            value: "this post has already been sent",
+                                            inline: true
+                                        }
+                                    ],
+                                    author: {
+                                        name: post.tags.artist.join(' '),
+                                        icon_url: "http://i.imgur.com/RrHrSOi.png"
+                                    },
+                                    image: {
+                                        url: file
+                                    }
+                                }
+                            ]
+                        });
                     }
                 }
             }

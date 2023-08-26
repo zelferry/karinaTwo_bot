@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const guildSchema = mongoose.Schema({
 	guildId: Number,
 	prefix: {
@@ -8,7 +7,18 @@ const guildSchema = mongoose.Schema({
 		default: "f/"
 	},
 	configs:{
-		antiraid:{
+		configured: {
+			type: Boolean,
+			default: false
+		},
+		base: {
+			channels: {
+				logs: String,
+				welcome: String,
+				bye_bye: String
+			}
+		},
+		antiraid: {
 			type: Boolean,
 			default: false
 		},

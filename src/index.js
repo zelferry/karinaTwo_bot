@@ -53,5 +53,5 @@ const client = (global.client = new client_bot({
 }));
 
 extend();
-//require("./dist/anti_crash.js").client(client);
+require("./utils/anti_crash.js").client(client);
 client.connectBOT(process.env.TOKEN);

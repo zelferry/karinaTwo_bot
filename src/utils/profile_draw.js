@@ -1,31 +1,32 @@
 const jimp = require("jimp");
-const Discord = require("discord.js");
 
 module.exports = async(interaction, options, t, function_) => {
+	const type_1 = options.layout;
+	const type_config = require(`../../assets/profile/${type_1}/config.json`);
+
 	const avatar = await jimp.read(options.avatarURL);
 	const background = await jimp.read(options.background);
-	const model = await jimp.read(`./assets/profile/black/images/profile_model.png`);
-	const mascara = await jimp.read("./assets/profile/black/images/mascara.png");
+	const model = await jimp.read("./assets/profile/"+type_1+"/images/profile_model.png");
+	const mascara = await jimp.read("./assets/profile/"+type_1+"/images/mascara.png");
     
-	const font13 = await jimp.loadFont("./assets/profile/black/fonts/lemon_13.fnt");
-    const font19 = await jimp.loadFont("./assets/profile/black/fonts/lemo_19.fnt");
-    const font32 = await jimp.loadFont("./assets/profile/black/fonts/lemo_32.fnt");
-    const font32_2 = await jimp.loadFont("./assets/profile/black/fonts/lemo_32_2.fnt");
+	const font13 = await jimp.loadFont("./assets/profile/"+type_1+"/fonts/lemon_13.fnt");
+    const font19 = await jimp.loadFont("./assets/profile/"+type_1+"/fonts/lemo_19.fnt");
+    const font32 = await jimp.loadFont("./assets/profile/"+type_1+"/fonts/lemo_32.fnt");
 
-	avatar.resize(145.50, 145.50);
-	mascara.resize(145.50, 145.50);
-	background.resize(700, 500);
-	model.resize(700, 500);
+	avatar.resize(type_config.avatar.resize.w, type_config.avatar.resize.h);
+	mascara.resize(type_config.mascara.resize.w, type_config.mascara.resize.h);
+	background.resize(type_config.background.resize.w, type_config.background.resize.h);
+	model.resize(type_config.model.resize.w, type_config.model.resize.h);
 
 	avatar.mask(mascara);
-	model.composite(avatar, 16.50, 13.50);
+	model.composite(avatar, type_config.avatar.composite_local.x, type_config.avatar.composite_local.y);
 
-	model.print(font32, 180, 8.5, options.username);
-	model.print(font19, 374.5, 63.9, options.money);
-	model.print(font19, 298.5, 88.9, options.vip, 690);
-    model.print(font19, 253.5, 113.9, options.reps, 690);
-	model.print(font13, 9, 405, options.aboutme, 693);
-	model.print(font13, 8.3, 374.9, t("commands:profile.about_me"), 693);
+	model.print(font32, type_config.fonts.f32.one.x, type_config.fonts.f32.one.y, `@${options.username}`);
+	model.print(font19, type_config.fonts.f19.one.x, type_config.fonts.f19.one.y, options.money);
+	model.print(font19, type_config.fonts.f19.two.x, type_config.fonts.f19.two.y, options.vip);
+    model.print(font19, type_config.fonts.f19.tree.x, type_config.fonts.f19.tree.y, options.reps, type_config.fonts.f19.tree.max_width);
+	model.print(font13, type_config.fonts.f13.one.x, type_config.fonts.f13.one.y, options.aboutme, type_config.fonts.f13.one.max_width);
+	model.print(font13, type_config.fonts.f13.two.x, type_config.fonts.f13.two.y, t("commands:profile.about_me"));
     
 	background.composite(model, 0, 0);
 	background.getBuffer(jimp.MIME_PNG, async(err, buffer) => {  

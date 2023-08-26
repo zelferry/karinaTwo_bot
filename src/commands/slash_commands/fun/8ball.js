@@ -1,4 +1,5 @@
 const comando = require("../../../structures/commands/command.js");
+const Discord = require("discord.js");
 
 class Command extends comando {
     command_data = {
@@ -31,27 +32,33 @@ class Command extends comando {
             category: "fun"
         })
     }
-    async interactionRun(interaction, t){
-        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
-        const args1 = interaction.options.getString('question');
+    async interactionRun(interaction, t) {
+        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => { });
 
-        if(!args1){
+        const args1 = interaction.options.getString('question');
+        const attachment = new Discord.AttachmentBuilder(`./assets/content/fleur.png`, { name: "fleur.png" });
+
+        if (!args1) {
             await interaction.followUp({
                 content: t("commands:eight_ball.error")
             });
+
             return {}
         } else {
             await interaction.editReply({
-                embeds:[
+                embeds: [
                     {
                         title: "fleur",
-                        description: `${t("commands:eight_ball.asks.label_"+ (Math.floor(Math.random() * 13) + 1)+"")}`,
-                        thumbnail:{
-                            url: "https://cdn.discordapp.com/attachments/834607934633541653/865096939627872298/E6TDAiRX0AI9.png"
+                        description: `${t("commands:eight_ball.asks.label_" + (Math.floor(Math.random() * 13) + 1) + "")}`,
+                        thumbnail: {
+                            url: "attachment://fleur.png"
                         }
                     }
-                ]
-            })
+                ],
+                files: [attachment]
+            });
+
+            return {}
         }
     }
 

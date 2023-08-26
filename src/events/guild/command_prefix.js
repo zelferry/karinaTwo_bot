@@ -61,6 +61,7 @@ class event extends Event {
                         }
                     ]
                 });
+
                 return {}
             }
         } catch (err) {

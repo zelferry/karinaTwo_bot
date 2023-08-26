@@ -33,6 +33,10 @@ let profileSchema = mongoose.Schema({
             setted: { type: String, default: "default" },
             collection: { type: Array, default: ["default"] }
         },
+        layout: {
+            setted: { type: String, default: "simple/black" },
+            collection: { type: Array, default: ["simple/black"] }
+        },
         e6: {
             blacklist: []
         }

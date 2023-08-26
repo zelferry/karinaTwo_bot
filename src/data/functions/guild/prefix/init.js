@@ -11,6 +11,7 @@ class guildPREFIX {
 		await new_.save().catch(e => console.log(e));
 		return new_
 	}
+
 	static async findPrefix(guild, message,type){
 		const isGuild = await guildModel.findOne({ guildId: guild.id });
 		
@@ -26,6 +27,7 @@ class guildPREFIX {
 		}
 		return type ? (message.content.startsWith(isGuild.prefix) ? isGuild.prefix : 'f/') : isGuild.prefix
 	}
+
 	static async setPrefix(guild,prefix_){
 		const isGuild = await guildModel.findOne({ guildId: guild.id });
 		
@@ -40,11 +42,11 @@ class guildPREFIX {
 		}
 		
 		isGuild.prefix = prefix_
-		
 		await isGuild.save().catch(e => console.log(e));
 
 		return isGuild
 	}
+
 	static async find(guild){}
 }
 module.exports = guildPREFIX

@@ -25,7 +25,7 @@ class baseClient extends Discord.Client {
             this.guilds.cache.forEach(async (g) => {
                 if(!g.available){
                     await g.fetch();
-                    console.log(`[error] o servidor \`${g.name} (${g.id})\`e um servidor inválido! ele sera ignorado`);
+                    console.log(`[error] o servidor \`${g.name} (${g.id})\`é um servidor inválido\nele será ignorado`);
                 }
             });
             
@@ -35,7 +35,7 @@ class baseClient extends Discord.Client {
             this.interval.start(async() => {
                 this.user.setActivity(`${status} | cluster[${this.cluster.id}]`, {
                     type: Discord.ActivityType.Watching
-                })
+                });
             }, 5600, "status");
         });
         

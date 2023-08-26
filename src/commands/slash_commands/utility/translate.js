@@ -22,6 +22,11 @@ class Command extends comando {
                 type: 1,
                 name: "en",
                 description: "(utilities) translate karinaTwo into english"
+            },
+            {
+                type: 1,
+                name: "es",
+                description: "(utilidades) (próximamente) traducir karinaTwo al español"
             }
         ]
     }
@@ -42,7 +47,9 @@ class Command extends comando {
         } else if(subCOMMAND === "en"){
             await translations.set_lang(interaction.user, "en-US");
             interaction.editReply({ content: ":flag_us:**|** language changed to **English**!" });
-        }
+        } else if(subCOMMAND === "es"){
+            interaction.editReply({ content: ":x:**|** todavía no estoy disponible en español, inténtalo de nuevo más tarde" });
+        } 
     }
 
     command_info(){

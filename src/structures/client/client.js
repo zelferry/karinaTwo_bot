@@ -34,7 +34,7 @@ class clientBot extends baseClient {
             const result = await fetch(url, ops88);
             return result.json() ?? { send: false }
         };
-        //his.commands_utils = new commandsSructure(this, clientConfig);
+        
         this.pre_load = {
             events: new events(this),
             commands: new commandsSructure(this)
@@ -66,10 +66,9 @@ class clientBot extends baseClient {
             Discord.PermissionsBitField.Flags.EmbedLinks
         ];
 
-        //client.dist = require("../../dist/main.js");
-        //client.contents = require("../../database/client/content.json");
         client.interval = intervalStructure;
         client.private_api = new apiStructure(client);
+        client.ia = require("./structures/ia.js");
     }
     async loadLocates(){
         const path = `${process.cwd()}/src/locates`
@@ -92,7 +91,7 @@ class clientBot extends baseClient {
             
             return console.info(`[LOCALES] - carregados um total de ${i18next.languages.length} locales!`.green);
         } catch (error) {
-            return console.error("[LOCATES] - erro".red, error)
+            return console.error("[LOCATES] - erro".red, error);
         }
     }
     async connect(){
@@ -101,6 +100,7 @@ class clientBot extends baseClient {
         await this.pre_load.events.load();
         await this.pre_load.commands.loadSlash();
         await this.pre_load.commands.loadPrefix();
+
         this.login(process.env.TOKEN).then(setTimeout(() => {
             if (!this.isReady()) exec('kill 1');
         }, 5 * 1000));
