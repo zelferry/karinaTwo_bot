@@ -100,6 +100,8 @@ class event extends Event {
                             }
                         }
                     } else {
+                        let hook = new Discord.WebhookClient({ url: guild_data.webhook.url });
+                        
                         hook.send({
                             embeds: [
                                 {
