@@ -28,7 +28,7 @@ class event extends Event {
 
                 let posts = (url.data.posts)//.filter((x) => !x.file.url == null);
                 if(!posts.length){
-                    let { status } = fetch(guild_data.webhook.url, { 'method': 'GET' });
+                    let { status } = await fetch(guild_data.webhook.url, { 'method': 'GET' });
 
                     if(status === 404){
                         console.log("webhook inexistente");
@@ -61,7 +61,7 @@ class event extends Event {
                     }
 
                     if (!guild_data.cache.includes(id)) {
-                        let { status } = fetch(guild_data.webhook.url, { 'method': 'GET' });
+                        let { status } = await fetch(guild_data.webhook.url, { 'method': 'GET' });
 
                         if (status === 404) {
                             console.log("webhook inexistente");
