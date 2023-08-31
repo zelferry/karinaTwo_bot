@@ -43,8 +43,12 @@ class event extends Event {
                             }).catch(() => {});
                         } else {
                             let errorEmbed = new Discord.EmbedBuilder().setColor("Red").setTitle(locale("events:slash.error.embed.title")).setDescription(`\ \ \`\`\`js\n${err}\n\`\`\``);
-                            await interaction.followUp({ embeds: [errorEmbed], ephemeral: true }).catch(() => {});
+                            await interaction.followUp({
+                                embeds: [errorEmbed],
+                                ephemeral: true
+                            }).catch(() => {});
                         }
+
                         console.log(err)
                     };
                 })
@@ -79,13 +83,13 @@ class event extends Event {
                     await interaction.deferReply({ ephemeral: true });
                     
                     let channels_ = interaction.guild.channels.cache.filter((channel) => channel.nsfw).map(x => "<#"+x.id+">");
-                    let embed_2 = new Discord.EmbedBuilder().setColor("#FF7F50").setDescription(`:x:|o canal não tem a função **NSFW** ativada!`).setTimestamp();
-                    let text = channels_.map(x => `${x}`).slice(0, -1).length > 1 ? channels_.map(x => `${x}`).slice(0, -1).join(", ") + ` ou em ${channels_[channels_.length -1]}` : channels_.map(x => `${x}`).join(", ");
+                    let embed_2 = new Discord.EmbedBuilder().setColor("#FF7F50").setDescription(locale("events:nsfw.error_1")).setTimestamp();
+                    let text = channels_.map(x => `${x}`).slice(0, -1).length > 1 ? channels_.map(x => `${x}`).slice(0, -1).join(", ") + ` ${locale("events:nsfw.error_3")} ${channels_[channels_.length -1]}` : channels_.map(x => `${x}`).join(", ");
 
                     if(channels_.length > 0){
                         embed_2.addFields({
-                            name: `tente novamente em:`,
-                            value: `${text}.`
+                            name: locale("events:nsfw.error_2"),
+                            value: `${text}`
                         });
                     }
                     
@@ -109,6 +113,7 @@ class event extends Event {
                             }]
                         }]
                     });
+
                     return {}
                 } else if(command.vip && !user_data.config.vip.active){
                     await interaction.deferReply({ ephemeral: true }).catch(() => {});

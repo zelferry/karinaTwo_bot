@@ -28,7 +28,7 @@ class eco {
     static async daily_panther_coins(data){
         let user = await usermodel.findOne({ UserId: data });
 
-        user.coins += 200
+        user.coins += 500
 
         user.save().catch(e => console.log(e));
 

@@ -33,6 +33,8 @@ class event extends Event {
                     if(status === 404){
                         console.log("webhook inexistente");
                         await e621_autopost.delete_webhook({ id: guild_data.guild_id });
+
+                        return {}
                     } else {
                         let hook = new Discord.WebhookClient({ url: guild_data.webhook.url });
 
@@ -46,9 +48,9 @@ class event extends Event {
                                 }
                             ]
                         });
+
+                        return {}
                     }
-    
-                    return {}
                 } else {
                     let number = mathRandom(posts.length);
                     let post = posts[number];
@@ -66,6 +68,8 @@ class event extends Event {
                         if (status === 404) {
                             console.log("webhook inexistente");
                             await e621_autopost.delete_webhook({ id: guild_data.guild_id });
+
+                            return {}
                         } else {
                             let hook = new Discord.WebhookClient({ url: guild_data.webhook.url });
 
@@ -74,6 +78,8 @@ class event extends Event {
                                     hook.send({
                                         content: `webm/sfw: ${file}`
                                     });
+
+                                    return {}
                                 } else {
                                     hook.send({
                                         embeds: [
@@ -94,9 +100,11 @@ class event extends Event {
                                             }
                                         ]
                                     });
-                                }
 
-                                await e621_autopost.add_post(id, guild_data.guild_id);
+                                    await e621_autopost.add_post(id, guild_data.guild_id);
+
+                                    return {}
+                                }
                             }
                         }
                     } else {
@@ -127,6 +135,8 @@ class event extends Event {
                                 }
                             ]
                         });
+
+                        return {}
                     }
                 }
             }

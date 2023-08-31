@@ -46,7 +46,7 @@ class Command extends comando {
             {
                 type: 1,
                 name: "boobs",
-                description: "(nsfw + ⭐vip) nsfw boobs"
+                description: "(nsfw) nsfw boobs"
             },
             {
                 type: 1,
@@ -73,7 +73,7 @@ class Command extends comando {
             nsfw: true
         })
 
-        this.vip_args = ["femboy", "bara", "boobs", "pussy", "succubus"]
+        this.vip_args = ["femboy", "bara", "pussy", "succubus"]
     }
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});

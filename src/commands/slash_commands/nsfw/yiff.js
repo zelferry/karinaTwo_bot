@@ -49,7 +49,7 @@ class Command extends comando {
                         value: "bulge",
                     },
                     {
-                        name: "⭐ andromorph",
+                        name: "andromorph",
                         value: "andromorph",
                     }
                 ]
@@ -72,7 +72,7 @@ class Command extends comando {
         
         let embed = new Discord.EmbedBuilder().setImage(json.post.url).setColor("#7B68EE").setDescription(`${t("commands:yiff.label.artist")}: ${json.post.author}`);
         
-        if((data == "gay" || data == "bulge" || data == "andromorph" || data == "lesbian") && !value.config.vip.active){
+        if((data == "gay" || data == "bulge" || data == "lesbian") && !value.config.vip.active){
             interaction.editReply({
                 content: t("commands:global.vip_user_arg", {
                     arg: (data).toString()

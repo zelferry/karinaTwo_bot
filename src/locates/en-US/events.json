@@ -20,5 +20,10 @@
     "afk": "<@{{mentioned}}> is `{{afk_reason}}`.\nsoon he/she will come back to the server",
     "vip_user": {
         "expirate": ":x:**|** your **vip user** has expired!\n🕔**|** you can buy the 30 or 60 day plan here: <https://ko-fi.com/karinatwo/shop>"
+    },
+    "nsfw": {
+        "error_1": ":x:**|** the channel does not have the **NSFW** function enabled!",
+        "error_2": "please try again at:",
+        "error_3": "or"
     }
 }

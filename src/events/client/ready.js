@@ -7,8 +7,7 @@ const i18next = require('i18next');
 class event extends Event {
     constructor(...args){
         super(...args, {
-            name: "ready"/*,
-            once: true*/
+            name: "ready"
         })
     }
     
@@ -58,7 +57,7 @@ class event extends Event {
             await daily_panther_coins(get_users_data);
         }, 24 * 60 * 60 * 1000);
 
-        console.log(`${this.client.user.tag} online!!`);
+        console.log(`${this.client.user.tag} online!`);
     }
 }
 

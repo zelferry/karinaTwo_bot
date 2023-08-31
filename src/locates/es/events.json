@@ -1,0 +1,24 @@
+{
+    "prefix": {
+        "title": "¿qué tal probar los **comandos de barra**?",
+        "description": "este comando está disponible a través de **Slash Commands** (comandos con `/`)\nlos comandos que no usan barra diagonal han desaparecido por completo, ¡así que será mejor que te acostumbres a ellos!\n\nlas versiones de los comandos en **slash Commands son *superiores* a las versiones originales**, por lo que no tendrás nada que perder usando mis **slash commands** en lugar de las versiones originales!",
+        "fields_name": "¿los comandos de barra diagonal no aparecen?",
+        "fields_description": "si mis comandos de barra diagonal no aparecen en su servidor, [autorizarme a crear comandos de barra en su servidor]({{bot_url}}), asegúrese de que el título de su trabajo tenga permiso para \"Usar comandos de aplicación\", asegúrese de que la opción \"Usar comandos de barra\" esté habilitada en su configuración y asegúrese de que su Discord esté actualizado.\nen caso de que necesite ayuda, [iniciar sesión en mi servidor de soporte]({{server_url}})!\n\ny no olvides, ¡los comandos de barra son aquellos que usan el **`/`**!"
+    },
+    "slash": {
+        "error": {
+            "embed": {
+                "title": "error al ejecutar el comando:"
+            },
+            "interaction": "¡se ha producido un error de interacción!\nvuelve a intentarlo\n\nsi continúa, póngase en contacto con mis desarrolladores"
+        },
+        "banned": {
+            "description": "🚫 ¡se te ha prohibido usar mis comandos!",
+            "fields_name": "con la razón:"
+        }
+    },
+    "afk": "el <@{{mentioned}}> esta `{{afk_reason}}`.\npronto volverá al servidor",
+    "vip_user": {
+        "expirate": ":x:**|** ¡tu **usuario vip** ha caducado!\n🕔**|** puede comprar el plan de 30 o 60 días aquí: <https://ko-fi.com/karinatwo/shop>"
+    }
+}
