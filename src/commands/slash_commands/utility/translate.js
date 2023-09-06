@@ -48,7 +48,8 @@ class Command extends comando {
             await translations.set_lang(interaction.user, "en-US");
             interaction.editReply({ content: ":flag_us:**|** language changed to **English**!" });
         } else if(subCOMMAND === "es"){
-            interaction.editReply({ content: ":x:**|** todavía no estoy disponible en español, inténtalo de nuevo más tarde" });
+            await translations.set_lang(interaction.user, "es");
+            interaction.editReply({ content: ":x:**|** ¡El idioma cambió a **español**!\n⛔**|** Sin embargo, la traducción puede no ser 100% perfecta, Cualquier error de traducción por favor informe" });
         } 
     }
 

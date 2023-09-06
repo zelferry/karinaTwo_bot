@@ -46,6 +46,10 @@ class translations {
             "en-US": {
                 lang: "en-US",
                 lang_simple: "en"
+            },
+            "es": {
+                lang: "es",
+                lang_simple: "es"
             }
         }
 

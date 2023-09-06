@@ -83,6 +83,8 @@ class Command extends comando {
                     ]
                 });
 
+                console.log(err);
+
                 return {}
             }
         }

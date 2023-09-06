@@ -1,0 +1,485 @@
+{
+  "global": {
+    "vip_user": "🚫**|** ¡Este comando es solo para usuarios vip!\n🦊**|** Puedes comprar una clave de usuario vip aquí: <https://ko-fi.com/karinatwo/shop>\ne lembrando, comprando o usuario vip você me ayuda a continuar online!",
+    "vip_user_arg": "🚫**|** ¡El argumento `{{arg}}` es solo para usuarios vip!\n🦊**|** Puedes comprar una clave de usuario vip aquí: <https://ko-fi.com/karinatwo/shop>\ne lembrando, comprando o usuario vip você me ayuda a continuar online!",
+    "label": {
+      "yes": "sim",
+      "no": "no"
+    },
+    "button": {
+      "web": "ver en la web",
+      "original_1": "procurar original (saucenao.com)",
+      "report": "reportero conteúdo",
+      "execute": "ejecutar",
+      "cancel": "cancelar"
+    },
+    "canceled": "👍**|** cancelado",
+    "error": {
+      "commands": "🚫**|** aconteceu um error estranho no comando, tente novamente mais tarde\n```md\n{{error}}\n```",
+      "api_error": "🚫**|** o **serviço de estregras de informações externas** não enviou nada, tente novamente mas tarde.",
+      "no_url": "🚫**|** ¡Parece que una URL solicitada desapareceu!\n🤔**|** tente novamente",
+      "user": {
+        "isBot": "🚫**|** esse usuário e um bot!"
+      },
+      "channel": {
+        "text": ":x:**|** `{{channelName}}` no hay canal de texto"
+      }
+    }
+  },
+  "command": {
+    "info": {
+      "noCommand": "🚫**|** o comando {{commandName}} não existe ou esta com defeito :p",
+      "success": {
+        "name": "nombre del comando:",
+        "description": "descripción:",
+        "category": "categoría:",
+        "permissions": "permisos necesarios:",
+        "howToUse": "como usar?"
+      }
+    }
+  },
+  "invite": "¡Me adiciona en tu servidor!",
+  "server": {
+    "info": {
+      "title": "información del servidor",
+      "id": "identificación:",
+      "name": "nombre:",
+      "owner": "dono(a):",
+      "members": "miembros:",
+      "date_create": "datos de crianza:",
+      "date_join": "Você entrou em:",
+      "button": {
+        "name": "ver datos del servidor",
+        "embed": {
+          "title": "datos del servidor",
+          "description": "Estas son las informaciones de su servidor en la base de datos mínima:"
+        }
+      }
+    },
+    "icon": "icono del servidor"
+  },
+  "support": {
+    "server": "😁**|** mi servidor de soporte!",
+    "send": {
+      "error": "🚫**|** forneça um relatorio de no máximo 1000 caracteres.",
+      "success": "✅**|** enviado con éxito!"
+    }
+  },
+  "user": {
+    "avatar": "🖼**|** avatar de {{userName}}",
+    "about_me": {
+      "success": "novo **sobre mim**"
+    }
+  },
+  "panther_coins": {
+    "view": {
+      "me": "¡Vos ten **{{coins}}** panther-pantera!",
+      "user": "***{{userTag}}*** tem **{{coins}}** ¡panther pantera!"
+    },
+    "rank": {
+      "you": "você está en la posición",
+      "position": "posición"
+    }
+  },
+  "daily": {
+    "no_time": "🚫**|** você já coletou hoje!\n🕔**|** ¡guarda más **{{hours}}h {{minutes}}m {{seconds}}s**!",
+    "error": "¡Aconteceu um error!",
+    "success": "🤩**|** mr.beast te deu **{{result}} panther-pantera**!!!\n🕔**|** __volte amanhã__ para más un vídeo de mr.beast"
+  },
+  "pay": {
+    "error": {
+      "isThatYou": "🚫**|** ¡você não pode pagar você mesmo!",
+      "insufficient": "🚫**|** ¡No tienes PANTHER-COINS o suficientes!",
+      "noNegative": "🚫**|** numeros neativos não comtam!"
+    },
+    "button": {
+      "pay": "pagar",
+      "canceled": "Cancelar pago"
+    },
+    "success": {
+      "warn": "💸**|** ¿Quieres también transferir {{amount}} panther-coins para **{{userName}}**?\na equipe da karinaTwo **não se responsabiliza** pelos panther-coins perdidos, então certifique-se de estar transferindo para uma pessoa de confiança!\n¡Está prohibido el comercio de contenido NSFW(+18) en troca de panther-coins!",
+      "transferred": "✅**|** puedes transferir **{{amount}}** ***panther-coins*** para el usuario ***{{userTag}}***",
+      "sendMessage": {
+        "success": "👍**|** e a MENSAGEM foi enviado con éxito!",
+        "label1": "o ***{{authorTag}}*** te deu **{{amount}}** panther-pantera!",
+        "label2": "un mensaje eliminado:"
+      }
+    }
+  },
+  "buy": {
+    "vip": "🪙**|** ahora pra você comprar o *vip user* você deve entrar em minha lojinha! <https://ko-fi.com/karinatwo/shop>\n🤩**|** ¡Além de você también podrás conseguir comprar Panther-coins na lojinha, você também me estarás ayudando a ficar online!"
+  },
+  "eight_ball": {
+    "error": "🚫**|** ¡Insira uma pergunta valida!",
+    "asks": {
+      "label_1": "sim",
+      "label_2": "no",
+      "label_3": "talvez",
+      "label_4": "No sei, tente de novo.",
+      "label_5": "¿quién sabe?",
+      "label_6": "No puedo contarte",
+      "label_7": "mi informante dice que no",
+      "label_8": "mi informante dice que sim",
+      "label_9": "Provavelmente sim",
+      "label_10": "Provavelmente no",
+      "label_11": "¡Me pergunte más tarde!",
+      "label_12": "claro que no!",
+      "label_13": "No conte comigo para isso",
+      "label_14": "duvido muito"
+    }
+  },
+  "jokenpo": {
+    "rock": {
+      "win": "✂️**|** tesoura!\n🔹️**|** eu perdi :c",
+      "we_tie": ":rock:**|** piedra!\n🔹️**|**¡Empatamos!",
+      "loser": ":periódico:**|** papel!\n🔹️**|** ¡Você perdeu!"
+    },
+    "paper": {
+      "win": ":rock:**|** piedra!\n🔹️**|** eu perdi :c",
+      "we_tie": ":periódico:**|** papel!\n🔹️**|**¡Empatamos!",
+      "loser": "✂️**|** tesoura!\n🔹️**|** ¡Você perdeu!"
+    },
+    "scissor": {
+      "win": ":periódico:**|** papel!\n🔹️**|** eu perdi :c",
+      "we_tie": "✂️**|** tesoura!\n🔹️**|**¡Empatamos!",
+      "loser": ":rock:**|** piedra!\n🔹️**|** ¡Você perdeu!"
+    }
+  },
+  "say": {
+    "error": "❌**|**MUITOS CARACTERES!\n⭕**|** o máximo de caracteres y de `1400` CARACTERES!",
+    "success": {
+      "return": "{{args_}}\n\n🦊 mensaje enviado pelo(a) <@{{userId}}>",
+      "reply": "enviado con éxito!"
+    }
+  },
+  "ban": {
+    "error": {
+      "is_me": "❌**|** você não pode se banir",
+      "is_bot": "❌**|** você não pode me banir\n😭**|** você me odeia? :(",
+      "is_owner": "❌**|** ¡No puedes banir o dono do servidor!",
+      "is_role1": "❌**|** você não pode banir alguém que tenha um cargo superior ou igual ao seu!",
+      "is_role2": "❌**|** ¡Não posso banir alguém que tenha um cargo superior ou igual ao meu!"
+    },
+    "success": "😡| El usuario **{{userTag}}** fue banido con éxito por causa de: **{{reason_}}**"
+  },
+  "clean": {
+    "error": {
+      "no_channel": ":x:**|** **{{channelName}}** no hay canal de texto"
+    },
+    "success": {
+      "main": "**{{size}}** ¡Mensajes limpios en *{{channelName}}*!\n{{subError}}",
+      "one": "Porém, **{{coutResult}}** masajes no foram eliminados por terem mais de 2 semanas o por serem __*desconhecidas*__",
+      "two": "​"
+    }
+  },
+  "kick": {
+    "error": {
+      "is_me": "❌**|** você não pode se expulsar",
+      "is_bot": "❌**|** você não pode me expulsar\n😭**|** você me odeia? :(",
+      "is_owner": "❌**|** ¡No puedes expulsar a nadie del servidor!",
+      "is_role1": "❌**|** você não pode expulsar alguém que tenha um cargo superior ou igual ao seu!",
+      "is_role2": "❌**|** ¡Não posso expulsar alguém que tenha um cargo superior ou igual ao meu!"
+    },
+    "success": "😡| o usuário **{{userTag}}** foi expulso sucesso por causa de: **{{reason_}}**"
+  },
+  "nuke": {
+    "warn": "🚫**|** ¡espera ai!\ndesea mesmo que eu faça isso?\n\neu estarei fazendo o siguiente:\n  1 - clonar el canal `{{oldchannel}}`\n  2 - borrar el canal `{{oldchannel}}`\n\n¿Deseas que eu faça isso?",
+    "success": "🗿🍷**|** canal **100**% limpo pelo(a) **{{userTag}}**"
+  },
+  "slowmode": "{{emoji}}**|** modo lento definido para **{{timer}} segundos** en __{{channelName}}__!",
+  "help": {
+    "devs": "graças aos meus desenvolvedores eu posso continuar a existir no discord!",
+    "commands": {
+      "categorys": {
+        "discord": "📱 discordia",
+        "economy": "🪙 economía",
+        "fun": "🤣 diversión",
+        "management": "👩‍⚖️ administración",
+        "miscellaneous": "♾ micelanea",
+        "social": "🫂 redes sociales",
+        "utility": "🛠 utilitarios"
+      },
+      "title": "¡Minha lista de comandos!",
+      "footer": "Algunos comandos no están apareciendo por serem SubComandos"
+    }
+  },
+  "colors": {
+    "error": {
+      "color": "❌**|** cor inválida!\n❓**|** tente novamente com uma cor em **hexadecimal** válido",
+      "api": "❌**|** algo de errado aconteceu!\n✋**|** tente novamente más tarde"
+    },
+    "embed": {
+      "description": "nombre de la cor: **{{cname}}**\nnombre exacto: **{{exactly}}**"
+    },
+    "hex": {
+      "title": "hexadecimal",
+      "field": "válvula: `{{value}}`"
+    },
+    "rgb": {
+      "title": "vermelho, verde, azul (rbg)",
+      "field": "válvula: `{{value}}`\nfrase: `{{fraction}}`"
+    },
+    "hsl": {
+      "title": "tom, saturación, luminosidad (hsl)",
+      "field": "válvula: `{{value}}`\nfrase: `{{fraction}}`"
+    },
+    "hsv": {
+      "title": "matiz, saturación, valor (hsv)",
+      "field": "válvula: `{{value}}`\nfrase: `{{fraction}}`"
+    },
+    "cmyk": {
+      "title": "ciano, magenta, amarelo, preto (cmyk)",
+      "field": "válvula: `{{value}}`\nfrase: `{{fraction}}`"
+    },
+    "XYZ": {
+      "title": "coordenadas cromáticas (XYZ)",
+      "field": "válvula: `{{value}}`\nfrase: `{{fraction}}`"
+    }
+  },
+  "meme": {
+    "generate": {
+      "label": "> título: {{post_title}}\n> votos: {{post_votes}}\n> subreddit: {{post_subreddit}}\n> origen: [original aquí]({{post_url}})",
+      "nsfw": "🚫**|** ¡parece que o meme e um meme nsfw!",
+      "no_img": "🚫**|** parece que el meme no es una imagen"
+    },
+    "knuckles": "¿Será que Knuckles aprovou su meme?"
+  },
+  "wikipedia": {
+    "error": "No es posible recuperar ningún resultado.\ntente pesquisar com distinção entre maiúsculas y minúsculas."
+  },
+  "e621": {
+    "error": "😭**|** ¡Aconteceu um pequeno error ao recuperar as informações do site!",
+    "no_post": "🚫**|** no hay resultado para __*{{tags}}*__\n📛**|** tente más tarde",
+    "original_description": "descripción de la publicación",
+    "no_description": "__não tem descrição__",
+    "label": {
+      "one": "> **votos**: {{postScore}} | **origen**: [original aquí](https://e621.net/post/show/{{postId}})",
+      "two": "etiqueta(s) en lista negra!\netiqueta: {{tags}} | [**Enlace**](https://e621.net/posts/{{postId}})\n> Si quieres definir tu lista negra, puedes ir a la opción de edición de Karina [haciendo clic aquí](https://karinatwo.repl.co/dashboard/user/edit)",
+      "three": "> **votos:** {{postScore}} | **[Enlace](https://e621.net/post/show/{{postId}})**\n> *Los archivos en (webm/swf/mp3/mp4) no son compatibles con incrustaciones.*",
+      "four": "> **votos**: {{postScore}} | **[enlace](https://e621.net/posts/show/{{postId}})*\n\n> **error 500**\nvocê so pode ver a imagem com uma conta [logada](https://e621.net/users/new) na **e621**"
+    }
+  },
+  "e926": {
+    "error": "😭**|** ¡Aconteceu um pequeno error ao recuperar as informações do site!",
+    "no_post": "🚫**|** no hay resultado para __*{{tags}}*__\n📛**|** tente más tarde",
+    "original_description": "descripción de la publicación",
+    "no_description": "__não tem descrição__",
+    "label": {
+      "one": "> **votos**: {{postScore}} | **origen**: [original aquí](https://e926.net/post/show/{{postId}})",
+      "two": "etiqueta(s) en lista negra!\netiqueta: {{tags}} | [**Enlace**](https://e926.net/posts/{{postId}})\n> Si quieres definir tu lista negra, puedes ir a la opción de edición de Karina [haciendo clic aquí](https://karinatwo.repl.co/dashboard/user/edit)",
+      "three": "> **votos:** {{postScore}} | **[Enlace](https://e926.net/post/show/{{postId}})**\n> *Los archivos en (webm/swf/mp3/mp4) no son compatibles con incrustaciones.*",
+      "four": "> **votos**: {{postScore}} | **[enlace](https://e926.net/posts/show/{{postId}})*\n\n> **error 500**\nvocê so pode ver a imagem com uma conta [logada](https://e926.net/users/new) na **e926**"
+    }
+  },
+  "spam": "🔼**|** foram obtidos mais de {{number_all}} URL en la base de datos global",
+  "yiff": {
+    "label": {
+      "artist": "artista(s)",
+      "no_foud": "no tem"
+    }
+  },
+  "afk": {
+    "activated": "💤**|** ¡Afk activado!\nLos usuarios irão saber que você esta `{{reasonn}}`\n\nPara su conivência, eu irei desativar o seu afk quando você falar algo no chat! 😉",
+    "error": ":x:**|** você ja esta com o afk ativo!"
+  },
+  "actions": {
+    "attack": {
+      "error": "🚫**|** ¡Vos no podes atacar a si mismo!\n🤨**|** ta maluco para ficar batendo em si mesmo?",
+      "success": {
+        "title": "ataque!",
+        "description": "**{{user1}}** acabo de atacar o **{{user2}}**"
+      }
+    },
+    "dance": {
+      "error": "🚫**|** mencione uma pessoa que não seja você!",
+      "success": {
+        "title": "\"danca gatinho, dança\"",
+        "description": "**{{user1}}** é **{{user2}}** ¡está bailando!"
+      }
+    },
+    "hug": {
+      "error": "🚫**|** ¡você não pode abraçar a si mesmo!\n☹**|** sei que você ta na **depre** mais ta na minha programação não te deixar executar uma ação em si mesmo",
+      "success": {
+        "title": "abraços!!",
+        "description": "**{{user1}}** deu um abraço em **{{user2}}**"
+      }
+    },
+    "kiss": {
+      "error": "🚫**|** ¡você não pode beijar a si mesmo!\n🧐**|** se quiser se beijar e so ir em um espelho",
+      "success": {
+        "title": "beijinhos",
+        "description": "**{{user1}}** deu um beijo, um *selilho* em **{{user2}}**"
+      }
+    },
+    "slap": {
+      "error": "🚫**|** ¡você não pode bater em si mesmo!\n🗿**|** não tem mosquito na sua cara não",
+      "success": {
+        "title": "tapas?!",
+        "description": "**{{user1}}** deu um tapa em **{{user2}}**"
+      }
+    }
+  },
+  "profile": {
+    "name": "📱**|** perfil",
+    "about_me": "sobre mim"
+  },
+  "ship": {
+    "primary": "HMMM, ¿vai rolar o não vai?",
+    "label": {
+      "me": "¡ame a si mesmo!",
+      "perfect": "esse é o casal perfeito!",
+      "making_out": "Esses aquí já tão se pegando e não contaram pra ninguém!",
+      "want": "talvez só precisa o {{userName}} querer...",
+      "cry": "queria muito dizer que é possível, mas..."
+    }
+  },
+  "morse": {
+    "morse_text": "morse 》texto",
+    "text_morse": "texto 》morse"
+  },
+  "donate": {
+    "description": "¿Quieres seguir online?\n¿Então que tal fazer uma doaçãozinha?\nToda é bem-vinda e, é claro, você me estarás ayudando mucho, hoje em dia as hosts estão custando cerca de R$ 45,00 reales, e você pode me ajudar a ficar online doando, vale lembar que é opcional, se você No hay condiciones de hacer, no hay problema :)",
+    "button": "doar e ayudar a karinaTwo",
+    "author": "haga clic aquí se o botão com a url não estiver aparecer",
+    "footer": "aviso: compartilhar qualquer information pessoal do meu dev irá resultado em banimento permanente"
+  },
+  "status": {
+    "system": {
+      "title": "sistema",
+      "description": "modelo de CPU: {{model}}\nuso de ram: {{ram}}MB\nuso de CPU: {{cpu_usage}}%\nbits: {{bits}}\narquitectura: {{platform}}"
+    },
+    "info": {
+      "title": "información",
+      "description": "servidores: {{guild}}\nusuarios: {{users}}\ncomandos sin total: {{cmds}}"
+    },
+    "version": "versos"
+  },
+  "background": {
+    "buy": {
+      "title": ":moneybag:**|** __LOL__ja de fondo",
+      "invalid": ":x:**|** código inválido",
+      "alreadyOwned": ":x:**|** Tienes ese fondo",
+      "purchase": "comprar",
+      "purchase_expired": "comprar (caducado)",
+      "price": "precio",
+      "concept": "concepto por:",
+      "preview": "🖼**|** visualización previa del fondo",
+      "noVip": ":x:**|** solo *usuarios vip* podem comprar ese fondo\n❓**|** Puedes comprar un usuario vip aquí: <https://ko-fi.com/karinatwo/shop>",
+      "noMoney": ":x:**|** ¡No hay suficientes panther-coins!",
+      "success": ":moneybag:**|** te comprometiste con el fondo **{{name}}** por **{{price}} panther-coins**\n😊**|** ¡Ele já foi definido automáticamente en su perfil!"
+    },
+    "set": {
+      "title": "🖼**|** definir fondo",
+      "notOwned": ":x:**|** no puedes tener ese fondo",
+      "success": ":white_check_mark:**|** has definido el fondo {{name}}",
+      "description": "📝**|** tus fondos son: {{bgList}}"
+    }
+  },
+  "actions_nsfw": {
+    "assfuck": {
+      "error": "🚫**|** mencione um usuário que não seja você mesmo!\n🤨**|** ||autofuck?||",
+      "success": {
+        "title": "ninguno",
+        "description": "**{{user2}}**, você está sendo fodido na bunda por **{{user1}}** :3"
+      }
+    },
+    "cum": {
+      "error": "🚫**|** mencione um usuário que não seja você mesmo!",
+      "success": {
+        "title": "ninguno",
+        "description": "**{{user2}}**, **{{user1}}** ¡está gozando em você!"
+      }
+    },
+    "blowjob": {
+      "error": "🚫**|** mencione um usuário que não seja você mesmo!",
+      "success": {
+        "title": "ninguno",
+        "description": "**{{user2}}**, estás recibiendo un boquete de **{{user1}}**"
+      }
+    }
+  },
+  "coinflip": {
+    "bet": {
+      "error": "🚫**|** ¡No hay suficientes panther-coins!\n💸**|** ¡Necesitamos **20** o más panther de pantera para girar una moneda!",
+      "win": "deu **{{value}}**, você ganhou dessa vez!\n💸**|** adiconei **50** panther pantera en su carta!",
+      "loser": "deu **{{value}}**, você perdeu dessa vez!\n💸**|** retirei **50** panther-coins da sua carteira pela derrota"
+    },
+    "normal": {
+      "win": "deu **{{value}}**, você ganhou dessa vez!",
+      "loser": "deu **{{value}}**, você perdeu dessa vez!"
+    }
+  },
+  "reps": {
+    "error": {
+      "is_you": "🚫**|** ¡você não pode dar reps pra você mesmo!",
+      "no_time": "🚫**|** aguarde para poder usar novamente el comando\n⏱**|** ¡guarda más **{{hours}}h {{minutes}}m {{seconds}}s**!"
+    },
+    "success": "😎**|** você deu __reputação__ para o(a) **{{user}}**!"
+  },
+  "code": {
+    "error": {
+      "invalid_key": "🚫**|** a chave de vip user não foi encontrado!\n🔄**|** tente novamente con una llave válida",
+      "expired": "🚫**|** un usuario chave de vip expirou!\n❓**|** caso queira, você pode comprar una nueva chave aquí: <https://ko-fi.com/karinatwo/shop>",
+      "type": "🚫**|** tipo de chave inválida!\n🔄**|** tente novamente con una llave válida"
+    },
+    "success": "🤩**|** usuario vip activado!\n🥳**|** ¡Ahora puedes aprovechar todas las ventajas vip por {{days}} días!"
+  },
+  "e621_autopost": {
+    "create": {
+      "error": "😭**|** ¡Aconteceu um pequeno error ao recuperar as informações do site!",
+      "error_guild": ":x:**|** ¡Así que puedes tener 1 webhook!\n❓️**|** use `/e621_autopost delete` para excluir o actual",
+      "no_post": "🚫**|** no hay resultado para __*{{tags}}*__\n📛**|** tente más tarde",
+      "no_nsfw": ":x:**|** El canal mencionado no tiene función **NSFW** activada",
+      "success": "✅**|** webhook criado!\n❓️**|** a cada **1 hora** se enviará un envío aleatorio, use `/e621_autopost delete` caso quiera eliminar el webhook"
+    },
+    "delete": {
+      "error": ":x:**|** ¡Este servidor no tiene un webhook!",
+      "success": "✅**|** ¡webhook eliminado!"
+    }
+  },
+  "mc": {
+    "achievement": {
+      "defaut": {
+        "title": "conquistada desbloqueada!"
+      },
+      "error": {
+        "title": ":x:**|** ¡El título no puede tener más de 24 caracteres!",
+        "description": ":x:**|** ¡La descripción no puede tener más de 22 caracteres!"
+      }
+    },
+    "server": {
+      "error": {
+        "ip": ":x:**|** ip inválido!\n❓️**|** insira um ip válida"
+      },
+      "success": {
+        "version": "versión:",
+        "players": "jugadores en línea:"
+      }
+    }
+  },
+  "ia": {
+    "error": ":x:**|** desculpa, mas a IA só esta disponível em português :(\n❓️**|**",
+    "wait": "aguarde... a IA está pensando..."
+  },
+  "layout": {
+    "buy": {
+      "title": ":moneybag:**|** __LOL__ja de diseños",
+      "invalid": ":x:**|** código inválido",
+      "alreadyOwned": ":x:**|** Tienes ese diseño",
+      "purchase": "comprar",
+      "purchase_expired": "comprar (caducado)",
+      "price": "precio",
+      "concept": "concepto por:",
+      "preview": "🖼**|** visualización previa del diseño",
+      "noVip": ":x:**|** solo *usuarios vip* podem comprar ese diseño\n❓**|** Puedes comprar un usuario vip aquí: <https://ko-fi.com/karinatwo/shop>",
+      "noMoney": ":x:**|** ¡No hay suficientes panther-coins!",
+      "success": ":moneybag:**|** has comprometido el diseño **{{name}}** por **{{price}} panther-coins**\n😊**|** ¡Ele já foi definido automáticamente en su perfil!"
+    },
+    "set": {
+      "title": "🖼**|** definir diseño",
+      "notOwned": ":x:**|** no puedes tener ese diseño",
+      "success": ":white_check_mark:**|** has definido el diseño {{name}}",
+      "description": "📝**|** sus diseños son: {{bgList}}"
+    }
+  }
+}
