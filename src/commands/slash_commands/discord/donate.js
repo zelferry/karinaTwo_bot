@@ -1,5 +1,6 @@
 const comando = require("../../../structures/commands/command.js");
 const Discord = require("discord.js");
+let { links } = require("../../../config/config.js").client;
 
 class Command extends comando {
     command_data = {
@@ -26,7 +27,7 @@ class Command extends comando {
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
         
-        let button_1 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(config.pix).setLabel(t("commands:donate.button")).setEmoji("😊");
+        let button_1 = new Discord.ButtonBuilder().setStyle(Discord.ButtonStyle.Link).setURL(links.donate).setLabel(t("commands:donate.button")).setEmoji("😊");
         let row1 = new Discord.ActionRowBuilder().addComponents(button_1);
         
         await interaction.editReply({

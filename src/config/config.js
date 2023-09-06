@@ -32,6 +32,7 @@ module.exports = {
         },
         links: {
             server: "https://discord.gg/Xmu7HrH3yy",
+            donate: "https://ko-fi.com/karinatwo",
             website: "https://karinaTwo.repl.co"
         },
         blacklist: {
