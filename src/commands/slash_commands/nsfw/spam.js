@@ -11,10 +11,10 @@ let defaut_options = [
         required: true,
         name: "size",
         description: "amount of urls to be spawned (maximum: 15)",
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "quantidade"
         },
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "quantidade de urls a serem gerados (máximo: 15)"
         }
     }
@@ -24,7 +24,7 @@ class Command extends comando {
     command_data = {
         name: "spam",
         description: "(nsfw + ⭐vip) get from 1 to 15 URLs from some nsfw command",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(nsfw + ⭐vip) obtenha de 1 a 15 URLs de algum comando nsfw"
         },
         dmPermission: false,
@@ -63,7 +63,7 @@ class Command extends comando {
                         type: 1,
                         name: "misc",
                         description: "(nsfw) random yiff (may contain strange content)",
-                        descriptionLocalizations: {
+                        description_localizations: {
                             "pt-BR": "yiff aleatório (pode conter conteúdo estranho)"
                         },
                         options: defaut_options

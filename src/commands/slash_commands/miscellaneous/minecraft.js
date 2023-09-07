@@ -8,7 +8,7 @@ class Command extends comando {
     command_data = {
         name: "mc",
         description: "BLOCKSSSSSS",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "BLOCOSSSSSSS"
         },
         dmPermission: false,
@@ -18,10 +18,10 @@ class Command extends comando {
                 type: 1,
                 name: "achievement",
                 description: "(miscellaneous) create an achievement board!",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "conquista"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(diversos) crie uma placa de conquista!"
                 },
                 options: [
@@ -55,10 +55,10 @@ class Command extends comando {
                 type: 1,
                 name: "server",
                 description: "(miscellaneous) view status of a server",
-                nameLocalizations: {
+                name_localizations: {
                     "pt-BR": "servidor"
                 },
-                descriptionLocalizations: {
+                description_localizations: {
                     "pt-BR": "(diversos) exibir status de um servidor"
                 },
                 options: [

@@ -6,10 +6,10 @@ class Command extends comando {
     command_data = {
         name: "converse",
         description: "(fun) a nice chat between you and me (not available in english)",
-        descriptionLocalizations: {
+        description_localizations: {
             "pt-BR": "(diversão) um papo legal entre mim e você"
         },
-        nameLocalizations: {
+        name_localizations: {
             "pt-BR": "conversar"
         },
         dmPermission: false,
@@ -37,6 +37,7 @@ class Command extends comando {
             deferReply: false
         })
     }
+    
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
 
