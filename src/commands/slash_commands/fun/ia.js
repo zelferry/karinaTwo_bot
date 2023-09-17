@@ -34,6 +34,7 @@ class Command extends comando {
         super(...args, {
             name: "converse",
             category: "fun",
+            vip: true,
             deferReply: false
         })
     }

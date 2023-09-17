@@ -28,6 +28,19 @@ module.exports = {
                         }
                     ]
                 }
+            ],
+            "es": [
+                {
+                    name: "zelferry",
+                    tag: "@zelferry (anteriormente zelferret#5690)",
+                    description: "¡hola!\nmi nombre es zelferry, soy furry, desarrollador de bots de DISCORD que quiere aprender a crear juegos y aplicaciones, y soy **youtuber de GC** y diseño aficionado.\n\nbueno, incluso como desarrollador en solitario de Karinatwo, ¡nunca me rendiré con ella!",
+                    links: [
+                        {
+                            name: "linktree",
+                            link: "https://linktr.ee/zelferry"
+                        }
+                    ]
+                }
             ]
         },
         links: {

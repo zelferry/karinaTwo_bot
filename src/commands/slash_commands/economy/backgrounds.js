@@ -109,14 +109,14 @@ class Command extends comando {
                 } else {
                     let value = await profile.find(interaction.user);
                     let options = {
-                        avatarURL: interaction.user.displayAvatarURL({ extension: "png", size: 512 }),
+                        avatarURL: "./assets/content/3.png",
                         background: `./assets/backgrounds/${background.locate}`,
                         layout: value.config.layout.setted,
-                        username: interaction.user.username,
-                        money: abbreviateNumber(value.coins),
-                        aboutme: value.usertext,
-                        reps: value.reps,
-                        vip: value.config.vip.active ? t("commands:global.label.yes") : t("commands:global.label.no")
+                        username: "user",
+                        money: abbreviateNumber(1000),
+                        aboutme: "é assim que o background se parece / this is what the background looks like",
+                        reps: "100",
+                        vip: t("commands:global.label.yes")
                     };
                     
                     Manager(interaction, options, t, (buffer) => {
@@ -128,7 +128,7 @@ class Command extends comando {
                         .setImage('attachment://Profile.png')
                         .addFields({
                             name: t('commands:background.buy.price'),
-                            value: `${background.panther_coins} panther-coins`,
+                            value: layout.panther_coins > 0 ? `${layout.panther_coins} panther-coins` : `free`,
                             inline: true })
                         .setColor("#FA8072");
 

@@ -15,11 +15,11 @@
     },
     "canceled": "👍**|** cancelado",
     "error": {
-      "commands": "🚫**|** aconteceu um error estranho no comando, tente novamente mais tarde\n```md\n{{error}}\n```",
-      "api_error": "🚫**|** o **serviço de estregras de informações externas** não enviou nada, tente novamente mas tarde.",
+      "commands": "🚫**|** se produjo un error extraño en el comando, inténtelo de nuevo más tarde.\n```md\n{{error}}\n```",
+      "api_error": "🚫**|** **servicio externo de entrega de información** no envió nada, inténtelo nuevamente más tarde.",
       "no_url": "🚫**|** ¡Parece que una URL solicitada desapareceu!\n🤔**|** tente novamente",
       "user": {
-        "isBot": "🚫**|** esse usuário e um bot!"
+        "isBot": "🚫**|** ¡este usuario es un bot!"
       },
       "channel": {
         "text": ":x:**|** `{{channelName}}` no hay canal de texto"
@@ -28,13 +28,13 @@
   },
   "command": {
     "info": {
-      "noCommand": "🚫**|** o comando {{commandName}} não existe ou esta com defeito :p",
+      "noCommand": "🚫**|** el comando {{commandName}} no existe o está defectuoso :p",
       "success": {
         "name": "nombre del comando:",
         "description": "descripción:",
         "category": "categoría:",
         "permissions": "permisos necesarios:",
-        "howToUse": "como usar?"
+        "howToUse": "¿cómo usar?"
       }
     }
   },
@@ -47,7 +47,7 @@
       "owner": "dono(a):",
       "members": "miembros:",
       "date_create": "datos de crianza:",
-      "date_join": "Você entrou em:",
+      "date_join": "entraste:",
       "button": {
         "name": "ver datos del servidor",
         "embed": {
@@ -61,20 +61,20 @@
   "support": {
     "server": "😁**|** mi servidor de soporte!",
     "send": {
-      "error": "🚫**|** forneça um relatorio de no máximo 1000 caracteres.",
+      "error": "🚫**|** proporcionar un informe de un máximo de 1000 caracteres.",
       "success": "✅**|** enviado con éxito!"
     }
   },
   "user": {
     "avatar": "🖼**|** avatar de {{userName}}",
     "about_me": {
-      "success": "novo **sobre mim**"
+      "success": "nuevo **sobre mí**"
     }
   },
   "panther_coins": {
     "view": {
-      "me": "¡Vos ten **{{coins}}** panther-pantera!",
-      "user": "***{{userTag}}*** tem **{{coins}}** ¡panther pantera!"
+      "me": "¡Vos ten **{{coins}}** panther-coins!",
+      "user": "¡***{{userTag}}*** tem **{{coins}}** panther-coins!"
     },
     "rank": {
       "you": "você está en la posición",
@@ -84,7 +84,7 @@
   "daily": {
     "no_time": "🚫**|** você já coletou hoje!\n🕔**|** ¡guarda más **{{hours}}h {{minutes}}m {{seconds}}s**!",
     "error": "¡Aconteceu um error!",
-    "success": "🤩**|** mr.beast te deu **{{result}} panther-pantera**!!!\n🕔**|** __volte amanhã__ para más un vídeo de mr.beast"
+    "success": "🤩**|** mr.beast te deu **{{result}} panther-coins**!!!\n🕔**|** __volte amanhã__ para más un vídeo de mr.beast"
   },
   "pay": {
     "error": {
@@ -97,11 +97,11 @@
       "canceled": "Cancelar pago"
     },
     "success": {
-      "warn": "💸**|** ¿Quieres también transferir {{amount}} panther-coins para **{{userName}}**?\na equipe da karinaTwo **não se responsabiliza** pelos panther-coins perdidos, então certifique-se de estar transferindo para uma pessoa de confiança!\n¡Está prohibido el comercio de contenido NSFW(+18) en troca de panther-coins!",
+      "warn": "💸**|** ¿Quieres también transferir {{amount}} panther-coins para **{{userName}}**?\nel equipo de karinaTwo **no es responsable** de las panther-coins perdidas, ¡así que asegúrese de transferirlas a una persona confiable!\n¡está prohibido intercambiar contenido NSFW (+18) a cambio de panther-coins!",
       "transferred": "✅**|** puedes transferir **{{amount}}** ***panther-coins*** para el usuario ***{{userTag}}***",
       "sendMessage": {
-        "success": "👍**|** e a MENSAGEM foi enviado con éxito!",
-        "label1": "o ***{{authorTag}}*** te deu **{{amount}}** panther-pantera!",
+        "success": "👍**|** ¡y el MENSAJE fue enviado exitosamente!",
+        "label1": "o ***{{authorTag}}*** te deu **{{amount}}** panther-coins!",
         "label2": "un mensaje eliminado:"
       }
     }
@@ -112,20 +112,20 @@
   "eight_ball": {
     "error": "🚫**|** ¡Insira uma pergunta valida!",
     "asks": {
-      "label_1": "sim",
+      "label_1": "sí",
       "label_2": "no",
       "label_3": "talvez",
       "label_4": "No sei, tente de novo.",
       "label_5": "¿quién sabe?",
       "label_6": "No puedo contarte",
       "label_7": "mi informante dice que no",
-      "label_8": "mi informante dice que sim",
-      "label_9": "Provavelmente sim",
+      "label_8": "mi informante dice que sí",
+      "label_9": "Provavelmente sí",
       "label_10": "Provavelmente no",
       "label_11": "¡Me pergunte más tarde!",
       "label_12": "claro que no!",
-      "label_13": "No conte comigo para isso",
-      "label_14": "duvido muito"
+      "label_13": "no cuentes conmigo para eso",
+      "label_14": "lo dudo mucho"
     }
   },
   "jokenpo": {
@@ -154,11 +154,11 @@
   },
   "ban": {
     "error": {
-      "is_me": "❌**|** você não pode se banir",
-      "is_bot": "❌**|** você não pode me banir\n😭**|** você me odeia? :(",
+      "is_me": "❌**|** no puedes desterrarte a ti mismo",
+      "is_bot": "❌**|** no puedes desterrarme\n😭**|** ¿me odías? :(",
       "is_owner": "❌**|** ¡No puedes banir o dono do servidor!",
-      "is_role1": "❌**|** você não pode banir alguém que tenha um cargo superior ou igual ao seu!",
-      "is_role2": "❌**|** ¡Não posso banir alguém que tenha um cargo superior ou igual ao meu!"
+      "is_role1": "❌**|** ¡no puedes prohibir a alguien que tenga una posición superior o igual a la tuya!",
+      "is_role2": "❌**|** ¡não posso banir alguém que tenha um cargo superior ou igual ao meu!"
     },
     "success": "😡| El usuario **{{userTag}}** fue banido con éxito por causa de: **{{reason_}}**"
   },
@@ -174,19 +174,19 @@
   },
   "kick": {
     "error": {
-      "is_me": "❌**|** você não pode se expulsar",
-      "is_bot": "❌**|** você não pode me expulsar\n😭**|** você me odeia? :(",
+      "is_me": "❌**|** no puedes expulsarte",
+      "is_bot": "❌**|** no puedes echarme\n😭**|** ¿me odías? :(",
       "is_owner": "❌**|** ¡No puedes expulsar a nadie del servidor!",
-      "is_role1": "❌**|** você não pode expulsar alguém que tenha um cargo superior ou igual ao seu!",
-      "is_role2": "❌**|** ¡Não posso expulsar alguém que tenha um cargo superior ou igual ao meu!"
+      "is_role1": "❌**|** ¡no puedes expulsar a alguien que tiene una posición superior o igual a la tuya!",
+      "is_role2": "❌**|** ¡não posso expulsar alguém que tenha um cargo superior ou igual ao meu!"
     },
-    "success": "😡| o usuário **{{userTag}}** foi expulso sucesso por causa de: **{{reason_}}**"
+    "success": "😡| El usuario **{{userTag}}** fue expulsado exitosamente debido a: **{{reason_}}**"
   },
   "nuke": {
     "warn": "🚫**|** ¡espera ai!\ndesea mesmo que eu faça isso?\n\neu estarei fazendo o siguiente:\n  1 - clonar el canal `{{oldchannel}}`\n  2 - borrar el canal `{{oldchannel}}`\n\n¿Deseas que eu faça isso?",
     "success": "🗿🍷**|** canal **100**% limpo pelo(a) **{{userTag}}**"
   },
-  "slowmode": "{{emoji}}**|** modo lento definido para **{{timer}} segundos** en __{{channelName}}__!",
+  "slowmode": "{{emoji}}**|** modo lento configurado en **{{timer}} segundos** en __{{channelName}}__!",
   "help": {
     "devs": "graças aos meus desenvolvedores eu posso continuar a existir no discord!",
     "commands": {
@@ -205,7 +205,7 @@
   },
   "colors": {
     "error": {
-      "color": "❌**|** cor inválida!\n❓**|** tente novamente com uma cor em **hexadecimal** válido",
+      "color": "❌**|** ¡color no válido!\n❓**|** Inténtalo de nuevo con un color **hexadecimal** válido",
       "api": "❌**|** algo de errado aconteceu!\n✋**|** tente novamente más tarde"
     },
     "embed": {
@@ -401,7 +401,7 @@
   "coinflip": {
     "bet": {
       "error": "🚫**|** ¡No hay suficientes panther-coins!\n💸**|** ¡Necesitamos **20** o más panther de pantera para girar una moneda!",
-      "win": "deu **{{value}}**, você ganhou dessa vez!\n💸**|** adiconei **50** panther pantera en su carta!",
+      "win": "deu **{{value}}**, você ganhou dessa vez!\n💸**|** adiconei **50** panther-coins en su carta!",
       "loser": "deu **{{value}}**, você perdeu dessa vez!\n💸**|** retirei **50** panther-coins da sua carteira pela derrota"
     },
     "normal": {
@@ -458,7 +458,7 @@
     }
   },
   "ia": {
-    "error": ":x:**|** desculpa, mas a IA só esta disponível em português :(\n❓️**|**",
+    "error": ":x:**|** lo siento, pero la IA sólo está disponible en portugués :(\n❓️**|**",
     "wait": "aguarde... a IA está pensando..."
   },
   "layout": {
