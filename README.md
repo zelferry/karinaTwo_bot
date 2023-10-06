@@ -1,3 +1,8 @@
+
+> karinaTwo está em hiato indefinidamente
+> - [saiba mais o motivo...](https://discord.com/channels/853111207954874379/853118915604381736/1158973032384180224)
+
+
 <p align="center">
 <img width="69%" src="./assets/content/logo.png">
 <br>
