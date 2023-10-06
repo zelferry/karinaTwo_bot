@@ -1,40 +1,62 @@
-let mathRandom = number => ~~(Math.random() * number);
+const mathRandom = number => ~~(Math.random() * number);
+const fetch = require("node-fetch");
 
 class Roleplay {
     constructor(data){
         this.data = data
         this.defaut_footer = "."
+
+        this.fur = {
+            "kiss": "https://v2.yiff.rest/furry/kiss",
+            "hug": "https://v2.yiff.rest/furry/hug"
+        }
     }
     
-    hug(){
-        let data = require(`${this.defaut_footer}/sfw/hug.js`);
-        let number = mathRandom(data.length);
+    async hug(fur){
+        if (fur) {
+            let res = await fetch(this.fur.hug);
+            let ret = await res.json();
+            let data = ret.images[0].url
 
-        return data[number]
+            return data
+        } else {
+            let data = require(`${this.defaut_footer}/sfw/hug.js`);
+            let number = mathRandom(data.length);
+
+            return data[number]
+        }
     }
     
-    kiss(){
-        let data = require(`${this.defaut_footer}/sfw/kiss.js`);
-        let number = mathRandom(data.length);
+    async kiss(fur){
+        if (fur) {
+            let res = await fetch(this.fur.kiss);
+            let ret = await res.json();
+            let data = ret.images[0].url
 
-        return data[number]
+            return data
+        } else {
+            let data = require(`${this.defaut_footer}/sfw/kiss.js`);
+            let number = mathRandom(data.length);
+
+            return data[number]
+        }
     }
 
-    dance(){
+    dance(fur){
         let data = require(`${this.defaut_footer}/sfw/dance.js`);
         let number = mathRandom(data.length);
 
         return data[number]
     }
 
-    slap(){
+    slap(fur){
         let data = require(`${this.defaut_footer}/sfw/slap.js`);
         let number = mathRandom(data.length);
 
         return data[number]
     }
 
-    attack(){
+    attack(fur){
         let data = require(`${this.defaut_footer}/sfw/attack.js`);
         let number = mathRandom(data.length);
 

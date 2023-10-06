@@ -31,7 +31,18 @@ class Command extends comando {
                 description_localizations: {
                     "pt-BR": "(social + nsfw + ⭐vip) bem... já sabemos aonde isso vai dar..."
                 },
-                options: [user_data]
+                options: [
+                    user_data,
+                    {
+                        type: 5,
+                        required: false,
+                        name: "use_furr_images",
+                        description: "when enabled (in \"true\") I will use images of furries(random images via e621.net)",
+                        description_localizations: {
+                            "pt-BR": "quando habilitado (em \"true\") irei usar imagens de furries(imagens aleatórias via e621.net)"
+                        }
+                    }
+                ]
             },
             {
                 type: 1,
@@ -66,6 +77,7 @@ class Command extends comando {
     async interactionRun(interaction, t){
         await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
         let user = interaction.options.getUser("user");
+        let fur_images = interaction.options.getBoolean("use_furr_images") || false;
 
         if (user.id === interaction.user.id) {
             interaction.followUp({
@@ -74,13 +86,14 @@ class Command extends comando {
             });
             return {}
         } else {
+            let image_url = await this.client.private_api.roleplay.nsfw[interaction.options.getSubcommand()](fur_images);
             let embed = this.embed_maker_({
                 title: t(`commands:actions_nsfw.${interaction.options.getSubcommand()}.success.title`),
                 description: t(`commands:actions_nsfw.${interaction.options.getSubcommand()}.success.description`, {
                     user1: interaction.user.username,
                     user2: user.username
                 }),
-                url: this.client.private_api.roleplay.nsfw[interaction.options.getSubcommand()]()
+                url: image_url
             });
 
             interaction.editReply({

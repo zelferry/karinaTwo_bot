@@ -12,14 +12,6 @@ class Command extends comando {
         options: [
             {
                 type: 1,
-                name: "generate",
-                description: "(fun) generate a random meme!",
-                description_localizations: {
-                    "pt-BR": "(diversão) gere um meme aleatório!"
-                }
-            },
-            {
-                type: 1,
                 name: "knuckles",
                 description: "(fun) \"meme?\"",
                 description_localizations: {
@@ -39,32 +31,13 @@ class Command extends comando {
         await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
         let subCOMMAND = interaction.options.getSubcommand();
 
-        if(subCOMMAND === "generate"){
-            let json = await this.client.private_api.meme.find_meme(t.lng);
-
-            let description = `${t("commands:meme.generate.label", { post_title: json.title, post_votes: (json.ups).toString(), post_subreddit: json.subreddit, post_url: json.postLink })}`;
-            let file = json.url
-            
-            if(json.nsfw && !interaction.channel.nsfw){
-                description = `${t("commands:meme.generate.label", { post_title: json.title, post_votes: (json.ups).toString(), post_subreddit: json.subreddit, post_url: json.postLink })}\n${t("commands:meme.generate.nsfw")}`;
-                file = null 
-            } else if(file.endsWith('.webm') || file.endsWith('.mp4')){
-                description = `${t("commands:meme.generate.label", { post_title: json.title, post_votes: (json.ups).toString(), post_subreddit: json.subreddit, post_url: json.postLink })}\n${t("commands:meme.generate.no_img")}`;
-            }
-
-            let embed = new Discord.EmbedBuilder().setImage(file).setColor("#7B68EE").setDescription(description)
-            
-            interaction.editReply({
-                embeds: [embed]
-            });
-            
-            return {}
-        } else if(subCOMMAND === "knuckles"){
+        if(subCOMMAND === "knuckles"){
             let data = [
                 "approved",
                 "illegal",
                 "paralyzed"
             ];
+            
             let attachment = new Discord.AttachmentBuilder(`./assets/knuckles/${t.lng}/knuckles_${data[mathRandom(data.length)]}.png`, { name: "knuckles.png" });
 
             interaction.editReply({

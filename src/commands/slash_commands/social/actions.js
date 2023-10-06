@@ -49,7 +49,18 @@ class Command extends comando {
                 description_localizations: {
                     "pt-BR": "(social) dê um abraço em alguém!"
                 },
-                options: [user_data]
+                options: [
+                    user_data,
+                    {
+                        type: 5,
+                        required: false,
+                        name: "use_furr_images",
+                        description: "when enabled (in \"true\") I will use images of furries",
+                        description_localizations: {
+                            "pt-BR": "quando habilitado (em \"true\") irei usar imagens de furries"
+                        }
+                    }
+                ]
             },
             {
                 type: 1,
@@ -73,7 +84,18 @@ class Command extends comando {
                 description_localizations: {
                     "pt-BR": "(social) beijar algum usuário :)"
                 },
-                options: [user_data]
+                options: [
+                    user_data,
+                    {
+                        type: 5,
+                        required: false,
+                        name: "use_furr_images",
+                        description: "when enabled (in \"true\") I will use images of furries",
+                        description_localizations: {
+                            "pt-BR": "quando habilitado (em \"true\") irei usar imagens de furries"
+                        }
+                    }
+                ]
             },
             {
                 type: 1,
@@ -98,23 +120,26 @@ class Command extends comando {
     }
 
     async interactionRun(interaction, t){
-        await interaction.deferReply({ ephemeral:  this.deferReply}).catch(() => {});
+        await interaction.deferReply({ ephemeral: this.deferReply }).catch(() => {});
         let user = interaction.options.getUser("user");
+        let fur_images = interaction.options.getBoolean("use_furr_images") || false;
 
         if (user.id === interaction.user.id) {
             interaction.followUp({
                 content: t(`commands:actions.${interaction.options.getSubcommand()}.error`),
                 ephemeral: true
             });
+
             return {}
         } else {
+            let image_url = await this.client.private_api.roleplay.sfw[interaction.options.getSubcommand()](fur_images);
             let embed = this.embed_maker_({
                 title: t(`commands:actions.${interaction.options.getSubcommand()}.success.title`),
                 description: t(`commands:actions.${interaction.options.getSubcommand()}.success.description`, {
                     user1: interaction.user.username,
                     user2: user.username
                 }),
-                url: this.client.private_api.roleplay.sfw[interaction.options.getSubcommand()]()
+                url: image_url
             });
 
             interaction.editReply({
@@ -204,5 +229,6 @@ class Command extends comando {
             }
         }
     }
-} 
-module.exports = Command 
+}
+
+module.exports = Command

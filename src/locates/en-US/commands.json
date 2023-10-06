@@ -237,11 +237,6 @@
         }
     },
     "meme": {
-        "generate": {
-            "label": "> title: {{post_title}}\n> score: {{post_votes}}\n> subreddit: {{post_subreddit}}\n> origin: [original here]({{post_url}})",
-            "nsfw": "🚫**|** looks like the meme is an nsfw meme!",
-            "no_img": "🚫**|** looks like the meme is not an image"
-        },
         "knuckles": "did Knuckles approve of your meme?"
     },
     "wikipedia": {

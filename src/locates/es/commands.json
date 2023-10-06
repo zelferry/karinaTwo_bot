@@ -237,11 +237,6 @@
     }
   },
   "meme": {
-    "generate": {
-      "label": "> título: {{post_title}}\n> votos: {{post_votes}}\n> subreddit: {{post_subreddit}}\n> origen: [original aquí]({{post_url}})",
-      "nsfw": "🚫**|** ¡parece que o meme e um meme nsfw!",
-      "no_img": "🚫**|** parece que el meme no es una imagen"
-    },
     "knuckles": "¿Será que Knuckles aprovou su meme?"
   },
   "wikipedia": {
@@ -251,7 +246,7 @@
     "error": "😭**|** ¡Aconteceu um pequeno error ao recuperar as informações do site!",
     "no_post": "🚫**|** no hay resultado para __*{{tags}}*__\n📛**|** tente más tarde",
     "original_description": "descripción de la publicación",
-    "no_description": "__não tem descrição__",
+    "no_description": "__no tiene descripción__",
     "label": {
       "one": "> **votos**: {{postScore}} | **origen**: [original aquí](https://e621.net/post/show/{{postId}})",
       "two": "etiqueta(s) en lista negra!\netiqueta: {{tags}} | [**Enlace**](https://e621.net/posts/{{postId}})\n> Si quieres definir tu lista negra, puedes ir a la opción de edición de Karina [haciendo clic aquí](https://karinatwo.repl.co/dashboard/user/edit)",
@@ -263,7 +258,7 @@
     "error": "😭**|** ¡Aconteceu um pequeno error ao recuperar as informações do site!",
     "no_post": "🚫**|** no hay resultado para __*{{tags}}*__\n📛**|** tente más tarde",
     "original_description": "descripción de la publicación",
-    "no_description": "__não tem descrição__",
+    "no_description": "__no tiene descripción__",
     "label": {
       "one": "> **votos**: {{postScore}} | **origen**: [original aquí](https://e926.net/post/show/{{postId}})",
       "two": "etiqueta(s) en lista negra!\netiqueta: {{tags}} | [**Enlace**](https://e926.net/posts/{{postId}})\n> Si quieres definir tu lista negra, puedes ir a la opción de edición de Karina [haciendo clic aquí](https://karinatwo.repl.co/dashboard/user/edit)",
@@ -440,7 +435,7 @@
   "mc": {
     "achievement": {
       "defaut": {
-        "title": "conquistada desbloqueada!"
+        "title": "logro desbloqueado"
       },
       "error": {
         "title": ":x:**|** ¡El título no puede tener más de 24 caracteres!",

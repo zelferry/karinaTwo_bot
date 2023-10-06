@@ -237,11 +237,6 @@
         }
     },
     "meme": {
-        "generate": {
-            "label": "> título: {{post_title}}\n> votos: {{post_votes}}\n> subreddit: {{post_subreddit}}\n> origem: [original aqui]({{post_url}})",
-            "nsfw": "🚫**|** parece que o meme e um meme nsfw!",
-            "no_img": "🚫**|** parece que o meme não e uma imagem"
-        },
         "knuckles": "será que o Knuckles aprovou seu meme?"
     },
     "wikipedia": {
@@ -440,7 +435,7 @@
     "mc": {
         "achievement": {
             "defaut": {
-                "title": "conquista desbloqueada!"
+                "title": "conquista desbloqueada"
             },
             "error": {
                 "title": ":x:**|** o titulo não pode ter mais de 24 caracteres!",

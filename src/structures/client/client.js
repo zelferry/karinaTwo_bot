@@ -27,6 +27,7 @@ class clientBot extends baseClient {
             disconect: (fn) => this.disconect(fn)
         })
     }
+
     displayTHIS(client){
         client.getContainer = async function(endpoit){
             const ops88 = { method: 'GET', headers: { 'User-Agent': 'crosdid/1.0' } };
@@ -70,8 +71,10 @@ class clientBot extends baseClient {
         client.private_api = new apiStructure(client);
         client.ia = require("./structures/ia.js");
     }
+
     async loadLocates(){
-        const path = `${process.cwd()}/src/locates`
+        const path = `${process.cwd()}/src/locates`;
+
         try {
             await i18next.use(Backend).init({
                 ns: ["commands", "events", "permissions", "components"],
@@ -94,6 +97,7 @@ class clientBot extends baseClient {
             return console.error("[LOCATES] - erro".red, error);
         }
     }
+
     async connect(){
         dbconnect("client");
         await this.loadLocates();
@@ -105,6 +109,7 @@ class clientBot extends baseClient {
             if (!this.isReady()) exec('kill 1');
         }, 5 * 1000));
     }
+
     disconect(reason){
         console.info(reason);
         this.destroy();

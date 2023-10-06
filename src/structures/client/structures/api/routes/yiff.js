@@ -14,7 +14,15 @@ class yiff {
     #data
 	constructor(data) {
         this.#data = data;
-        this.black_list = [`-animated`, `-webm`, `-flash`, `-humanoid`, `-sonic_the_hedgehog_(series)`, `-league_of_legends`, `score:>500`]
+        this.black_list = [
+            `-animated`,
+            `-webm`,
+            `-flash`,
+            `-humanoid`, 
+            `-sonic_the_hedgehog_(series)`,
+            `-league_of_legends`,
+            `score:>500`
+        ]
         
         Object.keys(types).forEach(async(endpoint) => {
             this[endpoint] = async function(){

@@ -5,7 +5,6 @@ const toml = require('toml');
 
 const nekos = require("./routes/nekos.js");
 const yiff = require("./routes/yiff.js");
-const memes = require("./routes/memes.js");
 const rp_sfw = require("./routes/roleplay/rp_sfw.js");
 const rp_nsfw = require("./routes/roleplay/rp_nsfw.js")
 
@@ -23,9 +22,6 @@ class Api {
     }
     get yiff(){
         return (new yiff(this))
-    }
-    get meme(){
-        return (new memes(this))
     }
     get roleplay(){
         return {
